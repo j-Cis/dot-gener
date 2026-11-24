@@ -5,9 +5,9 @@ import SekcjaOLekturze from "@/site/elements/SekcjaOLekturze.section.tsx";
 export default function Home() {
   return (
     <main class="page">
-      <SekcjaOProgramie numer="1.0:." tytul={`LEKTURA O "dot-gener"`} />
+      <SekcjaOWzorach numer="1.0:." tytul={`LEKTURA O WZORACH`} />
       <hr />
-      <SekcjaOWzorach numer="2.0:." tytul={`LEKTURA O WZORACH`} />
+      <SekcjaOProgramie numer="2.0:." tytul={`LEKTURA O "dot-gener"`} />
       <hr />
       <SekcjaOLekturze numer="3.0:." tytul={`LEKTURA O LEKTURZE`} />
       <hr />
