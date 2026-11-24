@@ -1,0 +1,54 @@
+{
+  "version": "5",
+  "specifiers": {
+    "jsr:@deno/loader@0.5": "0.5.0",
+    "jsr:@hono/hono@^4.13.19": "4.13.20",
+    "jsr:@std/encoding@^1.0.10": "1.0.11"
+  },
+  "jsr": {
+    "@deno/loader@0.5.0": {
+      "integrity": "a6d94408de5e6bacac404f8f6963c8b8cc278cfd1a878aa2f06b34a083d6bfee"
+    },
+    "@hono/hono@4.13.20": {
+      "integrity": "1c118447d973717be6c36228821a91c1f09350c624ed67e6f9aafaefb64bc207"
+    },
+    "@std/encoding@1.0.11": {
+      "integrity": "e7cef2f0b3153bccc17431e7c864a1de03a4b6d9647389c43e08aaa775d37385"
+    }
+  },
+  "remote": {
+    "https://esm.sh/highlight.js@11.12.0/es2022/lib/core.mjs": "2131f73f1c657b9957916ba0547b8a455483cd22df5c889cc5373c624c6f2778",
+    "https://esm.sh/highlight.js@11.12.0/es2022/lib/languages/bash.mjs": "be803ae91de0e54eb7d83e14f6edb4ea4eb60677516b414b15be117cdd916d83",
+    "https://esm.sh/highlight.js@11.12.0/es2022/lib/languages/css.mjs": "f83de064c2962ec2235c9f488785b99566c29298ae3faf35d4f703ebf70c09cc",
+    "https://esm.sh/highlight.js@11.12.0/es2022/lib/languages/javascript.mjs": "1cd35ecff9a688fa90a45efd51d215cc5aec0a14222244b6c99ccffc1a106d70",
+    "https://esm.sh/highlight.js@11.12.0/es2022/lib/languages/json.mjs": "47f722d6a7909da9f48fa688ecc12f3e1a8cd15b9ce75573b12aa0843b79b349",
+    "https://esm.sh/highlight.js@11.12.0/es2022/lib/languages/rust.mjs": "9aa1f51dcdf06642e23ad100b69176e6744206cca49ab89cb7a6ff515190461e",
+    "https://esm.sh/highlight.js@11.12.0/es2022/lib/languages/typescript.mjs": "a715f7c52c70236bef129824c5f80482c927f75975bd208270534b89d483ec29",
+    "https://esm.sh/highlight.js@11.12.0/es2022/lib/languages/xml.mjs": "d702f1858a96463461d85030a8f0a1e95983eb234fd37511b6f42b09ba486d2a",
+    "https://esm.sh/highlight.js@11.12.0/lib/core": "6fc20a807fe79b23f8c0a2f13bb135c3097944be2938b7f97b4e3e6359372796",
+    "https://esm.sh/highlight.js@11.12.0/lib/languages/bash": "30374323e57f9fb4cead2c17df82c95eab2662d866e7eb71c670161e561597d7",
+    "https://esm.sh/highlight.js@11.12.0/lib/languages/css": "9c23b86be4da3d85f8b840843cc1519f935f9d73998548dda3bcfffc68a7b3f0",
+    "https://esm.sh/highlight.js@11.12.0/lib/languages/javascript": "d6cc3a07afd0ccdac6bd298e01dc06e3fa0aa3d1e462fd5c645bb5c41ede7494",
+    "https://esm.sh/highlight.js@11.12.0/lib/languages/json": "dc4133865acfb2712deb2e8bba7c76075b306ce66595f58ba541983908cfcf25",
+    "https://esm.sh/highlight.js@11.12.0/lib/languages/rust": "b522911c3a9885760a88b0d2910b85a376bbe9e15886763e5d8018f626af020c",
+    "https://esm.sh/highlight.js@11.12.0/lib/languages/typescript": "481615dc1c448a387a07a8a0376f4811890c1fe871af9f55e18f2acb5c32a35d",
+    "https://esm.sh/highlight.js@11.12.0/lib/languages/xml": "dbdb53855295d4fc82035d81d0e9819c5ead64d9f8139004a977a5edb0abe81c",
+    "https://esm.sh/preact-render-to-string@6.8.3": "d04c020a70d569d268b33358a5feb16ac679ad2940f1bf9427d4e37a58f005f3",
+    "https://esm.sh/preact-render-to-string@6.8.3/es2022/preact-render-to-string.mjs": "f44f9745d1bad8af1c910881afe16b7312d8336c17d769fe70485666d5ff2e15",
+    "https://esm.sh/preact@%3E=10%20||%20%3E=%2011.0.0-0?target=es2022": "3141a2d85bfafd74f70aab856bf0a33fc8d047778415c71ed272faf103953c35",
+    "https://esm.sh/preact@11.2.0": "3141a2d85bfafd74f70aab856bf0a33fc8d047778415c71ed272faf103953c35",
+    "https://esm.sh/preact@11.2.0/es2022/hooks.mjs": "a01ed4e181c2e46c49f07b4de84285cdb29b19c3e756458af6c758a527ee8dcc",
+    "https://esm.sh/preact@11.2.0/es2022/jsx-runtime.mjs": "ed93962f5aafaaf14166c58fff4b1ec4d4da7314e9daedd393d809f8b0c9266f",
+    "https://esm.sh/preact@11.2.0/es2022/preact.mjs": "bf32c8188d0b5c1401596bcbb6d62bb44f2ff22a112545ab66f97ef3145f1bc4",
+    "https://esm.sh/preact@11.2.0/hooks": "c466f4ec1a976b3e78ddd92333a232858a78d98ad3e95d6696dac5258a540d54",
+    "https://esm.sh/preact@11.2.0/jsx-runtime": "e15bb5d744592669de4122eaf957baaa44f60cd227ae9fc2a209a34f01dc9455"
+  },
+  "workspace": {
+    "dependencies": [
+      "jsr:@deno/loader@0.5",
+      "jsr:@hono/hono@^4.13.19",
+      "jsr:@std/assert@1",
+      "jsr:@std/encoding@^1.0.10"
+    ]
+  }
+}

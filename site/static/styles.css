@@ -1,0 +1,427 @@
+html,
+body {
+  background-color: #101116;
+  color: #cfcfd0;
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+}
+.page {
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+.counter {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+.count {
+  font-size: 1.875rem;
+  font-variant-numeric: tabular-nums;
+}
+.btn {
+  padding: 0.25rem 0.5rem;
+  border: 2px solid #6b7280;
+  border-radius: 0.125rem;
+  background: #fff;
+  cursor: pointer;
+}
+.btn:hover {
+  background: #e5e7eb;
+}
+
+/* Title.widget.tsx */
+.title {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5em;
+  line-height: 1.2;
+}
+.title-prefix {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  color: #6b7280;
+}
+/* kotwica #id jak w markdown: „#” po lewej, widoczny po najechaniu / fokusie */
+.title {
+  position: relative;
+  scroll-margin-top: 1rem; /* po skoku do #id nagłówek nie dotyka krawędzi */
+  padding-inline: 0.25em;
+  margin-inline: -0.25em;
+  border-radius: 0.25rem;
+  transition: background-color 0.15s;
+}
+.title:hover {
+  background-color: rgb(255 255 255 / 0.04);
+}
+.title:target {
+  /* nagłówek, do którego prowadzi adres …#id */
+  background-color: rgb(79 133 216 / 0.14);
+  box-shadow: inset 3px 0 0 #4f85d8;
+}
+.title-kotwica {
+  position: absolute;
+  top: 0;
+  right: 100%;
+  padding-inline-end: 0.2em;
+  color: #6b7280;
+  text-decoration: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.title:hover .title-kotwica,
+.title-kotwica:focus-visible {
+  opacity: 1;
+}
+.title-kotwica:hover {
+  color: #4f85d8;
+}
+
+/* BoxSvg.island.tsx */
+.box-svg {
+  position: relative;
+  overflow: hidden;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+.box-svg:active {
+  cursor: grabbing;
+}
+.box-svg-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: max-content;
+  transform-origin: 0 0;
+}
+.box-svg-content svg {
+  display: block;
+}
+
+/* SpanWithKey.widget.tsx (px from the original → em at 16px) */
+.span-with-key {
+  --swk-value: teal;
+  --swk-key: teal;
+  white-space: nowrap;
+  margin-inline: 4px; /* room for the 2px outline + 2px offset */
+}
+.span-with-key-value,
+.span-with-key-key {
+  padding-inline: 0.25em;
+  font-weight: 700;
+}
+.span-with-key-value {
+  color: var(--swk-value);
+  outline: 2px dotted var(--swk-value);
+  outline-offset: 2px;
+  margin-inline-end: 0.25em;
+  line-height: 1.5em;
+}
+.span-with-key-key {
+  color: black;
+  background-color: var(--swk-key);
+  margin-inline-end: 0.125em;
+}
+
+/* pages/index/Tab01.section.tsx */
+.tab01 {
+  border-collapse: separate;
+  border-spacing: 0 8px;
+
+  & td {
+    padding: 3px 8px;
+  }
+  & .tab01-kto {
+    text-align: right;
+    padding-right: 1rem;
+  }
+  & .tab01-schemat {
+    outline: 2px dotted darkgray;
+    vertical-align: top;
+  }
+}
+
+/* schemat drzewa SOSA (SVG) */
+svg.drzewo {
+  & .drzewo-edge {
+    fill: none;
+    opacity: 0.6;
+    stroke: oklch(35% 0.04 276.381);
+    stroke-width: 7;
+    filter: blur(3px);
+  }
+  & .drzewo-node {
+    fill: oklch(17.888% 0.01042 276.381);
+    stroke: oklch(35% 0.04 276.381);
+    stroke-width: 1.5;
+  }
+  & .drzewo-text {
+    font-family: sans-serif;
+    font-weight: 700;
+    text-anchor: middle;
+  }
+  & .drzewo-text tspan {
+    font-size: 7px;
+    fill: black;
+    baseline-shift: sub;
+  }
+  & .drzewo-num-bin {
+    fill: teal;
+    font-size: 11px;
+  }
+  & .drzewo-num-dec {
+    fill: goldenrod;
+    font-size: 13px;
+  }
+  /* obwódka liczby jak w tabeli (kropkowana), w skali kółka */
+  & .obwodka rect {
+    fill: none;
+    stroke-width: 0.65px;
+    stroke-dasharray: 0 2;
+    stroke-linecap: round;
+  }
+  & .drzewo-num-bin .obwodka rect {
+    stroke: teal;
+  }
+  & .drzewo-num-dec .obwodka rect {
+    stroke: goldenrod;
+  }
+}
+
+/* features/drzewo/GenerDrzewo.widget.tsx */
+svg.gener-drzewo {
+  /* waga 1: krawędzie drzewa (ciągłe); waga 2: połączenia (przerywane) */
+  & .gener-drzewo-edge {
+    fill: none;
+    stroke: #9ca3af;
+  }
+  & .gener-drzewo-edge.waga-2 {
+    stroke-dasharray: 4 3;
+  }
+  & .gener-drzewo-node {
+    stroke: rgb(0 0 0 / 0.45);
+  }
+}
+
+/* pages/index/Tab02.section.tsx */
+.tab02 {
+  border-collapse: separate;
+  border-spacing: 0 8px;
+
+  & td {
+    padding: 3px 8px;
+    vertical-align: top;
+  }
+  & .tab02-opis {
+    text-align: right;
+    padding-right: 1rem;
+    line-height: 1.5;
+  }
+}
+
+/* SpanWithKeySvg / SpanWithKeySvgGrid (features/ui/SpanWithKey.widget.tsx) */
+.span-with-key-svg text {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
+}
+.span-with-key-svg-key {
+  fill: black;
+}
+
+/* akapity tekstu (pages/index.tsx) */
+p.akapit {
+  margin-block: 6px;
+  text-indent: 2em;
+  line-height: 1.8;
+}
+
+/* Tec.widget.tsx — kod wyświetlany dosłownie */
+.tec {
+  /* tło kodu: odrobinę jaśniejsze od tła strony (#101116), żeby kod się wyróżniał */
+  --tec-tlo: #1c1e26;
+  --tec-tekst: #e4e4e6;
+  font-family: ui-monospace, "Cascadia Mono", Consolas, "DejaVu Sans Mono", monospace;
+  font-size: 0.9em;
+  tab-size: 2;
+  color: var(--tec-tekst);
+  background-color: var(--tec-tlo);
+}
+code.tec {
+  /* w linii: zachowane spacje, łamanie długich fragmentów */
+  padding: 0.1em 0.4em;
+  border-radius: 0.3rem;
+  white-space: pre-wrap;
+  /* po złamaniu wiersza każdy kawałek ma własne tło, zaokrąglenie i margines */
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+pre.tec-blok {
+  /* blok: dokładne odstępy i znaki nowej linii, przewijanie w poziomie zamiast łamania */
+  margin-block: 0.75rem;
+  padding: 0.85rem 1.1rem;
+  border-radius: 0.5rem;
+  line-height: 1.5;
+  overflow-x: auto;
+}
+pre.tec-blok code {
+  font: inherit;
+}
+pre.tec-blok.tec-przyciety {
+  /* widthTrim="50%": blok staje w rzędzie obok sąsiednich; odstęp jest wliczony w podaną szerokość,
+     więc 2 × 50% (albo 60% + 40%) mieści się w jednym rzędzie, a kolejne bloki przechodzą do następnego */
+  --tec-odstep: 0.5rem;
+  display: inline-block;
+  vertical-align: top;
+  box-sizing: border-box;
+  width: calc(var(--tec-szerokosc) - var(--tec-odstep));
+  margin-inline: calc(var(--tec-odstep) / 2);
+}
+
+/* kolorowanie składni (Tec z lang="…"; klasy nadaje highlight.js) */
+.tec .hljs-keyword,
+.tec .hljs-literal,
+.tec .hljs-symbol,
+.tec .hljs-variable.language_,
+.tec .hljs-tag,
+.tec .hljs-name {
+  color: #569cd6;
+}
+.tec .hljs-built_in,
+.tec .hljs-type,
+.tec .hljs-title.class_,
+.tec .hljs-title.class_.inherited__ {
+  color: #4ec9b0;
+}
+.tec .hljs-title,
+.tec .hljs-title.function_ {
+  color: #dcdcaa;
+}
+.tec .hljs-attr,
+.tec .hljs-attribute,
+.tec .hljs-property,
+.tec .hljs-variable,
+.tec .hljs-params {
+  color: #9cdcfe;
+}
+.tec .hljs-string {
+  color: #ce9178;
+}
+.tec .hljs-subst {
+  /* ${…} w szablonie: zwykły kolor kodu */
+  color: var(--tec-tekst);
+}
+.tec .hljs-number {
+  color: #b5cea8;
+}
+.tec .hljs-regexp {
+  color: #d16969;
+}
+.tec .hljs-meta,
+.tec .hljs-keyword.control_ {
+  color: #c586c0;
+}
+.tec .hljs-selector-class,
+.tec .hljs-selector-id,
+.tec .hljs-selector-tag {
+  color: #d7ba7d;
+}
+.tec .hljs-comment,
+.tec .hljs-quote {
+  color: #6a9955;
+  font-style: italic;
+}
+
+table#LekturaSystem {
+  width: 100%;
+  /* szerokości kolumn z tabeli, nie z treści — długie linie kodu przewijają się w komórce */
+  table-layout: fixed;
+  td,
+  th,
+  & {
+    border: #5d5d5d dotted 1px;
+  }
+  /* przy table-layout: fixed szerokości kolumn bierze się TYLKO z pierwszego wiersza;
+     :nth-child liczy komórki, nie kolumny — KONFIGURACJA (colSpan 2) to 2. komórka, WSAD 3.,
+     a 20% KONFIGURACJI dzieli się po równo na dwie środkowe kolumny: 40% | 10% | 10% | 40% */
+  tr:first-child > :nth-child(1) {
+    width: 30%;
+  }
+  tr:first-child > :nth-child(2) {
+    width: 70%;
+  }
+}
+
+/* Table.widget.tsx — siatka (CSS grid) w oknie przewijania */
+.tabela {
+  /* okno: szerokość strony; przewija, gdy siatka jest szersza (width > 100%) albo wyższa niż height */
+  overflow: auto;
+  max-width: 100%;
+}
+.tabela-siatka {
+  display: grid;
+  /* ścieżki od początku — wiersze "auto" nie rozciągają się, gdy okno (height) jest wyższe niż treść */
+  justify-content: start;
+  align-content: start;
+}
+.tabela-box {
+  /* nagłówek + treść; kierunek zależy od strony nagłówka */
+  display: flex;
+  flex-direction: column;
+}
+.tabela-box-N {
+  flex-direction: column;
+}
+.tabela-box-S {
+  flex-direction: column-reverse;
+}
+.tabela-box-W {
+  flex-direction: row;
+}
+.tabela-box-E {
+  flex-direction: row-reverse;
+}
+.tabela-naglowek {
+  display: flex;
+  flex: none;
+  padding: 0.25rem 0.5rem;
+  font-weight: 600;
+  background-color: rgb(255 255 255 / 0.04);
+}
+.tabela-box-W > .tabela-naglowek,
+.tabela-box-E > .tabela-naglowek {
+  /* nagłówek z boku: start/center/end działa w pionie */
+  flex-direction: column;
+}
+.tabela-naglowek-start {
+  justify-content: flex-start;
+  text-align: start;
+}
+.tabela-naglowek-center {
+  justify-content: center;
+  text-align: center;
+}
+.tabela-naglowek-end {
+  justify-content: flex-end;
+  text-align: end;
+}
+.tabela-obrot-prawo {
+  /* o 90° w prawo: czytamy z góry na dół */
+  writing-mode: vertical-rl;
+}
+.tabela-obrot-lewo {
+  /* o 90° w lewo: czytamy z dołu do góry */
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+.tabela-tresc {
+  /* treść większa niż obszar (np. stała wysokość wiersza) przewija się w obszarze */
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+}

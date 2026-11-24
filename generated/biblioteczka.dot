@@ -1,0 +1,65 @@
+digraph "biblioteczka" {
+  graph [rankdir="LR", nodesep=0.25, ranksep=1.1];
+  node [fontname="Helvetica", fontsize=11];
+  edge [fontname="Helvetica", fontsize=9];
+
+  // ── węzły: autor (A) ──
+  "A1" [shape="plain", label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#eaf2fb"><TR><TD><B>A1</B></TD><TD PORT="dziela" ROWSPAN="4"><FONT POINT-SIZE="9">dziela</FONT></TD></TR><TR><TD>Jan Kochanowski</TD></TR><TR><TD>renesans</TD></TR><TR><TD>książek: 2</TD></TR></TABLE>>];
+  "A2" [shape="plain", label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#eaf2fb"><TR><TD><B>A2</B></TD><TD PORT="dziela" ROWSPAN="4"><FONT POINT-SIZE="9">dziela</FONT></TD></TR><TR><TD>Bolesław Prus</TD></TR><TR><TD>pozytywizm</TD></TR><TR><TD>książek: 3</TD></TR></TABLE>>];
+  "A3" [shape="plain", label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#eaf2fb"><TR><TD><B>A3</B></TD><TD PORT="dziela" ROWSPAN="4"><FONT POINT-SIZE="9">dziela</FONT></TD></TR><TR><TD>Eliza Orzeszkowa</TD></TR><TR><TD>pozytywizm</TD></TR><TR><TD>książek: 2</TD></TR></TABLE>>];
+  "A4" [shape="plain", label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#eaf2fb"><TR><TD><B>A4</B></TD><TD PORT="dziela" ROWSPAN="4"><FONT POINT-SIZE="9">dziela</FONT></TD></TR><TR><TD>Henryk Sienkiewicz</TD></TR><TR><TD>pozytywizm</TD></TR><TR><TD>książek: 5</TD></TR></TABLE>>];
+  "A5" [shape="plain", label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#eaf2fb"><TR><TD><B>A5</B></TD><TD PORT="dziela" ROWSPAN="4"><FONT POINT-SIZE="9">dziela</FONT></TD></TR><TR><TD>Stefan Żeromski</TD></TR><TR><TD>mloda_polska</TD></TR><TR><TD>książek: 2</TD></TR></TABLE>>];
+
+  // ── węzły: ksiazka (K) ──
+  "K01" [shape="plain", label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#e9f7ef"><TR><TD PORT="autorzy" ROWSPAN="4"><FONT POINT-SIZE="9">autorzy</FONT></TD><TD><B>K01</B></TD><TD PORT="miejsce" ROWSPAN="4"><FONT POINT-SIZE="9">miejsce</FONT></TD></TR><TR><TD>Treny</TD></TR><TR><TD>liryka / tren</TD></TR><TR><TD>oprawa twarda</TD></TR></TABLE>>];
+  "K02" [shape="plain", label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#fde8e8"><TR><TD PORT="autorzy" ROWSPAN="4"><FONT POINT-SIZE="9">autorzy</FONT></TD><TD><B>K02</B></TD><TD PORT="miejsce" ROWSPAN="4"><FONT POINT-SIZE="9">miejsce</FONT></TD></TR><TR><TD>Odprawa posłów greckich</TD></TR><TR><TD>dramat / tragedia</TD></TR><TR><TD>oprawa miekka</TD></TR></TABLE>>];
+  "K03" [shape="plain", label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#fff4d6"><TR><TD PORT="autorzy" ROWSPAN="4"><FONT POINT-SIZE="9">autorzy</FONT></TD><TD><B>K03</B></TD><TD PORT="miejsce" ROWSPAN="4"><FONT POINT-SIZE="9">miejsce</FONT></TD></TR><TR><TD>Lalka</TD></TR><TR><TD>epika / powiesc</TD></TR><TR><TD>oprawa twarda</TD></TR></TABLE>>];
+  "K04" [shape="plain", label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#fff4d6"><TR><TD PORT="autorzy" ROWSPAN="4"><FONT POINT-SIZE="9">autorzy</FONT></TD><TD><B>K04</B></TD><TD PORT="miejsce" ROWSPAN="4"><FONT POINT-SIZE="9">miejsce</FONT></TD></TR><TR><TD>Faraon</TD></TR><TR><TD>epika / powiesc</TD></TR><TR><TD>oprawa twarda</TD></TR></TABLE>>];
+  "K05" [shape="plain", label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#fff4d6"><TR><TD PORT="autorzy" ROWSPAN="4"><FONT POINT-SIZE="9">autorzy</FONT></TD><TD><B>K05</B></TD><TD PORT="miejsce" ROWSPAN="4"><FONT POINT-SIZE="9">miejsce</FONT></TD></TR><TR><TD>Kamizelka</TD></TR><TR><TD>epika / nowela</TD></TR><TR><TD>oprawa miekka</TD></TR></TABLE>>];
+  "K06" [shape="plain", label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#fff4d6"><TR><TD PORT="autorzy" ROWSPAN="4"><FONT POINT-SIZE="9">autorzy</FONT></TD><TD><B>K06</B></TD><TD PORT="miejsce" ROWSPAN="4"><FONT POINT-SIZE="9">miejsce</FONT></TD></TR><TR><TD>Nad Niemnem</TD></TR><TR><TD>epika / powiesc</TD></TR><TR><TD>oprawa twarda</TD></TR></TABLE>>];
+  "K07" [shape="plain", label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#fff4d6"><TR><TD PORT="autorzy" ROWSPAN="4"><FONT POINT-SIZE="9">autorzy</FONT></TD><TD><B>K07</B></TD><TD PORT="miejsce" ROWSPAN="4"><FONT POINT-SIZE="9">miejsce</FONT></TD></TR><TR><TD>Dobra pani</TD></TR><TR><TD>epika / nowela</TD></TR><TR><TD>oprawa miekka</TD></TR></TABLE>>];
+  "K08" [shape="plain", label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#fff4d6"><TR><TD PORT="autorzy" ROWSPAN="4"><FONT POINT-SIZE="9">autorzy</FONT></TD><TD><B>K08</B></TD><TD PORT="miejsce" ROWSPAN="4"><FONT POINT-SIZE="9">miejsce</FONT></TD></TR><TR><TD>Ogniem i mieczem</TD></TR><TR><TD>epika / powiesc</TD></TR><TR><TD>oprawa twarda</TD></TR></TABLE>>];
+  "K09" [shape="plain", label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#fff4d6"><TR><TD PORT="autorzy" ROWSPAN="4"><FONT POINT-SIZE="9">autorzy</FONT></TD><TD><B>K09</B></TD><TD PORT="miejsce" ROWSPAN="4"><FONT POINT-SIZE="9">miejsce</FONT></TD></TR><TR><TD>Potop</TD></TR><TR><TD>epika / powiesc</TD></TR><TR><TD>oprawa twarda</TD></TR></TABLE>>];
+  "K10" [shape="plain", label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#fff4d6"><TR><TD PORT="autorzy" ROWSPAN="4"><FONT POINT-SIZE="9">autorzy</FONT></TD><TD><B>K10</B></TD><TD PORT="miejsce" ROWSPAN="4"><FONT POINT-SIZE="9">miejsce</FONT></TD></TR><TR><TD>Quo vadis</TD></TR><TR><TD>epika / powiesc</TD></TR><TR><TD>oprawa twarda</TD></TR></TABLE>>];
+  "K11" [shape="plain", label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#fff4d6"><TR><TD PORT="autorzy" ROWSPAN="4"><FONT POINT-SIZE="9">autorzy</FONT></TD><TD><B>K11</B></TD><TD PORT="miejsce" ROWSPAN="4"><FONT POINT-SIZE="9">miejsce</FONT></TD></TR><TR><TD>Krzyżacy</TD></TR><TR><TD>epika / powiesc</TD></TR><TR><TD>oprawa twarda</TD></TR></TABLE>>];
+  "K12" [shape="plain", label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#fff4d6"><TR><TD PORT="autorzy" ROWSPAN="4"><FONT POINT-SIZE="9">autorzy</FONT></TD><TD><B>K12</B></TD><TD PORT="miejsce" ROWSPAN="4"><FONT POINT-SIZE="9">miejsce</FONT></TD></TR><TR><TD>Janko Muzykant</TD></TR><TR><TD>epika / nowela</TD></TR><TR><TD>oprawa miekka</TD></TR></TABLE>>];
+  "K13" [shape="plain", label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#fff4d6"><TR><TD PORT="autorzy" ROWSPAN="4"><FONT POINT-SIZE="9">autorzy</FONT></TD><TD><B>K13</B></TD><TD PORT="miejsce" ROWSPAN="4"><FONT POINT-SIZE="9">miejsce</FONT></TD></TR><TR><TD>Ludzie bezdomni</TD></TR><TR><TD>epika / powiesc</TD></TR><TR><TD>oprawa twarda</TD></TR></TABLE>>];
+  "K14" [shape="plain", label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#fff4d6"><TR><TD PORT="autorzy" ROWSPAN="4"><FONT POINT-SIZE="9">autorzy</FONT></TD><TD><B>K14</B></TD><TD PORT="miejsce" ROWSPAN="4"><FONT POINT-SIZE="9">miejsce</FONT></TD></TR><TR><TD>Przedwiośnie</TD></TR><TR><TD>epika / powiesc</TD></TR><TR><TD>oprawa miekka</TD></TR></TABLE>>];
+
+  // ── węzły: polka (P) ──
+  "P1" [shape="plain", label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#f2f3f4"><TR><TD PORT="zawartosc" ROWSPAN="5"><FONT POINT-SIZE="9">zawartosc</FONT></TD><TD><B>P1</B></TD></TR><TR><TD>witryna</TD></TR><TR><TD>salon</TD></TR><TR><TD>książek: 4</TD></TR><TR><TD>Kochanowski, Sienkiewicz, Żeromski</TD></TR></TABLE>>];
+  "P2" [shape="plain", label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#f2f3f4"><TR><TD PORT="zawartosc" ROWSPAN="5"><FONT POINT-SIZE="9">zawartosc</FONT></TD><TD><B>P2</B></TD></TR><TR><TD>górna półka</TD></TR><TR><TD>gabinet / regal</TD></TR><TR><TD>książek: 6</TD></TR><TR><TD>Orzeszkowa, Prus, Sienkiewicz</TD></TR></TABLE>>];
+  "P3" [shape="plain", label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#f2f3f4"><TR><TD PORT="zawartosc" ROWSPAN="5"><FONT POINT-SIZE="9">zawartosc</FONT></TD><TD><B>P3</B></TD></TR><TR><TD>stos przy lampie</TD></TR><TR><TD>gabinet / biurko</TD></TR><TR><TD>książek: 4</TD></TR><TR><TD>Orzeszkowa, Prus, Sienkiewicz, Żeromski</TD></TR></TABLE>>];
+
+  // ── liny: napisal (N) ──
+  "A1":"dziela":e -> "K01":"autorzy":w [id="N01", color="#8e44ad", penwidth=1.4];
+  "A1":"dziela":e -> "K02":"autorzy":w [id="N02", color="#8e44ad", penwidth=1.4];
+  "A2":"dziela":e -> "K03":"autorzy":w [id="N03", color="#2471a3", penwidth=1.4];
+  "A2":"dziela":e -> "K04":"autorzy":w [id="N04", color="#2471a3", penwidth=1.4];
+  "A2":"dziela":e -> "K05":"autorzy":w [id="N05", color="#2471a3", penwidth=1.4];
+  "A3":"dziela":e -> "K06":"autorzy":w [id="N06", color="#2471a3", penwidth=1.4];
+  "A3":"dziela":e -> "K07":"autorzy":w [id="N07", color="#2471a3", penwidth=1.4];
+  "A4":"dziela":e -> "K08":"autorzy":w [id="N08", color="#2471a3", penwidth=1.4];
+  "A4":"dziela":e -> "K09":"autorzy":w [id="N09", color="#2471a3", penwidth=1.4];
+  "A4":"dziela":e -> "K10":"autorzy":w [id="N10", color="#2471a3", penwidth=1.4];
+  "A4":"dziela":e -> "K11":"autorzy":w [id="N11", color="#2471a3", penwidth=1.4];
+  "A4":"dziela":e -> "K12":"autorzy":w [id="N12", color="#2471a3", penwidth=1.4];
+  "A5":"dziela":e -> "K13":"autorzy":w [id="N13", color="#c0392b", penwidth=1.4];
+  "A5":"dziela":e -> "K14":"autorzy":w [id="N14", color="#c0392b", penwidth=1.4];
+
+  // ── liny: stoi_na (S) ──
+  "K01":"miejsce":e -> "P1":"zawartosc":w [id="S01", label="#1", style="dashed", color="#7f8c8d"];
+  "K02":"miejsce":e -> "P1":"zawartosc":w [id="S02", label="#2", style="dashed", color="#7f8c8d"];
+  "K03":"miejsce":e -> "P2":"zawartosc":w [id="S03", label="#1", style="dashed", color="#7f8c8d"];
+  "K04":"miejsce":e -> "P2":"zawartosc":w [id="S04", label="#2", style="dashed", color="#7f8c8d"];
+  "K05":"miejsce":e -> "P3":"zawartosc":w [id="S05", label="#1", style="dashed", color="#7f8c8d"];
+  "K06":"miejsce":e -> "P2":"zawartosc":w [id="S06", label="#3", style="dashed", color="#7f8c8d"];
+  "K07":"miejsce":e -> "P3":"zawartosc":w [id="S07", label="#2", style="dashed", color="#7f8c8d"];
+  "K08":"miejsce":e -> "P2":"zawartosc":w [id="S08", label="#4", style="dashed", color="#7f8c8d"];
+  "K09":"miejsce":e -> "P2":"zawartosc":w [id="S09", label="#5", style="dashed", color="#7f8c8d"];
+  "K10":"miejsce":e -> "P1":"zawartosc":w [id="S10", label="#3", style="dashed", color="#7f8c8d"];
+  "K11":"miejsce":e -> "P2":"zawartosc":w [id="S11", label="#6", style="dashed", color="#7f8c8d"];
+  "K12":"miejsce":e -> "P3":"zawartosc":w [id="S12", label="#3", style="dashed", color="#7f8c8d"];
+  "K13":"miejsce":e -> "P1":"zawartosc":w [id="S13", label="#4", style="dashed", color="#7f8c8d"];
+  "K14":"miejsce":e -> "P3":"zawartosc":w [id="S14", label="#4", style="dashed", color="#7f8c8d"];
+}

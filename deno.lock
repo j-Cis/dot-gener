@@ -1,0 +1,69 @@
+{
+  "version": "5",
+  "specifiers": {
+    "jsr:@deno/loader@0.5": "0.5.0",
+    "jsr:@hono/hono@^4.13.19": "4.13.19",
+    "jsr:@std/assert@1": "1.0.19",
+    "jsr:@std/encoding@^1.0.10": "1.0.10",
+    "jsr:@std/internal@^1.0.12": "1.0.14"
+  },
+  "jsr": {
+    "@deno/loader@0.5.0": {
+      "integrity": "a6d94408de5e6bacac404f8f6963c8b8cc278cfd1a878aa2f06b34a083d6bfee"
+    },
+    "@hono/hono@4.13.19": {
+      "integrity": "48cf710caf2fbd59e09bb9268400ed6949a4bd8e39e9afb8060111283442c9b3"
+    },
+    "@std/assert@1.0.19": {
+      "integrity": "eaada96ee120cb980bc47e040f82814d786fe8162ecc53c91d8df60b8755991e",
+      "dependencies": [
+        "jsr:@std/internal"
+      ]
+    },
+    "@std/encoding@1.0.10": {
+      "integrity": "8783c6384a2d13abd5e9e87a7ae0520a30e9f56aeeaa3bdf910a3eaaf5c811a1"
+    },
+    "@std/internal@1.0.14": {
+      "integrity": "291516b3d4c35024d6ffbc0a9df5bf4c64116e05b50012cf846710152d2ffdf7"
+    }
+  },
+  "redirects": {
+    "https://esm.sh/preact@%3E=10%20||%20%3E=%2011.0.0-0?target=denonext": "https://esm.sh/preact@11.2.0?target=denonext"
+  },
+  "remote": {
+    "https://esm.sh/highlight.js@11.12.0/denonext/lib/core.mjs": "1c4f992fd159923ea3d7481734a6295af0631a0f82ac31a674b2b549f7736212",
+    "https://esm.sh/highlight.js@11.12.0/denonext/lib/languages/bash.mjs": "be803ae91de0e54eb7d83e14f6edb4ea4eb60677516b414b15be117cdd916d83",
+    "https://esm.sh/highlight.js@11.12.0/denonext/lib/languages/css.mjs": "f83de064c2962ec2235c9f488785b99566c29298ae3faf35d4f703ebf70c09cc",
+    "https://esm.sh/highlight.js@11.12.0/denonext/lib/languages/javascript.mjs": "1cd35ecff9a688fa90a45efd51d215cc5aec0a14222244b6c99ccffc1a106d70",
+    "https://esm.sh/highlight.js@11.12.0/denonext/lib/languages/json.mjs": "47f722d6a7909da9f48fa688ecc12f3e1a8cd15b9ce75573b12aa0843b79b349",
+    "https://esm.sh/highlight.js@11.12.0/denonext/lib/languages/rust.mjs": "9aa1f51dcdf06642e23ad100b69176e6744206cca49ab89cb7a6ff515190461e",
+    "https://esm.sh/highlight.js@11.12.0/denonext/lib/languages/typescript.mjs": "a715f7c52c70236bef129824c5f80482c927f75975bd208270534b89d483ec29",
+    "https://esm.sh/highlight.js@11.12.0/denonext/lib/languages/xml.mjs": "d702f1858a96463461d85030a8f0a1e95983eb234fd37511b6f42b09ba486d2a",
+    "https://esm.sh/highlight.js@11.12.0/lib/core": "af27e3b9c89862d7a21a61a18f80b8cdc06ccefcedd6c57d1b219b78deb8d4c9",
+    "https://esm.sh/highlight.js@11.12.0/lib/languages/bash": "bb4753673debcd708e50223a54b0891c451f412ef67c58601e0e093bce0d9b36",
+    "https://esm.sh/highlight.js@11.12.0/lib/languages/css": "6cb520b4c8d54f6fc17ee7566b54326403f0eb2b31c6a47a88293821ecc9781a",
+    "https://esm.sh/highlight.js@11.12.0/lib/languages/javascript": "a4e9049fa8bb6d06d1eb1916d9a9f96f2674e41892deb39a5f9206038861b468",
+    "https://esm.sh/highlight.js@11.12.0/lib/languages/json": "945f4bf1929766f47f4122aba08336b33ed0dbfac2d67cc9b0338ffac44cc558",
+    "https://esm.sh/highlight.js@11.12.0/lib/languages/rust": "cdfd7e756327e1b3b401cc2767bdffe0cbd5e53bc503f336714bcd4ff6df04ee",
+    "https://esm.sh/highlight.js@11.12.0/lib/languages/typescript": "8751b79ae86e4d432d4a121ca3aa547a8e575f47903b5303aef6b896370b4850",
+    "https://esm.sh/highlight.js@11.12.0/lib/languages/xml": "9f799f94d21a2899ce109590d2799b2735ca5d1467ab585c9cd6b9a41a896a64",
+    "https://esm.sh/katex@0.19.1": "a5b4e75166c19324ef4dc787900feb78f714284e95499f31bd8367220a519388",
+    "https://esm.sh/preact-render-to-string@6.8.3": "568d59f6ac4168c6a25376217cd4b09d5eb56c5aa3dc9b4e56674455c332e3e7",
+    "https://esm.sh/preact-render-to-string@6.8.3/denonext/preact-render-to-string.mjs": "0a92e82c7bf74723aeef2dfa0ce931c4dcf754c6a0ad096f00533e3c75730cbc",
+    "https://esm.sh/preact@11.2.0": "6a6deeb1de058767d8b13223d454e4ff5f9133c6def3ba618266bc5c0a772f51",
+    "https://esm.sh/preact@11.2.0/denonext/hooks.mjs": "a01ed4e181c2e46c49f07b4de84285cdb29b19c3e756458af6c758a527ee8dcc",
+    "https://esm.sh/preact@11.2.0/denonext/jsx-runtime.mjs": "ed93962f5aafaaf14166c58fff4b1ec4d4da7314e9daedd393d809f8b0c9266f",
+    "https://esm.sh/preact@11.2.0/denonext/preact.mjs": "bf32c8188d0b5c1401596bcbb6d62bb44f2ff22a112545ab66f97ef3145f1bc4",
+    "https://esm.sh/preact@11.2.0/hooks": "667fcb9f989f69693727fc32aa57c83f56f2d37cc81518bc93461c1f878aa1e6",
+    "https://esm.sh/preact@11.2.0/jsx-runtime": "3762fdc73f964c1b3be98fb0a422f0bd23b48cf6f34441e859b120b62edf7d90",
+    "https://esm.sh/preact@11.2.0?target=denonext": "6a6deeb1de058767d8b13223d454e4ff5f9133c6def3ba618266bc5c0a772f51"
+  },
+  "workspace": {
+    "dependencies": [
+      "jsr:@deno/loader@0.5",
+      "jsr:@hono/hono@^4.13.19",
+      "jsr:@std/assert@1",
+      "jsr:@std/encoding@^1.0.10"
+    ]
+  }
+}
