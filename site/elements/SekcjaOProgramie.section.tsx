@@ -1,5 +1,5 @@
 import { Title } from "@/site/features/ui/Title.widget.tsx";
-import { tec, tecs } from "@/site/features/pipe/Tec.widget.tsx";
+import { tec, tecs } from "@/site/features/render/Tec.render.tsx";
 export interface SekcjaOProgramieProps {
   numer: string;
   tytul: string;

@@ -1,5 +1,5 @@
 import type { CanvasDrawer } from "@/site/features/ui/Canvas.island.tsx";
-
+import { drawDotxCanvas } from "../lang/dotx/render-canvas.ts";
 /**
  * Rysunki <canvas> uruchamiane w przeglądarce przez Canvas, wybierane przez
  * props: <Canvas rysunek="nazwa" ... />.
@@ -7,6 +7,7 @@ import type { CanvasDrawer } from "@/site/features/ui/Canvas.island.tsx";
  * Wszystko, co tu jest, trafia do przeglądarki razem z Canvas.
  */
 export const RYSUNKI: Record<string, CanvasDrawer> = {
+  "dotx": drawDotxCanvas,
   "test": ({ ctx, dane }) => {
     const label = typeof dane === "string" ? dane : "Canvas działa";
 
