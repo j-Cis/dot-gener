@@ -29,6 +29,40 @@ const testGraph = (
   </>
 );
 
+const testGraph2 = (
+  <>
+    <N id="A1" label="1" shape="circle" />
+    <N id="A2" label="2" shape="circle" />
+    <N id="A3" label="2" shape="circle" />
+    <N id="A4" label="3" shape="circle" />
+    <N id="A5" label="3" shape="circle" />
+    <N id="A6" label="3" shape="circle" />
+    <N id="A7" label="3" shape="circle" />
+    <N id="A8" label="4" shape="circle" />
+    <N id="A9" label="4" shape="circle" />
+    <N id="A10" label="4" shape="circle" />
+    <N id="A11" label="4" shape="circle" />
+    <N id="A12" label="4" shape="circle" />
+    <N id="A13" label="4" shape="circle" />
+    <N id="A14" label="4" shape="circle" />
+    <N id="A15" label="4" shape="circle" />
+    <E from="A1" to="A2" />
+    <E from="A1" to="A3" />
+    <E from="A2" to="A4" />
+    <E from="A2" to="A5" />
+    <E from="A3" to="A6" />
+    <E from="A3" to="A7" />
+    <E from="A4" to="A8" />
+    <E from="A4" to="A9" />
+    <E from="A5" to="A10" />
+    <E from="A5" to="A11" />
+    <E from="A6" to="A12" />
+    <E from="A6" to="A13" />
+    <E from="A7" to="A14" />
+    <E from="A7" to="A15" />
+  </>
+);
+
 export interface SekcjaOWzorachProps {
   numer: string;
   tytul: string;
@@ -78,8 +112,8 @@ export default function SekcjaOWzorach(paragraf: SekcjaOWzorachProps) {
         </Row>
         <Row row={5}>
           <h3>Canvas</h3>
-          <Dotx mode="digraph" out="islandCanvas" height="360px" background="#fff">
-            {testGraph}
+          <Dotx mode="digraph" out="islandCanvas" height="360px" background="#101116" edge={{stroke: "#2563eb" }} node={{fill:"#5466c1",stroke: "#2563eb"}}>
+            {testGraph2}
           </Dotx>
         </Row>
       </Table>
