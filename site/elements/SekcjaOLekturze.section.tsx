@@ -1,6 +1,6 @@
 import { Title } from "@/site/features/ui/Title.widget.tsx";
 import { OutTec, tec, tecs } from "@/site/features/pipe/Tec.widget.tsx";
-import { Box, Col, powtorz, Row, Table } from "@/site/features/ui/Table.widget.tsx";
+import { Box, powtorz, Row, Table } from "@/site/features/ui/Table.widget.tsx";
 
 export interface SekcjaOLekturzeProps {
   numer: string;
