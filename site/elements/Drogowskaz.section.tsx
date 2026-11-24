@@ -21,6 +21,7 @@ export function ChudaStopka() {
         { name: "GitHub", href: "https://github.com/j-Cis/dot-gener" },
         { name: "Facebook", href: "https://www.facebook.com/Cisowski/" },
         { name: "j-cis.github.io/dot-gener", href: "https://j-cis.github.io/dot-gener/" },
+        { name: ".", href: "http://localhost:8000/" },
       ]}
     />
   );

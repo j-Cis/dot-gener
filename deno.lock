@@ -49,6 +49,7 @@
     "https://esm.sh/highlight.js@11.12.0/lib/languages/typescript": "8751b79ae86e4d432d4a121ca3aa547a8e575f47903b5303aef6b896370b4850",
     "https://esm.sh/highlight.js@11.12.0/lib/languages/xml": "9f799f94d21a2899ce109590d2799b2735ca5d1467ab585c9cd6b9a41a896a64",
     "https://esm.sh/katex@0.19.1": "a5b4e75166c19324ef4dc787900feb78f714284e95499f31bd8367220a519388",
+    "https://esm.sh/katex@0.19.1/denonext/katex.mjs": "b24769e314ec565ec14ac810699b0bf0bd9f9f8444bfa5596291bd9a0f46bed1",
     "https://esm.sh/preact-render-to-string@6.8.3": "568d59f6ac4168c6a25376217cd4b09d5eb56c5aa3dc9b4e56674455c332e3e7",
     "https://esm.sh/preact-render-to-string@6.8.3/denonext/preact-render-to-string.mjs": "0a92e82c7bf74723aeef2dfa0ce931c4dcf754c6a0ad096f00533e3c75730cbc",
     "https://esm.sh/preact@11.2.0": "6a6deeb1de058767d8b13223d454e4ff5f9133c6def3ba618266bc5c0a772f51",
