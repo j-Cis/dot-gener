@@ -1,5 +1,5 @@
 import { Title } from "@/site/features/ui/Title.widget.tsx";
-import { tec, tecs } from "@/site/features/pipe/Tec.widget.tsx";
+import { OutTec, tec, tecs } from "@/site/features/pipe/Tec.widget.tsx";
 import { Box, Col, powtorz, Row, Table } from "@/site/features/ui/Table.widget.tsx";
 
 export interface SekcjaOLekturzeProps {
@@ -7,6 +7,24 @@ export interface SekcjaOLekturzeProps {
   tytul: string;
 }
 export default function SekcjaOLekturze(paragraf: SekcjaOLekturzeProps) {
+  /** Pliki ./web w kolejności wyświetlania — tylko klucze, które zna `plik`. */
+  const PLIKI_WEB = [
+    "ts:importmap",
+    "ts:staticfiles",
+    "ts:island",
+    "ts:transpile",
+    "ts:transpile-ende",
+    "ts:client",
+    "tsx:layout",
+    "tsx:main",
+  ] as const satisfies readonly (keyof Pliki)[];
+
+  /** "ts:importmap" → "./web/importmap.ts" (typ wyniku też jest dokładny) */
+  type SciezkaWeb<K extends keyof Pliki> = K extends `${infer Roz}:${infer Nazwa}` ? `./web/${Nazwa}.${Roz}` : never;
+  const sciezkaWeb = <K extends keyof Pliki>(klucz: K) => {
+    const [roz, nazwa] = klucz.split(":");
+    return `./web/${nazwa}.${roz}` as SciezkaWeb<K>;
+  };
   return (
     <article class="sekcja-o-lekturze">
       <header>
@@ -74,8 +92,32 @@ export default function SekcjaOLekturze(paragraf: SekcjaOLekturzeProps) {
             <li>{tec`./site/static/**`} - mamy tu pliki statyczne w tym arkusze stylów css</li>
           </ul>
         </Box>
-        <Box start={[1, 3]} end={[6, 3]} headerShow="N" headerLabel="DENO" headerDisplay="center">
-          {tecs("json")`
+        <Box start={[1, 3]} end={[6, 3]} headerShow="N" headerLabel="DENO" headerDisplay="center">{plik("json:deno")}</Box>
+        <Box start={[7, 3]} end={[12, 3]} headerShow="N" headerLabel="ENDE" headerDisplay="center">{plik("json:ende")}</Box>
+      </Table>
+
+      <Title level="h3" size="1.5rem">
+        <strong>PLIKI TEGO SYSTEMU</strong>
+      </Title>
+
+      <Table cols={["max"]} rows={powtorz(PLIKI_WEB.length, "auto")} gapX="0.5rem" gapY="0.5rem">
+        {PLIKI_WEB.map((klucz, i) => (
+          <Row row={i + 1} headerShow="W" headerLabel={tec`${sciezkaWeb(klucz)}`} headerDisplay={["start", -90]}>
+            {plik(klucz)}
+          </Row>
+        ))}
+      </Table>
+    </article>
+  );
+}
+
+type Pliki = Record<
+  "json:deno" | "json:ende" | "ts:importmap" | "ts:staticfiles" | "ts:island" | "ts:transpile" | "ts:transpile-ende" | "ts:client" | "tsx:layout" | "tsx:main",
+  OutTec
+>;
+function plik(klucz: keyof Pliki): OutTec {
+  const rekord: Pliki = {
+    "json:deno": tecs("json")`
 {
   "lock": "deno.lock",
   "compilerOptions": {
@@ -130,10 +172,8 @@ export default function SekcjaOLekturze(paragraf: SekcjaOLekturzeProps) {
     "lineWidth": 180
   }
 }
-            `}
-        </Box>
-        <Box start={[7, 3]} end={[12, 3]} headerShow="N" headerLabel="ENDE" headerDisplay="center">
-          {tecs("json")`
+            `,
+    "json:ende": tecs("json")`
 {
   "lock": "ende.lock",
   "compilerOptions": {
@@ -188,17 +228,8 @@ export default function SekcjaOLekturze(paragraf: SekcjaOLekturzeProps) {
     "lineWidth": 180
   }
 }
-            `}
-        </Box>
-      </Table>
-
-      <Title level="h3" size="1.5rem">
-        <strong>PLIKI TEGO SYSTEMU</strong>
-      </Title>
-
-      <Table cols={["max"]} rows={powtorz(12, "auto")} gapX="0.5rem" gapY="0.5rem">
-        <Row row={1} headerShow="W" headerLabel={tec`./web/importmap.ts`} headerDisplay={["start", -90]}>
-          {tecs("typescript")`
+            `,
+    "ts:importmap": tecs("typescript")`
 /**
  * Import map dla przeglądarki — bez npm. Adresy bierzemy z deno.json („imports”),
  * więc przeglądarka i serwer używają tych samych modułów w tych samych wersjach,
@@ -238,11 +269,8 @@ export const IMPORT_MAP = {
 
 /** Arkusz KaTeX z tego samego pakietu co na serwerze; czcionki ładują się względem niego. */
 export const KATEX_CSS = new URL("dist/katex.min.css", adres("katex/")).href;
-        `}
-        </Row>
-
-        <Row row={2} headerShow="W" headerLabel={tec`./web/staticfiles.ts`} headerDisplay={["start", -90]}>
-          {tecs("typescript")`
+        `,
+    "ts:staticfiles": tecs("typescript")`
 import type { MiddlewareHandler } from "@hono/hono";
 
 /**
@@ -290,11 +318,8 @@ function typTresci(sciezka: string): string {
   const kropka = sciezka.lastIndexOf(".");
   return (kropka >= 0 ? TYPY[sciezka.slice(kropka + 1).toLowerCase()] : undefined) ?? "application/octet-stream";
 }
-          `}
-        </Row>
-
-        <Row row={3} headerShow="W" headerLabel={tec`./web/island.ts`} headerDisplay={["start", -90]}>
-          {tecs("typescript")`
+          `,
+    "ts:island": tecs("typescript")`
 import { type ComponentType, type FunctionComponent, h } from "preact";
 
 const ROOT = new URL("../", import.meta.url).href;
@@ -349,11 +374,8 @@ export function island<P extends object>(
     );
   return Wrapped;
 }
-      `}
-        </Row>
-
-        <Row row={1} headerShow="W" headerLabel={tec`./web/transpile.ts`} headerDisplay={["start", -90]}>
-          {tecs("typescript")`
+      `,
+    "ts:transpile": tecs("typescript")`
 // TYLKO DENO (przełącznik "@transpilacja": deno.json → ten plik, ende.json → web/transpile-ende.ts).
 // @deno/loader 0.5.0 czyta pliki przez node:fs, node:process, node:os i node:tty (sys_traits, funkcja "wasm"),
 // których Ende nie ma — dlatego Ende używa web/transpile-ende.ts (tsgo). Zmiany w grafie przenoś do obu plików.
@@ -481,11 +503,8 @@ async function inlineSourceMap(raw: Uint8Array): Promise<string> {
   const b64 = encodeBase64(new TextEncoder().encode(JSON.stringify(map)));
   return \`//# sourceMappingURL=data:application/json;base64,\${b64}\`;
 }
-`}
-        </Row>
-
-        <Row row={2} headerShow="W" headerLabel={tec`./web/transpile-ende.ts`} headerDisplay={["start", -90]}>
-          {tecs("typescript")`
+`,
+    "ts:transpile-ende": tecs("typescript")`
 /**
  * Kod przeglądarki dla Ende — odpowiednik web/transpile.ts bez @deno/loader.
  *
@@ -624,11 +643,8 @@ async function tsgo(urls: string[]): Promise<Map<string, string>> {
     await Deno.remove(wyjscie, { recursive: true });
   }
 }
-`}
-        </Row>
-
-        <Row row={3} headerShow="W" headerLabel={tec`./web/client.ts`} headerDisplay={["start", -90]}>
-          {tecs("typescript")`
+`,
+    "ts:client": tecs("typescript")`
 import { type ComponentType, h, hydrate } from "preact";
 import { SLOT_ATTR } from "@/web/island.ts";
 
@@ -659,11 +675,8 @@ function ownSlot(el: HTMLElement): HTMLElement | null {
   }
   return null;
 }
-          `}
-        </Row>
-
-        <Row row={3} headerShow="W" headerLabel={tec`./web/layout.tsx`} headerDisplay={["start", -90]}>
-          {tecs("typescript")`
+          `,
+    "tsx:layout": tecs("typescript")`
 import type { ComponentChildren } from "preact";
 import { IMPORT_MAP, KATEX_CSS } from "./importmap.ts";
 import { Kotwice } from "../site/scripts/kotwice.ts";
@@ -693,11 +706,8 @@ export function Layout(
     </html>
   );
 }
-        `}
-        </Row>
-
-        <Row row={3} headerShow="W" headerLabel={tec`./web/main.tsx`} headerDisplay={["start", -90]}>
-          {tecs("typescript")`
+        `,
+    "tsx:main": tecs("typescript")`
 import { Hono } from "@hono/hono";
 import { renderToString } from "preact-render-to-string";
 import type { VNode } from "preact";
@@ -729,9 +739,8 @@ app.get("*", (c, next) => {
 app.get("*", plikiStatyczne(new URL("../site/static/", import.meta.url)));
 
 export default { fetch: app.fetch } satisfies Deno.ServeDefaultExport;
-`}
-        </Row>
-      </Table>
-    </article>
-  );
+`,
+  };
+
+  return rekord[klucz];
 }

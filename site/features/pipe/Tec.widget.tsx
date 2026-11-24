@@ -97,6 +97,7 @@ export function tec(a: Jezyk | TemplateStringsArray, ...w: unknown[]): VNode | S
   if (typeof a === "string") return (s, ...w2) => <Tec lang={a}>{doslownie(s, w2)}</Tec>;
   return <Tec>{doslownie(a, w)}</Tec>;
 }
+export type OutTec = VNode | Szablon;
 
 /** Opcje bloku dla {tecs({ … })`…`}: język i szerokość. */
 export interface OpcjeTecs {
