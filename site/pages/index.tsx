@@ -1,5 +1,5 @@
 import SekcjaOWzorach from "@/site/elements/SekcjaOWzorach.section.tsx";
-import Drogowskaz from "@/site/elements/Drogowskaz.section.tsx";
+import { ChudaStopka, Drogowskaz } from "@/site/elements/Drogowskaz.section.tsx";
 
 export default function Home() {
   return (
@@ -8,6 +8,7 @@ export default function Home() {
       <SekcjaOWzorach numer="1.0:." tytul={`LEKTURA O WZORACH`} />
       <hr />
       🫟
+      <ChudaStopka />
     </main>
   );
 }

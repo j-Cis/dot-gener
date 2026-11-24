@@ -42,6 +42,7 @@
     "test": "ende test --allow-run=dot --allow-read=. --allow-write=. tests/testy.ts",
     "czytaj-pisz": "ende serve -A --watch=web/client.ts,site/,web/ web/main.tsx",
     "czytaj": "ende serve -A web/main.tsx",
+    "ghpages": "ende run -A web/gh-pages.ts",
     "sprawdz-program": "ende check src/ examples/ tests/",
     "sprawdz-program-tsgo": "ende check --unstable-tsgo src/ examples/ tests/",
     "sprawdz-lekture": "ende check web/ site/",

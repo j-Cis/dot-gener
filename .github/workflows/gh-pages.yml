@@ -2,7 +2,7 @@
 # @file ./.github/workflows/gh-pages.yml
 # @author https://github.com/j-Cis
 #
-# @description Strona (to, co widać po `deno task czytaj`) → pliki (web/eksport.ts) → gałąź gh-pages.
+# @description Strona (to, co widać po `deno task czytaj`) → pliki (web/gh-pages.ts) → gałąź gh-pages.
 #   Uruchamia się, gdy na main zmieni się ./web/** albo ./site/**, oraz ręcznie z zakładki Actions.
 #   Jednorazowo: Settings → Pages → Build and deployment → Source: „Deploy from a branch”,
 #   Branch: gh-pages, folder: / (root). Strona: https://j-cis.github.io/dot-gener/
@@ -46,7 +46,7 @@ jobs:
 
       # Krok 3: eksport do dist/; strona projektu leży pod /<nazwa repozytorium>/
       - name: Eksport strony do dist/
-        run: deno task eksport
+        run: deno task ghpages
         env:
           BAZA: /${{ github.event.repository.name }}/
 

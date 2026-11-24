@@ -42,6 +42,7 @@
     "test": "deno test --allow-run=dot --allow-read=. --allow-write=. tests/testy.ts",
     "czytaj-pisz": "deno serve -A --watch=web/client.ts,site/,web/ web/main.tsx",
     "czytaj": "deno serve -A web/main.tsx",
+    "ghpages": "deno run -A web/gh-pages.ts",
     "sprawdz-program": "deno check src/ examples/ tests/",
     "sprawdz-program-tsgo": "deno check --unstable-tsgo src/ examples/ tests/",
     "sprawdz-lekture": "deno check web/ site/",

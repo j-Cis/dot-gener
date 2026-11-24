@@ -1,5 +1,5 @@
 import { GuideBar } from "@/site/features/ui/GuideBar.widget.tsx";
-export default function Drogowskaz() {
+export function Drogowskaz() {
   return (
     <GuideBar
       items={[
@@ -7,6 +7,20 @@ export default function Drogowskaz() {
         { name: "1.0:. Wzory", local: "/" /*, public: "/guide/intro"*/ },
         { name: "2.0:. Dokumentacja", local: "/dokumentacja" /*, public: "/guide/intro"*/ },
         { name: "3.0:. O dokumentacji", local: "/o-dokumentacji" /*, public: "/guide/intro"*/ },
+      ]}
+    />
+  );
+}
+
+import { FootBar } from "@/site/features/ui/FootBar.widget.tsx";
+
+export function ChudaStopka() {
+  return (
+    <FootBar
+      items={[
+        { name: "GitHub", href: "https://github.com/j-Cis/dot-gener" },
+        { name: "Facebook", href: "https://www.facebook.com/Cisowski/" },
+        { name: "j-cis.github.io/dot-gener", href: "https://j-cis.github.io/dot-gener/" },
       ]}
     />
   );

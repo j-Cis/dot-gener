@@ -28,6 +28,7 @@
     }
   },
   "redirects": {
+    "https://esm.sh/highlight.js/private": "https://esm.sh/highlight.js@11.12.0/private",
     "https://esm.sh/preact@%3E=10%20||%20%3E=%2011.0.0-0?target=denonext": "https://esm.sh/preact@11.2.0?target=denonext"
   },
   "remote": {

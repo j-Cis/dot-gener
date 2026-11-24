@@ -7,7 +7,7 @@ import { transpileForBrowser } from "@transpilacja";
 import { Layout } from "./layout.tsx";
 import { Error404PageNotFound } from "@/web/404.tsx";
 
-const app = new Hono();
+export const app = new Hono();
 
 const page = (title: string, body: VNode) => "<!DOCTYPE html>" + renderToString(<Layout title={title}>{body}</Layout>);
 
@@ -42,7 +42,7 @@ for (const [adres, plik] of strony) {
   if (adres !== "/") app.get(`${adres}/`, obsluga);
 }
 
-const adresyStron = strony.map(([adres]) => adres);
+export const adresyStron = strony.map(([adres]) => adres);
 console.log(`pages: ${adresyStron.join(" ")}`);
 
 // --- 404: wszystko, czego nie obsłużyły strony, transpilacja ani pliki statyczne → mapa stron ---
