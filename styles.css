@@ -1,3 +1,11 @@
+/*
+ * @project-metadata
+ * Path: site/static/styles.css
+ * Author: Jan Roman Cisowski
+ * ORCID: https://orcid.org/0009-0009-2907-3792
+ * Repository: https://github.com/j-Cis/dot-gener
+ */
+
 html,
 body {
   background-color: #101116;
@@ -209,7 +217,27 @@ body {
 .box-svg-content svg {
   display: block;
 }
+.box-svg.is-locked {
+  cursor: default;
+  touch-action: pan-y;
+}
+.box-svg.is-locked:active {
+  cursor: default;
+}
 
+.box-svg-lock {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 2;
+  padding: 4px 8px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+}
 /* SpanWithKey.widget.tsx (px from the original → em at 16px) */
 .span-with-key {
   --swk-value: teal;
