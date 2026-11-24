@@ -178,6 +178,11 @@ body {
   color: #4f85d8;
 }
 
+.box-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
 /* BoxSvg.island.tsx */
 .box-svg {
   position: relative;
@@ -185,6 +190,11 @@ body {
   cursor: grab;
   touch-action: none;
   user-select: none;
+}
+
+.svg-box {
+  --svg-border: #c7ba041f;
+  border: 1px dotted var(--svg-border);
 }
 .box-svg:active {
   cursor: grabbing;
@@ -340,17 +350,22 @@ p.akapit {
 /* Tec.widget.tsx — kod wyświetlany dosłownie */
 .tec {
   /* tło kodu: odrobinę jaśniejsze od tła strony (#101116), żeby kod się wyróżniał */
-  --tec-tlo: #1c1e26;
+  --tec-tlo: #21232c;
   --tec-tekst: #e4e4e6;
+  --tec-tekst-hover-actio: #a2f2d8;
   font-family: ui-monospace, "Cascadia Mono", Consolas, "DejaVu Sans Mono", monospace;
   font-size: 0.9em;
   tab-size: 2;
   color: var(--tec-tekst);
   background-color: var(--tec-tlo);
+  &:hover,
+  &:active {
+    color: var(--tec-tekst-hover-actio);
+  }
 }
 code.tec {
   /* w linii: zachowane spacje, łamanie długich fragmentów */
-  padding: 0.1em 0.4em;
+  padding: 0.1em 0.6em;
   border-radius: 0.3rem;
   white-space: pre-wrap;
   /* po złamaniu wiersza każdy kawałek ma własne tło, zaokrąglenie i margines */
