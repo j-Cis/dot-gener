@@ -1,0 +1,76 @@
+#
+# @file ./.github/workflows/gh-pages.yml
+# @author https://github.com/j-Cis
+#
+# @description Strona (to, co widać po `deno task czytaj`) → pliki (web/eksport.ts) → gałąź gh-pages.
+#   Uruchamia się, gdy na main zmieni się ./web/** albo ./site/**, oraz ręcznie z zakładki Actions.
+#   Jednorazowo: Settings → Pages → Build and deployment → Source: „Deploy from a branch”,
+#   Branch: gh-pages, folder: / (root). Strona: https://j-cis.github.io/dot-gener/
+#
+
+name: Strona na gh-pages
+
+on:
+  push:
+    branches:
+      - main # tylko gałąź main
+    paths:
+      - "web/**"
+      - "site/**"
+  # ręczne uruchomienie z zakładki Actions
+  workflow_dispatch:
+
+# zapis do repozytorium: commit i push na gałąź gh-pages
+permissions:
+  contents: write
+
+# jedna publikacja naraz; nowszy push czeka, a nie przerywa trwającej
+concurrency:
+  group: gh-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Krok 1: kod z main (do katalogu roboczego)
+      - name: Pobranie main
+        uses: actions/checkout@v7
+
+      # Krok 2: ta sama wersja Deno co lokalnie
+      - name: Setup Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.9.8
+          cache: true
+
+      # Krok 3: eksport do dist/; strona projektu leży pod /<nazwa repozytorium>/
+      - name: Eksport strony do dist/
+        run: deno task eksport
+        env:
+          BAZA: /${{ github.event.repository.name }}/
+
+      # Krok 4: gałąź gh-pages obok, w podkatalogu gh-pages/
+      - name: Pobranie gh-pages
+        uses: actions/checkout@v7
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      # Krok 5: zawartość gh-pages = dist/ (+ .nojekyll: Pages podaje pliki bez przebiegu Jekylla);
+      # commit tylko wtedy, gdy wynik się zmienił
+      - name: Commit i push na gh-pages
+        working-directory: gh-pages
+        run: |
+          find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+          cp -r ../dist/. .
+          touch .nojekyll
+          git add --all
+          if git diff --cached --quiet; then
+            echo "Strona bez zmian — nic do opublikowania."
+            exit 0
+          fi
+          git -c user.name="github-actions[bot]" \
+              -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+              commit -m "pages: z main ${GITHUB_SHA::7}"
+          git push origin gh-pages
