@@ -1,3 +1,9 @@
+// @project-metadata
+// Path: web/transpile-ende.ts
+// Author: Jan Roman Cisowski
+// ORCID: https://orcid.org/0009-0009-2907-3792
+// Repository: https://github.com/j-Cis/dot-gener
+
 /**
  * Kod przeglądarki dla Ende — odpowiednik web/transpile.ts bez @deno/loader.
  *

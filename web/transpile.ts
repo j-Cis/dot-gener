@@ -1,3 +1,9 @@
+// @project-metadata
+// Path: web/transpile.ts
+// Author: Jan Roman Cisowski
+// ORCID: https://orcid.org/0009-0009-2907-3792
+// Repository: https://github.com/j-Cis/dot-gener
+
 // TYLKO DENO (przełącznik "@transpilacja": deno.json → ten plik, ende.json → web/transpile-ende.ts).
 // @deno/loader 0.5.0 czyta pliki przez node:fs, node:process, node:os i node:tty (sys_traits, funkcja "wasm"),
 // których Ende nie ma — dlatego Ende używa web/transpile-ende.ts (tsgo). Zmiany w grafie przenoś do obu plików.

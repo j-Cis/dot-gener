@@ -1,3 +1,9 @@
+// @project-metadata
+// Path: src/silnik-unikalnych-kluczy.ts
+// Author: Jan Roman Cisowski
+// ORCID: https://orcid.org/0009-0009-2907-3792
+// Repository: https://github.com/j-Cis/dot-gener
+
 export class SilnikUnikalnychKluczy<const T extends readonly string[]> {
   #pulaKluczy: Record<T[number], number>;
 

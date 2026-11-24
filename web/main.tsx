@@ -1,3 +1,9 @@
+// @project-metadata
+// Path: web/main.tsx
+// Author: Jan Roman Cisowski
+// ORCID: https://orcid.org/0009-0009-2907-3792
+// Repository: https://github.com/j-Cis/dot-gener
+
 import { type Context, Hono } from "@hono/hono";
 import { renderToString } from "preact-render-to-string";
 import type { ComponentType, VNode } from "preact";

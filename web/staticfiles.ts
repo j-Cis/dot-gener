@@ -1,3 +1,9 @@
+// @project-metadata
+// Path: web/staticfiles.ts
+// Author: Jan Roman Cisowski
+// ORCID: https://orcid.org/0009-0009-2907-3792
+// Repository: https://github.com/j-Cis/dot-gener
+
 import type { MiddlewareHandler } from "@hono/hono";
 
 /**

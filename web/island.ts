@@ -1,3 +1,9 @@
+// @project-metadata
+// Path: web/island.ts
+// Author: Jan Roman Cisowski
+// ORCID: https://orcid.org/0009-0009-2907-3792
+// Repository: https://github.com/j-Cis/dot-gener
+
 import { type ComponentType, type FunctionComponent, h } from "preact";
 
 const ROOT = new URL("../", import.meta.url).href;

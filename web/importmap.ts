@@ -1,3 +1,9 @@
+// @project-metadata
+// Path: web/importmap.ts
+// Author: Jan Roman Cisowski
+// ORCID: https://orcid.org/0009-0009-2907-3792
+// Repository: https://github.com/j-Cis/dot-gener
+
 /**
  * Import map dla przeglądarki — bez npm. Adresy bierzemy z deno.json („imports”),
  * więc przeglądarka i serwer używają tych samych modułów w tych samych wersjach,

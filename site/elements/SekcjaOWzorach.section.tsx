@@ -1,3 +1,9 @@
+// @project-metadata
+// Path: site/elements/SekcjaOWzorach.section.tsx
+// Author: Jan Roman Cisowski
+// ORCID: https://orcid.org/0009-0009-2907-3792
+// Repository: https://github.com/j-Cis/dot-gener
+
 import { Title } from "@/site/features/ui/Title.widget.tsx";
 import { tex } from "@/site/features/render/Tex.render.tsx";
 import { tec } from "@/site/features/render/Tec.render.tsx";
@@ -112,7 +118,7 @@ export default function SekcjaOWzorach(paragraf: SekcjaOWzorachProps) {
         </Row>
         <Row row={5}>
           <h3>Canvas</h3>
-          <Dotx mode="digraph" out="islandCanvas" height="360px" background="#101116" edge={{stroke: "#2563eb" }} node={{fill:"#5466c1",stroke: "#2563eb"}}>
+          <Dotx mode="digraph" out="islandCanvas" height="360px" background="#101116" edge={{ stroke: "#2563eb" }} node={{ fill: "#5466c1", stroke: "#2563eb" }}>
             {testGraph2}
           </Dotx>
         </Row>

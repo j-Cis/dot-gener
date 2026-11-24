@@ -1,3 +1,9 @@
+// @project-metadata
+// Path: site/elements/SekcjaOProgramie.section.tsx
+// Author: Jan Roman Cisowski
+// ORCID: https://orcid.org/0009-0009-2907-3792
+// Repository: https://github.com/j-Cis/dot-gener
+
 import { Title } from "@/site/features/ui/Title.widget.tsx";
 import { tec, tecs } from "@/site/features/render/Tec.render.tsx";
 export interface SekcjaOProgramieProps {

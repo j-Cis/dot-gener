@@ -1,4 +1,10 @@
-import { Fragment, toChildArray, type ComponentChildren, type VNode } from "preact";
+// @project-metadata
+// Path: site/features/render/Dotx.render.tsx
+// Author: Jan Roman Cisowski
+// ORCID: https://orcid.org/0009-0009-2907-3792
+// Repository: https://github.com/j-Cis/dot-gener
+
+import { type ComponentChildren, Fragment, toChildArray, type VNode } from "preact";
 import Svg, { type BoxLength } from "@/site/features/ui/Svg.island.tsx";
 import Canvas from "@/site/features/ui/Canvas.island.tsx";
 import type { ClusterModel, DotxMode, EdgeAttrs, GraphAttrs, GraphModel, NodeAttrs, PositionedGraph, ScopeAttrs } from "@/site/scripts/lang/dotx/model.ts";

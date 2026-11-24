@@ -1,3 +1,9 @@
+// @project-metadata
+// Path: examples/przyklad-biblioteczka.ts
+// Author: Jan Roman Cisowski
+// ORCID: https://orcid.org/0009-0009-2907-3792
+// Repository: https://github.com/j-Cis/dot-gener
+
 import { SilnikGrafu, type StanSchematu } from "@/src/silnik-grafu.ts";
 import { schematBiblioteczki } from "@/examples/schemat-biblioteczki.ts";
 import { zapisz } from "@/src/zapisz.ts";

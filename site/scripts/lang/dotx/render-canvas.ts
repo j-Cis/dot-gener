@@ -1,3 +1,9 @@
+// @project-metadata
+// Path: site/scripts/lang/dotx/render-canvas.ts
+// Author: Jan Roman Cisowski
+// ORCID: https://orcid.org/0009-0009-2907-3792
+// Repository: https://github.com/j-Cis/dot-gener
+
 import type { CanvasDrawContext } from "@/site/features/ui/Canvas.island.tsx";
 import type { PositionedGraph } from "./model.ts";
 

@@ -1,3 +1,9 @@
+// @project-metadata
+// Path: site/scripts/lang/dotx/layout.ts
+// Author: Jan Roman Cisowski
+// ORCID: https://orcid.org/0009-0009-2907-3792
+// Repository: https://github.com/j-Cis/dot-gener
+
 import type { GraphModel, PositionedCluster, PositionedEdge, PositionedGraph, PositionedNode } from "./model.ts";
 
 const NODE_W = 80;

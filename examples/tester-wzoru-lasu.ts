@@ -1,3 +1,9 @@
+// @project-metadata
+// Path: examples/tester-wzoru-lasu.ts
+// Author: Jan Roman Cisowski
+// ORCID: https://orcid.org/0009-0009-2907-3792
+// Repository: https://github.com/j-Cis/dot-gener
+
 /**
  * Tester wzoru lasu: wartości wpisane ręcznie ↔ wartości wyliczone przez silnik z położenia węzłów.
  *

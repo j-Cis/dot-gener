@@ -1,3 +1,9 @@
+// @project-metadata
+// Path: tests/testy-typow.ts
+// Author: Jan Roman Cisowski
+// ORCID: https://orcid.org/0009-0009-2907-3792
+// Repository: https://github.com/j-Cis/dot-gener
+
 /**
  * Testy na poziomie typów — plik tylko się kompiluje (tsc), nie jest uruchamiany.
  * Każde @ts-expect-error MUSI wywołać błąd; jeśli błąd zniknie, tsc zgłosi nieużytą dyrektywę.

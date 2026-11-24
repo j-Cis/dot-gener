@@ -1,3 +1,9 @@
+// @project-metadata
+// Path: web/layout.tsx
+// Author: Jan Roman Cisowski
+// ORCID: https://orcid.org/0009-0009-2907-3792
+// Repository: https://github.com/j-Cis/dot-gener
+
 import type { ComponentChildren } from "preact";
 import { IMPORT_MAP, KATEX_CSS } from "./importmap.ts";
 import { Kotwice } from "../site/scripts/kotwice.ts";

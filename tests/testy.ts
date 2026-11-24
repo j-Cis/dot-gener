@@ -1,3 +1,9 @@
+// @project-metadata
+// Path: tests/testy.ts
+// Author: Jan Roman Cisowski
+// ORCID: https://orcid.org/0009-0009-2907-3792
+// Repository: https://github.com/j-Cis/dot-gener
+
 import { assertEquals, assertMatch, assertThrows } from "@std/assert";
 import { SchematGrafu, SilnikGrafu, typ } from "@/src/silnik-grafu.ts";
 import { schematBiblioteczki } from "@/examples/schemat-biblioteczki.ts";

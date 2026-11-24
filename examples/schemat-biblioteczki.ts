@@ -1,3 +1,9 @@
+// @project-metadata
+// Path: examples/schemat-biblioteczki.ts
+// Author: Jan Roman Cisowski
+// ORCID: https://orcid.org/0009-0009-2907-3792
+// Repository: https://github.com/j-Cis/dot-gener
+
 /**
  * Przykładowa dziedzina: domowa biblioteczka. Silnik o niej nie wie —
  * wszystko poniżej to deklaracja użytkownika.

@@ -1,3 +1,9 @@
+// @project-metadata
+// Path: examples/przyklad-drzewo.ts
+// Author: Jan Roman Cisowski
+// ORCID: https://orcid.org/0009-0009-2907-3792
+// Repository: https://github.com/j-Cis/dot-gener
+
 import { type IdWezla, SilnikGrafu, type StanSchematu } from "@/src/silnik-grafu.ts";
 import { schematDrzewa } from "./schemat-drzewa.ts";
 import { zapisz } from "@/src/zapisz.ts";

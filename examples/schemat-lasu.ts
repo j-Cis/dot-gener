@@ -1,3 +1,9 @@
+// @project-metadata
+// Path: examples/schemat-lasu.ts
+// Author: Jan Roman Cisowski
+// ORCID: https://orcid.org/0009-0009-2907-3792
+// Repository: https://github.com/j-Cis/dot-gener
+
 /**
  * Trzecia dziedzina: las (rodowód). Na razie trzy rodzaje węzłów: NK (korzeń), YA (Ojciec), XA (Matka).
  * Ojciec działa jak węzeł lewy, Matka jak prawy — wszystkie pola są automatyczne, z położenia (z lin).

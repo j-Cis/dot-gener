@@ -1,3 +1,9 @@
+// @project-metadata
+// Path: site/elements/Drogowskaz.section.tsx
+// Author: Jan Roman Cisowski
+// ORCID: https://orcid.org/0009-0009-2907-3792
+// Repository: https://github.com/j-Cis/dot-gener
+
 import { GuideBar } from "@/site/features/ui/GuideBar.widget.tsx";
 export function Drogowskaz() {
   return (

@@ -1,3 +1,9 @@
+// @project-metadata
+// Path: web/client.ts
+// Author: Jan Roman Cisowski
+// ORCID: https://orcid.org/0009-0009-2907-3792
+// Repository: https://github.com/j-Cis/dot-gener
+
 import { type ComponentType, h, hydrate } from "preact";
 import { SLOT_ATTR } from "@/web/island.ts";
 

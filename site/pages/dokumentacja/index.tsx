@@ -1,3 +1,9 @@
+// @project-metadata
+// Path: site/pages/dokumentacja/index.tsx
+// Author: Jan Roman Cisowski
+// ORCID: https://orcid.org/0009-0009-2907-3792
+// Repository: https://github.com/j-Cis/dot-gener
+
 import SekcjaOProgramie from "@/site/elements/SekcjaOProgramie.section.tsx";
 
 import { ChudaStopka, Drogowskaz } from "@/site/elements/Drogowskaz.section.tsx";

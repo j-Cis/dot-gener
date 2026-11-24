@@ -1,3 +1,9 @@
+// @project-metadata
+// Path: site/features/render/Tec.render.tsx
+// Author: Jan Roman Cisowski
+// ORCID: https://orcid.org/0009-0009-2907-3792
+// Repository: https://github.com/j-Cis/dot-gener
+
 import type { VNode } from "preact";
 import hljs from "highlight.js/lib/core";
 import bash from "highlight.js/lib/languages/bash";

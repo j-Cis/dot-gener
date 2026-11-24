@@ -1,3 +1,9 @@
+// @project-metadata
+// Path: web/404.tsx
+// Author: Jan Roman Cisowski
+// ORCID: https://orcid.org/0009-0009-2907-3792
+// Repository: https://github.com/j-Cis/dot-gener
+
 /**
  * Strona 404 generowana automatycznie: adres, którego nie ma, i mapa wszystkich stron
  * (drzewo plików index.tsx z site/pages — ta sama lista, z której main.tsx buduje router).

@@ -1,3 +1,9 @@
+// @project-metadata
+// Path: examples/schemat-drzewa.ts
+// Author: Jan Roman Cisowski
+// ORCID: https://orcid.org/0009-0009-2907-3792
+// Repository: https://github.com/j-Cis/dot-gener
+
 /**
  * Druga dziedzina: drzewo binarne z lustrzaną numeracją.
  * Wszystkie pola są automatyczne — wynikają wyłącznie z tego, jak węzły połączono linami.

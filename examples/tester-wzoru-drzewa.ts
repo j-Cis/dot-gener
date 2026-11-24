@@ -1,3 +1,9 @@
+// @project-metadata
+// Path: examples/tester-wzoru-drzewa.ts
+// Author: Jan Roman Cisowski
+// ORCID: https://orcid.org/0009-0009-2907-3792
+// Repository: https://github.com/j-Cis/dot-gener
+
 /**
  * Wartości przepisane programowo z wzorcowego pliku DOT (głębokość 3).
  * Id z pliku → [rodzaj, numer]: K00 → ["korzen", 1] (silnik numeruje od 1), L0n → ["lewy", n], P0n → ["prawy", n].
