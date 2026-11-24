@@ -17,6 +17,7 @@ export default function SekcjaOLekturze(paragraf: SekcjaOLekturzeProps) {
     "ts:client",
     "tsx:layout",
     "tsx:main",
+    "tsx:404",
   ] as const satisfies readonly (keyof Pliki)[];
 
   /** "ts:importmap" → "./web/importmap.ts" (typ wyniku też jest dokładny) */
@@ -69,6 +70,7 @@ export default function SekcjaOLekturze(paragraf: SekcjaOLekturzeProps) {
             <li>client.ts</li>
             <li>main.tsx</li>
             <li>layout.tsx</li>
+            <li>404.tsx</li>
           </ul>
         </Box>
         <Box start={[5, 2]} end={[12, 2]} headerShow="N" headerLabel="WSAD" headerDisplay="center">
@@ -112,7 +114,7 @@ export default function SekcjaOLekturze(paragraf: SekcjaOLekturzeProps) {
 }
 
 type Pliki = Record<
-  "json:deno" | "json:ende" | "ts:importmap" | "ts:staticfiles" | "ts:island" | "ts:transpile" | "ts:transpile-ende" | "ts:client" | "tsx:layout" | "tsx:main",
+  "json:deno" | "json:ende" | "ts:importmap" | "ts:staticfiles" | "ts:island" | "ts:transpile" | "ts:transpile-ende" | "ts:client" | "tsx:layout" | "tsx:main" | "tsx:404",
   OutTec
 >;
 function plik(klucz: keyof Pliki): OutTec {
@@ -708,22 +710,55 @@ export function Layout(
 }
         `,
     "tsx:main": tecs("typescript")`
-import { Hono } from "@hono/hono";
+import { type Context, Hono } from "@hono/hono";
 import { renderToString } from "preact-render-to-string";
-import type { VNode } from "preact";
-import { plikiStatyczne } from "@/web/staticfiles.ts";
+import type { ComponentType, VNode } from "preact";
+import { plikiStatyczne } from "./staticfiles.ts";
 // przełącznik: deno.json → ./transpile.ts (@deno/loader), ende.json → ./transpile-ende.ts (tsgo)
 import { transpileForBrowser } from "@transpilacja";
 import { Layout } from "./layout.tsx";
-import Home from "../site/pages/index.tsx";
+import { Error404PageNotFound } from "@/web/404.tsx";
 
 const app = new Hono();
 
-const page = (title: string, body: VNode) =>
-  "<!DOCTYPE html>" + renderToString(<Layout title={title}>{body}</Layout>);
+const page = (title: string, body: VNode) => "<!DOCTYPE html>" + renderToString(<Layout title={title}>{body}</Layout>);
 
-// --- pages (SSR) ---
-app.get("/", (c) => c.html(page("LEKTURA", <Home />)));
+// --- pages (SSR): każdy site/pages/**/index.tsx to strona, a jego katalog to adres ---
+//   site/pages/index.tsx                  → /
+//   site/pages/dokumentacja/index.tsx     → /dokumentacja   (i /dokumentacja/)
+//   site/pages/a/b/index.tsx              → /a/b
+// Nowy katalog z index.tsx = nowa strona; serwer skanuje przy starcie (--watch=site/ restartuje go po zmianie).
+const PAGES = new URL("../site/pages/", import.meta.url);
+
+/** Moduł strony: domyślny eksport to komponent; opcjonalny \`export const tytul = "…"\` to <title>. */
+interface ModulStrony {
+  readonly default: ComponentType;
+  readonly tytul?: string;
+}
+
+/** [adres, plik] każdego index.tsx w katalogu i podkatalogach. */
+async function* znajdzStrony(katalog: URL, adres: string): AsyncGenerator<readonly [adres: string, plik: URL]> {
+  for await (const wpis of Deno.readDir(katalog)) {
+    if (wpis.isFile && wpis.name === "index.tsx") yield [adres === "" ? "/" : adres, new URL("index.tsx", katalog)];
+    else if (wpis.isDirectory) yield* znajdzStrony(new URL(\`\${encodeURIComponent(wpis.name)}/\`, katalog), \`\${adres}/\${wpis.name}\`);
+  }
+}
+
+const strony = (await Array.fromAsync(znajdzStrony(PAGES, ""))).toSorted(([a], [b]) => a.localeCompare(b));
+for (const [adres, plik] of strony) {
+  const modul: ModulStrony = await import(plik.href);
+  if (typeof modul.default !== "function") throw new Error(\`\${plik.pathname}: brak domyślnego eksportu komponentu strony\`);
+  const { default: Strona, tytul = "LEKTURA" } = modul;
+  const obsluga = (c: Context) => c.html(page(tytul, <Strona />));
+  app.get(adres, obsluga);
+  if (adres !== "/") app.get(\`\${adres}/\`, obsluga);
+}
+
+const adresyStron = strony.map(([adres]) => adres);
+console.log(\`pages: \${adresyStron.join(" ")}\`);
+
+// --- 404: wszystko, czego nie obsłużyły strony, transpilacja ani pliki statyczne → mapa stron ---
+app.notFound((c) => c.html(page("404 — nie ma takiej strony", <Error404PageNotFound adres={c.req.path} strony={adresyStron} />), 404));
 
 // --- client .ts/.tsx (client.ts, islands and what they import) ---
 app.get("*", (c, next) => {
@@ -739,6 +774,69 @@ app.get("*", (c, next) => {
 app.get("*", plikiStatyczne(new URL("../site/static/", import.meta.url)));
 
 export default { fetch: app.fetch } satisfies Deno.ServeDefaultExport;
+`,
+    "tsx:404": tecs("typescript")`
+/**
+ * Strona 404 generowana automatycznie: adres, którego nie ma, i mapa wszystkich stron
+ * (drzewo plików index.tsx z site/pages — ta sama lista, z której main.tsx buduje router).
+ */
+
+export interface Error404PageNotFoundProps {
+  /** adres, którego szukano */
+  adres: string;
+  /** adresy wszystkich stron, np. ["/", "/dokumentacja", "/o-dokumentacji"] */
+  strony: readonly string[];
+}
+
+export function Error404PageNotFound({ adres, strony }: Error404PageNotFoundProps) {
+  const istnieje = new Set(strony);
+  return (
+    <main class="page strona-404">
+      <h1>404 — nie ma takiej strony</h1>
+      <p>
+        Pod adresem <code>{adres}</code> nic nie ma. Dostępne strony:
+      </p>
+      <ul class="mapa-stron">
+        <li>
+          <Adres adres="/" istnieje={istnieje} />
+          <Galaz prefiks="" strony={strony.filter((s) => s !== "/")} istnieje={istnieje} />
+        </li>
+      </ul>
+    </main>
+  );
+}
+
+/** Podstrony pod \`prefiks\` (np. "/a" → "/a/b", "/a/c/d"), pogrupowane po kolejnym członie adresu. */
+function Galaz({ prefiks, strony, istnieje }: { prefiks: string; strony: readonly string[]; istnieje: ReadonlySet<string> }) {
+  const nazwy = [...new Set(strony.map((s) => s.slice(prefiks.length + 1).split("/", 1)[0] ?? ""))];
+  if (nazwy.length === 0) return null;
+  return (
+    <ul>
+      {nazwy.map((nazwa) => {
+        const adres = \`\${prefiks}/\${nazwa}\`;
+        return (
+          <li>
+            <Adres adres={adres} istnieje={istnieje} />
+            <Galaz prefiks={adres} strony={strony.filter((s) => s.startsWith(\`\${adres}/\`))} istnieje={istnieje} />
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
+
+/** Link do strony i jej plik; folder bez index.tsx (tylko pośredni człon adresu) — sam tekst. */
+function Adres({ adres, istnieje }: { adres: string; istnieje: ReadonlySet<string> }) {
+  const plik = \`site/pages\${adres === "/" ? "" : adres}/index.tsx\`;
+  return istnieje.has(adres)
+    ? (
+      <>
+        <a href={encodeURI(adres)}>{adres}</a> <span class="mapa-stron-plik">{plik}</span>
+      </>
+    )
+    : <span class="mapa-stron-folder">{adres}</span>;
+}
+
 `,
   };
 
