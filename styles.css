@@ -347,7 +347,7 @@ p.akapit {
   line-height: 1.8;
 }
 
-/* Tec.widget.tsx — kod wyświetlany dosłownie */
+/* Tec.render.tsx — kod wyświetlany dosłownie */
 .tec {
   /* tło kodu: odrobinę jaśniejsze od tła strony (#101116), żeby kod się wyróżniał */
   --tec-tlo: #21232c;
