@@ -201,6 +201,7 @@ body {
 }
 
 .svg-box {
+  box-sizing: border-box; /* ramka wliczona w 100%, bez nadmiaru */
   --svg-border: #c7ba041f;
   border: 1px dotted var(--svg-border);
   height: 100%; /*⚠️⚠️⚠️może powodować błedy */
