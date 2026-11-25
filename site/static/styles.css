@@ -203,6 +203,7 @@ body {
 .svg-box {
   --svg-border: #c7ba041f;
   border: 1px dotted var(--svg-border);
+  height: 100%; /*⚠️⚠️⚠️może powodować błedy */
 }
 .box-svg:active {
   cursor: grabbing;
