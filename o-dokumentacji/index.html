@@ -1,4 +1,386 @@
-<!DOCTYPE html><html lang="pl"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>LEKTURA</title><link rel="icon" href="/dot-gener/favicon.ico"/><link rel="stylesheet" href="https://esm.sh/katex@0.19.1/dist/katex.min.css"/><link rel="stylesheet" href="/dot-gener/styles.css"/><script type="importmap">{"imports":{"@/":"/dot-gener/","preact":"https://esm.sh/preact@11.2.0","preact/":"https://esm.sh/preact@11.2.0/","@preact/signals":"https://esm.sh/@preact/signals@2.11.4","@preact/signals/":"https://esm.sh/@preact/signals@2.11.4/","@preact/signals-core":"https://esm.sh/@preact/signals-core@1.14.5","@preact/signals-core/":"https://esm.sh/@preact/signals-core@1.14.5/","highlight.js/":"https://esm.sh/highlight.js@11.12.0/","@/site/client/Svg.island.tsx":"/dot-gener/site/client/Svg.island.tsx.js","/site/client/Svg.island.tsx":"/dot-gener/site/client/Svg.island.tsx.js","/dot-gener/site/client/Svg.island.tsx":"/dot-gener/site/client/Svg.island.tsx.js","@/site/common/util/usePanZoom.ts":"/dot-gener/site/common/util/usePanZoom.ts.js","/site/common/util/usePanZoom.ts":"/dot-gener/site/common/util/usePanZoom.ts.js","/dot-gener/site/common/util/usePanZoom.ts":"/dot-gener/site/common/util/usePanZoom.ts.js","@/site/client/registries/for-island-svg.ts":"/dot-gener/site/client/registries/for-island-svg.ts.js","/site/client/registries/for-island-svg.ts":"/dot-gener/site/client/registries/for-island-svg.ts.js","/dot-gener/site/client/registries/for-island-svg.ts":"/dot-gener/site/client/registries/for-island-svg.ts.js","@/web/island.ts":"/dot-gener/web/island.ts.js","/web/island.ts":"/dot-gener/web/island.ts.js","/dot-gener/web/island.ts":"/dot-gener/web/island.ts.js","@/site/client/Canvas.island.tsx":"/dot-gener/site/client/Canvas.island.tsx.js","/site/client/Canvas.island.tsx":"/dot-gener/site/client/Canvas.island.tsx.js","/dot-gener/site/client/Canvas.island.tsx":"/dot-gener/site/client/Canvas.island.tsx.js","@/site/client/registries/for-island-canvas.ts":"/dot-gener/site/client/registries/for-island-canvas.ts.js","/site/client/registries/for-island-canvas.ts":"/dot-gener/site/client/registries/for-island-canvas.ts.js","/dot-gener/site/client/registries/for-island-canvas.ts":"/dot-gener/site/client/registries/for-island-canvas.ts.js","@/site/common/lang/dotx/render-canvas.ts":"/dot-gener/site/common/lang/dotx/render-canvas.ts.js","/site/common/lang/dotx/render-canvas.ts":"/dot-gener/site/common/lang/dotx/render-canvas.ts.js","/dot-gener/site/common/lang/dotx/render-canvas.ts":"/dot-gener/site/common/lang/dotx/render-canvas.ts.js","@/web/client.ts":"/dot-gener/web/client.ts.js","/web/client.ts":"/dot-gener/web/client.ts.js","/dot-gener/web/client.ts":"/dot-gener/web/client.ts.js"}}</script><script type="module" src="/dot-gener/web/client.ts.js"></script><script type="module" src="/dot-gener/web/client.ts.js"></script></head><body><main class="page"><nav class="guide-bar" aria-label="Nawigacja przewodnika"><a href="/dot-gener/404">?</a><a href="/dot-gener/">1.0:. Wzory</a><a href="/dot-gener/dokumentacja">2.0:. Dokumentacja</a><a href="/dot-gener/o-dokumentacji">3.0:. O dokumentacji</a></nav><article class="sekcja-o-lekturze"><header><h1 id="3.0.-lektura-o-lekturze" class="title" style="font-size:2.125rem;"><a class="title-kotwica" href="#3.0.-lektura-o-lekturze" aria-label="Link do sekcji: 3.0:. LEKTURA O LEKTURZE">#</a><span class="title-prefix">3.0:.</span> <span class="title-text">LEKTURA O LEKTURZE</span></h1></header><h3 id="wstęp" class="title" style="font-size:1.125rem;"><a class="title-kotwica" href="#wstęp" aria-label="Link do sekcji: WSTĘP">#</a><span class="title-text"><strong>WSTĘP</strong></span></h3><p class="akapit">Niestety lekka metoda działania jaką wprowadziło <u>DENO</u>, nibawem może zniknąć gdyż w paźdierniku 2026 zsotało przejęte przez <u>CLOUDFALRE</u>i już wiadmo że nie bedzie wersi <u>3.0</u>, a jedynie będa zapownione przez rok łatki - to wielki cios. Deno oferował po wyjęciu z pudełka wsparcie dal <u>TypeSript</u>obecna wersja to <u>7.0.2</u> nowość w tej wersji to całościowe przepisanie go na jezyk <u>go</u>. owerował też wparcie dla React i Preact np przy użyciu <u>hono</u>bez zbędnego ciągłego przebudowywania wszystkiego na czysty <u>JavaScript</u>. Dodatkowo poprzez <u>jsr</u> oraz <u>esm.sh</u> można było całkowicie pozbyć się syfu <u>NODE</u> i studni bez dna zakrzywiającej czasoprzestrzeń bardziej niż czarna dziura - folderu <u>node_modules</u>. Powstał fork <u>ende</u>, ale zobaczymy co przyniesie. Równocześnie mam też koncepcje własną <u>https://github.com/j-Cis/tsxr</u> mającą na celu zastąpienie <u>deno</u></p><h3 id="elementy" class="title" style="font-size:1.5rem;"><a class="title-kotwica" href="#elementy" aria-label="Link do sekcji: ELEMENTY">#</a><span class="title-text"><strong>ELEMENTY</strong></span></h3><div class="tabela"><div class="tabela-siatka" style="width: 100%; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: auto auto auto; column-gap: 0.5rem; row-gap: 0.5rem"><div class="tabela-box" style="grid-column: 1 / -1; grid-row: 1 / 2"><div class="tabela-tresc">Obecnie działa pod <u>DENO</u>, natomiast pod <u>ENDO</u> cały czas coś nie spina, gdzieś na horyzoncie jako koncepcja majaczy <u>TSXR</u> ale narazie nie został napisany. istotą projektu są 3 lementy</div></div><div class="tabela-box tabela-box-N" style="grid-column: 1 / 5; grid-row: 2 / 3"><div class="tabela-naglowek tabela-naglowek-center"><span class="tabela-naglowek-tekst">SYSTEM i KONFIGURACJA</span></div><div class="tabela-tresc"><code class="tec">./web/**</code><br/><code class="tec">./deno.json</code><br/><code class="tec">./ende.json</code><hr/><ul><li>importmap.ts</li><li>island.ts</li><li>staticfiles.ts</li><li>transpile.ts</li><li>transpile-ende.ts</li><li>client.ts</li><li>main.tsx</li><li>layout.tsx</li><li>404.tsx</li></ul></div></div><div class="tabela-box tabela-box-N" style="grid-column: 5 / 13; grid-row: 2 / 3"><div class="tabela-naglowek tabela-naglowek-center"><span class="tabela-naglowek-tekst">WSAD</span></div><div class="tabela-tresc"><code class="tec">./site/**</code><hr/><ul><li><code class="tec">./site/features/**</code> - mamy tu klocki budulcowe z których najistotniejsze to<ul><li><code class="tec">*.island.tsx</code></li><li><code class="tec">*.widget.tsx</code></li></ul></li><li><code class="tec">./site/pages/**</code> - mamy tu nasze strony, budowane z treści i klocków: <ul><li><code class="tec">index.tsx</code> - to strona główna</li></ul></li><li><code class="tec">./site/layout/**</code> - mamy tu elementy naszych stron budowane z treści i klocków</li><li><code class="tec">./site/scripts/**</code> - mamy tu rózne rzeczy, logike itp wszystko w czystym TypeScript</li><li><code class="tec">./site/static/**</code> - mamy tu pliki statyczne w tym arkusze stylów css</li></ul></div></div><div class="tabela-box tabela-box-N" style="grid-column: 1 / 7; grid-row: 3 / 4"><div class="tabela-naglowek tabela-naglowek-center"><span class="tabela-naglowek-tekst">DENO</span></div><div class="tabela-tresc"><pre class="tec tec-blok"><code class="language-json"><span class="hljs-punctuation">{</span>
+<!DOCTYPE html><html lang="pl"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>LEKTURA</title><link rel="icon" href="/dot-gener/favicon.ico"/><link rel="stylesheet" href="https://esm.sh/katex@0.19.1/dist/katex.min.css"/><style>@layer shell, widget, route;
+@layer shell {
+html,
+body {
+  background-color: #101116;
+  color: #cfcfd0;
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+}
+
+/* web/strona404.tsx — mapa stron na stronie 404 */
+.mapa-stron {
+  line-height: 1.8;
+  & ul {
+    padding-inline-start: 1.5rem;
+  }
+}
+.mapa-stron-plik,
+.mapa-stron-folder {
+  color: #6b7280;
+  font-family: ui-monospace, "Cascadia Mono", Consolas, "DejaVu Sans Mono", monospace;
+  font-size: 0.85em;
+}
+.mapa-stron-plik {
+  margin-inline-start: 0.5rem;
+}
+
+}
+@layer widget {
+/* Tec.render.tsx — kod wyświetlany dosłownie */
+.tec {
+  /* tło kodu: odrobinę jaśniejsze od tła strony (#101116), żeby kod się wyróżniał */
+  --tec-tlo: #21232c;
+  --tec-tekst: #e4e4e6;
+  --tec-tekst-hover-actio: #a2f2d8;
+  font-family: ui-monospace, "Cascadia Mono", Consolas, "DejaVu Sans Mono", monospace;
+  font-size: 0.9em;
+  tab-size: 2;
+  color: var(--tec-tekst);
+  background-color: var(--tec-tlo);
+  &:hover,
+  &:active {
+    color: var(--tec-tekst-hover-actio);
+  }
+}
+code.tec {
+  /* w linii: zachowane spacje, łamanie długich fragmentów */
+  padding: 0.1em 0.6em;
+  border-radius: 0.3rem;
+  white-space: pre-wrap;
+  /* po złamaniu wiersza każdy kawałek ma własne tło, zaokrąglenie i margines */
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+pre.tec-blok {
+  /* blok: dokładne odstępy i znaki nowej linii, przewijanie w poziomie zamiast łamania */
+  margin-block: 0.75rem;
+  padding: 0.85rem 1.1rem;
+  border-radius: 0.5rem;
+  line-height: 1.5;
+  overflow-x: auto;
+}
+pre.tec-blok code {
+  font: inherit;
+}
+pre.tec-blok.tec-przyciety {
+  /* widthTrim="50%": blok staje w rzędzie obok sąsiednich; odstęp jest wliczony w podaną szerokość,
+     więc 2 × 50% (albo 60% + 40%) mieści się w jednym rzędzie, a kolejne bloki przechodzą do następnego */
+  --tec-odstep: 0.5rem;
+  display: inline-block;
+  vertical-align: top;
+  box-sizing: border-box;
+  width: calc(var(--tec-szerokosc) - var(--tec-odstep));
+  margin-inline: calc(var(--tec-odstep) / 2);
+}
+
+/* kolorowanie składni (Tec z lang="…"; klasy nadaje highlight.js) */
+.tec .hljs-keyword,
+.tec .hljs-literal,
+.tec .hljs-symbol,
+.tec .hljs-variable.language_,
+.tec .hljs-tag,
+.tec .hljs-name {
+  color: #569cd6;
+}
+.tec .hljs-built_in,
+.tec .hljs-type,
+.tec .hljs-title.class_,
+.tec .hljs-title.class_.inherited__ {
+  color: #4ec9b0;
+}
+.tec .hljs-title,
+.tec .hljs-title.function_ {
+  color: #dcdcaa;
+}
+.tec .hljs-attr,
+.tec .hljs-attribute,
+.tec .hljs-property,
+.tec .hljs-variable,
+.tec .hljs-params {
+  color: #9cdcfe;
+}
+.tec .hljs-string {
+  color: #ce9178;
+}
+.tec .hljs-subst {
+  /* ${…} w szablonie: zwykły kolor kodu */
+  color: var(--tec-tekst);
+}
+.tec .hljs-number {
+  color: #b5cea8;
+}
+.tec .hljs-regexp {
+  color: #d16969;
+}
+.tec .hljs-meta,
+.tec .hljs-keyword.control_ {
+  color: #c586c0;
+}
+.tec .hljs-selector-class,
+.tec .hljs-selector-id,
+.tec .hljs-selector-tag {
+  color: #d7ba7d;
+}
+.tec .hljs-comment,
+.tec .hljs-quote {
+  color: #6a9955;
+  font-style: italic;
+}
+
+/* FootBar.widget.tsx — chuda stopka */
+.foot-bar {
+  position: sticky;
+  bottom: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: row;
+  /* „safe”: gdy linki się nie mieszczą, nie ucina początku, tylko przewija */
+  justify-content: safe center;
+  gap: 1.25rem;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 0.2rem 1rem;
+  font-size: 0.75rem;
+  line-height: 1.6;
+  /* to samo szkło co w listwie u góry, kreska od strony treści */
+  background-color: rgb(16 17 22 / 0.75);
+  backdrop-filter: blur(12px) saturate(1.4);
+  border-top: 1px solid rgb(255 255 255 / 0.08);
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+
+  & a {
+    flex: none;
+    color: #6b7280;
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  & a:hover {
+    color: #e4e4e6;
+  }
+  & a:focus-visible {
+    outline: 2px solid #4f85d8;
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .foot-bar a {
+    transition: none;
+  }
+}
+
+/* GuideBar.widget.tsx — listwa nawigacji */
+.guide-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: row;
+  gap: 0.25rem;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 0.5rem 1rem;
+  /* półprzezroczyste tło strony + rozmycie treści przewijanej pod listwą */
+  background-color: rgb(16 17 22 / 0.75);
+  backdrop-filter: blur(12px) saturate(1.4);
+  border-bottom: 1px solid rgb(255 255 255 / 0.08);
+  /* cienki ciemny pasek przewijania; dojechanie do końca listwy nie przewija strony */
+  scrollbar-width: thin;
+  scrollbar-color: #3a3d4a transparent;
+  overscroll-behavior-x: contain;
+  /* przy przewijaniu listwa zatrzymuje się na początku linku */
+  scroll-snap-type: x proximity;
+  scroll-padding-inline: 1rem;
+
+  & a {
+    flex: none;
+    scroll-snap-align: start;
+    padding: 0.35rem 0.8rem;
+    border-radius: 999px;
+    color: #9a9ba3;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.15s, background-color 0.15s;
+  }
+  & a:hover {
+    color: #e4e4e6;
+    background-color: rgb(255 255 255 / 0.06);
+  }
+  & a:focus-visible {
+    outline: 2px solid #4f85d8;
+    outline-offset: 2px;
+  }
+  /* bieżąca strona */
+  & a[aria-current="page"] {
+    color: #fff;
+    background-color: rgb(79 133 216 / 0.22);
+    box-shadow: inset 0 0 0 1px rgb(79 133 216 / 0.45);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .guide-bar a {
+    transition: none;
+  }
+}
+
+.text-paragraph {
+  margin-block: 6px;
+  line-height: 1.8;
+  text-indent: 2em;
+}
+.text-paragraph--no-indent {
+  margin-block: 6px;
+  line-height: 1.8;
+}
+
+/* Table.widget.tsx — siatka (CSS grid) w oknie przewijania */
+.tabela {
+  /* okno: szerokość strony; przewija, gdy siatka jest szersza (width > 100%) albo wyższa niż height */
+  overflow: auto;
+  max-width: 100%;
+}
+.tabela-siatka {
+  display: grid;
+  /* ścieżki od początku — wiersze "auto" nie rozciągają się, gdy okno (height) jest wyższe niż treść */
+  justify-content: start;
+  align-content: start;
+}
+.tabela-box {
+  /* nagłówek + treść; kierunek zależy od strony nagłówka */
+  display: flex;
+  flex-direction: column;
+}
+.tabela-box-N {
+  flex-direction: column;
+}
+.tabela-box-S {
+  flex-direction: column-reverse;
+}
+.tabela-box-W {
+  flex-direction: row;
+}
+.tabela-box-E {
+  flex-direction: row-reverse;
+}
+.tabela-naglowek {
+  display: flex;
+  flex: none;
+  padding: 0.25rem 0.5rem;
+  font-weight: 600;
+  background-color: rgb(255 255 255 / 0.04);
+}
+.tabela-box-W > .tabela-naglowek,
+.tabela-box-E > .tabela-naglowek {
+  /* nagłówek z boku: start/center/end działa w pionie */
+  flex-direction: column;
+}
+.tabela-naglowek-start {
+  justify-content: flex-start;
+  text-align: start;
+}
+.tabela-naglowek-center {
+  justify-content: center;
+  text-align: center;
+}
+.tabela-naglowek-end {
+  justify-content: flex-end;
+  text-align: end;
+}
+.tabela-obrot-prawo {
+  /* o 90° w prawo: czytamy z góry na dół */
+  writing-mode: vertical-rl;
+}
+.tabela-obrot-lewo {
+  /* o 90° w lewo: czytamy z dołu do góry */
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+.tabela-tresc {
+  /* treść większa niż obszar (np. stała wysokość wiersza) przewija się w obszarze */
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+}
+
+/* Title.widgets.tsx */
+.title {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5em;
+  line-height: 1.2;
+}
+.title-prefix {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  color: #6b7280;
+}
+/* kotwica #id jak w markdown: „#” po lewej, widoczny po najechaniu / fokusie */
+.title {
+  position: relative;
+  scroll-margin-top: 1rem; /* po skoku do #id nagłówek nie dotyka krawędzi */
+  padding-inline: 0.25em;
+  margin-inline: -0.25em;
+  border-radius: 0.25rem;
+  transition: background-color 0.15s;
+}
+.title:hover {
+  background-color: rgb(255 255 255 / 0.04);
+}
+.title:target {
+  /* nagłówek, do którego prowadzi adres …#id */
+  background-color: rgb(79 133 216 / 0.14);
+  box-shadow: inset 3px 0 0 #4f85d8;
+}
+.title-kotwica {
+  position: absolute;
+  top: 0;
+  right: 100%;
+  padding-inline-end: 0.2em;
+  color: #6b7280;
+  text-decoration: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.title:hover .title-kotwica,
+.title-kotwica:focus-visible {
+  opacity: 1;
+}
+.title-kotwica:hover {
+  color: #4f85d8;
+}
+/* TitleSection collapsible — cała linia tytułu przełącza treść */
+.title-zwijana > summary {
+  display: block;
+  list-style: none;
+  cursor: pointer;
+}
+.title-zwijana > summary::-webkit-details-marker {
+  display: none;
+}
+.title-zwijana > summary > .title::after {
+  content: "▾";
+  color: #6b7280;
+  font-size: 0.7em;
+  transition: transform 0.15s;
+}
+.title-zwijana:not([open]) > summary > .title::after {
+  transform: rotate(-90deg);
+}
+@media (prefers-reduced-motion: reduce) {
+  .title-zwijana > summary > .title::after {
+    transition: none;
+  }
+}
+
+}</style><link rel="stylesheet" href="/dot-gener/styles.css"/><script type="importmap">{"imports":{"@/":"/dot-gener/","preact":"https://esm.sh/preact@11.2.0","preact/":"https://esm.sh/preact@11.2.0/","@preact/signals":"https://esm.sh/@preact/signals@2.11.4","@preact/signals/":"https://esm.sh/@preact/signals@2.11.4/","@preact/signals-core":"https://esm.sh/@preact/signals-core@1.14.5","@preact/signals-core/":"https://esm.sh/@preact/signals-core@1.14.5/","highlight.js/":"https://esm.sh/highlight.js@11.12.0/","@/site/client/ViewAsSvg.island.tsx":"/dot-gener/site/client/ViewAsSvg.island.tsx.js","/site/client/ViewAsSvg.island.tsx":"/dot-gener/site/client/ViewAsSvg.island.tsx.js","/dot-gener/site/client/ViewAsSvg.island.tsx":"/dot-gener/site/client/ViewAsSvg.island.tsx.js","@/site/common/util/usePanZoom.ts":"/dot-gener/site/common/util/usePanZoom.ts.js","/site/common/util/usePanZoom.ts":"/dot-gener/site/common/util/usePanZoom.ts.js","/dot-gener/site/common/util/usePanZoom.ts":"/dot-gener/site/common/util/usePanZoom.ts.js","@/site/client/registries/for-island-svg.ts":"/dot-gener/site/client/registries/for-island-svg.ts.js","/site/client/registries/for-island-svg.ts":"/dot-gener/site/client/registries/for-island-svg.ts.js","/dot-gener/site/client/registries/for-island-svg.ts":"/dot-gener/site/client/registries/for-island-svg.ts.js","@/web/island.ts":"/dot-gener/web/island.ts.js","/web/island.ts":"/dot-gener/web/island.ts.js","/dot-gener/web/island.ts":"/dot-gener/web/island.ts.js","@/site/client/ViewAsCanvas.island.tsx":"/dot-gener/site/client/ViewAsCanvas.island.tsx.js","/site/client/ViewAsCanvas.island.tsx":"/dot-gener/site/client/ViewAsCanvas.island.tsx.js","/dot-gener/site/client/ViewAsCanvas.island.tsx":"/dot-gener/site/client/ViewAsCanvas.island.tsx.js","@/site/client/registries/for-island-canvas.ts":"/dot-gener/site/client/registries/for-island-canvas.ts.js","/site/client/registries/for-island-canvas.ts":"/dot-gener/site/client/registries/for-island-canvas.ts.js","/dot-gener/site/client/registries/for-island-canvas.ts":"/dot-gener/site/client/registries/for-island-canvas.ts.js","@/site/common/lang/dotx/render-canvas.ts":"/dot-gener/site/common/lang/dotx/render-canvas.ts.js","/site/common/lang/dotx/render-canvas.ts":"/dot-gener/site/common/lang/dotx/render-canvas.ts.js","/dot-gener/site/common/lang/dotx/render-canvas.ts":"/dot-gener/site/common/lang/dotx/render-canvas.ts.js","@/web/client.ts":"/dot-gener/web/client.ts.js","/web/client.ts":"/dot-gener/web/client.ts.js","/dot-gener/web/client.ts":"/dot-gener/web/client.ts.js"}}</script><script type="module" src="/dot-gener/web/client.ts.js"></script></head><body><main class="page"><nav class="guide-bar" aria-label="Nawigacja przewodnika"><a href="/dot-gener/404">?</a><a href="/dot-gener/">1.0:. Wzory</a><a href="/dot-gener/dokumentacja">2.0:. Dokumentacja</a><a href="/dot-gener/o-dokumentacji">3.0:. O dokumentacji</a></nav><article class="sekcja-o-lekturze"><header><h1 id="3.0.-lektura-o-lekturze" class="title" style="font-size:2.125rem;"><a class="title-kotwica" href="#3.0.-lektura-o-lekturze" aria-label="Link do sekcji: 3.0:. LEKTURA O LEKTURZE">#</a><span class="title-prefix">3.0:.</span> <span class="title-text">LEKTURA O LEKTURZE</span></h1></header><h3 id="wstęp" class="title" style="font-size:1.125rem;"><a class="title-kotwica" href="#wstęp" aria-label="Link do sekcji: WSTĘP">#</a><span class="title-text"><strong>WSTĘP</strong></span></h3><p class="text-paragraph">Niestety lekka metoda działania jaką wprowadziło <u>DENO</u>, nibawem może zniknąć gdyż w paźdierniku 2026 zsotało przejęte przez <u>CLOUDFALRE</u>i już wiadmo że nie bedzie wersi <u>3.0</u>, a jedynie będa zapownione przez rok łatki - to wielki cios. Deno oferował po wyjęciu z pudełka wsparcie dal <u>TypeSript</u>obecna wersja to <u>7.0.2</u> nowość w tej wersji to całościowe przepisanie go na jezyk <u>go</u>. owerował też wparcie dla React i Preact np przy użyciu <u>hono</u>bez zbędnego ciągłego przebudowywania wszystkiego na czysty <u>JavaScript</u>. Dodatkowo poprzez <u>jsr</u> oraz <u>esm.sh</u> można było całkowicie pozbyć się syfu <u>NODE</u> i studni bez dna zakrzywiającej czasoprzestrzeń bardziej niż czarna dziura - folderu <u>node_modules</u>. Powstał fork <u>ende</u>, ale zobaczymy co przyniesie. Równocześnie mam też koncepcje własną <u>https://github.com/j-Cis/tsxr</u> mającą na celu zastąpienie <u>deno</u></p><h3 id="elementy" class="title" style="font-size:1.5rem;"><a class="title-kotwica" href="#elementy" aria-label="Link do sekcji: ELEMENTY">#</a><span class="title-text"><strong>ELEMENTY</strong></span></h3><div class="tabela"><div class="tabela-siatka" style="width: 100%; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: auto auto auto; column-gap: 0.5rem; row-gap: 0.5rem"><div class="tabela-box" style="grid-column: 1 / -1; grid-row: 1 / 2"><div class="tabela-tresc">Obecnie działa pod <u>DENO</u>, natomiast pod <u>ENDO</u> cały czas coś nie spina, gdzieś na horyzoncie jako koncepcja majaczy <u>TSXR</u> ale narazie nie został napisany. istotą projektu są 3 lementy</div></div><div class="tabela-box tabela-box-N" style="grid-column: 1 / 5; grid-row: 2 / 3"><div class="tabela-naglowek tabela-naglowek-center"><span class="tabela-naglowek-tekst">SYSTEM i KONFIGURACJA</span></div><div class="tabela-tresc"><code class="tec">./web/**</code><br/><code class="tec">./deno.json</code><br/><code class="tec">./ende.json</code><hr/><ul><li>importmap.ts</li><li>island.ts</li><li>staticfiles.ts</li><li>transpile.ts</li><li>transpile-ende.ts</li><li>client.ts</li><li>main.tsx</li><li>layout.tsx</li><li>404.tsx</li></ul></div></div><div class="tabela-box tabela-box-N" style="grid-column: 5 / 13; grid-row: 2 / 3"><div class="tabela-naglowek tabela-naglowek-center"><span class="tabela-naglowek-tekst">WSAD</span></div><div class="tabela-tresc"><code class="tec">./site/**</code><hr/><ul><li><code class="tec">./site/features/**</code> - mamy tu klocki budulcowe z których najistotniejsze to<ul><li><code class="tec">*.island.tsx</code></li><li><code class="tec">*.widget.tsx</code></li></ul></li><li><code class="tec">./site/pages/**</code> - mamy tu nasze strony, budowane z treści i klocków: <ul><li><code class="tec">index.tsx</code> - to strona główna</li></ul></li><li><code class="tec">./site/layout/**</code> - mamy tu elementy naszych stron budowane z treści i klocków</li><li><code class="tec">./site/scripts/**</code> - mamy tu rózne rzeczy, logike itp wszystko w czystym TypeScript</li><li><code class="tec">./site/static/**</code> - mamy tu pliki statyczne w tym arkusze stylów css</li></ul></div></div><div class="tabela-box tabela-box-N" style="grid-column: 1 / 7; grid-row: 3 / 4"><div class="tabela-naglowek tabela-naglowek-center"><span class="tabela-naglowek-tekst">DENO</span></div><div class="tabela-tresc"><pre class="tec tec-blok"><code class="language-json"><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">&quot;lock&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;deno.lock&quot;</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">&quot;compilerOptions&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
     <span class="hljs-attr">&quot;strict&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span>

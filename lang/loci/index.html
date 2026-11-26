@@ -1,1 +1,483 @@
-<!DOCTYPE html><html lang="pl"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>LEKTURA</title><link rel="icon" href="/dot-gener/favicon.ico"/><link rel="stylesheet" href="https://esm.sh/katex@0.19.1/dist/katex.min.css"/><link rel="stylesheet" href="/dot-gener/styles.css"/><script type="importmap">{"imports":{"@/":"/dot-gener/","preact":"https://esm.sh/preact@11.2.0","preact/":"https://esm.sh/preact@11.2.0/","@preact/signals":"https://esm.sh/@preact/signals@2.11.4","@preact/signals/":"https://esm.sh/@preact/signals@2.11.4/","@preact/signals-core":"https://esm.sh/@preact/signals-core@1.14.5","@preact/signals-core/":"https://esm.sh/@preact/signals-core@1.14.5/","highlight.js/":"https://esm.sh/highlight.js@11.12.0/","@/site/client/Svg.island.tsx":"/dot-gener/site/client/Svg.island.tsx.js","/site/client/Svg.island.tsx":"/dot-gener/site/client/Svg.island.tsx.js","/dot-gener/site/client/Svg.island.tsx":"/dot-gener/site/client/Svg.island.tsx.js","@/site/common/util/usePanZoom.ts":"/dot-gener/site/common/util/usePanZoom.ts.js","/site/common/util/usePanZoom.ts":"/dot-gener/site/common/util/usePanZoom.ts.js","/dot-gener/site/common/util/usePanZoom.ts":"/dot-gener/site/common/util/usePanZoom.ts.js","@/site/client/registries/for-island-svg.ts":"/dot-gener/site/client/registries/for-island-svg.ts.js","/site/client/registries/for-island-svg.ts":"/dot-gener/site/client/registries/for-island-svg.ts.js","/dot-gener/site/client/registries/for-island-svg.ts":"/dot-gener/site/client/registries/for-island-svg.ts.js","@/web/island.ts":"/dot-gener/web/island.ts.js","/web/island.ts":"/dot-gener/web/island.ts.js","/dot-gener/web/island.ts":"/dot-gener/web/island.ts.js","@/site/client/Canvas.island.tsx":"/dot-gener/site/client/Canvas.island.tsx.js","/site/client/Canvas.island.tsx":"/dot-gener/site/client/Canvas.island.tsx.js","/dot-gener/site/client/Canvas.island.tsx":"/dot-gener/site/client/Canvas.island.tsx.js","@/site/client/registries/for-island-canvas.ts":"/dot-gener/site/client/registries/for-island-canvas.ts.js","/site/client/registries/for-island-canvas.ts":"/dot-gener/site/client/registries/for-island-canvas.ts.js","/dot-gener/site/client/registries/for-island-canvas.ts":"/dot-gener/site/client/registries/for-island-canvas.ts.js","@/site/common/lang/dotx/render-canvas.ts":"/dot-gener/site/common/lang/dotx/render-canvas.ts.js","/site/common/lang/dotx/render-canvas.ts":"/dot-gener/site/common/lang/dotx/render-canvas.ts.js","/dot-gener/site/common/lang/dotx/render-canvas.ts":"/dot-gener/site/common/lang/dotx/render-canvas.ts.js","@/web/client.ts":"/dot-gener/web/client.ts.js","/web/client.ts":"/dot-gener/web/client.ts.js","/dot-gener/web/client.ts":"/dot-gener/web/client.ts.js"}}</script><script type="module" src="/dot-gener/web/client.ts.js"></script><script type="module" src="/dot-gener/web/client.ts.js"></script></head><body><main class="page"><nav class="guide-bar" aria-label="Nawigacja przewodnika"><a href="/dot-gener/404">?</a><a href="/dot-gener/">1.0:. Wzory</a><a href="/dot-gener/dokumentacja">2.0:. Dokumentacja</a><a href="/dot-gener/o-dokumentacji">3.0:. O dokumentacji</a></nav><section><details class="title-zwijana"><summary><h2 id="a.-o-svg2" class="title" style="font-size:2.125rem;"><a class="title-kotwica" href="#a.-o-svg2" aria-label="Link do sekcji: A:. o SVG2">#</a><span class="title-prefix">A:.</span> <span class="title-text">o SVG2</span></h2></summary><div class="title-section"><div class="tabela"><div class="tabela-siatka" style="width: 100%; grid-template-columns: auto auto auto; grid-template-rows: auto auto auto auto auto auto auto auto auto auto auto auto auto auto; column-gap: 0.5rem; row-gap: 1.5rem"><div class="tabela-box" style="grid-column: 1 / -1; grid-row: 1 / 2"><div class="tabela-tresc">Według specyfikacji SVG 2 (W3C) - składa się z 63 elementów rozumianych jako tagi.</div></div><div class="tabela-box" style="grid-column: 1 / 2; grid-row: 2 / 3"><div class="tabela-tresc"><strong>Grupa</strong></div></div> <div class="tabela-box" style="grid-column: 2 / 3; grid-row: 2 / 3"><div class="tabela-tresc"><strong>Elementy</strong></div></div> <div class="tabela-box" style="grid-column: 3 / 4; grid-row: 2 / 3"><div class="tabela-tresc"><strong>Do czego</strong></div></div><div class="tabela-box" style="grid-column: 1 / 2; grid-row: 3 / 4"><div class="tabela-tresc"><strong>Kształty</strong> (geometria)</div></div><div class="tabela-box" style="grid-column: 2 / 3; grid-row: 3 / 4"><div class="tabela-tresc"><code class="tec">rect</code>, <code class="tec">circle</code>, <code class="tec">ellipse</code>, <code class="tec">line</code>, <code class="tec">polyline</code>, <code class="tec">polygon</code>, <code class="tec">path</code></div></div><div class="tabela-box" style="grid-column: 3 / 4; grid-row: 3 / 4"><div class="tabela-tresc">figury; <code class="tec">path</code> umie narysować każdą z pozostałych</div></div><div class="tabela-box" style="grid-column: 1 / 2; grid-row: 4 / 5"><div class="tabela-tresc"><strong>Tekst</strong></div></div><div class="tabela-box" style="grid-column: 2 / 3; grid-row: 4 / 5"><div class="tabela-tresc"><code class="tec">text</code>, <code class="tec">tspan</code>, <code class="tec">textPath</code></div></div><div class="tabela-box" style="grid-column: 3 / 4; grid-row: 4 / 5"><div class="tabela-tresc">napisy, fragmenty z innym stylem, tekst po krzywej</div></div><div class="tabela-box" style="grid-column: 1 / 2; grid-row: 5 / 6"><div class="tabela-tresc"><strong>Grafika osadzona</strong></div></div><div class="tabela-box" style="grid-column: 2 / 3; grid-row: 5 / 6"><div class="tabela-tresc"><code class="tec">image</code>, <code class="tec">foreignObject</code>, <code class="tec">use</code></div></div><div class="tabela-box" style="grid-column: 3 / 4; grid-row: 5 / 6"><div class="tabela-tresc">obraz rastrowy, HTML w SVG, ponowne użycie elementu</div></div><div class="tabela-box" style="grid-column: 1 / 2; grid-row: 6 / 7"><div class="tabela-tresc"><strong>Struktura / kontenery</strong></div></div><div class="tabela-box" style="grid-column: 2 / 3; grid-row: 6 / 7"><div class="tabela-tresc"><code class="tec">svg</code>, <code class="tec">g</code>, <code class="tec">a</code>, <code class="tec">switch</code></div></div><div class="tabela-box" style="grid-column: 3 / 4; grid-row: 6 / 7"><div class="tabela-tresc">grupowanie, zagnieżdżanie, link, wybór wariantu</div></div><div class="tabela-box" style="grid-column: 1 / 2; grid-row: 7 / 8"><div class="tabela-tresc"><strong>Definicje</strong> (nierysowane same z siebie, działają przez odwołanie <code class="tec">id</code>)</div></div><div class="tabela-box" style="grid-column: 2 / 3; grid-row: 7 / 8"><div class="tabela-tresc"><code class="tec">defs</code>, <code class="tec">symbol</code>, <code class="tec">clipPath</code>, <code class="tec">mask</code>, <code class="tec">marker</code>, <code class="tec">pattern</code></div></div><div class="tabela-box" style="grid-column: 3 / 4; grid-row: 7 / 8"><div class="tabela-tresc">szablony, przycinanie, maski, groty linii, wzory</div></div><div class="tabela-box" style="grid-column: 1 / 2; grid-row: 8 / 9"><div class="tabela-tresc"><strong>Farby</strong> (paint servers)</div></div><div class="tabela-box" style="grid-column: 2 / 3; grid-row: 8 / 9"><div class="tabela-tresc"><code class="tec">linearGradient</code>, <code class="tec">radialGradient</code>, <code class="tec">pattern</code>, <code class="tec">stop</code></div></div><div class="tabela-box" style="grid-column: 3 / 4; grid-row: 8 / 9"><div class="tabela-tresc">gradienty i wzory jako <code class="tec">fill</code> lub <code class="tec">stroke</code></div></div><div class="tabela-box" style="grid-column: 1 / 2; grid-row: 9 / 10"><div class="tabela-tresc"><strong>Filtry</strong></div></div><div class="tabela-box" style="grid-column: 2 / 3; grid-row: 9 / 10"><div class="tabela-tresc"><code class="tec">filter</code> oraz 25 prymitywów <code class="tec">fe*</code> (lista niżej)</div></div><div class="tabela-box" style="grid-column: 3 / 4; grid-row: 9 / 10"><div class="tabela-tresc">rozmycie, cień, oświetlenie, mieszanie</div></div><div class="tabela-box" style="grid-column: 1 / -1; grid-row: 10 / 11"><div class="tabela-tresc"><strong>Prymitywy filtrów:</strong><ul><li><strong>źródła i łączenie:</strong> <code class="tec">feImage</code>, <code class="tec">feFlood</code>, <code class="tec">feTurbulence</code>, <code class="tec">feTile</code>, <code class="tec">feMerge</code> z <code class="tec">feMergeNode</code>, <code class="tec">feBlend</code>, <code class="tec">feComposite</code>;</li><li><strong>kolor:</strong> <code class="tec">feColorMatrix</code>, <code class="tec">feComponentTransfer</code> z <code class="tec">feFuncR</code>, <code class="tec">feFuncG</code>, <code class="tec">feFuncB</code>, <code class="tec">feFuncA</code>;</li><li><strong>kształt:</strong> <code class="tec">feGaussianBlur</code>, <code class="tec">feOffset</code>, <code class="tec">feDropShadow</code>, <code class="tec">feMorphology</code>, <code class="tec">feConvolveMatrix</code>, <code class="tec">feDisplacementMap</code>;</li><li><strong>oświetlenie:</strong> <code class="tec">feDiffuseLighting</code>, <code class="tec">feSpecularLighting</code> ze źródłami <code class="tec">feDistantLight</code>, <code class="tec">fePointLight</code>, <code class="tec">feSpotLight</code>.</li></ul></div></div><div class="tabela-box" style="grid-column: 1 / 2; grid-row: 11 / 12"><div class="tabela-tresc"><strong>Animacja</strong> (SMIL)</div></div><div class="tabela-box" style="grid-column: 2 / 3; grid-row: 11 / 12"><div class="tabela-tresc"><code class="tec">animate</code>, <code class="tec">animateMotion</code>, <code class="tec">animateTransform</code>, <code class="tec">set</code>, <code class="tec">mpath</code>, <code class="tec">discard</code></div></div><div class="tabela-box" style="grid-column: 3 / 4; grid-row: 11 / 12"><div class="tabela-tresc">animacja deklaratywna, bez JS</div></div><div class="tabela-box" style="grid-column: 1 / 2; grid-row: 12 / 13"><div class="tabela-tresc"><strong>Opisowe</strong></div></div><div class="tabela-box" style="grid-column: 2 / 3; grid-row: 12 / 13"><div class="tabela-tresc"><code class="tec">title</code>, <code class="tec">desc</code>, <code class="tec">metadata</code></div></div><div class="tabela-box" style="grid-column: 3 / 4; grid-row: 12 / 13"><div class="tabela-tresc">dostępność, podpowiedzi, metadane</div></div><div class="tabela-box" style="grid-column: 1 / 2; grid-row: 13 / 14"><div class="tabela-tresc"><strong>Pozostałe</strong></div></div><div class="tabela-box" style="grid-column: 2 / 3; grid-row: 13 / 14"><div class="tabela-tresc"><code class="tec">style</code>, <code class="tec">script</code>, <code class="tec">view</code></div></div><div class="tabela-box" style="grid-column: 3 / 4; grid-row: 13 / 14"><div class="tabela-tresc">CSS, JS, nazwane widoki</div></div><div class="tabela-box" style="grid-column: 1 / -1; grid-row: 14 / 15"><div class="tabela-tresc"><strong>Usunięte z SVG 1.1:</strong> fonty SVG (<code class="tec">font</code>, <code class="tec">glyph</code>, <code class="tec">missing-glyph</code>, <code class="tec">hkern</code>, <code class="tec">vkern</code>, <code class="tec">font-face</code> z pochodnymi), <code class="tec">altGlyph</code> z pochodnymi, <code class="tec">tref</code>, <code class="tec">cursor</code>, <code class="tec">color-profile</code>, <code class="tec">animateColor</code>. Projekty SVG 2 miały też <code class="tec">mesh</code> i <code class="tec">hatch</code>, ale w finalnej specyfikacji ich nie ma.</div></div></div></div></div></details></section><section><details class="title-zwijana" open><summary><h2 id="b.-loci-koncepcja" class="title" style="font-size:2.125rem;"><a class="title-kotwica" href="#b.-loci-koncepcja" aria-label="Link do sekcji: B:. LOCI - koncepcja">#</a><span class="title-prefix">B:.</span> <span class="title-text">LOCI - koncepcja</span></h2></summary><div class="title-section"><div class="tabela"><div class="tabela-siatka" style="width: 100%; grid-template-columns: auto auto auto; grid-template-rows: auto auto auto auto auto auto auto auto auto auto auto auto auto auto; column-gap: 0.5rem; row-gap: 1.5rem"><div class="tabela-box" style="grid-column: 1 / -1; grid-row: 1 / 2"><div class="tabela-tresc">Według specyfikacji SVG 2 (W3C) - składa się z 63 elementów rozumianych jako tagi.</div></div><div class="tabela-box" style="grid-column: 1 / 2; grid-row: 2 / 3"><div class="tabela-tresc"><strong>Grupa</strong></div></div> <div class="tabela-box" style="grid-column: 2 / 3; grid-row: 2 / 3"><div class="tabela-tresc"><strong>Elementy</strong></div></div> <div class="tabela-box" style="grid-column: 3 / 4; grid-row: 2 / 3"><div class="tabela-tresc"><strong>Do czego</strong></div></div><div class="tabela-box" style="grid-column: 1 / 2; grid-row: 3 / 4"><div class="tabela-tresc"><strong>Kształty</strong> (geometria)</div></div><div class="tabela-box" style="grid-column: 2 / 3; grid-row: 3 / 4"><div class="tabela-tresc"><code class="tec">rect</code>, <code class="tec">circle</code>, <code class="tec">ellipse</code>, <code class="tec">line</code>, <code class="tec">polyline</code>, <code class="tec">polygon</code>, <code class="tec">path</code></div></div><div class="tabela-box" style="grid-column: 3 / 4; grid-row: 3 / 4"><div class="tabela-tresc">figury; <code class="tec">path</code> umie narysować każdą z pozostałych</div></div><div class="tabela-box" style="grid-column: 1 / 2; grid-row: 4 / 5"><div class="tabela-tresc"><strong>Tekst</strong></div></div><div class="tabela-box" style="grid-column: 2 / 3; grid-row: 4 / 5"><div class="tabela-tresc"><code class="tec">text</code>, <code class="tec">tspan</code>, <code class="tec">textPath</code></div></div><div class="tabela-box" style="grid-column: 3 / 4; grid-row: 4 / 5"><div class="tabela-tresc">napisy, fragmenty z innym stylem, tekst po krzywej</div></div><div class="tabela-box" style="grid-column: 1 / 2; grid-row: 5 / 6"><div class="tabela-tresc"><strong>Grafika osadzona</strong></div></div><div class="tabela-box" style="grid-column: 2 / 3; grid-row: 5 / 6"><div class="tabela-tresc"><code class="tec">image</code>, <code class="tec">foreignObject</code>, <code class="tec">use</code></div></div><div class="tabela-box" style="grid-column: 3 / 4; grid-row: 5 / 6"><div class="tabela-tresc">obraz rastrowy, HTML w SVG, ponowne użycie elementu</div></div><div class="tabela-box" style="grid-column: 1 / 2; grid-row: 6 / 7"><div class="tabela-tresc"><strong>Struktura / kontenery</strong></div></div><div class="tabela-box" style="grid-column: 2 / 3; grid-row: 6 / 7"><div class="tabela-tresc"><code class="tec">svg</code>, <code class="tec">g</code>, <code class="tec">a</code>, <code class="tec">switch</code></div></div><div class="tabela-box" style="grid-column: 3 / 4; grid-row: 6 / 7"><div class="tabela-tresc">grupowanie, zagnieżdżanie, link, wybór wariantu</div></div><div class="tabela-box" style="grid-column: 1 / 2; grid-row: 7 / 8"><div class="tabela-tresc"><strong>Definicje</strong> (nierysowane same z siebie, działają przez odwołanie <code class="tec">id</code>)</div></div><div class="tabela-box" style="grid-column: 2 / 3; grid-row: 7 / 8"><div class="tabela-tresc"><code class="tec">defs</code>, <code class="tec">symbol</code>, <code class="tec">clipPath</code>, <code class="tec">mask</code>, <code class="tec">marker</code>, <code class="tec">pattern</code></div></div><div class="tabela-box" style="grid-column: 3 / 4; grid-row: 7 / 8"><div class="tabela-tresc">szablony, przycinanie, maski, groty linii, wzory</div></div><div class="tabela-box" style="grid-column: 1 / 2; grid-row: 8 / 9"><div class="tabela-tresc"><strong>Farby</strong> (paint servers)</div></div><div class="tabela-box" style="grid-column: 2 / 3; grid-row: 8 / 9"><div class="tabela-tresc"><code class="tec">linearGradient</code>, <code class="tec">radialGradient</code>, <code class="tec">pattern</code>, <code class="tec">stop</code></div></div><div class="tabela-box" style="grid-column: 3 / 4; grid-row: 8 / 9"><div class="tabela-tresc">gradienty i wzory jako <code class="tec">fill</code> lub <code class="tec">stroke</code></div></div><div class="tabela-box" style="grid-column: 1 / 2; grid-row: 9 / 10"><div class="tabela-tresc"><strong>Filtry</strong></div></div><div class="tabela-box" style="grid-column: 2 / 3; grid-row: 9 / 10"><div class="tabela-tresc"><code class="tec">filter</code> oraz 25 prymitywów <code class="tec">fe*</code> (lista niżej)</div></div><div class="tabela-box" style="grid-column: 3 / 4; grid-row: 9 / 10"><div class="tabela-tresc">rozmycie, cień, oświetlenie, mieszanie</div></div><div class="tabela-box" style="grid-column: 1 / -1; grid-row: 10 / 11"><div class="tabela-tresc"><strong>Prymitywy filtrów:</strong><ul><li><strong>źródła i łączenie:</strong> <code class="tec">feImage</code>, <code class="tec">feFlood</code>, <code class="tec">feTurbulence</code>, <code class="tec">feTile</code>, <code class="tec">feMerge</code> z <code class="tec">feMergeNode</code>, <code class="tec">feBlend</code>, <code class="tec">feComposite</code>;</li><li><strong>kolor:</strong> <code class="tec">feColorMatrix</code>, <code class="tec">feComponentTransfer</code> z <code class="tec">feFuncR</code>, <code class="tec">feFuncG</code>, <code class="tec">feFuncB</code>, <code class="tec">feFuncA</code>;</li><li><strong>kształt:</strong> <code class="tec">feGaussianBlur</code>, <code class="tec">feOffset</code>, <code class="tec">feDropShadow</code>, <code class="tec">feMorphology</code>, <code class="tec">feConvolveMatrix</code>, <code class="tec">feDisplacementMap</code>;</li><li><strong>oświetlenie:</strong> <code class="tec">feDiffuseLighting</code>, <code class="tec">feSpecularLighting</code> ze źródłami <code class="tec">feDistantLight</code>, <code class="tec">fePointLight</code>, <code class="tec">feSpotLight</code>.</li></ul></div></div><div class="tabela-box" style="grid-column: 1 / 2; grid-row: 11 / 12"><div class="tabela-tresc"><strong>Animacja</strong> (SMIL)</div></div><div class="tabela-box" style="grid-column: 2 / 3; grid-row: 11 / 12"><div class="tabela-tresc"><code class="tec">animate</code>, <code class="tec">animateMotion</code>, <code class="tec">animateTransform</code>, <code class="tec">set</code>, <code class="tec">mpath</code>, <code class="tec">discard</code></div></div><div class="tabela-box" style="grid-column: 3 / 4; grid-row: 11 / 12"><div class="tabela-tresc">animacja deklaratywna, bez JS</div></div><div class="tabela-box" style="grid-column: 1 / 2; grid-row: 12 / 13"><div class="tabela-tresc"><strong>Opisowe</strong></div></div><div class="tabela-box" style="grid-column: 2 / 3; grid-row: 12 / 13"><div class="tabela-tresc"><code class="tec">title</code>, <code class="tec">desc</code>, <code class="tec">metadata</code></div></div><div class="tabela-box" style="grid-column: 3 / 4; grid-row: 12 / 13"><div class="tabela-tresc">dostępność, podpowiedzi, metadane</div></div><div class="tabela-box" style="grid-column: 1 / 2; grid-row: 13 / 14"><div class="tabela-tresc"><strong>Pozostałe</strong></div></div><div class="tabela-box" style="grid-column: 2 / 3; grid-row: 13 / 14"><div class="tabela-tresc"><code class="tec">style</code>, <code class="tec">script</code>, <code class="tec">view</code></div></div><div class="tabela-box" style="grid-column: 3 / 4; grid-row: 13 / 14"><div class="tabela-tresc">CSS, JS, nazwane widoki</div></div><div class="tabela-box" style="grid-column: 1 / -1; grid-row: 14 / 15"><div class="tabela-tresc"><strong>Usunięte z SVG 1.1:</strong> fonty SVG (<code class="tec">font</code>, <code class="tec">glyph</code>, <code class="tec">missing-glyph</code>, <code class="tec">hkern</code>, <code class="tec">vkern</code>, <code class="tec">font-face</code> z pochodnymi), <code class="tec">altGlyph</code> z pochodnymi, <code class="tec">tref</code>, <code class="tec">cursor</code>, <code class="tec">color-profile</code>, <code class="tec">animateColor</code>. Projekty SVG 2 miały też <code class="tec">mesh</code> i <code class="tec">hatch</code>, ale w finalnej specyfikacji ich nie ma.</div></div></div></div></div></details></section><hr/>🫟<footer class="foot-bar" aria-label="Stopka"><a href="https://github.com/j-Cis/dot-gener">GitHub</a><a href="https://www.facebook.com/Cisowski/">Facebook</a><a href="https://j-cis.github.io/dot-gener/">j-cis.github.io/dot-gener</a><a href="http://localhost:8000/">.</a></footer></main></body></html>
+<!DOCTYPE html><html lang="pl"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>LEKTURA</title><link rel="icon" href="/dot-gener/favicon.ico"/><link rel="stylesheet" href="https://esm.sh/katex@0.19.1/dist/katex.min.css"/><style>@layer shell, widget, route;
+@layer shell {
+html,
+body {
+  background-color: #101116;
+  color: #cfcfd0;
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+}
+
+/* web/strona404.tsx — mapa stron na stronie 404 */
+.mapa-stron {
+  line-height: 1.8;
+  & ul {
+    padding-inline-start: 1.5rem;
+  }
+}
+.mapa-stron-plik,
+.mapa-stron-folder {
+  color: #6b7280;
+  font-family: ui-monospace, "Cascadia Mono", Consolas, "DejaVu Sans Mono", monospace;
+  font-size: 0.85em;
+}
+.mapa-stron-plik {
+  margin-inline-start: 0.5rem;
+}
+
+}
+@layer widget {
+.box-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+/* BoxViewAsSvg.island.tsx */
+.box-svg {
+  position: relative;
+  overflow: hidden;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+
+.svg-box {
+  box-sizing: border-box; /* ramka wliczona w 100%, bez nadmiaru */
+  --svg-border: #c7ba041f;
+  border: 1px dotted var(--svg-border);
+  height: 100%; /*⚠️⚠️⚠️może powodować błedy */
+}
+.box-svg:active {
+  cursor: grabbing;
+}
+.box-svg-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: max-content;
+  transform-origin: 0 0;
+}
+.box-svg-content svg {
+  display: block;
+}
+.box-svg.is-locked {
+  cursor: default;
+  touch-action: pan-y;
+}
+.box-svg.is-locked:active {
+  cursor: default;
+}
+
+.box-svg-lock {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 2;
+  padding: 4px 8px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.box-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+/* BoxViewAsSvg.island.tsx */
+.box-svg {
+  position: relative;
+  overflow: hidden;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+
+.svg-box {
+  box-sizing: border-box; /* ramka wliczona w 100%, bez nadmiaru */
+  --svg-border: #c7ba041f;
+  border: 1px dotted var(--svg-border);
+  height: 100%; /*⚠️⚠️⚠️może powodować błedy */
+}
+.box-svg:active {
+  cursor: grabbing;
+}
+.box-svg-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: max-content;
+  transform-origin: 0 0;
+}
+.box-svg-content svg {
+  display: block;
+}
+.box-svg.is-locked {
+  cursor: default;
+  touch-action: pan-y;
+}
+.box-svg.is-locked:active {
+  cursor: default;
+}
+
+.box-svg-lock {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 2;
+  padding: 4px 8px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* Tec.render.tsx — kod wyświetlany dosłownie */
+.tec {
+  /* tło kodu: odrobinę jaśniejsze od tła strony (#101116), żeby kod się wyróżniał */
+  --tec-tlo: #21232c;
+  --tec-tekst: #e4e4e6;
+  --tec-tekst-hover-actio: #a2f2d8;
+  font-family: ui-monospace, "Cascadia Mono", Consolas, "DejaVu Sans Mono", monospace;
+  font-size: 0.9em;
+  tab-size: 2;
+  color: var(--tec-tekst);
+  background-color: var(--tec-tlo);
+  &:hover,
+  &:active {
+    color: var(--tec-tekst-hover-actio);
+  }
+}
+code.tec {
+  /* w linii: zachowane spacje, łamanie długich fragmentów */
+  padding: 0.1em 0.6em;
+  border-radius: 0.3rem;
+  white-space: pre-wrap;
+  /* po złamaniu wiersza każdy kawałek ma własne tło, zaokrąglenie i margines */
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+pre.tec-blok {
+  /* blok: dokładne odstępy i znaki nowej linii, przewijanie w poziomie zamiast łamania */
+  margin-block: 0.75rem;
+  padding: 0.85rem 1.1rem;
+  border-radius: 0.5rem;
+  line-height: 1.5;
+  overflow-x: auto;
+}
+pre.tec-blok code {
+  font: inherit;
+}
+pre.tec-blok.tec-przyciety {
+  /* widthTrim="50%": blok staje w rzędzie obok sąsiednich; odstęp jest wliczony w podaną szerokość,
+     więc 2 × 50% (albo 60% + 40%) mieści się w jednym rzędzie, a kolejne bloki przechodzą do następnego */
+  --tec-odstep: 0.5rem;
+  display: inline-block;
+  vertical-align: top;
+  box-sizing: border-box;
+  width: calc(var(--tec-szerokosc) - var(--tec-odstep));
+  margin-inline: calc(var(--tec-odstep) / 2);
+}
+
+/* kolorowanie składni (Tec z lang="…"; klasy nadaje highlight.js) */
+.tec .hljs-keyword,
+.tec .hljs-literal,
+.tec .hljs-symbol,
+.tec .hljs-variable.language_,
+.tec .hljs-tag,
+.tec .hljs-name {
+  color: #569cd6;
+}
+.tec .hljs-built_in,
+.tec .hljs-type,
+.tec .hljs-title.class_,
+.tec .hljs-title.class_.inherited__ {
+  color: #4ec9b0;
+}
+.tec .hljs-title,
+.tec .hljs-title.function_ {
+  color: #dcdcaa;
+}
+.tec .hljs-attr,
+.tec .hljs-attribute,
+.tec .hljs-property,
+.tec .hljs-variable,
+.tec .hljs-params {
+  color: #9cdcfe;
+}
+.tec .hljs-string {
+  color: #ce9178;
+}
+.tec .hljs-subst {
+  /* ${…} w szablonie: zwykły kolor kodu */
+  color: var(--tec-tekst);
+}
+.tec .hljs-number {
+  color: #b5cea8;
+}
+.tec .hljs-regexp {
+  color: #d16969;
+}
+.tec .hljs-meta,
+.tec .hljs-keyword.control_ {
+  color: #c586c0;
+}
+.tec .hljs-selector-class,
+.tec .hljs-selector-id,
+.tec .hljs-selector-tag {
+  color: #d7ba7d;
+}
+.tec .hljs-comment,
+.tec .hljs-quote {
+  color: #6a9955;
+  font-style: italic;
+}
+
+/* FootBar.widget.tsx — chuda stopka */
+.foot-bar {
+  position: sticky;
+  bottom: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: row;
+  /* „safe”: gdy linki się nie mieszczą, nie ucina początku, tylko przewija */
+  justify-content: safe center;
+  gap: 1.25rem;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 0.2rem 1rem;
+  font-size: 0.75rem;
+  line-height: 1.6;
+  /* to samo szkło co w listwie u góry, kreska od strony treści */
+  background-color: rgb(16 17 22 / 0.75);
+  backdrop-filter: blur(12px) saturate(1.4);
+  border-top: 1px solid rgb(255 255 255 / 0.08);
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+
+  & a {
+    flex: none;
+    color: #6b7280;
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  & a:hover {
+    color: #e4e4e6;
+  }
+  & a:focus-visible {
+    outline: 2px solid #4f85d8;
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .foot-bar a {
+    transition: none;
+  }
+}
+
+/* GuideBar.widget.tsx — listwa nawigacji */
+.guide-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: row;
+  gap: 0.25rem;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 0.5rem 1rem;
+  /* półprzezroczyste tło strony + rozmycie treści przewijanej pod listwą */
+  background-color: rgb(16 17 22 / 0.75);
+  backdrop-filter: blur(12px) saturate(1.4);
+  border-bottom: 1px solid rgb(255 255 255 / 0.08);
+  /* cienki ciemny pasek przewijania; dojechanie do końca listwy nie przewija strony */
+  scrollbar-width: thin;
+  scrollbar-color: #3a3d4a transparent;
+  overscroll-behavior-x: contain;
+  /* przy przewijaniu listwa zatrzymuje się na początku linku */
+  scroll-snap-type: x proximity;
+  scroll-padding-inline: 1rem;
+
+  & a {
+    flex: none;
+    scroll-snap-align: start;
+    padding: 0.35rem 0.8rem;
+    border-radius: 999px;
+    color: #9a9ba3;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.15s, background-color 0.15s;
+  }
+  & a:hover {
+    color: #e4e4e6;
+    background-color: rgb(255 255 255 / 0.06);
+  }
+  & a:focus-visible {
+    outline: 2px solid #4f85d8;
+    outline-offset: 2px;
+  }
+  /* bieżąca strona */
+  & a[aria-current="page"] {
+    color: #fff;
+    background-color: rgb(79 133 216 / 0.22);
+    box-shadow: inset 0 0 0 1px rgb(79 133 216 / 0.45);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .guide-bar a {
+    transition: none;
+  }
+}
+
+/* Table.widget.tsx — siatka (CSS grid) w oknie przewijania */
+.tabela {
+  /* okno: szerokość strony; przewija, gdy siatka jest szersza (width > 100%) albo wyższa niż height */
+  overflow: auto;
+  max-width: 100%;
+}
+.tabela-siatka {
+  display: grid;
+  /* ścieżki od początku — wiersze "auto" nie rozciągają się, gdy okno (height) jest wyższe niż treść */
+  justify-content: start;
+  align-content: start;
+}
+.tabela-box {
+  /* nagłówek + treść; kierunek zależy od strony nagłówka */
+  display: flex;
+  flex-direction: column;
+}
+.tabela-box-N {
+  flex-direction: column;
+}
+.tabela-box-S {
+  flex-direction: column-reverse;
+}
+.tabela-box-W {
+  flex-direction: row;
+}
+.tabela-box-E {
+  flex-direction: row-reverse;
+}
+.tabela-naglowek {
+  display: flex;
+  flex: none;
+  padding: 0.25rem 0.5rem;
+  font-weight: 600;
+  background-color: rgb(255 255 255 / 0.04);
+}
+.tabela-box-W > .tabela-naglowek,
+.tabela-box-E > .tabela-naglowek {
+  /* nagłówek z boku: start/center/end działa w pionie */
+  flex-direction: column;
+}
+.tabela-naglowek-start {
+  justify-content: flex-start;
+  text-align: start;
+}
+.tabela-naglowek-center {
+  justify-content: center;
+  text-align: center;
+}
+.tabela-naglowek-end {
+  justify-content: flex-end;
+  text-align: end;
+}
+.tabela-obrot-prawo {
+  /* o 90° w prawo: czytamy z góry na dół */
+  writing-mode: vertical-rl;
+}
+.tabela-obrot-lewo {
+  /* o 90° w lewo: czytamy z dołu do góry */
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+.tabela-tresc {
+  /* treść większa niż obszar (np. stała wysokość wiersza) przewija się w obszarze */
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+}
+
+/* Title.widgets.tsx */
+.title {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5em;
+  line-height: 1.2;
+}
+.title-prefix {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  color: #6b7280;
+}
+/* kotwica #id jak w markdown: „#” po lewej, widoczny po najechaniu / fokusie */
+.title {
+  position: relative;
+  scroll-margin-top: 1rem; /* po skoku do #id nagłówek nie dotyka krawędzi */
+  padding-inline: 0.25em;
+  margin-inline: -0.25em;
+  border-radius: 0.25rem;
+  transition: background-color 0.15s;
+}
+.title:hover {
+  background-color: rgb(255 255 255 / 0.04);
+}
+.title:target {
+  /* nagłówek, do którego prowadzi adres …#id */
+  background-color: rgb(79 133 216 / 0.14);
+  box-shadow: inset 3px 0 0 #4f85d8;
+}
+.title-kotwica {
+  position: absolute;
+  top: 0;
+  right: 100%;
+  padding-inline-end: 0.2em;
+  color: #6b7280;
+  text-decoration: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.title:hover .title-kotwica,
+.title-kotwica:focus-visible {
+  opacity: 1;
+}
+.title-kotwica:hover {
+  color: #4f85d8;
+}
+/* TitleSection collapsible — cała linia tytułu przełącza treść */
+.title-zwijana > summary {
+  display: block;
+  list-style: none;
+  cursor: pointer;
+}
+.title-zwijana > summary::-webkit-details-marker {
+  display: none;
+}
+.title-zwijana > summary > .title::after {
+  content: "▾";
+  color: #6b7280;
+  font-size: 0.7em;
+  transition: transform 0.15s;
+}
+.title-zwijana:not([open]) > summary > .title::after {
+  transform: rotate(-90deg);
+}
+@media (prefers-reduced-motion: reduce) {
+  .title-zwijana > summary > .title::after {
+    transition: none;
+  }
+}
+
+}</style><link rel="stylesheet" href="/dot-gener/styles.css"/><script type="importmap">{"imports":{"@/":"/dot-gener/","preact":"https://esm.sh/preact@11.2.0","preact/":"https://esm.sh/preact@11.2.0/","@preact/signals":"https://esm.sh/@preact/signals@2.11.4","@preact/signals/":"https://esm.sh/@preact/signals@2.11.4/","@preact/signals-core":"https://esm.sh/@preact/signals-core@1.14.5","@preact/signals-core/":"https://esm.sh/@preact/signals-core@1.14.5/","highlight.js/":"https://esm.sh/highlight.js@11.12.0/","@/site/client/ViewAsSvg.island.tsx":"/dot-gener/site/client/ViewAsSvg.island.tsx.js","/site/client/ViewAsSvg.island.tsx":"/dot-gener/site/client/ViewAsSvg.island.tsx.js","/dot-gener/site/client/ViewAsSvg.island.tsx":"/dot-gener/site/client/ViewAsSvg.island.tsx.js","@/site/common/util/usePanZoom.ts":"/dot-gener/site/common/util/usePanZoom.ts.js","/site/common/util/usePanZoom.ts":"/dot-gener/site/common/util/usePanZoom.ts.js","/dot-gener/site/common/util/usePanZoom.ts":"/dot-gener/site/common/util/usePanZoom.ts.js","@/site/client/registries/for-island-svg.ts":"/dot-gener/site/client/registries/for-island-svg.ts.js","/site/client/registries/for-island-svg.ts":"/dot-gener/site/client/registries/for-island-svg.ts.js","/dot-gener/site/client/registries/for-island-svg.ts":"/dot-gener/site/client/registries/for-island-svg.ts.js","@/web/island.ts":"/dot-gener/web/island.ts.js","/web/island.ts":"/dot-gener/web/island.ts.js","/dot-gener/web/island.ts":"/dot-gener/web/island.ts.js","@/site/client/ViewAsCanvas.island.tsx":"/dot-gener/site/client/ViewAsCanvas.island.tsx.js","/site/client/ViewAsCanvas.island.tsx":"/dot-gener/site/client/ViewAsCanvas.island.tsx.js","/dot-gener/site/client/ViewAsCanvas.island.tsx":"/dot-gener/site/client/ViewAsCanvas.island.tsx.js","@/site/client/registries/for-island-canvas.ts":"/dot-gener/site/client/registries/for-island-canvas.ts.js","/site/client/registries/for-island-canvas.ts":"/dot-gener/site/client/registries/for-island-canvas.ts.js","/dot-gener/site/client/registries/for-island-canvas.ts":"/dot-gener/site/client/registries/for-island-canvas.ts.js","@/site/common/lang/dotx/render-canvas.ts":"/dot-gener/site/common/lang/dotx/render-canvas.ts.js","/site/common/lang/dotx/render-canvas.ts":"/dot-gener/site/common/lang/dotx/render-canvas.ts.js","/dot-gener/site/common/lang/dotx/render-canvas.ts":"/dot-gener/site/common/lang/dotx/render-canvas.ts.js","@/web/client.ts":"/dot-gener/web/client.ts.js","/web/client.ts":"/dot-gener/web/client.ts.js","/dot-gener/web/client.ts":"/dot-gener/web/client.ts.js"}}</script><script type="module" src="/dot-gener/web/client.ts.js"></script></head><body><main class="page"><nav class="guide-bar" aria-label="Nawigacja przewodnika"><a href="/dot-gener/404">?</a><a href="/dot-gener/">1.0:. Wzory</a><a href="/dot-gener/dokumentacja">2.0:. Dokumentacja</a><a href="/dot-gener/o-dokumentacji">3.0:. O dokumentacji</a></nav><section><details class="title-zwijana"><summary><h2 id="a.-o-svg2" class="title" style="font-size:2.125rem;"><a class="title-kotwica" href="#a.-o-svg2" aria-label="Link do sekcji: A:. o SVG2">#</a><span class="title-prefix">A:.</span> <span class="title-text">o SVG2</span></h2></summary><div class="title-section"><div class="tabela"><div class="tabela-siatka" style="width: 100%; grid-template-columns: auto auto auto; grid-template-rows: auto auto auto auto auto auto auto auto auto auto auto auto auto auto; column-gap: 0.5rem; row-gap: 1.5rem"><div class="tabela-box" style="grid-column: 1 / -1; grid-row: 1 / 2"><div class="tabela-tresc">Według specyfikacji SVG 2 (W3C) - składa się z 63 elementów rozumianych jako tagi.</div></div><div class="tabela-box" style="grid-column: 1 / 2; grid-row: 2 / 3"><div class="tabela-tresc"><strong>Grupa</strong></div></div> <div class="tabela-box" style="grid-column: 2 / 3; grid-row: 2 / 3"><div class="tabela-tresc"><strong>Elementy</strong></div></div> <div class="tabela-box" style="grid-column: 3 / 4; grid-row: 2 / 3"><div class="tabela-tresc"><strong>Do czego</strong></div></div><div class="tabela-box" style="grid-column: 1 / 2; grid-row: 3 / 4"><div class="tabela-tresc"><strong>Kształty</strong> (geometria)</div></div><div class="tabela-box" style="grid-column: 2 / 3; grid-row: 3 / 4"><div class="tabela-tresc"><code class="tec">rect</code>, <code class="tec">circle</code>, <code class="tec">ellipse</code>, <code class="tec">line</code>, <code class="tec">polyline</code>, <code class="tec">polygon</code>, <code class="tec">path</code></div></div><div class="tabela-box" style="grid-column: 3 / 4; grid-row: 3 / 4"><div class="tabela-tresc">figury; <code class="tec">path</code> umie narysować każdą z pozostałych</div></div><div class="tabela-box" style="grid-column: 1 / 2; grid-row: 4 / 5"><div class="tabela-tresc"><strong>Tekst</strong></div></div><div class="tabela-box" style="grid-column: 2 / 3; grid-row: 4 / 5"><div class="tabela-tresc"><code class="tec">text</code>, <code class="tec">tspan</code>, <code class="tec">textPath</code></div></div><div class="tabela-box" style="grid-column: 3 / 4; grid-row: 4 / 5"><div class="tabela-tresc">napisy, fragmenty z innym stylem, tekst po krzywej</div></div><div class="tabela-box" style="grid-column: 1 / 2; grid-row: 5 / 6"><div class="tabela-tresc"><strong>Grafika osadzona</strong></div></div><div class="tabela-box" style="grid-column: 2 / 3; grid-row: 5 / 6"><div class="tabela-tresc"><code class="tec">image</code>, <code class="tec">foreignObject</code>, <code class="tec">use</code></div></div><div class="tabela-box" style="grid-column: 3 / 4; grid-row: 5 / 6"><div class="tabela-tresc">obraz rastrowy, HTML w SVG, ponowne użycie elementu</div></div><div class="tabela-box" style="grid-column: 1 / 2; grid-row: 6 / 7"><div class="tabela-tresc"><strong>Struktura / kontenery</strong></div></div><div class="tabela-box" style="grid-column: 2 / 3; grid-row: 6 / 7"><div class="tabela-tresc"><code class="tec">svg</code>, <code class="tec">g</code>, <code class="tec">a</code>, <code class="tec">switch</code></div></div><div class="tabela-box" style="grid-column: 3 / 4; grid-row: 6 / 7"><div class="tabela-tresc">grupowanie, zagnieżdżanie, link, wybór wariantu</div></div><div class="tabela-box" style="grid-column: 1 / 2; grid-row: 7 / 8"><div class="tabela-tresc"><strong>Definicje</strong> (nierysowane same z siebie, działają przez odwołanie <code class="tec">id</code>)</div></div><div class="tabela-box" style="grid-column: 2 / 3; grid-row: 7 / 8"><div class="tabela-tresc"><code class="tec">defs</code>, <code class="tec">symbol</code>, <code class="tec">clipPath</code>, <code class="tec">mask</code>, <code class="tec">marker</code>, <code class="tec">pattern</code></div></div><div class="tabela-box" style="grid-column: 3 / 4; grid-row: 7 / 8"><div class="tabela-tresc">szablony, przycinanie, maski, groty linii, wzory</div></div><div class="tabela-box" style="grid-column: 1 / 2; grid-row: 8 / 9"><div class="tabela-tresc"><strong>Farby</strong> (paint servers)</div></div><div class="tabela-box" style="grid-column: 2 / 3; grid-row: 8 / 9"><div class="tabela-tresc"><code class="tec">linearGradient</code>, <code class="tec">radialGradient</code>, <code class="tec">pattern</code>, <code class="tec">stop</code></div></div><div class="tabela-box" style="grid-column: 3 / 4; grid-row: 8 / 9"><div class="tabela-tresc">gradienty i wzory jako <code class="tec">fill</code> lub <code class="tec">stroke</code></div></div><div class="tabela-box" style="grid-column: 1 / 2; grid-row: 9 / 10"><div class="tabela-tresc"><strong>Filtry</strong></div></div><div class="tabela-box" style="grid-column: 2 / 3; grid-row: 9 / 10"><div class="tabela-tresc"><code class="tec">filter</code> oraz 25 prymitywów <code class="tec">fe*</code> (lista niżej)</div></div><div class="tabela-box" style="grid-column: 3 / 4; grid-row: 9 / 10"><div class="tabela-tresc">rozmycie, cień, oświetlenie, mieszanie</div></div><div class="tabela-box" style="grid-column: 1 / -1; grid-row: 10 / 11"><div class="tabela-tresc"><strong>Prymitywy filtrów:</strong><ul><li><strong>źródła i łączenie:</strong> <code class="tec">feImage</code>, <code class="tec">feFlood</code>, <code class="tec">feTurbulence</code>, <code class="tec">feTile</code>, <code class="tec">feMerge</code> z <code class="tec">feMergeNode</code>, <code class="tec">feBlend</code>, <code class="tec">feComposite</code>;</li><li><strong>kolor:</strong> <code class="tec">feColorMatrix</code>, <code class="tec">feComponentTransfer</code> z <code class="tec">feFuncR</code>, <code class="tec">feFuncG</code>, <code class="tec">feFuncB</code>, <code class="tec">feFuncA</code>;</li><li><strong>kształt:</strong> <code class="tec">feGaussianBlur</code>, <code class="tec">feOffset</code>, <code class="tec">feDropShadow</code>, <code class="tec">feMorphology</code>, <code class="tec">feConvolveMatrix</code>, <code class="tec">feDisplacementMap</code>;</li><li><strong>oświetlenie:</strong> <code class="tec">feDiffuseLighting</code>, <code class="tec">feSpecularLighting</code> ze źródłami <code class="tec">feDistantLight</code>, <code class="tec">fePointLight</code>, <code class="tec">feSpotLight</code>.</li></ul></div></div><div class="tabela-box" style="grid-column: 1 / 2; grid-row: 11 / 12"><div class="tabela-tresc"><strong>Animacja</strong> (SMIL)</div></div><div class="tabela-box" style="grid-column: 2 / 3; grid-row: 11 / 12"><div class="tabela-tresc"><code class="tec">animate</code>, <code class="tec">animateMotion</code>, <code class="tec">animateTransform</code>, <code class="tec">set</code>, <code class="tec">mpath</code>, <code class="tec">discard</code></div></div><div class="tabela-box" style="grid-column: 3 / 4; grid-row: 11 / 12"><div class="tabela-tresc">animacja deklaratywna, bez JS</div></div><div class="tabela-box" style="grid-column: 1 / 2; grid-row: 12 / 13"><div class="tabela-tresc"><strong>Opisowe</strong></div></div><div class="tabela-box" style="grid-column: 2 / 3; grid-row: 12 / 13"><div class="tabela-tresc"><code class="tec">title</code>, <code class="tec">desc</code>, <code class="tec">metadata</code></div></div><div class="tabela-box" style="grid-column: 3 / 4; grid-row: 12 / 13"><div class="tabela-tresc">dostępność, podpowiedzi, metadane</div></div><div class="tabela-box" style="grid-column: 1 / 2; grid-row: 13 / 14"><div class="tabela-tresc"><strong>Pozostałe</strong></div></div><div class="tabela-box" style="grid-column: 2 / 3; grid-row: 13 / 14"><div class="tabela-tresc"><code class="tec">style</code>, <code class="tec">script</code>, <code class="tec">view</code></div></div><div class="tabela-box" style="grid-column: 3 / 4; grid-row: 13 / 14"><div class="tabela-tresc">CSS, JS, nazwane widoki</div></div><div class="tabela-box" style="grid-column: 1 / -1; grid-row: 14 / 15"><div class="tabela-tresc"><strong>Usunięte z SVG 1.1:</strong> fonty SVG (<code class="tec">font</code>, <code class="tec">glyph</code>, <code class="tec">missing-glyph</code>, <code class="tec">hkern</code>, <code class="tec">vkern</code>, <code class="tec">font-face</code> z pochodnymi), <code class="tec">altGlyph</code> z pochodnymi, <code class="tec">tref</code>, <code class="tec">cursor</code>, <code class="tec">color-profile</code>, <code class="tec">animateColor</code>. Projekty SVG 2 miały też <code class="tec">mesh</code> i <code class="tec">hatch</code>, ale w finalnej specyfikacji ich nie ma.</div></div></div></div></div></details></section><section><details class="title-zwijana" open><summary><h2 id="b.-loci-koncepcja" class="title" style="font-size:2.125rem;"><a class="title-kotwica" href="#b.-loci-koncepcja" aria-label="Link do sekcji: B:. LOCI - koncepcja">#</a><span class="title-prefix">B:.</span> <span class="title-text">LOCI - koncepcja</span></h2></summary><div class="title-section"><div class="tabela"><div class="tabela-siatka" style="width: 100%; grid-template-columns: auto auto auto; grid-template-rows: auto auto auto auto auto auto auto auto auto auto auto auto auto auto; column-gap: 0.5rem; row-gap: 1.5rem"><div class="tabela-box" style="grid-column: 1 / -1; grid-row: 1 / 2"><div class="tabela-tresc">Według specyfikacji SVG 2 (W3C) - składa się z 63 elementów rozumianych jako tagi.</div></div><div class="tabela-box" style="grid-column: 1 / 2; grid-row: 2 / 3"><div class="tabela-tresc"><strong>Grupa</strong></div></div> <div class="tabela-box" style="grid-column: 2 / 3; grid-row: 2 / 3"><div class="tabela-tresc"><strong>Elementy</strong></div></div> <div class="tabela-box" style="grid-column: 3 / 4; grid-row: 2 / 3"><div class="tabela-tresc"><strong>Do czego</strong></div></div><div class="tabela-box" style="grid-column: 1 / 2; grid-row: 3 / 4"><div class="tabela-tresc"><strong>Kształty</strong> (geometria)</div></div><div class="tabela-box" style="grid-column: 2 / 3; grid-row: 3 / 4"><div class="tabela-tresc"><code class="tec">rect</code>, <code class="tec">circle</code>, <code class="tec">ellipse</code>, <code class="tec">line</code>, <code class="tec">polyline</code>, <code class="tec">polygon</code>, <code class="tec">path</code></div></div><div class="tabela-box" style="grid-column: 3 / 4; grid-row: 3 / 4"><div class="tabela-tresc">figury; <code class="tec">path</code> umie narysować każdą z pozostałych</div></div><div class="tabela-box" style="grid-column: 1 / 2; grid-row: 4 / 5"><div class="tabela-tresc"><strong>Tekst</strong></div></div><div class="tabela-box" style="grid-column: 2 / 3; grid-row: 4 / 5"><div class="tabela-tresc"><code class="tec">text</code>, <code class="tec">tspan</code>, <code class="tec">textPath</code></div></div><div class="tabela-box" style="grid-column: 3 / 4; grid-row: 4 / 5"><div class="tabela-tresc">napisy, fragmenty z innym stylem, tekst po krzywej</div></div><div class="tabela-box" style="grid-column: 1 / 2; grid-row: 5 / 6"><div class="tabela-tresc"><strong>Grafika osadzona</strong></div></div><div class="tabela-box" style="grid-column: 2 / 3; grid-row: 5 / 6"><div class="tabela-tresc"><code class="tec">image</code>, <code class="tec">foreignObject</code>, <code class="tec">use</code></div></div><div class="tabela-box" style="grid-column: 3 / 4; grid-row: 5 / 6"><div class="tabela-tresc">obraz rastrowy, HTML w SVG, ponowne użycie elementu</div></div><div class="tabela-box" style="grid-column: 1 / 2; grid-row: 6 / 7"><div class="tabela-tresc"><strong>Struktura / kontenery</strong></div></div><div class="tabela-box" style="grid-column: 2 / 3; grid-row: 6 / 7"><div class="tabela-tresc"><code class="tec">svg</code>, <code class="tec">g</code>, <code class="tec">a</code>, <code class="tec">switch</code></div></div><div class="tabela-box" style="grid-column: 3 / 4; grid-row: 6 / 7"><div class="tabela-tresc">grupowanie, zagnieżdżanie, link, wybór wariantu</div></div><div class="tabela-box" style="grid-column: 1 / 2; grid-row: 7 / 8"><div class="tabela-tresc"><strong>Definicje</strong> (nierysowane same z siebie, działają przez odwołanie <code class="tec">id</code>)</div></div><div class="tabela-box" style="grid-column: 2 / 3; grid-row: 7 / 8"><div class="tabela-tresc"><code class="tec">defs</code>, <code class="tec">symbol</code>, <code class="tec">clipPath</code>, <code class="tec">mask</code>, <code class="tec">marker</code>, <code class="tec">pattern</code></div></div><div class="tabela-box" style="grid-column: 3 / 4; grid-row: 7 / 8"><div class="tabela-tresc">szablony, przycinanie, maski, groty linii, wzory</div></div><div class="tabela-box" style="grid-column: 1 / 2; grid-row: 8 / 9"><div class="tabela-tresc"><strong>Farby</strong> (paint servers)</div></div><div class="tabela-box" style="grid-column: 2 / 3; grid-row: 8 / 9"><div class="tabela-tresc"><code class="tec">linearGradient</code>, <code class="tec">radialGradient</code>, <code class="tec">pattern</code>, <code class="tec">stop</code></div></div><div class="tabela-box" style="grid-column: 3 / 4; grid-row: 8 / 9"><div class="tabela-tresc">gradienty i wzory jako <code class="tec">fill</code> lub <code class="tec">stroke</code></div></div><div class="tabela-box" style="grid-column: 1 / 2; grid-row: 9 / 10"><div class="tabela-tresc"><strong>Filtry</strong></div></div><div class="tabela-box" style="grid-column: 2 / 3; grid-row: 9 / 10"><div class="tabela-tresc"><code class="tec">filter</code> oraz 25 prymitywów <code class="tec">fe*</code> (lista niżej)</div></div><div class="tabela-box" style="grid-column: 3 / 4; grid-row: 9 / 10"><div class="tabela-tresc">rozmycie, cień, oświetlenie, mieszanie</div></div><div class="tabela-box" style="grid-column: 1 / -1; grid-row: 10 / 11"><div class="tabela-tresc"><strong>Prymitywy filtrów:</strong><ul><li><strong>źródła i łączenie:</strong> <code class="tec">feImage</code>, <code class="tec">feFlood</code>, <code class="tec">feTurbulence</code>, <code class="tec">feTile</code>, <code class="tec">feMerge</code> z <code class="tec">feMergeNode</code>, <code class="tec">feBlend</code>, <code class="tec">feComposite</code>;</li><li><strong>kolor:</strong> <code class="tec">feColorMatrix</code>, <code class="tec">feComponentTransfer</code> z <code class="tec">feFuncR</code>, <code class="tec">feFuncG</code>, <code class="tec">feFuncB</code>, <code class="tec">feFuncA</code>;</li><li><strong>kształt:</strong> <code class="tec">feGaussianBlur</code>, <code class="tec">feOffset</code>, <code class="tec">feDropShadow</code>, <code class="tec">feMorphology</code>, <code class="tec">feConvolveMatrix</code>, <code class="tec">feDisplacementMap</code>;</li><li><strong>oświetlenie:</strong> <code class="tec">feDiffuseLighting</code>, <code class="tec">feSpecularLighting</code> ze źródłami <code class="tec">feDistantLight</code>, <code class="tec">fePointLight</code>, <code class="tec">feSpotLight</code>.</li></ul></div></div><div class="tabela-box" style="grid-column: 1 / 2; grid-row: 11 / 12"><div class="tabela-tresc"><strong>Animacja</strong> (SMIL)</div></div><div class="tabela-box" style="grid-column: 2 / 3; grid-row: 11 / 12"><div class="tabela-tresc"><code class="tec">animate</code>, <code class="tec">animateMotion</code>, <code class="tec">animateTransform</code>, <code class="tec">set</code>, <code class="tec">mpath</code>, <code class="tec">discard</code></div></div><div class="tabela-box" style="grid-column: 3 / 4; grid-row: 11 / 12"><div class="tabela-tresc">animacja deklaratywna, bez JS</div></div><div class="tabela-box" style="grid-column: 1 / 2; grid-row: 12 / 13"><div class="tabela-tresc"><strong>Opisowe</strong></div></div><div class="tabela-box" style="grid-column: 2 / 3; grid-row: 12 / 13"><div class="tabela-tresc"><code class="tec">title</code>, <code class="tec">desc</code>, <code class="tec">metadata</code></div></div><div class="tabela-box" style="grid-column: 3 / 4; grid-row: 12 / 13"><div class="tabela-tresc">dostępność, podpowiedzi, metadane</div></div><div class="tabela-box" style="grid-column: 1 / 2; grid-row: 13 / 14"><div class="tabela-tresc"><strong>Pozostałe</strong></div></div><div class="tabela-box" style="grid-column: 2 / 3; grid-row: 13 / 14"><div class="tabela-tresc"><code class="tec">style</code>, <code class="tec">script</code>, <code class="tec">view</code></div></div><div class="tabela-box" style="grid-column: 3 / 4; grid-row: 13 / 14"><div class="tabela-tresc">CSS, JS, nazwane widoki</div></div><div class="tabela-box" style="grid-column: 1 / -1; grid-row: 14 / 15"><div class="tabela-tresc"><strong>Usunięte z SVG 1.1:</strong> fonty SVG (<code class="tec">font</code>, <code class="tec">glyph</code>, <code class="tec">missing-glyph</code>, <code class="tec">hkern</code>, <code class="tec">vkern</code>, <code class="tec">font-face</code> z pochodnymi), <code class="tec">altGlyph</code> z pochodnymi, <code class="tec">tref</code>, <code class="tec">cursor</code>, <code class="tec">color-profile</code>, <code class="tec">animateColor</code>. Projekty SVG 2 miały też <code class="tec">mesh</code> i <code class="tec">hatch</code>, ale w finalnej specyfikacji ich nie ma.</div></div></div></div></div></details></section><hr/>🫟<footer class="foot-bar" aria-label="Stopka"><a href="https://github.com/j-Cis/dot-gener">GitHub</a><a href="https://www.facebook.com/Cisowski/">Facebook</a><a href="https://j-cis.github.io/dot-gener/">j-cis.github.io/dot-gener</a><a href="http://localhost:8000/">.</a></footer></main></body></html>
