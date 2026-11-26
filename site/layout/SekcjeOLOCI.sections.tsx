@@ -31,9 +31,22 @@ export default function SekcjaOLOCI(_paragraf: SekcjaOLOCIProps) {
             🔹 <strong>Transformacje</strong> ({tec`transform`}): Pozwalają przesuwać ({tec`translate`}), skalować ({tec`scale`}), obracać ({tec`rotate`}) lub pochylać ({tec`skew`}) lokalny układ współrzędnych wybranych elementów.<br />
             🔹 W SVG kąty mierzy się w stopniach ({tec`deg`}), gdzie {tex`\colorbox{${HUE.kolor1}}{$0^{\circ }$}`} wskazuje w prawo (dodatnia oś  {tex`\colorbox{${HUE.kolor1}}{$X$}`}), a dodatnie wartości rosną zgodnie z ruchem wskazówek zegara.
           </P></Box>
-          <Box start={[7, 2]} end={[12, 2]} headerShow="W" headerLabel="LOCI" headerDisplay={["center", -90]}>
-             {tec("xml")`<segment x="0,300" y="0,200" />`}
-          </Box>
+          <Box start={[7, 2]} end={[12, 2]} headerShow="W" headerLabel="LOCI" headerDisplay={["center", -90]}><P noindent>
+  🔹 {tex`\colorbox{${HUE.kolor1}}{Punkt $(0,0)$:}`}{" "} Punkt utwierdzenia (root) – środek rysunku; od niego wywodzą się wszystkie inne układy.<br />
+  🔹 {tex`\colorbox{${HUE.kolor1}}{Oś $X$:}`}{" "} Pozioma – wartości rosną od lewej do prawej.<br />
+  🔹 {tex`\colorbox{${HUE.kolor1}}{Oś $Y$:}`}{" "} Pionowa – wartości rosną od dołu do góry.<br />
+  🔹 <strong>Dwa opisy naraz</strong>: każdy układ jest jednocześnie kartezjański {tex`(x, y)`} i biegunowy {tex`(r, t)`}.<br />
+  🔹 <strong>Kąty</strong>: {tex`\colorbox{${HUE.kolor1}}{$0^{\circ}$}`} wskazuje w prawo (dodatnia oś {tex`\colorbox{${HUE.kolor1}}{$X$}`}); dodatnie rosną przeciwnie do ruchu wskazówek zegara, ujemne zgodnie z nim; kąty są normalizowane: {tex`-90^{\circ} \equiv 270^{\circ}`}.<br />
+  🔹 <strong>Zapis kąta</strong>: {tec`deg`}, {tec`rad`}, {tec`turn`}, {tex`\tfrac{n}{d}\pi`}, {tex`\tfrac{n}{d}\cdot 360`}, {tex`\tfrac{n}{d}\cdot 2520`} – 2520 jest podzielne przez 1…10 (48 dzielników, 360 ma 24).<br />
+  🔹 <strong>Róża wiatrów</strong>: 24 kierunki co {tex`\tfrac{\pi}{12}`}, nazwane dwuliterowo – {tec`EE`} = 0, {tec`NN`} = {tex`\tfrac{\pi}{2}`}, {tec`WW`} = {tex`\pi`}, {tec`SS`} = {tex`\tfrac{3\pi}{2}`}.
+</P></Box>
+<Row row={3} headerShow="W" headerLabel="DATUM" headerDisplay={["center", -90]}><P noindent>
+  Elementy pomocnicze, nierysowane; każdy ma klucz i może być podany względem układu globalnego lub dowolnego lokalnego.<br />
+  🔹 <strong>0D – punkt bazowy</strong> (Datum Point): kotwica, środek obrotu, punkt przyciągania, punkt kontrolny krzywej (np. Béziera).<br />
+  🔹 <strong>1D – oś bazowa</strong> (Datum Axis): punkt początkowy + kierunek (wektor lub kąt {tex`t`}); nieskończona, ale zachowuje zwrot – w przeciwieństwie do {tec`<line>`}, który ma początek, koniec i obrys.<br />
+  🔹 <strong>2D – lokalny układ odniesienia</strong> (Datum CSYS): punkt zakotwiczenia + dwie osie; może być zagnieżdżony w innym lokalnym.<br />
+  🔹 <strong>Do rozważenia</strong>: układ krzywoliniowy (położenie jako długość łuku wzdłuż krzywej – tekst na ścieżce, punkt na elipsie) oraz arkusz/obszar (prostokąt widoku z orientacją góra/dół/lewo/prawo).
+</P></Row>
          
         </Table>
       </TitleSection>
