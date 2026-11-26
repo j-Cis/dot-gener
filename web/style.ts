@@ -11,37 +11,46 @@
  *   widget  X.widget(s).css  w site/widget/**        — komponenty, których strona używa
  *           X.island(s).css  w site/client/**          (ich .tsx jest w grafie importów
  *           X.render(s).css  w site/screen/**           jej index.tsx); plik-rodzeństwo .tsx
+ *   layout  X.section(s).css w site/layout/**        — sekcje, których strona używa (jak wyżej)
  *   route   site/routes/…/index.css                  — tylko ta jedna strona
  *   (bez warstwy) site/static/styles.css            — zawsze wygrywa: ręczne poprawki użytkownika
  *
  * Warstwa późniejsza wygrywa z wcześniejszą niezależnie od siły selektorów, więc styl strony
- * zawsze nadpisze styl widgetu, a ten — bazę.
+ * zawsze nadpisze styl sekcji, sekcja — komponentu, a komponent — bazę.
  */
 
 const ROOT = new URL("../", import.meta.url);
-/** Foldery komponentów, których pliki-rodzeństwa .css dołączamy (warstwa `widget`). */
-const KOMPONENTY = ["site/widget/", "site/client/", "site/screen/"].map((k) => new URL(k, ROOT).href);
+/** [warstwa, folder, rodzaj pliku]: X.<rodzaj>(s).tsx w folderze → jego X.<rodzaj>(s).css w warstwie. */
+const RODZAJE = [
+  ["widget", "site/widget/", "widget"],
+  ["widget", "site/client/", "island"],
+  ["widget", "site/screen/", "render"],
+  ["layout", "site/layout/", "section"],
+] as const satisfies readonly (readonly [warstwa: "widget" | "layout", folder: string, rodzaj: string])[];
+const FOLDERY = RODZAJE.map(([warstwa, folder, rodzaj]) => [warstwa, new URL(folder, ROOT).href, new RegExp(`\\.${rodzaj}s?\\.tsx$`)] as const);
 const SHELL = new URL("page-shell.css", import.meta.url);
 
 /** Importy w TS/TSX (jak IMPORT w transpile.ts): `… from "x"`, `import "x"`, `import("x")`. */
 const IMPORT = /\bfrom\s*["']([^"']+)["']|\bimport\s*\(?\s*["']([^"']+)["']/g;
-/** Plik komponentu: X.widget(s).tsx, X.island(s).tsx, X.render(s).tsx — i jego CSS. */
-const PLIK_KOMPONENTU = /\.(?:widget|island|render)s?\.tsx$/;
-const CSS_KOMPONENTU = /\.(?:widget|island|render)s?\.css$/;
 
 /**
  * Zawartość <style> dla strony, której moduł to `wejscie` (index.tsx strony albo np. web/404.tsx).
  * `css` strony: plik index.css obok index.tsx (dla 404 — brak).
  */
 export async function cssStrony(wejscie: URL, cssTrasy?: URL): Promise<string> {
-  const widgety = [...(await graf(wejscie))]
-    .filter((url) => KOMPONENTY.some((k) => url.startsWith(k)) && PLIK_KOMPONENTU.test(url))
-    .map((url) => new URL(url.replace(/\.tsx$/, ".css")))
-    .toSorted((a, b) => a.href.localeCompare(b.href));
+  const moduly = [...(await graf(wejscie))].toSorted();
+  /** CSS-rodzeństwo modułów strony, które należą do warstwy `w`. */
+  const rodzenstwo = (w: "widget" | "layout") =>
+    Promise.all(
+      moduly
+        .filter((url) => FOLDERY.some(([warstwa, folder, plik]) => warstwa === w && url.startsWith(folder) && plik.test(url)))
+        .map((url) => czytaj(new URL(url.replace(/\.tsx$/, ".css")))),
+    );
   const czesci = [
-    "@layer shell, widget, route;",
+    "@layer shell, widget, layout, route;",
     warstwa("shell", [await czytaj(SHELL)]),
-    warstwa("widget", await Promise.all(widgety.map(czytaj))),
+    warstwa("widget", await rodzenstwo("widget")),
+    warstwa("layout", await rodzenstwo("layout")),
     warstwa("route", [cssTrasy ? await czytaj(cssTrasy) : null]),
   ];
   return czesci.filter((c) => c !== "").join("\n");
@@ -49,16 +58,16 @@ export async function cssStrony(wejscie: URL, cssTrasy?: URL): Promise<string> {
 
 /** Pliki CSS komponentów bez rodzeństwa *.tsx — ostrzeżenie przy starcie serwera. */
 export async function osieroconeCss(): Promise<string[]> {
-  return (await Promise.all(KOMPONENTY.map((k) => osieroconeW(new URL(k))))).flat();
+  return (await Promise.all(RODZAJE.map(([, folder, rodzaj]) => osieroconeW(new URL(folder, ROOT), new RegExp(`\\.${rodzaj}s?\\.css$`))))).flat();
 }
 
-async function osieroconeW(katalog: URL): Promise<string[]> {
+async function osieroconeW(katalog: URL, css: RegExp): Promise<string[]> {
   const wynik: string[] = [];
   if (!(await Deno.stat(katalog).catch(() => null))?.isDirectory) return wynik; // folderu może nie być
   for await (const wpis of Deno.readDir(katalog)) {
     const url = new URL(wpis.isDirectory ? `${encodeURIComponent(wpis.name)}/` : encodeURIComponent(wpis.name), katalog);
-    if (wpis.isDirectory) wynik.push(...await osieroconeW(url));
-    else if (CSS_KOMPONENTU.test(wpis.name) && !(await istnieje(new URL(url.href.replace(/\.css$/, ".tsx"))))) {
+    if (wpis.isDirectory) wynik.push(...await osieroconeW(url, css));
+    else if (css.test(wpis.name) && !(await istnieje(new URL(url.href.replace(/\.css$/, ".tsx"))))) {
       wynik.push(decodeURIComponent(url.pathname.slice(ROOT.pathname.length)));
     }
   }
