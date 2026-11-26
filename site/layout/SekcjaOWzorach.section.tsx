@@ -7,8 +7,8 @@
 import { P, powtorz, Row, Table, Title } from "@/site/widget/_ANY.ts";
 import { tex } from "@/site/screen/Tex.render.tsx";
 import { tec } from "@/site/screen/Tec.render.tsx";
-import ViewAsSvg from "@/site/client/ViewAsSvg.island.tsx";
-import ViewAsCanvas from "@/site/client/ViewAsCanvas.island.tsx";
+import VectorViewport from "@/site/client/VectorViewport.island.tsx";
+import { RYSUNKI } from "@/site/client/registries/for-island-canvas.ts";
 import * as xDot from "@/site/layout/DotxPrzyklady.sections.tsx";
 //import { B, Dotx, E, G, N } from "@/site/screen/Dotx.render.tsx";
 
@@ -41,17 +41,18 @@ export default function SekcjaOWzorach(paragraf: SekcjaOWzorachProps) {
       <Table cols={["max"]} rows={powtorz(7, "auto")} gapX="0.5rem" gapY="0.5rem">
         <Row row={1}>{tex`0, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,..`}</Row>
         <Row row={2}>
-          <ViewAsCanvas
-            registryKey="test"
-            dane="Test 123"
-            sceneWidth={400}
-            sceneHeight={240}
+          <VectorViewport
+            renderer="Canvas"
+            sourceFormat="CANVAS"
+            source={RYSUNKI.test}
+            data="Test 123"
+            scene={[400, 240]}
             height="400px"
             background="#ffffff"
           />
         </Row>
         <Row row={3}>
-          <ViewAsSvg>s</ViewAsSvg>
+          <VectorViewport renderer="SVG" sourceFormat="SVG">s</VectorViewport>
         </Row>
         <Row row={4}>
           <xDot.DotxPrzykladSvg punkt="X.1.a" />

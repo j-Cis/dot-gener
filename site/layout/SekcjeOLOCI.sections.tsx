@@ -8,7 +8,7 @@ import { Box, Col, P, powtorz, Row, RozmiarWiersza, Table, TitleSection } from "
 import { tec } from "@/site/screen/Tec.render.tsx";
 import { tex } from "@/site/screen/Tex.render.tsx";
 //import { B, Dotx, E, G, N } from "@/site/screen/Dotx.render.tsx";
-import ViewAsSvg from "@/site/client/ViewAsSvg.island.tsx";
+import VectorViewport from "@/site/client/VectorViewport.island.tsx";
 //import { B, Dotx, E, G, N } from "@/site/screen/Dotx.render.tsx";
 export interface SekcjaOLOCIProps {
   numer: string;
@@ -34,9 +34,9 @@ export default function SekcjaOLOCI(_paragraf: SekcjaOLOCIProps) {
           <Row row={1} headerShow="S" headerLabel="UKŁAD WSPÓŁRZĘDNYCH" headerDisplay="center" />
           <Box start={[1, 2]} end={[6, 2]} headerShow="W" headerLabel="SVG2" headerDisplay={["center", -90]}>
             <P noindent>
-              🔹 {tex`\colorbox{${H.kolor1}}{Punkt $(0,0)$:}`}{"  "}Znajduje się w lewym górnym rogu obszaru rysowania.<br />
-              🔹 {tex`\colorbox{${H.kolor1}}{Oś $X$:}`}{"  "}Pozioma – wartości rosną od lewej do prawej.<br />
-              🔹 {tex`\colorbox{${H.kolor1}}{Oś $Y$:}`}{"  "}Pionowa – wartości rosną od góry do dołu.<br />
+              🔹 {tex`\colorbox{${H.kolor1}}{Punkt $(0,0)$:}`} Znajduje się w lewym górnym rogu obszaru rysowania.<br />
+              🔹 {tex`\colorbox{${H.kolor1}}{Oś $X$:}`} Pozioma – wartości rosną od lewej do prawej.<br />
+              🔹 {tex`\colorbox{${H.kolor1}}{Oś $Y$:}`} Pionowa – wartości rosną od góry do dołu.<br />
               🔹 <strong>Atrybut</strong> {tec("xml")`viewBox="min-x min-y width height"`}: Definiuje wewnętrzny układ współrzędnych i skalowanie grafiki względem rozmiaru elementu
               {" "}
               {tec`<svg>`}.<br />
@@ -49,9 +49,9 @@ export default function SekcjaOLOCI(_paragraf: SekcjaOLOCIProps) {
           </Box>
           <Box start={[7, 2]} end={[12, 2]} headerShow="W" headerLabel="LOCI" headerDisplay={["center", -90]}>
             <P noindent>
-              🔹 {tex`\colorbox{${H.kolor1}}{Punkt $(0,0)$:}`}{"  "}Punkt utwierdzenia (root) – środek rysunku; od niego wywodzą się wszystkie inne układy.<br />
-              🔹 {tex`\colorbox{${H.kolor1}}{Oś $X$:}`}{"  "}Pozioma – wartości rosną od lewej do prawej.<br />
-              🔹 {tex`\colorbox{${H.kolor1}}{Oś $Y$:}`}{"  "}Pionowa – wartości rosną od dołu do góry.<br />
+              🔹 {tex`\colorbox{${H.kolor1}}{Punkt $(0,0)$:}`} Punkt utwierdzenia (root) – środek rysunku; od niego wywodzą się wszystkie inne układy.<br />
+              🔹 {tex`\colorbox{${H.kolor1}}{Oś $X$:}`} Pozioma – wartości rosną od lewej do prawej.<br />
+              🔹 {tex`\colorbox{${H.kolor1}}{Oś $Y$:}`} Pionowa – wartości rosną od dołu do góry.<br />
               🔹 <strong>Dwa opisy naraz</strong>: każdy układ jest jednocześnie kartezjański {tex`(x, y)`} i biegunowy {tex`(r, t)`}.<br />
               🔹 <strong>Kąty</strong>: {tex`\colorbox{${H.kolor1}}{$0^{\circ}$}`} wskazuje w prawo (dodatnia oś{" "}
               {tex`\colorbox{${H.kolor1}}{$X$}`}); dodatnie rosną przeciwnie do ruchu wskazówek zegara, ujemne zgodnie z nim; kąty są normalizowane:{" "}
@@ -451,7 +451,7 @@ function kierunki24(w: RozmiarWiersza, k: [number, number], HUE: [string, string
       `}
       </Col>
       <Col col={k[1]}>
-        <ViewAsSvg>{SVGCompass(HUE)}</ViewAsSvg>
+        <VectorViewport renderer="SVG" sourceFormat="SVG">{SVGCompass(HUE)}</VectorViewport>
       </Col>
     </Table>
   );

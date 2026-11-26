@@ -4,18 +4,19 @@
 // ORCID: https://orcid.org/0009-0009-2907-3792
 // Repository: https://github.com/j-Cis/dot-gener
 
-import type { CanvasDrawer } from "@/site/client/ViewAsCanvas.island.tsx";
+import type { CanvasDrawer } from "@/site/client/VectorViewport.island.tsx";
 import { drawDotxCanvas } from "@/site/common/lang/dotx/render-canvas.ts";
 /**
- * Rysunki <canvas> uruchamiane w przeglądarce przez ViewAsCanvas, wybierane przez
- * props: <ViewAsCanvas rysunek="nazwa" ... />.
+ * Rysunki <canvas> uruchamiane w przeglądarce przez VectorViewport:
+ * <VectorViewport renderer="Canvas" sourceFormat="CANVAS" source={RYSUNKI.nazwa} scene={[w, h]} />.
+ * Serwer odnajduje funkcję w tym rejestrze i przekazuje przeglądarce jej klucz.
  *
- * Wszystko, co tu jest, trafia do przeglądarki razem z ViewAsCanvas.
+ * Wszystko, co tu jest, trafia do przeglądarki razem z VectorViewport.
  */
-export const RYSUNKI: Record<string, CanvasDrawer> = {
+export const RYSUNKI = {
   "dotx": drawDotxCanvas,
   "test": ({ ctx, dane }) => {
-    const label = typeof dane === "string" ? dane : "ViewAsCanvas działa";
+    const label = typeof dane === "string" ? dane : "VectorViewport działa";
 
     ctx.fillStyle = "#f8f9fa";
     ctx.fillRect(0, 0, 400, 240);
@@ -49,4 +50,4 @@ export const RYSUNKI: Record<string, CanvasDrawer> = {
     ctx.textBaseline = "middle";
     ctx.fillText(label, 200, 120);
   },
-};
+} satisfies Record<string, CanvasDrawer>;

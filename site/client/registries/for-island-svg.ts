@@ -7,10 +7,10 @@
 export type SvgAdjuster = (svg: SVGSVGElement) => void;
 
 /**
- * Dopasowania SVG uruchamiane w przeglądarce przez ViewAsSvg,
- * wybierane przez props: <ViewAsSvg registryKey="nazwa">.
+ * Dopasowania SVG uruchamiane w przeglądarce przez VectorViewport (renderer SVG),
+ * wybierane przez props: <VectorViewport … adjust="nazwa">.
  *
- * Wszystko, co tu jest, trafia do przeglądarki razem z ViewAsSvg.
+ * Wszystko, co tu jest, trafia do przeglądarki razem z VectorViewport.
  */
 export const DOPASOWANIA = {
   "schemat-sosa": dopasujSchemat,
@@ -18,11 +18,11 @@ export const DOPASOWANIA = {
 
 export type SvgRegistryKey = keyof typeof DOPASOWANIA;
 /**
- * Dopasowania SVG uruchamiane w przeglądarce przez ViewAsSvg, wybierane przez
+ * Dopasowania SVG uruchamiane w przeglądarce przez AsSvgView, wybierane przez
  * samą grafikę: <svg data-dopasuj="nazwa">. Grafika bez tego atrybutu
- * nie potrzebuje żadnego JS poza ViewAsSvg.
+ * nie potrzebuje żadnego JS poza AsSvgView.
  *
- * Wszystko, co tu jest, trafia do przeglądarki razem z ViewAsSvg.
+ * Wszystko, co tu jest, trafia do przeglądarki razem z AsSvgView.
  */
 // export const DOPASOWANIA: Record<string, (svg: SVGSVGElement) => void> = {
 //   "schemat-sosa": dopasujSchemat,

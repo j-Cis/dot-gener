@@ -6,7 +6,7 @@
 
 import { Col, RozmiarWiersza, Table, Title } from "@/site/widget/_ANY.ts";
 import { tex } from "@/site/screen/Tex.render.tsx";
-import ViewAsSvg from "@/site/client/ViewAsSvg.island.tsx";
+import VectorViewport from "@/site/client/VectorViewport.island.tsx";
 //import { B, Dotx, E, G, N } from "@/site/screen/Dotx.render.tsx";
 
 export interface SekcjaOWzorachProps {
@@ -24,12 +24,12 @@ export default function SekcjaOCompass(paragraf: SekcjaOWzorachProps) {
   ];
   return (
     <>
-      {pod_sekcja_1("450px", [2, 1], HUE, paragraf)}
+      {kierunki24("450px", [2, 1], HUE, paragraf)}
     </>
   );
 }
 
-function pod_sekcja_1(w: RozmiarWiersza, k: [number, number], HUE: [string, string][], paragraf: { numer: string; tytul: string }) {
+function kierunki24(w: RozmiarWiersza, k: [number, number], HUE: [string, string][], paragraf: { numer: string; tytul: string }) {
   function SVGCompass(kolor: [string, string][]) {
     function tarcza_kompasu(kolor: [string, string][]) {
       const DATA_GROT_KSZTALT: string[] = [
@@ -316,7 +316,7 @@ function pod_sekcja_1(w: RozmiarWiersza, k: [number, number], HUE: [string, stri
       `}
         </Col>
         <Col col={k[1]}>
-          <ViewAsSvg>{SVGCompass(HUE)}</ViewAsSvg>
+          <VectorViewport renderer="SVG" sourceFormat="SVG">{SVGCompass(HUE)}</VectorViewport>
         </Col>
       </Table>
     </section>

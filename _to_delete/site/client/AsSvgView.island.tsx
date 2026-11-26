@@ -1,5 +1,5 @@
 // @project-metadata
-// Path: site/client/ViewAsSvg.island.tsx
+// Path: site/client/AsSvgView.island.tsx
 // Author: Jan Roman Cisowski
 // ORCID: https://orcid.org/0009-0009-2907-3792
 // Repository: https://github.com/j-Cis/dot-gener
@@ -18,7 +18,7 @@ export interface SvgProps {
   children: ComponentChildren;
   /** Opcjonalny klucz dopasowania z rejestru SVG. */
   registryKey?: SvgRegistryKey;
-  /** ViewAsCanvas background, any CSS color. */
+  /** AsCanvasView background, any CSS color. */
   background?: string;
   /** Box width. Default "100%". */
   width?: BoxLength;
@@ -34,7 +34,7 @@ export interface SvgProps {
 
 export default island(
   import.meta.url,
-  function ViewAsSvg(
+  function AsSvgView(
     {
       children,
       registryKey,
@@ -69,7 +69,7 @@ export default island(
         if (!svg) return;
         const dopasuj = DOPASOWANIA[registryKey];
         if (dopasuj) dopasuj(svg);
-        else console.warn(`ViewAsSvg: nieznany registryKey="${registryKey}"`);
+        else console.warn(`AsSvgView: nieznany registryKey="${registryKey}"`);
       });
     }, [registryKey]);
 

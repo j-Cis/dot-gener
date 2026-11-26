@@ -1,0 +1,59 @@
+/* VectorViewport.island.tsx — obramowanie */
+.viewport {
+  box-sizing: border-box; /* ramka wliczona w 100%, bez nadmiaru */
+  --viewport-border: #c7ba041f;
+  border: 1px dotted var(--viewport-border);
+  height: 100%; /*⚠️⚠️⚠️może powodować błedy */
+}
+
+/* stół: przesuwanie i zoom */
+.viewport-stol {
+  position: relative;
+  overflow: hidden;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+.viewport-stol:active {
+  cursor: grabbing;
+}
+.viewport-stol.is-locked {
+  cursor: default;
+  touch-action: pan-y;
+}
+.viewport-stol.is-locked:active {
+  cursor: default;
+}
+
+/* renderer SVG */
+.viewport-tresc {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: max-content;
+  transform-origin: 0 0;
+}
+.viewport-tresc svg {
+  display: block;
+}
+
+/* renderer Canvas */
+.viewport-plotno {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.viewport-zamek {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 2;
+  padding: 4px 8px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+}
