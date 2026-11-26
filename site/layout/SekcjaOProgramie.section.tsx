@@ -4,8 +4,7 @@
 // ORCID: https://orcid.org/0009-0009-2907-3792
 // Repository: https://github.com/j-Cis/dot-gener
 
-import { Title } from "@/site/widget/Title.widgets.tsx";
-import { P } from "@/site/widget/Paragraph.widget.tsx";
+import { P, Title } from "@/site/widget/_ANY.ts";
 import { tec, tecs } from "@/site/screen/Tec.render.tsx";
 export interface SekcjaOProgramieProps {
   numer: string;

@@ -10,6 +10,11 @@ body {
   font-family: system-ui, sans-serif;
 }
 
+.page {
+  max-width: 54rem;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
 /* web/strona404.tsx — mapa stron na stronie 404 */
 .mapa-stron {
   line-height: 1.8;

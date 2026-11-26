@@ -66,4 +66,6 @@
   min-width: 0;
   min-height: 0;
   overflow: auto;
+  /* zapas na dół chipów kodu (code.tec) w ostatniej linii: mieszczą się w paddingu, bez paska */
+  padding-block-end: 0.2em;
 }

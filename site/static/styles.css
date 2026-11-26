@@ -6,11 +6,6 @@
  * Repository: https://github.com/j-Cis/dot-gener
  */
 
-.page {
-  max-width: 48rem;
-  margin: 0 auto;
-  padding: 2rem 1rem;
-}
 .counter {
   display: flex;
   gap: 2rem;

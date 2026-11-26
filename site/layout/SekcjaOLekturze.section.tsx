@@ -4,10 +4,8 @@
 // ORCID: https://orcid.org/0009-0009-2907-3792
 // Repository: https://github.com/j-Cis/dot-gener
 
-import { Title } from "@/site/widget/Title.widgets.tsx";
+import { Box, P, powtorz, Row, Table, Title } from "@/site/widget/_ANY.ts";
 import { OutTec, tec, tecs } from "@/site/screen/Tec.render.tsx";
-import { Box, powtorz, Row, Table } from "@/site/widget/Table.widget.tsx";
-import { P } from "@/site/widget/Paragraph.widget.tsx";
 
 export interface SekcjaOLekturzeProps {
   numer: string;

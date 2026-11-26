@@ -4,9 +4,8 @@
 // ORCID: https://orcid.org/0009-0009-2907-3792
 // Repository: https://github.com/j-Cis/dot-gener
 
-import { TitleSection } from "@/site/widget/Title.widgets.tsx";
+import { Box, powtorz, Row, Table, TitleSection } from "@/site/widget/_ANY.ts";
 import { tec } from "@/site/screen/Tec.render.tsx";
-import { Box, powtorz, Row, Table } from "@/site/widget/Table.widget.tsx";
 //import { B, Dotx, E, G, N } from "@/site/screen/Dotx.render.tsx";
 
 export interface SekcjaOLOCIProps {
@@ -24,7 +23,7 @@ export default function SekcjaOLOCI(_paragraf: SekcjaOLOCIProps) {
   ];
   return (
     <>
-      {sekcja_o_svg2("A:.", "o SVG2")}
+      {sekcja_o_svg2("A:.", "SVG2")}
       {sekcja_koncepcji_loci("B:.", "LOCI - koncepcja")}
     </>
   );

@@ -79,6 +79,10 @@ async function buildClientGraph(entries: string[]): Promise<Map<string, string>>
         const spec = m[1] ?? m[2];
         if (spec === undefined) continue;
         const dep = resolveLocal(spec, url);
+        if (dep !== null && dep.endsWith("/_ANY.ts")) {
+          // beczka wciągnęłaby do przeglądarki wszystkie reeksportowane moduły (także te tylko dla serwera)
+          throw new Error(`[client] ${url} importuje beczkę ${dep} — kod przeglądarki (wyspy) importuje pliki bezpośrednio`);
+        }
         if (dep !== null && !out.has(dep) && !kod.has(dep)) nastepna.add(dep);
       }
     }

@@ -4,7 +4,7 @@
 // ORCID: https://orcid.org/0009-0009-2907-3792
 // Repository: https://github.com/j-Cis/dot-gener
 
-import { Title } from "@/site/widget/Title.widgets.tsx";
+import { Title } from "@/site/widget/_ANY.ts";
 
 import { B, Dotx, E, F, G, N, TE, TN } from "@/site/screen/Dotx.render.tsx";
 import type { PortDef } from "@/site/scripts/lang/dotx/model.ts";

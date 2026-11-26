@@ -30,8 +30,20 @@ const RODZAJE = [
 const FOLDERY = RODZAJE.map(([warstwa, folder, rodzaj]) => [warstwa, new URL(folder, ROOT).href, new RegExp(`\\.${rodzaj}s?\\.tsx$`)] as const);
 const SHELL = new URL("page-shell.css", import.meta.url);
 
-/** Importy w TS/TSX (jak IMPORT w transpile.ts): `… from "x"`, `import "x"`, `import("x")`. */
-const IMPORT = /\bfrom\s*["']([^"']+)["']|\bimport\s*\(?\s*["']([^"']+)["']/g;
+/**
+ * Beczka: plik `_ANY.ts` z samymi reeksportami (`export * from "./X.widget.tsx";`). Import z beczki
+ * dołącza do grafu tylko pliki, które eksportują zaimportowane nazwy — CSS pozostałych nie trafia na stronę.
+ */
+export const BECZKA = "_ANY.ts";
+const jestBeczka = (url: string) => url.endsWith(`/${BECZKA}`);
+
+/** Statyczny import lub reeksport: [import|export, "type " (same typy), klauzula, specyfikator]. */
+const IMPORT_Z = /\b(import|export)\s+(type\s+)?([^;'"()=]*?)\s*from\s*["']([^"']+)["']/g;
+/** Import bez nazw: `import "x"` i `import("x")`. */
+const IMPORT_GOLY = /\bimport\s*(?:\(\s*)?["']([^"']+)["']/g;
+/** Nazwy eksportowane przez moduł: deklaracje i `export { a, b as c }` (bez `from`). */
+const EKSPORT_DEKLARACJA = /\bexport\s+(?:declare\s+)?(?:async\s+)?(?:function\*?|class|const|let|var|enum|interface|type)\s+([A-Za-z_$][\w$]*)/g;
+const EKSPORT_LISTA = /\bexport\s*\{([^}]*)\}\s*(?!\s*from)/g;
 
 /**
  * Zawartość <style> dla strony, której moduł to `wejscie` (index.tsx strony albo np. web/404.tsx).
@@ -76,27 +88,101 @@ async function osieroconeW(katalog: URL, css: RegExp): Promise<string[]> {
 
 // ——— pomocnicze ———
 
-/** Wszystkie lokalne moduły osiągalne importami z `wejscie` (URL-e file:). */
+/** Wszystkie lokalne moduły osiągalne importami z `wejscie` (URL-e file:); beczki rozwiązane po nazwach. */
 async function graf(wejscie: URL): Promise<Set<string>> {
   const odwiedzone = new Set<string>();
   const kolejka = [wejscie.href];
   for (let url = kolejka.pop(); url !== undefined; url = kolejka.pop()) {
     if (odwiedzone.has(url)) continue;
-    let kod: string;
-    try {
-      kod = await Deno.readTextFile(new URL(url));
-    } catch (blad) {
-      if (blad instanceof Deno.errors.NotFound) continue; // import znaleziony wyrażeniem w tekście — pomijamy
-      throw blad;
-    }
+    const kod = await czytaj(new URL(url));
+    if (kod === null) continue; // import znaleziony wyrażeniem w tekście — pomijamy
     odwiedzone.add(url);
-    for (const m of kod.matchAll(IMPORT)) {
-      const dep = lokalny(m[1] ?? m[2] ?? "", url);
-      if (dep !== null && !odwiedzone.has(dep)) kolejka.push(dep);
-    }
+    for (const dep of await zaleznosci(kod, url)) if (!odwiedzone.has(dep)) kolejka.push(dep);
   }
   return odwiedzone;
 }
+
+/** Lokalne moduły, których kod `kod` (z pliku `url`) faktycznie używa; import przez beczkę → pliki z tymi nazwami. */
+async function zaleznosci(kod: string, url: string): Promise<string[]> {
+  const wynik: string[] = [];
+  for (const [, , tylkoTypy, klauzula = "", spec = ""] of kod.matchAll(IMPORT_Z)) {
+    if (tylkoTypy) continue; // `import type` / `export type … from` nie wpływa na wygląd
+    const dep = lokalny(spec, url);
+    if (dep === null) continue;
+    if (!jestBeczka(dep)) wynik.push(dep);
+    else wynik.push(...await zBeczki(dep, nazwyKlauzuli(klauzula)));
+  }
+  for (const [, spec = ""] of kod.matchAll(IMPORT_GOLY)) {
+    const dep = lokalny(spec, url);
+    if (dep !== null) wynik.push(...(jestBeczka(dep) ? await zBeczki(dep, ["*"]) : [dep]));
+  }
+  return wynik;
+}
+
+/** Nazwy z klauzuli importu/reeksportu: `{ a, b as c, type d }` → [a, b]; `* as x`, `*` → ["*"]; `x` → ["default"]. */
+function nazwyKlauzuli(klauzula: string): string[] {
+  const nazwy: string[] = [];
+  const klamra = klauzula.match(/\{([^}]*)\}/);
+  if (klamra) {
+    for (const czesc of (klamra[1] ?? "").split(",")) {
+      const [nazwa = ""] = czesc.trim().split(/\s+as\s+/);
+      if (nazwa !== "" && !nazwa.startsWith("type ")) nazwy.push(nazwa);
+    }
+  }
+  const reszta = klauzula.replace(/\{[^}]*\}/, "").replace(/,/g, " ").trim();
+  if (reszta.includes("*")) nazwy.push("*");
+  else if (reszta !== "") nazwy.push("default");
+  return nazwy;
+}
+
+/** Pliki z beczki, które eksportują podane nazwy ("*" → wszystkie). */
+async function zBeczki(beczka: string, nazwy: readonly string[]): Promise<string[]> {
+  const mapa = await mapaBeczki(beczka);
+  if (nazwy.includes("*")) return [...new Set(mapa.values())];
+  const wynik: string[] = [];
+  for (const nazwa of nazwy) {
+    const plik = mapa.get(nazwa);
+    if (plik !== undefined) wynik.push(plik);
+    else console.warn(`${sciezka(beczka)}: żaden plik nie eksportuje „${nazwa}”`);
+  }
+  return wynik;
+}
+
+/** nazwa → plik, który ją eksportuje; z reeksportów beczki (także beczek zagnieżdżonych). */
+const mapyBeczek = new Map<string, Promise<Map<string, string>>>();
+function mapaBeczki(beczka: string): Promise<Map<string, string>> {
+  let mapa = mapyBeczek.get(beczka);
+  if (mapa === undefined) mapyBeczek.set(beczka, mapa = zbudujMape(beczka));
+  return mapa;
+}
+async function zbudujMape(beczka: string): Promise<Map<string, string>> {
+  const mapa = new Map<string, string>();
+  for (const [, ktore, tylkoTypy, klauzula = "", spec = ""] of (await czytaj(new URL(beczka)) ?? "").matchAll(IMPORT_Z)) {
+    if (ktore !== "export" || tylkoTypy) continue;
+    const plik = lokalny(spec, beczka);
+    if (plik === null) continue;
+    const nazwy = nazwyKlauzuli(klauzula);
+    const eksporty = jestBeczka(plik) ? await mapaBeczki(plik) : new Map((await nazwyEksportu(plik)).map((n) => [n, plik] as const));
+    for (const [nazwa, zrodlo] of eksporty) if (nazwy.includes("*") || nazwy.includes(nazwa)) mapa.set(nazwa, zrodlo);
+  }
+  return mapa;
+}
+
+/** Nazwy eksportowane przez zwykły moduł (deklaracje i `export { … }`); `export *` nie przenosi `default`. */
+async function nazwyEksportu(plik: string): Promise<string[]> {
+  const kod = await czytaj(new URL(plik)) ?? "";
+  const nazwy = [...kod.matchAll(EKSPORT_DEKLARACJA)].map(([, n = ""]) => n);
+  for (const [, lista = ""] of kod.matchAll(EKSPORT_LISTA)) {
+    for (const czesc of lista.split(",")) {
+      const [, jako = czesc.trim()] = czesc.trim().split(/\s+as\s+/);
+      if (jako !== "" && !jako.startsWith("type ")) nazwy.push(jako.trim());
+    }
+  }
+  return nazwy;
+}
+
+/** Ścieżka względem projektu, do komunikatów. */
+const sciezka = (url: string) => decodeURIComponent(new URL(url).pathname.slice(ROOT.pathname.length));
 
 /** URL lokalnego modułu .ts/.tsx albo null (import map, https, jsr, json…). */
 function lokalny(spec: string, odKogo: string): string | null {

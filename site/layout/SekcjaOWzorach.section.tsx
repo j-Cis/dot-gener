@@ -4,11 +4,9 @@
 // ORCID: https://orcid.org/0009-0009-2907-3792
 // Repository: https://github.com/j-Cis/dot-gener
 
-import { Title } from "@/site/widget/Title.widgets.tsx";
-import { P } from "@/site/widget/Paragraph.widget.tsx";
+import { P, powtorz, Row, Table, Title } from "@/site/widget/_ANY.ts";
 import { tex } from "@/site/screen/Tex.render.tsx";
 import { tec } from "@/site/screen/Tec.render.tsx";
-import { powtorz, Row, Table } from "@/site/widget/Table.widget.tsx";
 import ViewAsSvg from "@/site/client/ViewAsSvg.island.tsx";
 import ViewAsCanvas from "@/site/client/ViewAsCanvas.island.tsx";
 import * as xDot from "@/site/layout/DotxPrzyklady.sections.tsx";
