@@ -8,7 +8,7 @@ import { type ComponentChildren, Fragment, toChildArray, type VNode } from "prea
 import ViewAsSvg, { type BoxLength } from "@/site/client/ViewAsSvg.island.tsx";
 import ViewAsCanvas from "@/site/client/ViewAsCanvas.island.tsx";
 import { type AnchorDir, isAnchorDir } from "@/site/common/drafts/compass.ts";
-import type { ClusterModel, DotxMode, EdgeAttrs, FlowDir, FlowMode, GraphAttrs, GraphModel, NodeAttrs, PositionedGraph, ScopeAttrs } from "@/site/scripts/lang/dotx/model.ts";
+import type { ClusterModel, DotxMode, EdgeAttrs, FlowDir, FlowMode, GraphAttrs, GraphModel, NodeAttrs, PositionedGraph, ScopeAttrs } from "@/site/common/lang/dotx/model.ts";
 import { layoutGraph } from "@/site/common/lang/dotx/layout.ts";
 
 export interface TNProps extends NodeAttrs {

@@ -7,7 +7,7 @@
 import { Title } from "@/site/widget/_ANY.ts";
 
 import { B, Dotx, E, F, G, N, TE, TN } from "@/site/screen/Dotx.render.tsx";
-import type { PortDef } from "@/site/scripts/lang/dotx/model.ts";
+import type { PortDef } from "@/site/common/lang/dotx/model.ts";
 
 const testGraph = (
   <>

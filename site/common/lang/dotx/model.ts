@@ -4,7 +4,7 @@
 // ORCID: https://orcid.org/0009-0009-2907-3792
 // Repository: https://github.com/j-Cis/dot-gener
 
-import type { AnchorDir } from "@/site/scripts/compass.ts";
+import type { AnchorDir } from "@/site/common/drafts/compass.ts";
 
 export type DotxMode = "graph" | "digraph";
 export type PortShape = "none" | "circle" | "rect" | "diamond";

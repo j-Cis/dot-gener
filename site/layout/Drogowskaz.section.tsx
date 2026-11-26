@@ -11,6 +11,7 @@ export function Drogowskaz() {
       items={[
         { name: "?", local: "/404" /*, public: "/guide/intro"*/ },
         { name: "1.0:. Wzory", local: "/" /*, public: "/guide/intro"*/ },
+        { name: "1.5:. O LOCI", local: "/lang/loci" /*, public: "/guide/intro"*/ },
         { name: "2.0:. Dokumentacja", local: "/dokumentacja" /*, public: "/guide/intro"*/ },
         { name: "3.0:. O dokumentacji", local: "/o-dokumentacji" /*, public: "/guide/intro"*/ },
       ]}
