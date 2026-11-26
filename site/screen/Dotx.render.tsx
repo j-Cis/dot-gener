@@ -5,8 +5,8 @@
 // Repository: https://github.com/j-Cis/dot-gener
 
 import { type ComponentChildren, Fragment, toChildArray, type VNode } from "preact";
-import Svg, { type BoxLength } from "@/site/client/Svg.island.tsx";
-import Canvas from "@/site/client/Canvas.island.tsx";
+import ViewAsSvg, { type BoxLength } from "@/site/client/ViewAsSvg.island.tsx";
+import ViewAsCanvas from "@/site/client/ViewAsCanvas.island.tsx";
 import { type AnchorDir, isAnchorDir } from "@/site/common/drafts/compass.ts";
 import type { ClusterModel, DotxMode, EdgeAttrs, FlowDir, FlowMode, GraphAttrs, GraphModel, NodeAttrs, PositionedGraph, ScopeAttrs } from "@/site/scripts/lang/dotx/model.ts";
 import { layoutGraph } from "@/site/common/lang/dotx/layout.ts";
@@ -248,7 +248,7 @@ export function Dotx({
 
   if (out === "islandCanvas") {
     return (
-      <Canvas
+      <ViewAsCanvas
         registryKey="dotx"
         dane={positioned}
         sceneWidth={positioned.width}
@@ -259,9 +259,9 @@ export function Dotx({
   }
 
   return (
-    <Svg {...boxProps}>
+    <ViewAsSvg {...boxProps}>
       {renderDotxSvg(positioned)}
-    </Svg>
+    </ViewAsSvg>
   );
 }
 

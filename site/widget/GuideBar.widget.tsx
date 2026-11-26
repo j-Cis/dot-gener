@@ -5,7 +5,7 @@
 // Repository: https://github.com/j-Cis/dot-gener
 
 import type { ComponentChildren } from "preact";
-import { cx } from "@/site/common/util/cx.ts";
+import { cx } from "@/site/common/css/cx.ts";
 
 export interface GuideBarItem {
   name: string;

@@ -4,7 +4,8 @@
 // ORCID: https://orcid.org/0009-0009-2907-3792
 // Repository: https://github.com/j-Cis/dot-gener
 
-import { Title } from "@/site/widget/Title.widget.tsx";
+import { Title } from "@/site/widget/Title.widgets.tsx";
+import { P } from "@/site/widget/Paragraph.widget.tsx";
 import { tec, tecs } from "@/site/screen/Tec.render.tsx";
 export interface SekcjaOProgramieProps {
   numer: string;
@@ -18,13 +19,13 @@ export default function SekcjaOProgramie(paragraf: SekcjaOProgramieProps) {
           {paragraf.tytul}
         </Title>
       </header>
-      <p>
+      <P>
         Program "dot-gener" a w nim zawarty {tec`SilnikGrafu`}{" "}
         to generyczny nieświadomy o dziedzinie (rodzaje węzłów i lin, które deklaruje użytkownik) silnik sterowany schematem (typy węzłów i lin) który deklaruje użytkownik, z
         eksportem do
         {tec`DOT`} i {tec`SVG`} przez {tec`GraphViz`}.
-      </p>
-      <p>
+      </P>
+      <P>
         <strong>PRZYKŁAD</strong>
         <br />
         {tecs("typescript")`
@@ -51,8 +52,8 @@ const lalka = graf.dodajWezel("ksiazka", { kategorie: { rodzaj: ["epika", "powie
 graf.polacz("napisal", [prus, "dziela"], [lalka, "autorzy"]);
 graf.doDot();
         `}
-      </p>
-      <p>
+      </P>
+      <P noindent>
         <strong>DECYZJE</strong>
         <br />
         <ul>
@@ -101,7 +102,7 @@ graf.doDot();
             </ul>
           </li>
         </ul>
-      </p>
+      </P>
     </article>
   );
 }

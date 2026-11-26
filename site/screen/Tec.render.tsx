@@ -13,7 +13,7 @@ import json from "highlight.js/lib/languages/json";
 import rust from "highlight.js/lib/languages/rust";
 import typescript from "highlight.js/lib/languages/typescript";
 import xml from "highlight.js/lib/languages/xml";
-import { cx } from "@/site/common/util/cx.ts";
+import { cx } from "@/site/common/css/cx.ts";
 
 /**
  * Kod wyświetlany dosłownie (jako tekst, nie renderowany). Bez `lang` Preact sam zamienia

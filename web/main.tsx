@@ -13,11 +13,12 @@ import { transpileForBrowser } from "@transpilacja";
 import { PageShell } from "@/web/page-shell.tsx";
 import { Error404PageNotFound } from "@/web/404.tsx";
 import { PRZELADUJ, strumien } from "@/web/refresh.ts";
+import { cssStrony, osieroconeCss } from "@/web/style.ts";
 
 export const app = new Hono();
 if (PRZELADUJ) app.get("/__przeladuj", strumien);
 
-const page = (title: string, body: VNode) => "<!DOCTYPE html>" + renderToString(<PageShell title={title}>{body}</PageShell>);
+const page = (title: string, body: VNode, css: string) => "<!DOCTYPE html>" + renderToString(<PageShell title={title} css={css}>{body}</PageShell>);
 
 // --- pages (SSR): każdy site/routes/**/index.tsx to strona, a jego katalog to adres ---
 //   site/routes/index.tsx                  → /
@@ -45,16 +46,20 @@ for (const [adres, plik] of strony) {
   const modul: ModulStrony = await import(plik.href);
   if (typeof modul.default !== "function") throw new Error(`${plik.pathname}: brak domyślnego eksportu komponentu strony`);
   const { default: Strona, tytul = "LEKTURA" } = modul;
-  const obsluga = (c: Context) => c.html(page(tytul, <Strona />));
+  // CSS: baza + widgety z grafu importów tej strony + index.css obok index.tsx (web/style.ts)
+  const css = await cssStrony(plik, new URL("index.css", plik));
+  const obsluga = (c: Context) => c.html(page(tytul, <Strona />, css));
   app.get(adres, obsluga);
   if (adres !== "/") app.get(`${adres}/`, obsluga);
 }
 
 export const adresyStron = strony.map(([adres]) => adres);
 console.log(`pages: ${adresyStron.join(" ")}`);
+for (const css of await osieroconeCss()) console.warn(`${css}: brak pliku .tsx o tej samej nazwie — ten CSS nie trafi na żadną stronę`);
 
 // --- 404: wszystko, czego nie obsłużyły strony, transpilacja ani pliki statyczne → mapa stron ---
-app.notFound((c) => c.html(page("404 — nie ma takiej strony", <Error404PageNotFound adres={c.req.path} strony={adresyStron} />), 404));
+const css404 = await cssStrony(new URL("./404.tsx", import.meta.url));
+app.notFound((c) => c.html(page("404 — nie ma takiej strony", <Error404PageNotFound adres={c.req.path} strony={adresyStron} />, css404), 404));
 
 // --- client .ts/.tsx (client.ts, islands and what they import) ---
 app.get("*", (c, next) => {

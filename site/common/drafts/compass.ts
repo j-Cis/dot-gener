@@ -78,7 +78,7 @@ export function isAnchorDir(v: string): v is AnchorDir {
   return isCompassDir(v) || isBoxPos(v);
 }
 
-/** Jednostkowy wektor kierunkowy w układzie ekranowym (SVG/Canvas: Y rośnie w dół). */
+/** Jednostkowy wektor kierunkowy w układzie ekranowym (SVG/ViewAsCanvas: Y rośnie w dół). */
 export function dirVector(dir: AnchorDir): Vec2 {
   if (isCompassDir(dir)) {
     const a = COMPASS_ANGLES[dir];

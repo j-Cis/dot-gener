@@ -1,12 +1,12 @@
 // @project-metadata
-// Path: site/widget/Title.widget.tsx
+// Path: site/widget/Title.widgets.tsx
 // Author: Jan Roman Cisowski
 // ORCID: https://orcid.org/0009-0009-2907-3792
 // Repository: https://github.com/j-Cis/dot-gener
 
 import type { ComponentChildren } from "preact";
 import { useContext } from "preact/hooks";
-import { cx } from "@/site/common/util/cx.ts";
+import { cx } from "@/site/common/css/cx.ts";
 import { Kotwice, slug, tekstZ, unikalna } from "@/site/common/util/kotwice.ts";
 
 /** CSS length in a supported unit, e.g. "1.5rem", "24px", "2em". */

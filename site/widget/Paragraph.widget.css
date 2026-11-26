@@ -1,0 +1,9 @@
+.text-paragraph {
+  margin-block: 6px;
+  line-height: 1.8;
+  text-indent: 2em;
+}
+.text-paragraph--no-indent {
+  margin-block: 6px;
+  line-height: 1.8;
+}

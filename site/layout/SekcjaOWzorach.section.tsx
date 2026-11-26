@@ -4,12 +4,13 @@
 // ORCID: https://orcid.org/0009-0009-2907-3792
 // Repository: https://github.com/j-Cis/dot-gener
 
-import { Title } from "@/site/widget/Title.widget.tsx";
+import { Title } from "@/site/widget/Title.widgets.tsx";
+import { P } from "@/site/widget/Paragraph.widget.tsx";
 import { tex } from "@/site/screen/Tex.render.tsx";
 import { tec } from "@/site/screen/Tec.render.tsx";
 import { Box, powtorz, Row, Table } from "@/site/widget/Table.widget.tsx";
-import Svg from "@/site/client/Svg.island.tsx";
-import Canvas from "@/site/client/Canvas.island.tsx";
+import ViewAsSvg from "@/site/client/ViewAsSvg.island.tsx";
+import ViewAsCanvas from "@/site/client/ViewAsCanvas.island.tsx";
 import * as xDot from "@/site/layout/DotxPrzyklady.sections.tsx";
 //import { B, Dotx, E, G, N } from "@/site/screen/Dotx.render.tsx";
 
@@ -28,7 +29,7 @@ export default function SekcjaOWzorach(paragraf: SekcjaOWzorachProps) {
       <Title prefix="1.1" level="h2" size="1.25rem">
         <strong>PUNKT ODNIESIENIA</strong>
       </Title>
-      <p>
+      <P noindent>
         Aby móc o czymkolwiek mówić, należy najpierw ustalić punkt odniesienia — w przeciwnym razie łatwo zatracić się w odmętach abstrakcji, podążając naprzód i widząc własne
         plecy.
 
@@ -38,11 +39,11 @@ export default function SekcjaOWzorach(paragraf: SekcjaOWzorachProps) {
 
         Wszystkie cztery elementy są liczbami całkowitymi, przy czym wyłącznie
         {tec`iK`} może przyjmować wartości ujemne. Pozostałe są nieujemne.
-      </p>
+      </P>
       <Table cols={["max"]} rows={powtorz(7, "auto")} gapX="0.5rem" gapY="0.5rem">
         <Row row={1}>{tex`0, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,..`}</Row>
         <Row row={2}>
-          <Canvas
+          <ViewAsCanvas
             registryKey="test"
             dane="Test 123"
             sceneWidth={400}
@@ -52,7 +53,7 @@ export default function SekcjaOWzorach(paragraf: SekcjaOWzorachProps) {
           />
         </Row>
         <Row row={3}>
-          <Svg>s</Svg>
+          <ViewAsSvg>s</ViewAsSvg>
         </Row>
         <Row row={4}>
           <xDot.DotxPrzykladSvg punkt="X.1.a" />

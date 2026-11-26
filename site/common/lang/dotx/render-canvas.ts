@@ -4,7 +4,7 @@
 // ORCID: https://orcid.org/0009-0009-2907-3792
 // Repository: https://github.com/j-Cis/dot-gener
 
-import type { CanvasDrawContext } from "@/site/client/Canvas.island.tsx";
+import type { CanvasDrawContext } from "@/site/client/ViewAsCanvas.island.tsx";
 import type { PositionedGraph } from "./model.ts";
 
 export function drawDotxCanvas({ ctx, dane }: CanvasDrawContext): void {

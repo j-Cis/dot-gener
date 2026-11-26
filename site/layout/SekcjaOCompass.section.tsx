@@ -4,12 +4,12 @@
 // ORCID: https://orcid.org/0009-0009-2907-3792
 // Repository: https://github.com/j-Cis/dot-gener
 
-import { Title } from "@/site/widget/Title.widget.tsx";
+import { Title } from "@/site/widget/Title.widgets.tsx";
 import { tex } from "@/site/screen/Tex.render.tsx";
 import { tec } from "@/site/screen/Tec.render.tsx";
 import { Box, Col, powtorz, Row, RozmiarWiersza, Table } from "@/site/widget/Table.widget.tsx";
-import Svg from "@/site/client/Svg.island.tsx";
-import Canvas from "@/site/client/Canvas.island.tsx";
+import ViewAsSvg from "@/site/client/ViewAsSvg.island.tsx";
+import ViewAsCanvas from "@/site/client/ViewAsCanvas.island.tsx";
 import * as xDot from "@/site/layout/DotxPrzyklady.sections.tsx";
 //import { B, Dotx, E, G, N } from "@/site/screen/Dotx.render.tsx";
 
@@ -320,7 +320,7 @@ function pod_sekcja_1(w: RozmiarWiersza, k: [number, number], HUE: [string, stri
       `}
         </Col>
         <Col col={k[1]}>
-          <Svg>{SVGCompass(HUE)}</Svg>
+          <ViewAsSvg>{SVGCompass(HUE)}</ViewAsSvg>
         </Col>
       </Table>
     </section>

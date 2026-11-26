@@ -1,0 +1,28 @@
+html,
+body {
+  background-color: #101116;
+  color: #cfcfd0;
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+}
+
+/* web/strona404.tsx — mapa stron na stronie 404 */
+.mapa-stron {
+  line-height: 1.8;
+  & ul {
+    padding-inline-start: 1.5rem;
+  }
+}
+.mapa-stron-plik,
+.mapa-stron-folder {
+  color: #6b7280;
+  font-family: ui-monospace, "Cascadia Mono", Consolas, "DejaVu Sans Mono", monospace;
+  font-size: 0.85em;
+}
+.mapa-stron-plik {
+  margin-inline-start: 0.5rem;
+}

@@ -4,9 +4,10 @@
 // ORCID: https://orcid.org/0009-0009-2907-3792
 // Repository: https://github.com/j-Cis/dot-gener
 
-import { Title } from "@/site/widget/Title.widget.tsx";
+import { Title } from "@/site/widget/Title.widgets.tsx";
 import { OutTec, tec, tecs } from "@/site/screen/Tec.render.tsx";
 import { Box, powtorz, Row, Table } from "@/site/widget/Table.widget.tsx";
+import { P } from "@/site/widget/Paragraph.widget.tsx";
 
 export interface SekcjaOLekturzeProps {
   numer: string;
@@ -42,14 +43,14 @@ export default function SekcjaOLekturze(paragraf: SekcjaOLekturzeProps) {
       <Title level="h3" size="1.125rem">
         <strong>WSTĘP</strong>
       </Title>
-      <p class="akapit">
+      <P>
         Niestety lekka metoda działania jaką wprowadziło <u>DENO</u>, nibawem może zniknąć gdyż w paźdierniku 2026 zsotało przejęte przez <u>CLOUDFALRE</u>
         i już wiadmo że nie bedzie wersi <u>3.0</u>, a jedynie będa zapownione przez rok łatki - to wielki cios. Deno oferował po wyjęciu z pudełka wsparcie dal <u>TypeSript</u>
         obecna wersja to <u>7.0.2</u> nowość w tej wersji to całościowe przepisanie go na jezyk <u>go</u>. owerował też wparcie dla React i Preact np przy użyciu <u>hono</u>
         bez zbędnego ciągłego przebudowywania wszystkiego na czysty <u>JavaScript</u>. Dodatkowo poprzez <u>jsr</u> oraz <u>esm.sh</u> można było całkowicie pozbyć się syfu{" "}
         <u>NODE</u> i studni bez dna zakrzywiającej czasoprzestrzeń bardziej niż czarna dziura - folderu <u>node_modules</u>. Powstał fork{" "}
         <u>ende</u>, ale zobaczymy co przyniesie. Równocześnie mam też koncepcje własną <u>https://github.com/j-Cis/tsxr</u> mającą na celu zastąpienie <u>deno</u>
-      </p>
+      </P>
 
       <Title level="h3" size="1.5rem">
         <strong>ELEMENTY</strong>

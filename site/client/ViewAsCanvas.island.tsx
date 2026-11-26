@@ -1,5 +1,5 @@
 // @project-metadata
-// Path: site/client/Canvas.island.tsx
+// Path: site/client/ViewAsCanvas.island.tsx
 // Author: Jan Roman Cisowski
 // ORCID: https://orcid.org/0009-0009-2907-3792
 // Repository: https://github.com/j-Cis/dot-gener
@@ -8,7 +8,7 @@ import { useEffect, useRef } from "preact/hooks";
 import { island } from "@/web/island.ts";
 import { RYSUNKI } from "@/site/client/registries/for-island-canvas.ts";
 import { usePanZoom } from "@/site/common/util/usePanZoom.ts";
-import type { BoxLength } from "./Svg.island.tsx";
+import type { BoxLength } from "./ViewAsSvg.island.tsx";
 
 export interface CanvasView {
   x: number;
@@ -49,7 +49,7 @@ export interface CanvasProps {
 
 export default island(
   import.meta.url,
-  function Canvas(
+  function ViewAsCanvas(
     {
       registryKey,
       dane,
@@ -75,7 +75,7 @@ export default island(
 
       const drawer = RYSUNKI[registryKey];
       if (!drawer) {
-        console.warn(`Canvas: nieznany registryKey="${registryKey}"`);
+        console.warn(`ViewAsCanvas: nieznany registryKey="${registryKey}"`);
         return;
       }
 
