@@ -5,11 +5,6 @@
 // Repository: https://github.com/j-Cis/dot-gener
 
 import { Title } from "@/site/widget/Title.widgets.tsx";
-import { tex } from "@/site/screen/Tex.render.tsx";
-import { tec } from "@/site/screen/Tec.render.tsx";
-import { Box, powtorz, Row, Table } from "@/site/widget/Table.widget.tsx";
-import ViewAsSvg from "@/site/client/ViewAsSvg.island.tsx";
-import ViewAsCanvas from "@/site/client/ViewAsCanvas.island.tsx";
 
 import { B, Dotx, E, F, G, N, TE, TN } from "@/site/screen/Dotx.render.tsx";
 import type { PortDef } from "@/site/scripts/lang/dotx/model.ts";

@@ -5,20 +5,16 @@
 // Repository: https://github.com/j-Cis/dot-gener
 
 import { TitleSection } from "@/site/widget/Title.widgets.tsx";
-import { tex } from "@/site/screen/Tex.render.tsx";
 import { tec } from "@/site/screen/Tec.render.tsx";
-import { Box, Col, powtorz, Row, RozmiarWiersza, Table } from "@/site/widget/Table.widget.tsx";
-import ViewAsSvg from "@/site/client/ViewAsSvg.island.tsx";
-import ViewAsCanvas from "@/site/client/ViewAsCanvas.island.tsx";
-import * as xDot from "@/site/layout/DotxPrzyklady.sections.tsx";
+import { Box, powtorz, Row, Table } from "@/site/widget/Table.widget.tsx";
 //import { B, Dotx, E, G, N } from "@/site/screen/Dotx.render.tsx";
 
 export interface SekcjaOLOCIProps {
   numer: string;
   tytul: string;
 }
-export default function SekcjaOLOCI(paragraf: SekcjaOLOCIProps) {
-  const HUE: [string, string][] = [
+export default function SekcjaOLOCI(_paragraf: SekcjaOLOCIProps) {
+  const _HUE: [string, string][] = [
     ["#6a4669", "#dac3da"],
     ["#6a5846", "#d6c9bc"],
     ["#46506a", "#aeb8d2"],

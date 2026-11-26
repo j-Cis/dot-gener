@@ -4,7 +4,6 @@
 // ORCID: https://orcid.org/0009-0009-2907-3792
 // Repository: https://github.com/j-Cis/dot-gener
 
-import type { ComponentChildren } from "preact";
 import { cx } from "@/site/common/css/cx.ts";
 
 export interface GuideBarItem {

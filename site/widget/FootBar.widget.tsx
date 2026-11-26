@@ -27,7 +27,7 @@ export interface FootBarProps {
 export function FootBar({ items, class: className }: FootBarProps) {
   return (
     <footer class={cx("foot-bar", className)} aria-label="Stopka">
-      {items.map(({ name, href }) => <a href={href}>{name}</a>)}
+      {items.map(({ name, href }) => <a key={href} href={href}>{name}</a>)}
     </footer>
   );
 }
