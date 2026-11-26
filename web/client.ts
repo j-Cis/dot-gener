@@ -7,7 +7,7 @@
 import { type ComponentType, h, hydrate } from "preact";
 import { SLOT_ATTR } from "@/web/island.ts";
 
-// Hydrates every <div data-island="/site/features/…/X.island.tsx"> with the default
+// Hydrates every <div data-island="/site/client/…/X.island.tsx"> with the default
 // export of that module.
 const islands = document.querySelectorAll<HTMLElement>("[data-island]");
 

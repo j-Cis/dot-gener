@@ -18,7 +18,7 @@
  *    (@/…, /… i względne), więc kod modułów zostaje bajt w bajt taki, jak podaje serwer;
  *  - 404.html (GitHub Pages pokazuje go pod każdym nieistniejącym adresem) to odpowiedź serwera na /404.
  */
-import { adresyStron, app } from "./main.tsx";
+import { adresyStron, app } from "@/web/main.tsx";
 
 const ROOT = new URL("../", import.meta.url);
 const DIST = new URL("dist/", ROOT);

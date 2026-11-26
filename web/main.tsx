@@ -7,22 +7,24 @@
 import { type Context, Hono } from "@hono/hono";
 import { renderToString } from "preact-render-to-string";
 import type { ComponentType, VNode } from "preact";
-import { plikiStatyczne } from "./staticfiles.ts";
+import { plikiStatyczne } from "@/web/staticfiles.ts";
 // przełącznik: deno.json → ./transpile.ts (@deno/loader), ende.json → ./transpile-ende.ts (tsgo)
 import { transpileForBrowser } from "@transpilacja";
-import { Layout } from "./layout.tsx";
+import { PageShell } from "@/web/page-shell.tsx";
 import { Error404PageNotFound } from "@/web/404.tsx";
+import { PRZELADUJ, strumien } from "@/web/refresh.ts";
 
 export const app = new Hono();
+if (PRZELADUJ) app.get("/__przeladuj", strumien);
 
-const page = (title: string, body: VNode) => "<!DOCTYPE html>" + renderToString(<Layout title={title}>{body}</Layout>);
+const page = (title: string, body: VNode) => "<!DOCTYPE html>" + renderToString(<PageShell title={title}>{body}</PageShell>);
 
-// --- pages (SSR): każdy site/pages/**/index.tsx to strona, a jego katalog to adres ---
-//   site/pages/index.tsx                  → /
-//   site/pages/dokumentacja/index.tsx     → /dokumentacja   (i /dokumentacja/)
-//   site/pages/a/b/index.tsx              → /a/b
+// --- pages (SSR): każdy site/routes/**/index.tsx to strona, a jego katalog to adres ---
+//   site/routes/index.tsx                  → /
+//   site/routes/dokumentacja/index.tsx     → /dokumentacja   (i /dokumentacja/)
+//   site/routes/a/b/index.tsx              → /a/b
 // Nowy katalog z index.tsx = nowa strona; serwer skanuje przy starcie (--watch=site/ restartuje go po zmianie).
-const PAGES = new URL("../site/pages/", import.meta.url);
+const PAGES = new URL("../site/routes/", import.meta.url);
 
 /** Moduł strony: domyślny eksport to komponent; opcjonalny `export const tytul = "…"` to <title>. */
 interface ModulStrony {

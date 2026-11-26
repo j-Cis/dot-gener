@@ -6,7 +6,7 @@
 
 /**
  * Strona 404 generowana automatycznie: adres, którego nie ma, i mapa wszystkich stron
- * (drzewo plików index.tsx z site/pages — ta sama lista, z której main.tsx buduje router).
+ * (drzewo plików index.tsx z site/routes — ta sama lista, z której main.tsx buduje router).
  */
 
 export interface Error404PageNotFoundProps {
@@ -55,7 +55,7 @@ function Galaz({ prefiks, strony, istnieje }: { prefiks: string; strony: readonl
 
 /** Link do strony i jej plik; folder bez index.tsx (tylko pośredni człon adresu) — sam tekst. */
 function Adres({ adres, istnieje }: { adres: string; istnieje: ReadonlySet<string> }) {
-  const plik = `site/pages${adres === "/" ? "" : adres}/index.tsx`;
+  const plik = `site/routes${adres === "/" ? "" : adres}/index.tsx`;
   return istnieje.has(adres)
     ? (
       <>

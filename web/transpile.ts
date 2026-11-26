@@ -12,7 +12,7 @@ import { RequestedModuleType, Workspace } from "@deno/loader";
 import { encodeBase64 } from "@std/encoding/base64";
 
 const ROOT = new URL("../", import.meta.url);
-const FEATURES = new URL("site/features/", ROOT);
+const CLIENT_ISLANDS = new URL("site/client/", ROOT);
 const ISLAND_FILE = /\.island\.tsx?$/;
 const CLIENT_ENTRY = new URL("web/client.ts", ROOT).href;
 
@@ -27,7 +27,7 @@ const workspace = new Workspace({
 });
 const loader = await workspace.createLoader();
 
-const entries = [CLIENT_ENTRY, ...await findIslands(FEATURES)];
+const entries = [CLIENT_ENTRY, ...await findIslands(CLIENT_ISLANDS)];
 for (const d of await loader.addEntrypoints(entries)) console.warn(d.message);
 
 /**
@@ -110,7 +110,7 @@ async function transpile(url: string): Promise<string> {
 
 /**
  * Source map as an inline comment, so DevTools shows the original .ts/.tsx.
- * file:///... sources are rewritten to server paths (/site/features/…) and their
+ * file:///... sources are rewritten to server paths (/site/client/…) and their
  * text is embedded, so the browser never has to fetch anything from file://.
  */
 async function inlineSourceMap(raw: Uint8Array): Promise<string> {

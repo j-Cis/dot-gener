@@ -185,7 +185,29 @@ body {
 .title-kotwica:hover {
   color: #4f85d8;
 }
-
+/* TitleSection collapsible — cała linia tytułu przełącza treść */
+.title-zwijana > summary {
+  display: block;
+  list-style: none;
+  cursor: pointer;
+}
+.title-zwijana > summary::-webkit-details-marker {
+  display: none;
+}
+.title-zwijana > summary > .title::after {
+  content: "▾";
+  color: #6b7280;
+  font-size: 0.7em;
+  transition: transform 0.15s;
+}
+.title-zwijana:not([open]) > summary > .title::after {
+  transform: rotate(-90deg);
+}
+@media (prefers-reduced-motion: reduce) {
+  .title-zwijana > summary > .title::after {
+    transition: none;
+  }
+}
 .box-canvas {
   display: block;
   width: 100%;
@@ -361,7 +383,7 @@ svg.gener-drzewo {
   }
 }
 
-/* SpanWithKeySvg / SpanWithKeySvgGrid (features/ui/SpanWithKey.widget.tsx) */
+/* SpanWithKeySvg / SpanWithKeySvgGrid (widget/SpanWithKey.widget.tsx) */
 .span-with-key-svg text {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 700;

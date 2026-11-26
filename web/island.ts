@@ -13,12 +13,12 @@ const IS_BROWSER = typeof document !== "undefined";
 export const SLOT_ATTR = "data-island-slot";
 
 /**
- * Marks a component as an island. In a site/features/**\/*.island.tsx file:
+ * Marks a component as an island. In a site/client/**\/*.island.tsx file:
  *
  *   export default island(import.meta.url, function Counter(props) { … });
  *
  * Server: renders the component inside
- *   <div data-island="/site/features/…/X.island.tsx" data-props="{…}">.
+ *   <div data-island="/site/client/…/X.island.tsx" data-props="{…}">.
  * Browser: returns the component itself; client.ts imports that path and
  * hydrates it.
  *

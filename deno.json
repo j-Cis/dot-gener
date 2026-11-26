@@ -40,7 +40,7 @@
     "przyklad-ksiega": "deno run --allow-write=. examples/przyklad-biblioteczka.ts",
     "przyklad-drzewo": "deno run --allow-write=. examples/przyklad-drzewo.ts",
     "test": "deno test --allow-run=dot --allow-read=. --allow-write=. tests/testy.ts",
-    "czytaj-pisz": "deno serve -A --watch=web/client.ts,site/,web/ web/main.tsx",
+    "czytaj-pisz": "PRZELADUJ=1 deno serve -A --watch=web/client.ts,site/,web/ web/main.tsx",
     "czytaj": "deno serve -A web/main.tsx",
     "ghpages": "deno run -A web/gh-pages.ts",
     "sprawdz-program": "deno check src/ examples/ tests/",

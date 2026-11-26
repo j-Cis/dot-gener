@@ -25,7 +25,7 @@
  */
 
 const ROOT = new URL("../", import.meta.url);
-const FEATURES = new URL("site/features/", ROOT);
+const CLIENT_ISLANDS = new URL("site/client/", ROOT);
 const ISLAND_FILE = /\.island\.tsx?$/;
 const CLIENT_ENTRY = new URL("web/client.ts", ROOT).href;
 const TSGO = Deno.env.get("TSGO") ?? "tsgo";
@@ -33,7 +33,7 @@ const TSGO = Deno.env.get("TSGO") ?? "tsgo";
 // Jak w web/transpile.ts: statyczne importy/re-eksporty, `import "x"` i `import("x")` z dosłowną ścieżką.
 const IMPORT = /\bfrom\s*["']([^"']+)["']|\bimport\s*\(?\s*["']([^"']+)["']/g;
 
-const entries = [CLIENT_ENTRY, ...await findIslands(FEATURES)];
+const entries = [CLIENT_ENTRY, ...await findIslands(CLIENT_ISLANDS)];
 const served = await buildClientGraph(entries);
 console.log(`client modules: ${served.size} (tsgo)`);
 
