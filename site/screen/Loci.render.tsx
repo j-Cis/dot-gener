@@ -28,6 +28,7 @@ const DZIECI: ReadonlyMap<unknown, ZnacznikDziecka> = new Map<unknown, ZnacznikD
 	[ Loci.csbi, "csbi" ],
 	[ Loci.fn, "fn" ],
 	[ Loci.var, "var" ],
+	[ Loci.v, "v" ],
 ] );
 
 /** Źródło JSX (dzieci VectorViewport) → model. Oczekuje dokładnie jednego <Loci.body>. */

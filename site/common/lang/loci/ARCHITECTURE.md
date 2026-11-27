@@ -24,6 +24,8 @@
 
 #### LOCIPElement`<Loci.p/>` (Datum Point)
 
+#### LOCIVElement`<Loci.v/>` (Curve)
+
 ### FUNKCJE
 
 #### lociId`const id = lociId(); <Loci.p id={id.p()} />` (Logic Id)

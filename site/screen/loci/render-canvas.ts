@@ -10,8 +10,9 @@ import type { Zakres } from "./interpreter/types.ts";
 import { doBrzegu } from "./interpreter/geometry.ts";
 import { KIERUNKI_POLOSI, type ModelCsax } from "./interpreter/csax.ts";
 import type { ModelP } from "./interpreter/p.ts";
+import type { ModelV } from "./interpreter/v.ts";
 import type { WygladLinii, WygladPolosi, WygladPunktu } from "./interpreter/body.ts";
-import { GROT, KRESKI, odcinkiSymbolu } from "./render-wspolne.ts";
+import { GROT, KRESKI, kreskiRysunku, odcinkiSymbolu } from "./render-wspolne.ts";
 
 /**
  * Model LOCI → Canvas (para dla renderLociSvg z render-svg.tsx). Scena zaczyna się w lewym górnym
@@ -26,6 +27,7 @@ export function drawLociCanvas( { ctx, view, dane }: CanvasDrawContext ): void {
 	ctx.save();
 	ctx.translate( -minX, maxY );
 	ctx.scale( 1, -1 );
+	for ( const v of m.v ) vCanvas( ctx, v );
 	for ( const cs of m.csax ) csaxCanvas( ctx, view.s, cs, m.zakres, m.polosie, m.punkt );
 	for ( const p of m.p ) pCanvas( ctx, view.s, p, m.punkt );
 	ctx.restore();
@@ -41,6 +43,27 @@ function csaxCanvas( ctx: CanvasRenderingContext2D, s: number, cs: ModelCsax, za
 		polosCanvas( ctx, s, kier, doBrzegu( cs.poczatek, cs.kat + kier, zakres ), wyglad );
 	} );
 	punktCanvas( ctx, s, punkt );
+	ctx.restore();
+}
+
+/** v: łamana w jednostkach rysunku; elementy konstrukcyjne rysują się nad nią. */
+function vCanvas( ctx: CanvasRenderingContext2D, v: ModelV ): void {
+	const [ kolor, grubosc, styl ] = v.wyglad;
+	ctx.save();
+	ctx.beginPath();
+	v.punkty.forEach( ( [ x, y ], i ) => i === 0 ? ctx.moveTo( x, y ) : ctx.lineTo( x, y ) );
+	if ( v.cycle ) ctx.closePath();
+	if ( v.surface ) {
+		ctx.fillStyle = kolor;
+		ctx.globalAlpha = 0.3;
+		ctx.fill();
+		ctx.globalAlpha = 1;
+	}
+	ctx.strokeStyle = kolor;
+	ctx.lineWidth = grubosc;
+	ctx.lineJoin = "round";
+	ctx.setLineDash( kreskiRysunku( styl, grubosc ) );
+	ctx.stroke();
 	ctx.restore();
 }
 

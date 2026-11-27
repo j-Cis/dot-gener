@@ -14,6 +14,7 @@ import type { ModelCsbi } from "./csbi.ts";
 import type { ModelP } from "./p.ts";
 import type { ModelFn } from "./fn.ts";
 import type { ModelVar } from "./var.ts";
+import type { ModelV } from "./v.ts";
 
 /**
  * body w modelu: cały rysunek. Wygląd konstrukcji z atrybutów body; brakujące — z wartości
@@ -53,10 +54,12 @@ export interface ModelBody {
 	csbi: readonly ModelCsbi[];
 	fn: readonly ModelFn[];
 	var: readonly ModelVar[];
+	/** łamane (elementy rysunku) */
+	v: readonly ModelV[];
 }
 
 /** Elementy wczytane z dzieci body (csax: z podstawowym na początku). */
-export type DzieciBody = Pick<ModelBody, "csax" | "p" | "csbi" | "fn" | "var">;
+export type DzieciBody = Pick<ModelBody, "csax" | "p" | "csbi" | "fn" | "var" | "v">;
 
 /** Podstawowy csax z atrybutów body: w (0,0), bez obrotu. */
 export function csaxPodstawowy( p: LOCIBodyProps ): ModelCsax {

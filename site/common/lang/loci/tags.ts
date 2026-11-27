@@ -10,6 +10,7 @@ import { csbi } from "./element/datum/LOCICsbiElement.ts";
 import { p } from "./element/datum/LOCIPElement.ts";
 import { fn } from "./element/def/LOCIFnElement.ts";
 import { varTag } from "./element/def/LOCIVarElement.ts";
+import { v } from "./element/curve/LOCIVElement.ts";
 
 /**
  * LOCI — znaczniki <Loci.…>, ich atrybuty i funkcje pomocnicze do wypełniania atrybutów.
@@ -37,4 +38,6 @@ export const Loci = {
 	fn,
 	/** Zmienna: <Loci.var id="var0" as="t0" val="1/3" />. */
 	var: varTag,
+	/** Łamana przez n punktów: <Loci.v id="v0" p="p0,p1,p2" />, z cycle (domknięta) i surface (wypełniona). */
+	v,
 } as const;

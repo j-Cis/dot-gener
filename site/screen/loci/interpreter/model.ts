@@ -10,12 +10,14 @@ import type { LOCICsaxProps } from "@/site/common/lang/loci/element/datum/LOCICs
 import type { LOCICsbiProps } from "@/site/common/lang/loci/element/datum/LOCICsbiElement.ts";
 import type { LOCIFnProps } from "@/site/common/lang/loci/element/def/LOCIFnElement.ts";
 import type { LOCIVarProps } from "@/site/common/lang/loci/element/def/LOCIVarElement.ts";
+import type { LOCIVProps } from "@/site/common/lang/loci/element/curve/LOCIVElement.ts";
 import { bodyModel, csaxPodstawowy, type ModelBody } from "./body.ts";
 import type { ModelCsax } from "./csax.ts";
 import { csbiModel, type ModelCsbi } from "./csbi.ts";
 import { type ModelP, pModel } from "./p.ts";
 import { fnModel, type ModelFn } from "./fn.ts";
 import { type ModelVar, varModel } from "./var.ts";
+import { type ModelV, vModel } from "./v.ts";
 import { sprawdzAlias, sprawdzId } from "./check.ts";
 
 /**
@@ -29,7 +31,8 @@ export type Dziecko =
 	| readonly [ znacznik: "csax", atrybuty: LOCICsaxProps ]
 	| readonly [ znacznik: "csbi", atrybuty: LOCICsbiProps ]
 	| readonly [ znacznik: "fn", atrybuty: LOCIFnProps ]
-	| readonly [ znacznik: "var", atrybuty: LOCIVarProps ];
+	| readonly [ znacznik: "var", atrybuty: LOCIVarProps ]
+	| readonly [ znacznik: "v", atrybuty: LOCIVProps ];
 
 /** Znaczniki, które mogą być dziećmi body. */
 export type ZnacznikDziecka = Dziecko[0];
@@ -42,9 +45,23 @@ export function lociModel( body: LOCIBodyProps, dzieci: readonly Dziecko[] ): Lo
 	const csax0 = csaxPodstawowy( body );
 	sprawdzId( "csax", csax0.id );
 	const uklady = new Map<string, ModelCsax>( [ [ csax0.id, csax0 ] ] );
-	const ps: ModelP[] = [], csbis: ModelCsbi[] = [], fns: ModelFn[] = [], vars: ModelVar[] = [];
+	const ps: ModelP[] = [], csbis: ModelCsbi[] = [], fns: ModelFn[] = [], vars: ModelVar[] = [], vs: ModelV[] = [];
 	/** Wszystkie nazwy dokumentu: id i aliasy → id. */
 	const nazwy = new Map<string, string>( [ [ csax0.id, csax0.id ] ] );
+	/** Punkty i układy zdefiniowane wcześniej, po id albo aliasie; brak → błąd. */
+	const zrodla = {
+		csax0: csax0.id,
+		punkt: ( nazwa: string ) => {
+			const p = ps.find( ( m ) => m.id === ( nazwy.get( nazwa ) ?? nazwa ) );
+			if ( p === undefined ) throw new Error( `LOCI: "${nazwa}" — nie ma wcześniej takiego punktu p` );
+			return p.polozenie;
+		},
+		uklad: ( nazwa: string ) => {
+			const u = uklady.get( nazwy.get( nazwa ) ?? nazwa );
+			if ( u === undefined ) throw new Error( `LOCI: "${nazwa}" — nie ma wcześniej takiego układu csax` );
+			return u;
+		},
+	};
 	for ( const d of dzieci ) {
 		const { id, as } = d[1];
 		sprawdzId( d[0], id );
@@ -74,7 +91,10 @@ export function lociModel( body: LOCIBodyProps, dzieci: readonly Dziecko[] ): Lo
 			case "var":
 				vars.push( varModel( d[1] ) );
 				break;
+			case "v":
+				vs.push( vModel( d[1], zrodla ) );
+				break;
 		}
 	}
-	return bodyModel( body, { csax: [ ...uklady.values() ], p: ps, csbi: csbis, fn: fns, var: vars } );
+	return bodyModel( body, { csax: [ ...uklady.values() ], p: ps, csbi: csbis, fn: fns, var: vars, v: vs } );
 }

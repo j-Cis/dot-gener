@@ -9,8 +9,9 @@ import type { Zakres } from "./interpreter/types.ts";
 import { doBrzegu } from "./interpreter/geometry.ts";
 import { KIERUNKI_POLOSI, type ModelCsax } from "./interpreter/csax.ts";
 import type { ModelP } from "./interpreter/p.ts";
+import type { ModelV } from "./interpreter/v.ts";
 import type { WygladLinii, WygladPolosi, WygladPunktu } from "./interpreter/body.ts";
-import { GROT, KRESKI, odcinkiSymbolu } from "./render-wspolne.ts";
+import { GROT, KRESKI, kreskiRysunku, odcinkiSymbolu } from "./render-wspolne.ts";
 
 /**
  * Model LOCI → SVG (para dla drawLociCanvas z render-canvas.ts). Oś Y w górę: cały rysunek
@@ -30,6 +31,7 @@ export function renderLociSvg( m: LociModel ) {
 			style={{ overflow: "visible" }}
 		>
 			<g transform="scale(1,-1)">
+				{m.v.map( ( v ) => <VSvg key={v.id} v={v} /> )}
 				{m.csax.map( ( cs ) => <CsaxSvg key={cs.id} cs={cs} zakres={m.zakres} polosie={m.polosie} punkt={m.punkt} /> )}
 				{m.p.map( ( p ) => <PSvg key={p.id} p={p} wyglad={m.punkt} /> )}
 			</g>
@@ -53,6 +55,26 @@ function CsaxSvg( { cs, zakres, polosie, punkt }: { cs: ModelCsax; zakres: Zakre
 			} )}
 			<PunktSvg wyglad={punkt} />
 		</g>
+	);
+}
+
+/** v: łamana w jednostkach rysunku; elementy konstrukcyjne rysują się nad nią. */
+function VSvg( { v }: { v: ModelV } ) {
+	const [ kolor, grubosc, styl ] = v.wyglad;
+	const Tag = v.cycle ? "polygon" : "polyline";
+	const kreski = kreskiRysunku( styl, grubosc );
+	return (
+		<Tag
+			id={v.id}
+			class="loci-v"
+			points={v.punkty.map( ( [ x, y ] ) => `${x},${y}` ).join( " " )}
+			fill={v.surface ? kolor : "none"}
+			fill-opacity={v.surface ? 0.3 : undefined}
+			stroke={kolor}
+			stroke-width={grubosc}
+			stroke-linejoin="round"
+			stroke-dasharray={kreski.length ? kreski.join( " " ) : undefined}
+		/>
 	);
 }
 

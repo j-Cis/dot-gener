@@ -24,11 +24,11 @@ import type { IdZnacznika, ZnacznikId } from "../shared/types.ts";
 export type LociId = { readonly [Z in ZnacznikId]: ( numer?: number ) => IdZnacznika<Z> };
 
 /** Pierwszy numer nadawany bez wskazania. */
-const START: Readonly<Record<ZnacznikId, number>> = { p: 0, csax: 1, csbi: 0, fn: 0, var: 0 };
+const START: Readonly<Record<ZnacznikId, number>> = { p: 0, csax: 1, csbi: 0, fn: 0, var: 0, v: 0 };
 
 /** Nowy licznik dla jednego rysunku. */
 export function lociId(): LociId {
-	const uzyte: Record<ZnacznikId, Set<number>> = { p: new Set(), csax: new Set(), csbi: new Set(), fn: new Set(), var: new Set() };
+	const uzyte: Record<ZnacznikId, Set<number>> = { p: new Set(), csax: new Set(), csbi: new Set(), fn: new Set(), var: new Set(), v: new Set() };
 	const nastepny: Record<ZnacznikId, number> = { ...START };
 	const nadaj = <Z extends ZnacznikId>( z: Z, numer?: number ): IdZnacznika<Z> => {
 		const n = numer ?? nastepny[z];
@@ -44,5 +44,6 @@ export function lociId(): LociId {
 		csbi: ( n ) => nadaj( "csbi", n ),
 		fn: ( n ) => nadaj( "fn", n ),
 		var: ( n ) => nadaj( "var", n ),
+		v: ( n ) => nadaj( "v", n ),
 	};
 }

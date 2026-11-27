@@ -31,3 +31,8 @@ export function odcinkiSymbolu( symbol: PointSymbol, wielkosc: number ): readonl
 		return [ -x, -y, x, y ] as const;
 	} );
 }
+
+/** Kreski stylu linii elementu rysunku: wielokrotności grubości, w jednostkach rysunku. */
+export function kreskiRysunku( styl: LineStyle, grubosc: number ): number[] {
+	return styl === "dashed" ? [ 4 * grubosc, 3 * grubosc ] : styl === "dotted" ? [ grubosc, 2 * grubosc ] : [];
+}

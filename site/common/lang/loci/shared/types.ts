@@ -16,7 +16,7 @@ export type JednostkaKata = "deg" | "rad" | "turn";
 export type LiczbaTekst = `${number}`;
 
 /** Znaczniki, które mają id (wszystkie poza body). */
-export type ZnacznikId = "p" | "csax" | "csbi" | "fn" | "var";
+export type ZnacznikId = "p" | "csax" | "csbi" | "fn" | "var" | "v";
 
 /** id znacznika: nazwa znacznika i numer, np. "p0", "csax1". */
 export type IdZnacznika<Z extends ZnacznikId> = `${Z}${number}`;
