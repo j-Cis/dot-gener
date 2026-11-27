@@ -6,7 +6,7 @@
 
 import { type ComponentChildren, type ComponentType, type FunctionComponent, h } from "preact";
 
-const ROOT = new URL("../", import.meta.url).href;
+const ROOT = new URL( "../", import.meta.url ).href;
 const IS_BROWSER = typeof document !== "undefined";
 
 /** Marks the server-rendered children of an island (see client.ts). */
@@ -34,45 +34,45 @@ export const SLOT_ATTR = "data-island-slot";
  * browser with the island, so it may import only browser-safe code.
  */
 export function island<P extends object>(
-  moduleUrl: string,
-  Component: ComponentType<P>,
+	moduleUrl: string,
+	Component: ComponentType<P>,
 ): ComponentType<P>;
 export function island<W extends object, P extends object>(
-  moduleUrl: string,
-  Component: ComponentType<P>,
-  prepare: (input: W) => P,
+	moduleUrl: string,
+	Component: ComponentType<P>,
+	prepare: ( input: W ) => P,
 ): ComponentType<W>;
 export function island<W extends object, P extends object>(
-  moduleUrl: string,
-  Component: ComponentType<P>,
-  prepare?: (input: W) => P,
+	moduleUrl: string,
+	Component: ComponentType<P>,
+	prepare?: ( input: W ) => P,
 ): ComponentType<P> | ComponentType<W> {
-  if (IS_BROWSER) return Component;
-  if (!moduleUrl.startsWith(ROOT)) {
-    throw new Error(`island outside the project: ${moduleUrl}`);
-  }
-  const src = "/" + moduleUrl.slice(ROOT.length);
-  const Wrapped: FunctionComponent<W> = (input) => {
-    const { children, ...props } = (prepare ? prepare(input) : input) as P & { children?: ComponentChildren };
-    return h(
-      "div",
-      {
-        "data-island": src,
-        "data-props": JSON.stringify(props),
-        style: "display:contents",
-      },
-      h(
-        Component,
-        {
-          ...props,
-          children: children == null ? children : h(
-            "div",
-            { [SLOT_ATTR]: "", style: "display:contents" },
-            children,
-          ),
-        } as unknown as P,
-      ),
-    );
-  };
-  return Wrapped;
+	if ( IS_BROWSER ) return Component;
+	if ( !moduleUrl.startsWith( ROOT ) ) {
+		throw new Error( `island outside the project: ${moduleUrl}` );
+	}
+	const src = "/" + moduleUrl.slice( ROOT.length );
+	const Wrapped: FunctionComponent<W> = ( input ) => {
+		const { children, ...props } = ( prepare ? prepare( input ) : input ) as P & { children?: ComponentChildren };
+		return h(
+			"div",
+			{
+				"data-island": src,
+				"data-props": JSON.stringify( props ),
+				style: "display:contents",
+			},
+			h(
+				Component,
+				{
+					...props,
+					children: children == null ? children : h(
+						"div",
+						{ [SLOT_ATTR]: "", style: "display:contents" },
+						children,
+					),
+				} as unknown as P,
+			),
+		);
+	};
+	return Wrapped;
 }

@@ -1,33 +1,41 @@
+/*
+ * @project-metadata
+ * Path: web/page-shell.css
+ * Author: Jan Roman Cisowski
+ * ORCID: https://orcid.org/0009-0009-2907-3792
+ * Repository: https://github.com/j-Cis/dot-gener
+ */
+
 html,
 body {
-  background-color: #101116;
-  color: #cfcfd0;
-  color-scheme: dark;
+	background-color: #101116;
+	color: #cfcfd0;
+	color-scheme: dark;
 }
 
 body {
-  margin: 0;
-  font-family: system-ui, sans-serif;
+	margin: 0;
+	font-family: system-ui, sans-serif;
 }
 
 .page {
-  max-width: 54rem;
-  margin: 0 auto;
-  padding: 2rem 1rem;
+	max-width: 54rem;
+	margin: 0 auto;
+	padding: 2rem 1rem;
 }
 /* web/strona404.tsx — mapa stron na stronie 404 */
 .mapa-stron {
-  line-height: 1.8;
-  & ul {
-    padding-inline-start: 1.5rem;
-  }
+	line-height: 1.8;
+	& ul {
+		padding-inline-start: 1.5rem;
+	}
 }
 .mapa-stron-plik,
 .mapa-stron-folder {
-  color: #6b7280;
-  font-family: ui-monospace, "Cascadia Mono", Consolas, "DejaVu Sans Mono", monospace;
-  font-size: 0.85em;
+	color: #6b7280;
+	font-family: ui-monospace, "Cascadia Mono", Consolas, "DejaVu Sans Mono", monospace;
+	font-size: 0.85em;
 }
 .mapa-stron-plik {
-  margin-inline-start: 0.5rem;
+	margin-inline-start: 0.5rem;
 }

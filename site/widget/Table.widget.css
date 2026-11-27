@@ -1,71 +1,79 @@
+/*
+ * @project-metadata
+ * Path: site/widget/Table.widget.css
+ * Author: Jan Roman Cisowski
+ * ORCID: https://orcid.org/0009-0009-2907-3792
+ * Repository: https://github.com/j-Cis/dot-gener
+ */
+
 /* Table.widget.tsx — siatka (CSS grid) w oknie przewijania */
 .tabela {
-  /* okno: szerokość strony; przewija, gdy siatka jest szersza (width > 100%) albo wyższa niż height */
-  overflow: auto;
-  max-width: 100%;
+	/* okno: szerokość strony; przewija, gdy siatka jest szersza (width > 100%) albo wyższa niż height */
+	overflow: auto;
+	max-width: 100%;
 }
 .tabela-siatka {
-  display: grid;
-  /* ścieżki od początku — wiersze "auto" nie rozciągają się, gdy okno (height) jest wyższe niż treść */
-  justify-content: start;
-  align-content: start;
+	display: grid;
+	/* ścieżki od początku — wiersze "auto" nie rozciągają się, gdy okno (height) jest wyższe niż treść */
+	justify-content: start;
+	align-content: start;
 }
 .tabela-box {
-  /* nagłówek + treść; kierunek zależy od strony nagłówka */
-  display: flex;
-  flex-direction: column;
+	/* nagłówek + treść; kierunek zależy od strony nagłówka */
+	display: flex;
+	flex-direction: column;
 }
 .tabela-box-N {
-  flex-direction: column;
+	flex-direction: column;
 }
 .tabela-box-S {
-  flex-direction: column-reverse;
+	flex-direction: column-reverse;
 }
 .tabela-box-W {
-  flex-direction: row;
+	flex-direction: row;
 }
 .tabela-box-E {
-  flex-direction: row-reverse;
+	flex-direction: row-reverse;
 }
 .tabela-naglowek {
-  display: flex;
-  flex: none;
-  padding: 0.25rem 0.5rem;
-  font-weight: 600;
-  background-color: rgb(255 255 255 / 0.04);
+	display: flex;
+	flex: none;
+	padding: 0.25rem 0.5rem;
+	font-weight: 600;
+	background-color: rgb(255 255 255 / 0.04);
 }
 .tabela-box-W > .tabela-naglowek,
 .tabela-box-E > .tabela-naglowek {
-  /* nagłówek z boku: start/center/end działa w pionie */
-  flex-direction: column;
+	/* nagłówek z boku: start/center/end działa w pionie */
+	flex-direction: column;
 }
 .tabela-naglowek-start {
-  justify-content: flex-start;
-  text-align: start;
+	justify-content: flex-start;
+	text-align: start;
 }
 .tabela-naglowek-center {
-  justify-content: center;
-  text-align: center;
+	justify-content: center;
+	text-align: center;
 }
 .tabela-naglowek-end {
-  justify-content: flex-end;
-  text-align: end;
+	justify-content: flex-end;
+	text-align: end;
 }
 .tabela-obrot-prawo {
-  /* o 90° w prawo: czytamy z góry na dół */
-  writing-mode: vertical-rl;
+	/* o 90° w prawo: czytamy z góry na dół */
+	writing-mode: vertical-rl;
 }
 .tabela-obrot-lewo {
-  /* o 90° w lewo: czytamy z dołu do góry */
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
+	/* o 90° w lewo: czytamy z dołu do góry */
+	writing-mode: vertical-rl;
+	transform: rotate(180deg);
 }
 .tabela-tresc {
-  /* treść większa niż obszar (np. stała wysokość wiersza) przewija się w obszarze */
-  flex: 1 1 auto;
-  min-width: 0;
-  min-height: 0;
-  overflow: auto;
-  /* zapas na dół chipów kodu (code.tec) w ostatniej linii: mieszczą się w paddingu, bez paska */
-  padding-block-end: 0.2em;
+	/* treść większa niż obszar (np. stała wysokość wiersza) przewija się w obszarze */
+	flex: 1 1 auto;
+	min-width: 0;
+	min-height: 0;
+	overflow: auto;
+	/* zapas na dół chipów kodu (code.tec) w ostatniej linii: mieszczą się w paddingu, bez paska */
+	padding-block-end: 0.2em;
 }

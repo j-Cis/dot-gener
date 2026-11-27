@@ -8,123 +8,123 @@ import { Box, P, powtorz, Row, Table, Title } from "@/site/widget/_ANY.ts";
 import { OutTec, tec, tecs } from "@/site/screen/Tec.render.tsx";
 
 export interface SekcjaOLekturzeProps {
-  numer: string;
-  tytul: string;
+	numer: string;
+	tytul: string;
 }
-export default function SekcjaOLekturze(paragraf: SekcjaOLekturzeProps) {
-  /** Pliki ./web w kolejności wyświetlania — tylko klucze, które zna `plik`. */
-  const PLIKI_WEB = [
-    "ts:importmap",
-    "ts:staticfiles",
-    "ts:island",
-    "ts:transpile",
-    "ts:transpile-ende",
-    "ts:client",
-    "tsx:layout",
-    "tsx:main",
-    "tsx:404",
-  ] as const satisfies readonly (keyof Pliki)[];
+export default function SekcjaOLekturze( paragraf: SekcjaOLekturzeProps ) {
+	/** Pliki ./web w kolejności wyświetlania — tylko klucze, które zna `plik`. */
+	const PLIKI_WEB = [
+		"ts:importmap",
+		"ts:staticfiles",
+		"ts:island",
+		"ts:transpile",
+		"ts:transpile-ende",
+		"ts:client",
+		"tsx:layout",
+		"tsx:main",
+		"tsx:404",
+	] as const satisfies readonly (keyof Pliki)[];
 
-  /** "ts:importmap" → "./web/importmap.ts" (typ wyniku też jest dokładny) */
-  type SciezkaWeb<K extends keyof Pliki> = K extends `${infer Roz}:${infer Nazwa}` ? `./web/${Nazwa}.${Roz}` : never;
-  const sciezkaWeb = <K extends keyof Pliki>(klucz: K) => {
-    const [roz, nazwa] = klucz.split(":");
-    return `./web/${nazwa}.${roz}` as SciezkaWeb<K>;
-  };
-  return (
-    <article class="sekcja-o-lekturze">
-      <header>
-        <Title prefix={paragraf.numer} level="h1" size="2.125rem">
-          {paragraf.tytul}
-        </Title>
-      </header>
-      <Title level="h3" size="1.125rem">
-        <strong>WSTĘP</strong>
-      </Title>
-      <P>
-        Niestety lekka metoda działania jaką wprowadziło <u>DENO</u>, nibawem może zniknąć gdyż w paźdierniku 2026 zsotało przejęte przez <u>CLOUDFALRE</u>
-        i już wiadmo że nie bedzie wersi <u>3.0</u>, a jedynie będa zapownione przez rok łatki - to wielki cios. Deno oferował po wyjęciu z pudełka wsparcie dal <u>TypeSript</u>
-        obecna wersja to <u>7.0.2</u> nowość w tej wersji to całościowe przepisanie go na jezyk <u>go</u>. owerował też wparcie dla React i Preact np przy użyciu <u>hono</u>
-        bez zbędnego ciągłego przebudowywania wszystkiego na czysty <u>JavaScript</u>. Dodatkowo poprzez <u>jsr</u> oraz <u>esm.sh</u> można było całkowicie pozbyć się syfu{" "}
-        <u>NODE</u> i studni bez dna zakrzywiającej czasoprzestrzeń bardziej niż czarna dziura - folderu <u>node_modules</u>. Powstał fork{" "}
-        <u>ende</u>, ale zobaczymy co przyniesie. Równocześnie mam też koncepcje własną <u>https://github.com/j-Cis/tsxr</u> mającą na celu zastąpienie <u>deno</u>
-      </P>
+	/** "ts:importmap" → "./web/importmap.ts" (typ wyniku też jest dokładny) */
+	type SciezkaWeb<K extends keyof Pliki> = K extends `${infer Roz}:${infer Nazwa}` ? `./web/${Nazwa}.${Roz}` : never;
+	const sciezkaWeb = <K extends keyof Pliki>( klucz: K ) => {
+		const [ roz, nazwa ] = klucz.split( ":" );
+		return `./web/${nazwa}.${roz}` as SciezkaWeb<K>;
+	};
+	return (
+		<article class="sekcja-o-lekturze">
+			<header>
+				<Title prefix={paragraf.numer} level="h1" size="2.125rem">
+					{paragraf.tytul}
+				</Title>
+			</header>
+			<Title level="h3" size="1.125rem">
+				<strong>WSTĘP</strong>
+			</Title>
+			<P>
+				Niestety lekka metoda działania jaką wprowadziło <u>DENO</u>, nibawem może zniknąć gdyż w paźdierniku 2026 zsotało przejęte przez <u>CLOUDFALRE</u>
+				i już wiadmo że nie bedzie wersi <u>3.0</u>, a jedynie będa zapownione przez rok łatki - to wielki cios. Deno oferował po wyjęciu z pudełka wsparcie dal <u>TypeSript</u>
+				obecna wersja to <u>7.0.2</u> nowość w tej wersji to całościowe przepisanie go na jezyk <u>go</u>. owerował też wparcie dla React i Preact np przy użyciu <u>hono</u>
+				bez zbędnego ciągłego przebudowywania wszystkiego na czysty <u>JavaScript</u>. Dodatkowo poprzez <u>jsr</u> oraz <u>esm.sh</u> można było całkowicie pozbyć się syfu{" "}
+				<u>NODE</u> i studni bez dna zakrzywiającej czasoprzestrzeń bardziej niż czarna dziura - folderu <u>node_modules</u>. Powstał fork{" "}
+				<u>ende</u>, ale zobaczymy co przyniesie. Równocześnie mam też koncepcje własną <u>https://github.com/j-Cis/tsxr</u> mającą na celu zastąpienie <u>deno</u>
+			</P>
 
-      <Title level="h3" size="1.5rem">
-        <strong>ELEMENTY</strong>
-      </Title>
+			<Title level="h3" size="1.5rem">
+				<strong>ELEMENTY</strong>
+			</Title>
 
-      <Table cols={powtorz(12, "max")} rows={powtorz(3, "auto")} gapX="0.5rem" gapY="0.5rem">
-        <Row row={1}>
-          Obecnie działa pod <u>DENO</u>, natomiast pod <u>ENDO</u> cały czas coś nie spina, gdzieś na horyzoncie jako koncepcja majaczy <u>TSXR</u>{" "}
-          ale narazie nie został napisany. istotą projektu są 3 lementy
-        </Row>
-        <Box start={[1, 2]} end={[4, 2]} headerShow="N" headerLabel="SYSTEM i KONFIGURACJA" headerDisplay="center">
-          {tec`./web/**`}
-          <br />
-          {tec`./deno.json`}
-          <br />
-          {tec`./ende.json`}
-          <hr />
-          <ul>
-            <li>importmap.ts</li>
-            <li>island.ts</li>
-            <li>staticfiles.ts</li>
-            <li>transpile.ts</li>
-            <li>transpile-ende.ts</li>
-            <li>client.ts</li>
-            <li>main.tsx</li>
-            <li>layout.tsx</li>
-            <li>404.tsx</li>
-          </ul>
-        </Box>
-        <Box start={[5, 2]} end={[12, 2]} headerShow="N" headerLabel="WSAD" headerDisplay="center">
-          {tec`./site/**`}
-          <hr />
-          <ul>
-            <li>
-              {tec`./site/features/**`} - mamy tu klocki budulcowe z których najistotniejsze to<ul>
-                <li>{tec`*.island.tsx`}</li>
-                <li>{tec`*.widget.tsx`}</li>
-              </ul>
-            </li>
-            <li>
-              {tec`./site/pages/**`} - mamy tu nasze strony, budowane z treści i klocków:{" "}
-              <ul>
-                <li>{tec`index.tsx`} - to strona główna</li>
-              </ul>
-            </li>
-            <li>{tec`./site/layout/**`} - mamy tu elementy naszych stron budowane z treści i klocków</li>
-            <li>{tec`./site/scripts/**`} - mamy tu rózne rzeczy, logike itp wszystko w czystym TypeScript</li>
-            <li>{tec`./site/static/**`} - mamy tu pliki statyczne w tym arkusze stylów css</li>
-          </ul>
-        </Box>
-        <Box start={[1, 3]} end={[6, 3]} headerShow="N" headerLabel="DENO" headerDisplay="center">{plik("json:deno")}</Box>
-        <Box start={[7, 3]} end={[12, 3]} headerShow="N" headerLabel="ENDE" headerDisplay="center">{plik("json:ende")}</Box>
-      </Table>
+			<Table cols={powtorz( 12, "max" )} rows={powtorz( 3, "auto" )} gapX="0.5rem" gapY="0.5rem">
+				<Row row={1}>
+					Obecnie działa pod <u>DENO</u>, natomiast pod <u>ENDO</u> cały czas coś nie spina, gdzieś na horyzoncie jako koncepcja majaczy <u>TSXR</u>{" "}
+					ale narazie nie został napisany. istotą projektu są 3 lementy
+				</Row>
+				<Box start={[ 1, 2 ]} end={[ 4, 2 ]} headerShow="N" headerLabel="SYSTEM i KONFIGURACJA" headerDisplay="center">
+					{tec`./web/**`}
+					<br />
+					{tec`./deno.json`}
+					<br />
+					{tec`./ende.json`}
+					<hr />
+					<ul>
+						<li>importmap.ts</li>
+						<li>island.ts</li>
+						<li>staticfiles.ts</li>
+						<li>transpile.ts</li>
+						<li>transpile-ende.ts</li>
+						<li>client.ts</li>
+						<li>main.tsx</li>
+						<li>layout.tsx</li>
+						<li>404.tsx</li>
+					</ul>
+				</Box>
+				<Box start={[ 5, 2 ]} end={[ 12, 2 ]} headerShow="N" headerLabel="WSAD" headerDisplay="center">
+					{tec`./site/**`}
+					<hr />
+					<ul>
+						<li>
+							{tec`./site/features/**`} - mamy tu klocki budulcowe z których najistotniejsze to<ul>
+								<li>{tec`*.island.tsx`}</li>
+								<li>{tec`*.widget.tsx`}</li>
+							</ul>
+						</li>
+						<li>
+							{tec`./site/pages/**`} - mamy tu nasze strony, budowane z treści i klocków:{" "}
+							<ul>
+								<li>{tec`index.tsx`} - to strona główna</li>
+							</ul>
+						</li>
+						<li>{tec`./site/layout/**`} - mamy tu elementy naszych stron budowane z treści i klocków</li>
+						<li>{tec`./site/scripts/**`} - mamy tu rózne rzeczy, logike itp wszystko w czystym TypeScript</li>
+						<li>{tec`./site/static/**`} - mamy tu pliki statyczne w tym arkusze stylów css</li>
+					</ul>
+				</Box>
+				<Box start={[ 1, 3 ]} end={[ 6, 3 ]} headerShow="N" headerLabel="DENO" headerDisplay="center">{plik( "json:deno" )}</Box>
+				<Box start={[ 7, 3 ]} end={[ 12, 3 ]} headerShow="N" headerLabel="ENDE" headerDisplay="center">{plik( "json:ende" )}</Box>
+			</Table>
 
-      <Title level="h3" size="1.5rem">
-        <strong>PLIKI TEGO SYSTEMU</strong>
-      </Title>
+			<Title level="h3" size="1.5rem">
+				<strong>PLIKI TEGO SYSTEMU</strong>
+			</Title>
 
-      <Table cols={["max"]} rows={powtorz(PLIKI_WEB.length, "auto")} gapX="0.5rem" gapY="0.5rem">
-        {PLIKI_WEB.map((klucz, i) => (
-          <Row row={i + 1} headerShow="W" headerLabel={tec`${sciezkaWeb(klucz)}`} headerDisplay={["start", -90]}>
-            {plik(klucz)}
-          </Row>
-        ))}
-      </Table>
-    </article>
-  );
+			<Table cols={[ "max" ]} rows={powtorz( PLIKI_WEB.length, "auto" )} gapX="0.5rem" gapY="0.5rem">
+				{PLIKI_WEB.map( ( klucz, i ) => (
+					<Row row={i + 1} headerShow="W" headerLabel={tec`${sciezkaWeb( klucz )}`} headerDisplay={[ "start", -90 ]}>
+						{plik( klucz )}
+					</Row>
+				) )}
+			</Table>
+		</article>
+	);
 }
 
 type Pliki = Record<
-  "json:deno" | "json:ende" | "ts:importmap" | "ts:staticfiles" | "ts:island" | "ts:transpile" | "ts:transpile-ende" | "ts:client" | "tsx:layout" | "tsx:main" | "tsx:404",
-  OutTec
+	"json:deno" | "json:ende" | "ts:importmap" | "ts:staticfiles" | "ts:island" | "ts:transpile" | "ts:transpile-ende" | "ts:client" | "tsx:layout" | "tsx:main" | "tsx:404",
+	OutTec
 >;
-function plik(klucz: keyof Pliki): OutTec {
-  const rekord: Pliki = {
-    "json:deno": tecs("json")`
+function plik( klucz: keyof Pliki ): OutTec {
+	const rekord: Pliki = {
+		"json:deno": tecs( "json" )`
 {
   "lock": "deno.lock",
   "compilerOptions": {
@@ -180,7 +180,7 @@ function plik(klucz: keyof Pliki): OutTec {
   }
 }
             `,
-    "json:ende": tecs("json")`
+		"json:ende": tecs( "json" )`
 {
   "lock": "ende.lock",
   "compilerOptions": {
@@ -236,7 +236,7 @@ function plik(klucz: keyof Pliki): OutTec {
   }
 }
             `,
-    "ts:importmap": tecs("typescript")`
+		"ts:importmap": tecs( "typescript" )`
 /**
  * Import map dla przeglądarki — bez npm. Adresy bierzemy z deno.json („imports”),
  * więc przeglądarka i serwer używają tych samych modułów w tych samych wersjach,
@@ -277,7 +277,7 @@ export const IMPORT_MAP = {
 /** Arkusz KaTeX z tego samego pakietu co na serwerze; czcionki ładują się względem niego. */
 export const KATEX_CSS = new URL("dist/katex.min.css", adres("katex/")).href;
         `,
-    "ts:staticfiles": tecs("typescript")`
+		"ts:staticfiles": tecs( "typescript" )`
 import type { MiddlewareHandler } from "@hono/hono";
 
 /**
@@ -326,7 +326,7 @@ function typTresci(sciezka: string): string {
   return (kropka >= 0 ? TYPY[sciezka.slice(kropka + 1).toLowerCase()] : undefined) ?? "application/octet-stream";
 }
           `,
-    "ts:island": tecs("typescript")`
+		"ts:island": tecs( "typescript" )`
 import { type ComponentType, type FunctionComponent, h } from "preact";
 
 const ROOT = new URL("../", import.meta.url).href;
@@ -382,7 +382,7 @@ export function island<P extends object>(
   return Wrapped;
 }
       `,
-    "ts:transpile": tecs("typescript")`
+		"ts:transpile": tecs( "typescript" )`
 // TYLKO DENO (przełącznik "@transpilacja": deno.json → ten plik, ende.json → web/transpile-ende.ts).
 // @deno/loader 0.5.0 czyta pliki przez node:fs, node:process, node:os i node:tty (sys_traits, funkcja "wasm"),
 // których Ende nie ma — dlatego Ende używa web/transpile-ende.ts (tsgo). Zmiany w grafie przenoś do obu plików.
@@ -511,7 +511,7 @@ async function inlineSourceMap(raw: Uint8Array): Promise<string> {
   return \`//# sourceMappingURL=data:application/json;base64,\${b64}\`;
 }
 `,
-    "ts:transpile-ende": tecs("typescript")`
+		"ts:transpile-ende": tecs( "typescript" )`
 /**
  * Kod przeglądarki dla Ende — odpowiednik web/transpile.ts bez @deno/loader.
  *
@@ -651,7 +651,7 @@ async function tsgo(urls: string[]): Promise<Map<string, string>> {
   }
 }
 `,
-    "ts:client": tecs("typescript")`
+		"ts:client": tecs( "typescript" )`
 import { type ComponentType, h, hydrate } from "preact";
 import { SLOT_ATTR } from "@/web/island.ts";
 
@@ -683,7 +683,7 @@ function ownSlot(el: HTMLElement): HTMLElement | null {
   return null;
 }
           `,
-    "tsx:layout": tecs("typescript")`
+		"tsx:layout": tecs( "typescript" )`
 import type { ComponentChildren } from "preact";
 import { IMPORT_MAP, KATEX_CSS } from "./importmap.ts";
 import { Kotwice } from "../site/scripts/kotwice.ts";
@@ -714,7 +714,7 @@ export function Layout(
   );
 }
         `,
-    "tsx:main": tecs("typescript")`
+		"tsx:main": tecs( "typescript" )`
 import { type Context, Hono } from "@hono/hono";
 import { renderToString } from "preact-render-to-string";
 import type { ComponentType, VNode } from "preact";
@@ -780,7 +780,7 @@ app.get("*", plikiStatyczne(new URL("../site/static/", import.meta.url)));
 
 export default { fetch: app.fetch } satisfies Deno.ServeDefaultExport;
 `,
-    "tsx:404": tecs("typescript")`
+		"tsx:404": tecs( "typescript" )`
 /**
  * Strona 404 generowana automatycznie: adres, którego nie ma, i mapa wszystkich stron
  * (drzewo plików index.tsx z site/pages — ta sama lista, z której main.tsx buduje router).
@@ -843,7 +843,7 @@ function Adres({ adres, istnieje }: { adres: string; istnieje: ReadonlySet<strin
 }
 
 `,
-  };
+	};
 
-  return rekord[klucz];
+	return rekord[klucz];
 }

@@ -13,13 +13,13 @@ import katex from "katex";
  * Błąd składni nie przerywa renderowania: KaTeX pokazuje go na czerwono.
  */
 export function Tex(
-  { children, display = false }: { children: string; display?: boolean },
+	{ children, display = false }: { children: string; display?: boolean },
 ) {
-  const html = katex.renderToString(children, {
-    displayMode: display,
-    throwOnError: false,
-  });
-  return display ? <div class="tex tex-blok" dangerouslySetInnerHTML={{ __html: html }} /> : <span class="tex" dangerouslySetInnerHTML={{ __html: html }} />;
+	const html = katex.renderToString( children, {
+		displayMode: display,
+		throwOnError: false,
+	} );
+	return display ? <div class="tex tex-blok" dangerouslySetInnerHTML={{ __html: html }} /> : <span class="tex" dangerouslySetInnerHTML={{ __html: html }} />;
 }
 
 /**
@@ -27,7 +27,7 @@ export function Tex(
  * dosłownie (String.raw), więc klamry i ukośniki (\frac, \times) nie
  * wymagają ucieczek. Jedyny wyjątek: `${…}` to wstawka JavaScriptu.
  */
-export const tex = (s: TemplateStringsArray, ...w: unknown[]) => <Tex>{String.raw(s, ...w)}</Tex>;
+export const tex = ( s: TemplateStringsArray, ...w: unknown[] ) => <Tex>{String.raw( s, ...w )}</Tex>;
 
 /** Wzór blokowy (wyśrodkowany, w osobnej linii): {texBlok`…`}. */
-export const texBlok = (s: TemplateStringsArray, ...w: unknown[]) => <Tex display>{String.raw(s, ...w)}</Tex>;
+export const texBlok = ( s: TemplateStringsArray, ...w: unknown[] ) => <Tex display>{String.raw( s, ...w )}</Tex>;

@@ -7,13 +7,13 @@
 import { cx } from "@/site/common/css/cx.ts";
 
 export interface FootBarItem {
-  name: string;
-  href: string;
+	name: string;
+	href: string;
 }
 
 export interface FootBarProps {
-  items: FootBarItem[];
-  class?: string;
+	items: FootBarItem[];
+	class?: string;
 }
 
 /**
@@ -24,10 +24,10 @@ export interface FootBarProps {
  *     { name: "Facebook", href: "https://www.facebook.com/Cisowski/" },
  *   ]} />
  */
-export function FootBar({ items, class: className }: FootBarProps) {
-  return (
-    <footer class={cx("foot-bar", className)} aria-label="Stopka">
-      {items.map(({ name, href }) => <a key={href} href={href}>{name}</a>)}
-    </footer>
-  );
+export function FootBar( { items, class: className }: FootBarProps ) {
+	return (
+		<footer class={cx( "foot-bar", className )} aria-label="Stopka" data-listwa="dol">
+			{items.map( ( { name, href } ) => <a key={href} href={href}>{name}</a> )}
+		</footer>
+	);
 }

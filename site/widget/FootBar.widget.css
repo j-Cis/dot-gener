@@ -1,42 +1,50 @@
+/*
+ * @project-metadata
+ * Path: site/widget/FootBar.widget.css
+ * Author: Jan Roman Cisowski
+ * ORCID: https://orcid.org/0009-0009-2907-3792
+ * Repository: https://github.com/j-Cis/dot-gener
+ */
+
 /* FootBar.widget.tsx — chuda stopka */
 .foot-bar {
-  position: sticky;
-  bottom: 0;
-  z-index: 100;
-  display: flex;
-  flex-direction: row;
-  /* „safe”: gdy linki się nie mieszczą, nie ucina początku, tylko przewija */
-  justify-content: safe center;
-  gap: 1.25rem;
-  overflow-x: auto;
-  white-space: nowrap;
-  padding: 0.2rem 1rem;
-  font-size: 0.75rem;
-  line-height: 1.6;
-  /* to samo szkło co w listwie u góry, kreska od strony treści */
-  background-color: rgb(16 17 22 / 0.75);
-  backdrop-filter: blur(12px) saturate(1.4);
-  border-top: 1px solid rgb(255 255 255 / 0.08);
-  scrollbar-width: none;
-  overscroll-behavior-x: contain;
+	position: sticky;
+	bottom: 0;
+	z-index: 100;
+	display: flex;
+	flex-direction: row;
+	/* „safe”: gdy linki się nie mieszczą, nie ucina początku, tylko przewija */
+	justify-content: safe center;
+	gap: 1.25rem;
+	overflow-x: auto;
+	white-space: nowrap;
+	padding: 0.2rem 1rem;
+	font-size: 0.75rem;
+	line-height: 1.6;
+	/* to samo szkło co w listwie u góry, kreska od strony treści */
+	background-color: rgb(16 17 22 / 0.75);
+	backdrop-filter: blur(12px) saturate(1.4);
+	border-top: 1px solid rgb(255 255 255 / 0.08);
+	scrollbar-width: none;
+	overscroll-behavior-x: contain;
 
-  & a {
-    flex: none;
-    color: #6b7280;
-    text-decoration: none;
-    transition: color 0.15s;
-  }
-  & a:hover {
-    color: #e4e4e6;
-  }
-  & a:focus-visible {
-    outline: 2px solid #4f85d8;
-    outline-offset: 2px;
-    border-radius: 2px;
-  }
+	& a {
+		flex: none;
+		color: #6b7280;
+		text-decoration: none;
+		transition: color 0.15s;
+	}
+	& a:hover {
+		color: #e4e4e6;
+	}
+	& a:focus-visible {
+		outline: 2px solid #4f85d8;
+		outline-offset: 2px;
+		border-radius: 2px;
+	}
 }
 @media (prefers-reduced-motion: reduce) {
-  .foot-bar a {
-    transition: none;
-  }
+	.foot-bar a {
+		transition: none;
+	}
 }

@@ -16,22 +16,22 @@ export type TitleSize = `${number}${"rem" | "em" | "px"}`;
 export type TitleLevel = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 
 export interface TitleProps {
-  children: ComponentChildren;
-  /** Short point key shown before the text, e.g. "1.1" or "a1". */
-  prefix?: string;
-  /** Font size of the whole title; the prefix scales with it (em). */
-  size?: TitleSize;
-  /** Outline level. Default: "h2". */
-  level?: TitleLevel;
-  /** Extra classes for the point (prefix). */
-  prefixClass?: string;
-  /** Extra classes for the text. */
-  textClass?: string;
-  /**
-   * Id kotwicy (link …#id). Domyślnie z prefiksu i tekstu, np. "1.0-lektura-o-dot-gener";
-   * podaj własne, gdy link ma przetrwać zmianę treści nagłówka.
-   */
-  id?: string;
+	children: ComponentChildren;
+	/** Short point key shown before the text, e.g. "1.1" or "a1". */
+	prefix?: string;
+	/** Font size of the whole title; the prefix scales with it (em). */
+	size?: TitleSize;
+	/** Outline level. Default: "h2". */
+	level?: TitleLevel;
+	/** Extra classes for the point (prefix). */
+	prefixClass?: string;
+	/** Extra classes for the text. */
+	textClass?: string;
+	/**
+	 * Id kotwicy (link …#id). Domyślnie z prefiksu i tekstu, np. "1.0-lektura-o-dot-gener";
+	 * podaj własne, gdy link ma przetrwać zmianę treści nagłówka.
+	 */
+	id?: string;
 }
 
 /**
@@ -42,133 +42,133 @@ export interface TitleProps {
  *   <Title id="wzory">Wzory</Title>   → …#wzory
  */
 export function Title(
-  { children, prefix, size, level: Tag = "h2", prefixClass, textClass, id }: TitleProps,
+	{ children, prefix, size, level: Tag = "h2", prefixClass, textClass, id }: TitleProps,
 ) {
-  const tekst = tekstZ(children);
-  const kotwica = unikalna(useContext(Kotwice), id ?? slug(prefix ? `${prefix} ${tekst}` : tekst));
-  return (
-    <Tag id={kotwica} class="title" style={size ? { fontSize: size } : undefined}>
-      {/* link do tego miejsca; widoczny po najechaniu (styles.css: .title-kotwica) */}
-      <a class="title-kotwica" href={`#${kotwica}`} aria-label={`Link do sekcji: ${prefix ? `${prefix} ` : ""}${tekst}`}>#</a>
-      {prefix && (
-        <>
-          <span class={cx("title-prefix", prefixClass)}>{prefix}</span>
-          {/* space keeps "1.1 Name" readable for copy & screen readers */}
-          {" "}
-        </>
-      )}
-      <span class={cx("title-text", textClass)}>{children}</span>
-    </Tag>
-  );
+	const tekst = tekstZ( children );
+	const kotwica = unikalna( useContext( Kotwice ), id ?? slug( prefix ? `${prefix} ${tekst}` : tekst ) );
+	return (
+		<Tag id={kotwica} class="title" style={size ? { fontSize: size } : undefined}>
+			{/* link do tego miejsca; widoczny po najechaniu (styles.css: .title-kotwica) */}
+			<a class="title-kotwica" href={`#${kotwica}`} aria-label={`Link do sekcji: ${prefix ? `${prefix} ` : ""}${tekst}`}>#</a>
+			{prefix && (
+				<>
+					<span class={cx( "title-prefix", prefixClass )}>{prefix}</span>
+					{/* space keeps "1.1 Name" readable for copy & screen readers */}
+					{" "}
+				</>
+			)}
+			<span class={cx( "title-text", textClass )}>{children}</span>
+		</Tag>
+	);
 }
 
 export interface TitleSectionProps {
-  children: ComponentChildren;
-  /** Short point key shown before the text, e.g. "1.1" or "a1". */
-  prefix?: string;
-  /** Font size of the whole title; the prefix scales with it (em). */
-  title: ComponentChildren;
-  titleSize?: TitleSize;
-  /** Outline level. Default: "h2". */
-  titleLevel?: TitleLevel;
-  /** Extra classes for the point (prefix). */
-  prefixClass?: string;
-  sectionClass?: string;
-  /** Extra classes for the text. */
-  titleClass?: string;
-  /**
-   * Id kotwicy (link …#id). Domyślnie z prefiksu i tekstu, np. "1.0-lektura-o-dot-gener";
-   * podaj własne, gdy link ma przetrwać zmianę treści nagłówka.
-   */
-  id?: string;
-  /** Linia tytułu zwija i rozwija treść. Domyślnie false (bez przełącznika). */
-  collapsible?: boolean;
-  /** Przy collapsible: start zwinięty. Domyślnie false, czyli rozwinięty. */
-  collapsed?: boolean;
+	children: ComponentChildren;
+	/** Short point key shown before the text, e.g. "1.1" or "a1". */
+	prefix?: string;
+	/** Font size of the whole title; the prefix scales with it (em). */
+	title: ComponentChildren;
+	titleSize?: TitleSize;
+	/** Outline level. Default: "h2". */
+	titleLevel?: TitleLevel;
+	/** Extra classes for the point (prefix). */
+	prefixClass?: string;
+	sectionClass?: string;
+	/** Extra classes for the text. */
+	titleClass?: string;
+	/**
+	 * Id kotwicy (link …#id). Domyślnie z prefiksu i tekstu, np. "1.0-lektura-o-dot-gener";
+	 * podaj własne, gdy link ma przetrwać zmianę treści nagłówka.
+	 */
+	id?: string;
+	/** Linia tytułu zwija i rozwija treść. Domyślnie false (bez przełącznika). */
+	collapsible?: boolean;
+	/** Przy collapsible: start zwinięty. Domyślnie false, czyli rozwinięty. */
+	collapsed?: boolean;
 }
 
 export function TitleSection(
-  { children, prefix, title, titleSize, titleLevel: Tag = "h2", prefixClass, titleClass, sectionClass, id, collapsible = false, collapsed = false }: TitleSectionProps,
+	{ children, prefix, title, titleSize, titleLevel: Tag = "h2", prefixClass, titleClass, sectionClass, id, collapsible = false, collapsed = false }: TitleSectionProps,
 ) {
-  const tekst = tekstZ(title);
-  const kotwica = unikalna(useContext(Kotwice), id ?? slug(prefix ? `${prefix} ${tekst}` : tekst));
-  const naglowek = (
-    <Tag id={kotwica} class="title" style={titleSize ? { fontSize: titleSize } : undefined}>
-      <a class="title-kotwica" href={`#${kotwica}`} aria-label={`Link do sekcji: ${prefix ? `${prefix} ` : ""}${tekst}`}>#</a>
-      {prefix && (
-        <>
-          <span class={cx("title-prefix", prefixClass)}>{prefix}</span>
-          {" "}
-        </>
-      )}
-      <span class={cx("title-text", titleClass)}>{title}</span>
-    </Tag>
-  );
-  const tresc = <div class={cx("title-section", sectionClass)}>{children}</div>;
+	const tekst = tekstZ( title );
+	const kotwica = unikalna( useContext( Kotwice ), id ?? slug( prefix ? `${prefix} ${tekst}` : tekst ) );
+	const naglowek = (
+		<Tag id={kotwica} class="title" style={titleSize ? { fontSize: titleSize } : undefined}>
+			<a class="title-kotwica" href={`#${kotwica}`} aria-label={`Link do sekcji: ${prefix ? `${prefix} ` : ""}${tekst}`}>#</a>
+			{prefix && (
+				<>
+					<span class={cx( "title-prefix", prefixClass )}>{prefix}</span>
+					{" "}
+				</>
+			)}
+			<span class={cx( "title-text", titleClass )}>{title}</span>
+		</Tag>
+	);
+	const tresc = <div class={cx( "title-section", sectionClass )}>{children}</div>;
 
-  if (!collapsible) {
-    return (
-      <section>
-        <header>{naglowek}</header>
-        {tresc}
-      </section>
-    );
-  }
-  return (
-    <section>
-      <details class="title-zwijana" open={!collapsed}>
-        <summary>{naglowek}</summary>
-        {tresc}
-      </details>
-    </section>
-  );
+	if ( !collapsible ) {
+		return (
+			<section>
+				<header>{naglowek}</header>
+				{tresc}
+			</section>
+		);
+	}
+	return (
+		<section>
+			<details class="title-zwijana" open={!collapsed}>
+				<summary>{naglowek}</summary>
+				{tresc}
+			</details>
+		</section>
+	);
 }
 
 export interface TitleArticleProps {
-  children: ComponentChildren;
-  /** Short point key shown before the text, e.g. "1.1" or "a1". */
-  prefix?: string;
-  /** Font size of the whole title; the prefix scales with it (em). */
-  title: ComponentChildren;
-  titleSize?: TitleSize;
-  /** Outline level. Default: "h2". */
-  titleLevel?: TitleLevel;
-  /** Extra classes for the point (prefix). */
-  prefixClass?: string;
-  articleClass?: string;
-  /** Extra classes for the text. */
-  titleClass?: string;
-  /**
-   * Id kotwicy (link …#id). Domyślnie z prefiksu i tekstu, np. "1.0-lektura-o-dot-gener";
-   * podaj własne, gdy link ma przetrwać zmianę treści nagłówka.
-   */
-  id?: string;
+	children: ComponentChildren;
+	/** Short point key shown before the text, e.g. "1.1" or "a1". */
+	prefix?: string;
+	/** Font size of the whole title; the prefix scales with it (em). */
+	title: ComponentChildren;
+	titleSize?: TitleSize;
+	/** Outline level. Default: "h2". */
+	titleLevel?: TitleLevel;
+	/** Extra classes for the point (prefix). */
+	prefixClass?: string;
+	articleClass?: string;
+	/** Extra classes for the text. */
+	titleClass?: string;
+	/**
+	 * Id kotwicy (link …#id). Domyślnie z prefiksu i tekstu, np. "1.0-lektura-o-dot-gener";
+	 * podaj własne, gdy link ma przetrwać zmianę treści nagłówka.
+	 */
+	id?: string;
 }
 
 export function TitleArticle(
-  { children, prefix, title, titleSize, titleLevel: Tag = "h2", prefixClass, titleClass, articleClass, id }: TitleArticleProps,
+	{ children, prefix, title, titleSize, titleLevel: Tag = "h2", prefixClass, titleClass, articleClass, id }: TitleArticleProps,
 ) {
-  const tekst = tekstZ(children);
-  const kotwica = unikalna(useContext(Kotwice), id ?? slug(prefix ? `${prefix} ${tekst}` : tekst));
-  return (
-    <article>
-      <header>
-        <Tag id={kotwica} class="title" style={titleSize ? { fontSize: titleSize } : undefined}>
-          {/* link do tego miejsca; widoczny po najechaniu (styles.css: .title-kotwica) */}
-          <a class="title-kotwica" href={`#${kotwica}`} aria-label={`Link do sekcji: ${prefix ? `${prefix} ` : ""}${tekst}`}>#</a>
-          {prefix && (
-            <>
-              <span class={cx("title-prefix", prefixClass)}>{prefix}</span>
-              {/* space keeps "1.1 Name" readable for copy & screen readers */}
-              {" "}
-            </>
-          )}
-          <span class={cx("title-text", titleClass)}>{title}</span>
-        </Tag>
-      </header>
-      <div class={cx("title-article", articleClass)}>
-        {children}
-      </div>
-    </article>
-  );
+	const tekst = tekstZ( children );
+	const kotwica = unikalna( useContext( Kotwice ), id ?? slug( prefix ? `${prefix} ${tekst}` : tekst ) );
+	return (
+		<article>
+			<header>
+				<Tag id={kotwica} class="title" style={titleSize ? { fontSize: titleSize } : undefined}>
+					{/* link do tego miejsca; widoczny po najechaniu (styles.css: .title-kotwica) */}
+					<a class="title-kotwica" href={`#${kotwica}`} aria-label={`Link do sekcji: ${prefix ? `${prefix} ` : ""}${tekst}`}>#</a>
+					{prefix && (
+						<>
+							<span class={cx( "title-prefix", prefixClass )}>{prefix}</span>
+							{/* space keeps "1.1 Name" readable for copy & screen readers */}
+							{" "}
+						</>
+					)}
+					<span class={cx( "title-text", titleClass )}>{title}</span>
+				</Tag>
+			</header>
+			<div class={cx( "title-article", articleClass )}>
+				{children}
+			</div>
+		</article>
+	);
 }

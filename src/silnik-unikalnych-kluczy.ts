@@ -5,28 +5,28 @@
 // Repository: https://github.com/j-Cis/dot-gener
 
 export class SilnikUnikalnychKluczy<const T extends readonly string[]> {
-  #pulaKluczy: Record<T[number], number>;
+	#pulaKluczy: Record<T[number], number>;
 
-  constructor(klucze: T) {
-    this.#pulaKluczy = Object.fromEntries(
-      klucze.map((rodzaj) => [rodzaj, 0]),
-    ) as Record<T[number], number>;
-  }
+	constructor( klucze: T ) {
+		this.#pulaKluczy = Object.fromEntries(
+			klucze.map( ( rodzaj ) => [ rodzaj, 0 ] ),
+		) as Record<T[number], number>;
+	}
 
-  nadaj<K extends T[number]>(rodzaj: K): [K, number] {
-    const ostatniKlucz = this.#pulaKluczy[rodzaj];
+	nadaj<K extends T[number]>( rodzaj: K ): [ K, number ] {
+		const ostatniKlucz = this.#pulaKluczy[rodzaj];
 
-    this.#pulaKluczy[rodzaj] = ostatniKlucz + 1;
+		this.#pulaKluczy[rodzaj] = ostatniKlucz + 1;
 
-    return [rodzaj, ostatniKlucz + 1];
-  }
+		return [ rodzaj, ostatniKlucz + 1 ];
+	}
 
-  liczbaCyfr(): Record<T[number], number> {
-    return Object.fromEntries(
-      Object.entries(this.#pulaKluczy).map(([rodzaj, numer]) => [
-        rodzaj,
-        numer === 0 ? 0 : String(numer).length,
-      ]),
-    ) as Record<T[number], number>;
-  }
+	liczbaCyfr(): Record<T[number], number> {
+		return Object.fromEntries(
+			Object.entries( this.#pulaKluczy ).map( ( [ rodzaj, numer ] ) => [
+				rodzaj,
+				numer === 0 ? 0 : String( numer ).length,
+			] ),
+		) as Record<T[number], number>;
+	}
 }

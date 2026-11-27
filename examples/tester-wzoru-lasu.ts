@@ -17,23 +17,23 @@ import { type Las, zbudujLas } from "@/examples/przyklad-lasu.ts";
 
 /** Skróty używane we wzorze → rodzaje węzłów w schemacie (satisfies: literówka = błąd kompilacji). */
 export const RODZAJ = {
-  Ego: "korzen",
-  Dad: "ojciec",
-  Mom: "matka",
+	Ego: "korzen",
+	Dad: "ojciec",
+	Mom: "matka",
 } as const satisfies Record<string, RodzajWezla<StanSchematu<typeof schematLasu>>>;
 
 type Rodzaj = keyof typeof RODZAJ;
 
 /** Pojedyncza liczba albo — wyjątek korzenia — para [pierwsza, druga]. */
-type Wartosc = number | readonly [pierwsza: number, druga: number];
+type Wartosc = number | readonly [ pierwsza: number, druga: number ];
 
 export type WierszWzoru = readonly [
-  wzor: string,
-  rodzaj: Rodzaj,
-  numer: number,
-  polozenie: Readonly<Pick<PolaLasu, "iK" | "iA" | "iR">>,
-  indeksy: Readonly<Record<"jA" | "jR" | "fA" | "fR", Wartosc>>,
-  serie: Readonly<Pick<PolaLasu, "yA" | "xA" | "yR" | "xR">>,
+	wzor: string,
+	rodzaj: Rodzaj,
+	numer: number,
+	polozenie: Readonly<Pick<PolaLasu, "iK" | "iA" | "iR">>,
+	indeksy: Readonly<Record<"jA" | "jR" | "fA" | "fR", Wartosc>>,
+	serie: Readonly<Pick<PolaLasu, "yA" | "xA" | "yR" | "xR">>,
 ];
 
 // deno-fmt-ignore
@@ -58,47 +58,47 @@ export const WEZLY_WZORU: readonly WierszWzoru[] = [
 ];
 
 /** Ten sam wiersz, ale z wartościami wyliczonymi przez silnik dla węzła [rodzaj, numer]. */
-export function wierszSilnika(graf: Las, [wzor, rodzaj, numer]: WierszWzoru): WierszWzoru {
-  const w = graf.wezel([RODZAJ[rodzaj], numer]);
-  const a = w.auto;
-  const drugie = w.rodzaj === "korzen" ? w.auto.drugie : undefined;
-  const dwie = (x: number, d: number | undefined): Wartosc => (d === undefined ? x : [x, d]);
-  return [
-    wzor,
-    rodzaj,
-    numer,
-    { iK: a.iK, iA: a.iA, iR: a.iR },
-    { jA: dwie(a.jA, drugie?.jA), jR: dwie(a.jR, drugie?.jR), fA: dwie(a.fA, drugie?.fA), fR: dwie(a.fR, drugie?.fR) },
-    { yA: a.yA, xA: a.xA, yR: a.yR, xR: a.xR },
-  ];
+export function wierszSilnika( graf: Las, [ wzor, rodzaj, numer ]: WierszWzoru ): WierszWzoru {
+	const w = graf.wezel( [ RODZAJ[rodzaj], numer ] );
+	const a = w.auto;
+	const drugie = w.rodzaj === "korzen" ? w.auto.drugie : undefined;
+	const dwie = ( x: number, d: number | undefined ): Wartosc => ( d === undefined ? x : [ x, d ] );
+	return [
+		wzor,
+		rodzaj,
+		numer,
+		{ iK: a.iK, iA: a.iA, iR: a.iR },
+		{ jA: dwie( a.jA, drugie?.jA ), jR: dwie( a.jR, drugie?.jR ), fA: dwie( a.fA, drugie?.fA ), fR: dwie( a.fR, drugie?.fR ) },
+		{ yA: a.yA, xA: a.xA, yR: a.yR, xR: a.xR },
+	];
 }
 
 /** Różnice wzór ↔ silnik: [pole, we wzorze, w silniku]; pusta lista = zgodność. */
-export function roznice(wzor: WierszWzoru, silnik: WierszWzoru): readonly (readonly [pole: string, wzor: unknown, silnik: unknown])[] {
-  const [, , , ...grupyWzoru] = wzor;
-  const [, , , ...grupySilnika] = silnik;
-  return grupyWzoru.flatMap((grupa, i) => {
-    const druga: Readonly<Record<string, unknown>> = grupySilnika[i] ?? {};
-    return Object.entries(grupa)
-      .filter(([pole, wartosc]) => !equal(wartosc, druga[pole]))
-      .map(([pole, wartosc]) => [pole, wartosc, druga[pole]] as const);
-  });
+export function roznice( wzor: WierszWzoru, silnik: WierszWzoru ): readonly (readonly [ pole: string, wzor: unknown, silnik: unknown ])[] {
+	const [ , , , ...grupyWzoru ] = wzor;
+	const [ , , , ...grupySilnika ] = silnik;
+	return grupyWzoru.flatMap( ( grupa, i ) => {
+		const druga: Readonly<Record<string, unknown>> = grupySilnika[i] ?? {};
+		return Object.entries( grupa )
+			.filter( ( [ pole, wartosc ] ) => !equal( wartosc, druga[pole] ) )
+			.map( ( [ pole, wartosc ] ) => [ pole, wartosc, druga[pole] ] as const );
+	} );
 }
 
 // ── raport: deno run examples/tester-wzoru-lasu.ts ───────────────────────
-if (import.meta.main) {
-  const graf = zbudujLas(3);
-  const json = (v: unknown) => JSON.stringify(v);
-  let zgodne = 0;
-  for (const wiersz of WEZLY_WZORU) {
-    const r = roznice(wiersz, wierszSilnika(graf, wiersz));
-    if (r.length === 0) {
-      zgodne++;
-      console.log(`✓ ${wiersz[0]}`);
-    } else {
-      console.log(`✗ ${wiersz[0]}  ${r.map(([pole, wz, si]) => `${pole}: wzór ${json(wz)} ≠ silnik ${json(si)}`).join(", ")}`);
-    }
-  }
-  const [nWezlow] = graf.rozmiar();
-  console.log(`\nzgodne: ${zgodne}/${WEZLY_WZORU.length}; węzłów w grafie: ${nWezlow}`);
+if ( import.meta.main ) {
+	const graf = zbudujLas( 3 );
+	const json = ( v: unknown ) => JSON.stringify( v );
+	let zgodne = 0;
+	for ( const wiersz of WEZLY_WZORU ) {
+		const r = roznice( wiersz, wierszSilnika( graf, wiersz ) );
+		if ( r.length === 0 ) {
+			zgodne++;
+			console.log( `✓ ${wiersz[0]}` );
+		} else {
+			console.log( `✗ ${wiersz[0]}  ${r.map( ( [ pole, wz, si ] ) => `${pole}: wzór ${json( wz )} ≠ silnik ${json( si )}` ).join( ", " )}` );
+		}
+	}
+	const [ nWezlow ] = graf.rozmiar();
+	console.log( `\nzgodne: ${zgodne}/${WEZLY_WZORU.length}; węzłów w grafie: ${nWezlow}` );
 }

@@ -7,14 +7,14 @@
 import { cx } from "@/site/common/css/cx.ts";
 
 export interface GuideBarItem {
-  name: string;
-  local: string;
-  public?: string;
+	name: string;
+	local: string;
+	public?: string;
 }
 
 export interface GuideBarProps {
-  items: GuideBarItem[];
-  class?: string;
+	items: GuideBarItem[];
+	class?: string;
 }
 
 /**
@@ -25,14 +25,14 @@ export interface GuideBarProps {
  *     { name: "Instalacja", local: "/guide/install", public: "/guide/install" },
  *   ]} />
  */
-export function GuideBar({ items, class: className }: GuideBarProps) {
-  return (
-    <nav class={cx("guide-bar", className)} aria-label="Nawigacja przewodnika">
-      {items.map(({ name, local, public: published }) => (
-        <a href={local} data-public={published}>
-          {name}
-        </a>
-      ))}
-    </nav>
-  );
+export function GuideBar( { items, class: className }: GuideBarProps ) {
+	return (
+		<nav class={cx( "guide-bar", className )} aria-label="Nawigacja przewodnika" data-listwa="gora">
+			{items.map( ( { name, local, public: published } ) => (
+				<a href={local} data-public={published}>
+					{name}
+				</a>
+			) )}
+		</nav>
+	);
 }

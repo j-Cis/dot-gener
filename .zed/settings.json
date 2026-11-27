@@ -1,8 +1,8 @@
 {
-  "semantic_tokens": "full",
-  "terminal": {
-    "shell": {
-      "program": "powershell.exe"
-    }
-  }
+	"semantic_tokens": "full",
+	"terminal": {
+		"shell": {
+			"program": "powershell.exe"
+		}
+	}
 }

@@ -1,69 +1,77 @@
+/*
+ * @project-metadata
+ * Path: site/widget/Title.widgets.css
+ * Author: Jan Roman Cisowski
+ * ORCID: https://orcid.org/0009-0009-2907-3792
+ * Repository: https://github.com/j-Cis/dot-gener
+ */
+
 /* Title.widgets.tsx */
 .title {
-  display: flex;
-  align-items: baseline;
-  gap: 0.5em;
-  line-height: 1.2;
+	display: flex;
+	align-items: baseline;
+	gap: 0.5em;
+	line-height: 1.2;
 }
 .title-prefix {
-  font-variant-numeric: tabular-nums;
-  font-weight: 600;
-  color: #6b7280;
+	font-variant-numeric: tabular-nums;
+	font-weight: 600;
+	color: #6b7280;
 }
 /* kotwica #id jak w markdown: „#” po lewej, widoczny po najechaniu / fokusie */
 .title {
-  position: relative;
-  scroll-margin-top: 1rem; /* po skoku do #id nagłówek nie dotyka krawędzi */
-  padding-inline: 0.25em;
-  margin-inline: -0.25em;
-  border-radius: 0.25rem;
-  transition: background-color 0.15s;
+	position: relative;
+	scroll-margin-top: 1rem; /* po skoku do #id nagłówek nie dotyka krawędzi */
+	padding-inline: 0.25em;
+	margin-inline: -0.25em;
+	border-radius: 0.25rem;
+	transition: background-color 0.15s;
 }
 .title:hover {
-  background-color: rgb(255 255 255 / 0.04);
+	background-color: rgb(255 255 255 / 0.04);
 }
 .title:target {
-  /* nagłówek, do którego prowadzi adres …#id */
-  background-color: rgb(79 133 216 / 0.14);
-  box-shadow: inset 3px 0 0 #4f85d8;
+	/* nagłówek, do którego prowadzi adres …#id */
+	background-color: rgb(79 133 216 / 0.14);
+	box-shadow: inset 3px 0 0 #4f85d8;
 }
 .title-kotwica {
-  position: absolute;
-  top: 0;
-  right: 100%;
-  padding-inline-end: 0.2em;
-  color: #6b7280;
-  text-decoration: none;
-  opacity: 0;
-  transition: opacity 0.15s;
+	position: absolute;
+	top: 0;
+	right: 100%;
+	padding-inline-end: 0.2em;
+	color: #6b7280;
+	text-decoration: none;
+	opacity: 0;
+	transition: opacity 0.15s;
 }
 .title:hover .title-kotwica,
 .title-kotwica:focus-visible {
-  opacity: 1;
+	opacity: 1;
 }
 .title-kotwica:hover {
-  color: #4f85d8;
+	color: #4f85d8;
 }
 /* TitleSection collapsible — cała linia tytułu przełącza treść */
 .title-zwijana > summary {
-  display: block;
-  list-style: none;
-  cursor: pointer;
+	display: block;
+	list-style: none;
+	cursor: pointer;
 }
 .title-zwijana > summary::-webkit-details-marker {
-  display: none;
+	display: none;
 }
 .title-zwijana > summary > .title::after {
-  content: "▾";
-  color: #6b7280;
-  font-size: 0.7em;
-  transition: transform 0.15s;
+	content: "▾";
+	color: #6b7280;
+	font-size: 0.7em;
+	transition: transform 0.15s;
 }
 .title-zwijana:not([open]) > summary > .title::after {
-  transform: rotate(-90deg);
+	transform: rotate(-90deg);
 }
 @media (prefers-reduced-motion: reduce) {
-  .title-zwijana > summary > .title::after {
-    transition: none;
-  }
+	.title-zwijana > summary > .title::after {
+		transition: none;
+	}
 }

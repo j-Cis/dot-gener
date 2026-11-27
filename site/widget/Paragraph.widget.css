@@ -1,9 +1,17 @@
+/*
+ * @project-metadata
+ * Path: site/widget/Paragraph.widget.css
+ * Author: Jan Roman Cisowski
+ * ORCID: https://orcid.org/0009-0009-2907-3792
+ * Repository: https://github.com/j-Cis/dot-gener
+ */
+
 .text-paragraph {
-  margin-block: 6px;
-  line-height: 1.8;
-  text-indent: 2em;
+	margin-block: 6px;
+	line-height: 1.8;
+	text-indent: 2em;
 }
 .text-paragraph--no-indent {
-  margin-block: 6px;
-  line-height: 1.8;
+	margin-block: 6px;
+	line-height: 1.8;
 }

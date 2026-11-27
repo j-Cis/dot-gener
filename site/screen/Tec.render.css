@@ -1,48 +1,56 @@
+/*
+ * @project-metadata
+ * Path: site/screen/Tec.render.css
+ * Author: Jan Roman Cisowski
+ * ORCID: https://orcid.org/0009-0009-2907-3792
+ * Repository: https://github.com/j-Cis/dot-gener
+ */
+
 /* Tec.render.tsx — kod wyświetlany dosłownie */
 .tec {
-  /* tło kodu: odrobinę jaśniejsze od tła strony (#101116), żeby kod się wyróżniał */
-  --tec-tlo: #21232c;
-  --tec-tekst: #e4e4e6;
-  --tec-tekst-hover-actio: #a2f2d8;
-  font-family: ui-monospace, "Cascadia Mono", Consolas, "DejaVu Sans Mono", monospace;
-  font-size: 0.9em;
-  tab-size: 2;
-  color: var(--tec-tekst);
-  background-color: var(--tec-tlo);
-  &:hover,
-  &:active {
-    color: var(--tec-tekst-hover-actio);
-  }
+	/* tło kodu: odrobinę jaśniejsze od tła strony (#101116), żeby kod się wyróżniał */
+	--tec-tlo: #21232c;
+	--tec-tekst: #e4e4e6;
+	--tec-tekst-hover-actio: #a2f2d8;
+	font-family: ui-monospace, "Cascadia Mono", Consolas, "DejaVu Sans Mono", monospace;
+	font-size: 0.9em;
+	tab-size: 2;
+	color: var(--tec-tekst);
+	background-color: var(--tec-tlo);
+	&:hover,
+	&:active {
+		color: var(--tec-tekst-hover-actio);
+	}
 }
 code.tec {
-  /* w linii: zachowane spacje, łamanie długich fragmentów */
-  padding: 0.1em 0.6em;
-  border-radius: 0.3rem;
-  white-space: pre-wrap;
-  /* po złamaniu wiersza każdy kawałek ma własne tło, zaokrąglenie i margines */
-  -webkit-box-decoration-break: clone;
-  box-decoration-break: clone;
+	/* w linii: zachowane spacje, łamanie długich fragmentów */
+	padding: 0.1em 0.6em;
+	border-radius: 0.3rem;
+	white-space: pre-wrap;
+	/* po złamaniu wiersza każdy kawałek ma własne tło, zaokrąglenie i margines */
+	-webkit-box-decoration-break: clone;
+	box-decoration-break: clone;
 }
 pre.tec-blok {
-  /* blok: dokładne odstępy i znaki nowej linii, przewijanie w poziomie zamiast łamania */
-  margin-block: 0.75rem;
-  padding: 0.85rem 1.1rem;
-  border-radius: 0.5rem;
-  line-height: 1.5;
-  overflow-x: auto;
+	/* blok: dokładne odstępy i znaki nowej linii, przewijanie w poziomie zamiast łamania */
+	margin-block: 0.75rem;
+	padding: 0.85rem 1.1rem;
+	border-radius: 0.5rem;
+	line-height: 1.5;
+	overflow-x: auto;
 }
 pre.tec-blok code {
-  font: inherit;
+	font: inherit;
 }
 pre.tec-blok.tec-przyciety {
-  /* widthTrim="50%": blok staje w rzędzie obok sąsiednich; odstęp jest wliczony w podaną szerokość,
-     więc 2 × 50% (albo 60% + 40%) mieści się w jednym rzędzie, a kolejne bloki przechodzą do następnego */
-  --tec-odstep: 0.5rem;
-  display: inline-block;
-  vertical-align: top;
-  box-sizing: border-box;
-  width: calc(var(--tec-szerokosc) - var(--tec-odstep));
-  margin-inline: calc(var(--tec-odstep) / 2);
+	/* widthTrim="50%": blok staje w rzędzie obok sąsiednich; odstęp jest wliczony w podaną szerokość,
+	   więc 2 × 50% (albo 60% + 40%) mieści się w jednym rzędzie, a kolejne bloki przechodzą do następnego */
+	--tec-odstep: 0.5rem;
+	display: inline-block;
+	vertical-align: top;
+	box-sizing: border-box;
+	width: calc(var(--tec-szerokosc) - var(--tec-odstep));
+	margin-inline: calc(var(--tec-odstep) / 2);
 }
 
 /* kolorowanie składni (Tec z lang="…"; klasy nadaje highlight.js) */
@@ -52,49 +60,49 @@ pre.tec-blok.tec-przyciety {
 .tec .hljs-variable.language_,
 .tec .hljs-tag,
 .tec .hljs-name {
-  color: #569cd6;
+	color: #569cd6;
 }
 .tec .hljs-built_in,
 .tec .hljs-type,
 .tec .hljs-title.class_,
 .tec .hljs-title.class_.inherited__ {
-  color: #4ec9b0;
+	color: #4ec9b0;
 }
 .tec .hljs-title,
 .tec .hljs-title.function_ {
-  color: #dcdcaa;
+	color: #dcdcaa;
 }
 .tec .hljs-attr,
 .tec .hljs-attribute,
 .tec .hljs-property,
 .tec .hljs-variable,
 .tec .hljs-params {
-  color: #9cdcfe;
+	color: #9cdcfe;
 }
 .tec .hljs-string {
-  color: #ce9178;
+	color: #ce9178;
 }
 .tec .hljs-subst {
-  /* ${…} w szablonie: zwykły kolor kodu */
-  color: var(--tec-tekst);
+	/* ${…} w szablonie: zwykły kolor kodu */
+	color: var(--tec-tekst);
 }
 .tec .hljs-number {
-  color: #b5cea8;
+	color: #b5cea8;
 }
 .tec .hljs-regexp {
-  color: #d16969;
+	color: #d16969;
 }
 .tec .hljs-meta,
 .tec .hljs-keyword.control_ {
-  color: #c586c0;
+	color: #c586c0;
 }
 .tec .hljs-selector-class,
 .tec .hljs-selector-id,
 .tec .hljs-selector-tag {
-  color: #d7ba7d;
+	color: #d7ba7d;
 }
 .tec .hljs-comment,
 .tec .hljs-quote {
-  color: #6a9955;
-  font-style: italic;
+	color: #6a9955;
+	font-style: italic;
 }

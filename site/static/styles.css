@@ -7,171 +7,171 @@
  */
 
 .counter {
-  display: flex;
-  gap: 2rem;
-  align-items: center;
+	display: flex;
+	gap: 2rem;
+	align-items: center;
 }
 .count {
-  font-size: 1.875rem;
-  font-variant-numeric: tabular-nums;
+	font-size: 1.875rem;
+	font-variant-numeric: tabular-nums;
 }
 .btn {
-  padding: 0.25rem 0.5rem;
-  border: 2px solid #6b7280;
-  border-radius: 0.125rem;
-  background: #fff;
-  cursor: pointer;
+	padding: 0.25rem 0.5rem;
+	border: 2px solid #6b7280;
+	border-radius: 0.125rem;
+	background: #fff;
+	cursor: pointer;
 }
 .btn:hover {
-  background: #e5e7eb;
+	background: #e5e7eb;
 }
 
 /* SpanWithKey.widget.tsx (px from the original → em at 16px) */
 .span-with-key {
-  --swk-value: teal;
-  --swk-key: teal;
-  white-space: nowrap;
-  margin-inline: 4px; /* room for the 2px outline + 2px offset */
+	--swk-value: teal;
+	--swk-key: teal;
+	white-space: nowrap;
+	margin-inline: 4px; /* room for the 2px outline + 2px offset */
 }
 .span-with-key-value,
 .span-with-key-key {
-  padding-inline: 0.25em;
-  font-weight: 700;
+	padding-inline: 0.25em;
+	font-weight: 700;
 }
 .span-with-key-value {
-  color: var(--swk-value);
-  outline: 2px dotted var(--swk-value);
-  outline-offset: 2px;
-  margin-inline-end: 0.25em;
-  line-height: 1.5em;
+	color: var(--swk-value);
+	outline: 2px dotted var(--swk-value);
+	outline-offset: 2px;
+	margin-inline-end: 0.25em;
+	line-height: 1.5em;
 }
 .span-with-key-key {
-  color: black;
-  background-color: var(--swk-key);
-  margin-inline-end: 0.125em;
+	color: black;
+	background-color: var(--swk-key);
+	margin-inline-end: 0.125em;
 }
 
 /* pages/index/Tab01.section.tsx */
 .tab01 {
-  border-collapse: separate;
-  border-spacing: 0 8px;
+	border-collapse: separate;
+	border-spacing: 0 8px;
 
-  & td {
-    padding: 3px 8px;
-  }
-  & .tab01-kto {
-    text-align: right;
-    padding-right: 1rem;
-  }
-  & .tab01-schemat {
-    outline: 2px dotted darkgray;
-    vertical-align: top;
-  }
+	& td {
+		padding: 3px 8px;
+	}
+	& .tab01-kto {
+		text-align: right;
+		padding-right: 1rem;
+	}
+	& .tab01-schemat {
+		outline: 2px dotted darkgray;
+		vertical-align: top;
+	}
 }
 
 /* schemat drzewa SOSA (SVG) */
 svg.drzewo {
-  & .drzewo-edge {
-    fill: none;
-    opacity: 0.6;
-    stroke: oklch(35% 0.04 276.381);
-    stroke-width: 7;
-    filter: blur(3px);
-  }
-  & .drzewo-node {
-    fill: oklch(17.888% 0.01042 276.381);
-    stroke: oklch(35% 0.04 276.381);
-    stroke-width: 1.5;
-  }
-  & .drzewo-text {
-    font-family: sans-serif;
-    font-weight: 700;
-    text-anchor: middle;
-  }
-  & .drzewo-text tspan {
-    font-size: 7px;
-    fill: black;
-    baseline-shift: sub;
-  }
-  & .drzewo-num-bin {
-    fill: teal;
-    font-size: 11px;
-  }
-  & .drzewo-num-dec {
-    fill: goldenrod;
-    font-size: 13px;
-  }
-  /* obwódka liczby jak w tabeli (kropkowana), w skali kółka */
-  & .obwodka rect {
-    fill: none;
-    stroke-width: 0.65px;
-    stroke-dasharray: 0 2;
-    stroke-linecap: round;
-  }
-  & .drzewo-num-bin .obwodka rect {
-    stroke: teal;
-  }
-  & .drzewo-num-dec .obwodka rect {
-    stroke: goldenrod;
-  }
+	& .drzewo-edge {
+		fill: none;
+		opacity: 0.6;
+		stroke: oklch(35% 0.04 276.381);
+		stroke-width: 7;
+		filter: blur(3px);
+	}
+	& .drzewo-node {
+		fill: oklch(17.888% 0.01042 276.381);
+		stroke: oklch(35% 0.04 276.381);
+		stroke-width: 1.5;
+	}
+	& .drzewo-text {
+		font-family: sans-serif;
+		font-weight: 700;
+		text-anchor: middle;
+	}
+	& .drzewo-text tspan {
+		font-size: 7px;
+		fill: black;
+		baseline-shift: sub;
+	}
+	& .drzewo-num-bin {
+		fill: teal;
+		font-size: 11px;
+	}
+	& .drzewo-num-dec {
+		fill: goldenrod;
+		font-size: 13px;
+	}
+	/* obwódka liczby jak w tabeli (kropkowana), w skali kółka */
+	& .obwodka rect {
+		fill: none;
+		stroke-width: 0.65px;
+		stroke-dasharray: 0 2;
+		stroke-linecap: round;
+	}
+	& .drzewo-num-bin .obwodka rect {
+		stroke: teal;
+	}
+	& .drzewo-num-dec .obwodka rect {
+		stroke: goldenrod;
+	}
 }
 
 /* features/drzewo/GenerDrzewo.widget.tsx */
 svg.gener-drzewo {
-  /* waga 1: krawędzie drzewa (ciągłe); waga 2: połączenia (przerywane) */
-  & .gener-drzewo-edge {
-    fill: none;
-    stroke: #9ca3af;
-  }
-  & .gener-drzewo-edge.waga-2 {
-    stroke-dasharray: 4 3;
-  }
-  & .gener-drzewo-node {
-    stroke: rgb(0 0 0 / 0.45);
-  }
+	/* waga 1: krawędzie drzewa (ciągłe); waga 2: połączenia (przerywane) */
+	& .gener-drzewo-edge {
+		fill: none;
+		stroke: #9ca3af;
+	}
+	& .gener-drzewo-edge.waga-2 {
+		stroke-dasharray: 4 3;
+	}
+	& .gener-drzewo-node {
+		stroke: rgb(0 0 0 / 0.45);
+	}
 }
 
 /* pages/index/Tab02.section.tsx */
 .tab02 {
-  border-collapse: separate;
-  border-spacing: 0 8px;
+	border-collapse: separate;
+	border-spacing: 0 8px;
 
-  & td {
-    padding: 3px 8px;
-    vertical-align: top;
-  }
-  & .tab02-opis {
-    text-align: right;
-    padding-right: 1rem;
-    line-height: 1.5;
-  }
+	& td {
+		padding: 3px 8px;
+		vertical-align: top;
+	}
+	& .tab02-opis {
+		text-align: right;
+		padding-right: 1rem;
+		line-height: 1.5;
+	}
 }
 
 /* SpanWithKeySvg / SpanWithKeySvgGrid (widget/SpanWithKey.widget.tsx) */
 .span-with-key-svg text {
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: 700;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: 700;
 }
 .span-with-key-svg-key {
-  fill: black;
+	fill: black;
 }
 
 table#LekturaSystem {
-  width: 100%;
-  /* szerokości kolumn z tabeli, nie z treści — długie linie kodu przewijają się w komórce */
-  table-layout: fixed;
-  td,
-  th,
-  & {
-    border: #5d5d5d dotted 1px;
-  }
-  /* przy table-layout: fixed szerokości kolumn bierze się TYLKO z pierwszego wiersza;
-     :nth-child liczy komórki, nie kolumny — KONFIGURACJA (colSpan 2) to 2. komórka, WSAD 3.,
-     a 20% KONFIGURACJI dzieli się po równo na dwie środkowe kolumny: 40% | 10% | 10% | 40% */
-  tr:first-child > :nth-child(1) {
-    width: 30%;
-  }
-  tr:first-child > :nth-child(2) {
-    width: 70%;
-  }
+	width: 100%;
+	/* szerokości kolumn z tabeli, nie z treści — długie linie kodu przewijają się w komórce */
+	table-layout: fixed;
+	td,
+	th,
+	& {
+		border: #5d5d5d dotted 1px;
+	}
+	/* przy table-layout: fixed szerokości kolumn bierze się TYLKO z pierwszego wiersza;
+	   :nth-child liczy komórki, nie kolumny — KONFIGURACJA (colSpan 2) to 2. komórka, WSAD 3.,
+	   a 20% KONFIGURACJI dzieli się po równo na dwie środkowe kolumny: 40% | 10% | 10% | 40% */
+	tr:first-child > :nth-child(1) {
+		width: 30%;
+	}
+	tr:first-child > :nth-child(2) {
+		width: 70%;
+	}
 }

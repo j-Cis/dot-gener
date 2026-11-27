@@ -1,3 +1,11 @@
+<!--
+  @project-metadata
+  Path: site/drafts/compass.tex.md
+  Author: Jan Roman Cisowski
+  ORCID: https://orcid.org/0009-0009-2907-3792
+  Repository: https://github.com/j-Cis/dot-gener
+-->
+
 $$ \begin{array}{c | c} \textbf{KIERUNKI ROZBUDOWANEJ RÓŻY WIATRÓW} & \textbf{KOTWICE, CZYLI PUNKTY MONTAŻU KOMPASU} \\
 
 & \begin{array}{|c|} \hline \text{ZAOKRĄGLONY PROSTOKĄT LUB PROSTOKĄT} \\ \hline \text{o wysokości }\, \colorbox{#90EE90}{$\textbf{rH}=a$}\, \text{ o szerokości }\,
