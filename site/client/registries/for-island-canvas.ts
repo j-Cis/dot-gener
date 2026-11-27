@@ -4,8 +4,8 @@
 // ORCID: https://orcid.org/0009-0009-2907-3792
 // Repository: https://github.com/j-Cis/dot-gener
 
-import type { CanvasDrawer } from "@/site/client/VectorViewport.island.tsx";
-import { drawDotxCanvas } from "@/site/common/lang/dotx/render-canvas.ts";
+import type { CanvasDrawer } from "@/site/screen/canvas/draw-context.ts";
+import { dotxCanvas } from "@/site/screen/Dotx.render.tsx";
 /**
  * Rysunki <canvas> uruchamiane w przeglądarce przez VectorViewport:
  * <VectorViewport renderer="Canvas" sourceFormat="CANVAS" source={RYSUNKI.nazwa} scene={[w, h]} />.
@@ -14,7 +14,7 @@ import { drawDotxCanvas } from "@/site/common/lang/dotx/render-canvas.ts";
  * Wszystko, co tu jest, trafia do przeglądarki razem z VectorViewport.
  */
 export const RYSUNKI = {
-	dotx: drawDotxCanvas,
+	dotx: dotxCanvas,
 	test: ( { ctx, dane } ) => {
 		const label = typeof dane === "string" ? dane : "VectorViewport działa";
 

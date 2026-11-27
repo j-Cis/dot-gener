@@ -14,3 +14,9 @@ export type Punkt2 = readonly [ x: number, y: number ];
 
 /** Obszar rysunku: [minX, minY, maxX, maxY] w jednostkach rysunku. */
 export type Zakres = readonly [ minX: number, minY: number, maxX: number, maxY: number ];
+
+/** Jednostka kąta: stopnie, radiany albo obroty (1 turn = 360°). */
+export type JednostkaKata = "deg" | "rad" | "turn";
+
+/** Liczba zapisana tekstem w atrybucie, np. "3", "-0.5", "1e3". */
+export type LiczbaTekst = `${number}`;

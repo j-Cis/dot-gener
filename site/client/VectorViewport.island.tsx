@@ -10,14 +10,12 @@ import { island } from "@/web/island.ts";
 import { cx } from "@/site/common/css/cx.ts";
 import { DOPASOWANIA, type SvgRegistryKey } from "@/site/client/registries/for-island-svg.ts";
 import { RYSUNKI } from "@/site/client/registries/for-island-canvas.ts";
-import { usePanZoom } from "@/site/common/util/usePanZoom.ts";
+import { usePanZoom } from "@/site/client/hooks/pan-zoom.ts";
 import type { PositionedGraph } from "@/site/common/lang/dotx/model.ts";
-import { renderDotxSvg } from "@/site/screen/dotx/render-svg.tsx";
-import { drawDotxCanvas } from "@/site/common/lang/dotx/render-canvas.ts";
 import type { LociModel } from "@/site/common/lang/loci/model.ts";
-import { lociModelZJsx } from "@/site/screen/Loci.render.tsx";
-import { renderLociSvg } from "@/site/screen/loci/render-svg.tsx";
-import { drawLociCanvas } from "@/site/screen/loci/render-canvas.ts";
+import type { CanvasDrawContext, CanvasDrawer } from "@/site/screen/canvas/draw-context.ts";
+import { dotxCanvas, dotxModelZJsx, dotxSvg } from "@/site/screen/Dotx.render.tsx";
+import { lociCanvas, lociModelZJsx, lociSvg } from "@/site/screen/Loci.render.tsx";
 
 /** CSS length for the box size. */
 export type BoxLength = `${number}${"rem" | "em" | "px" | "%" | "vw" | "vh"}`;
@@ -27,25 +25,6 @@ export type Renderer = "SVG" | "Canvas";
 
 /** Logiczny rozmiar sceny [szerokość, wysokość] — do dopasowania widoku (fit). */
 export type SceneSize = readonly [ width: number, height: number ];
-
-export interface CanvasView {
-	x: number;
-	y: number;
-	s: number;
-}
-
-export interface CanvasDrawContext {
-	ctx: CanvasRenderingContext2D;
-	view: CanvasView;
-	/** Rozmiar płótna w pikselach CSS. */
-	width: number;
-	height: number;
-	dpr: number;
-	dane?: unknown;
-}
-
-/** Rysunek Canvas; żeby działał w przeglądarce, musi być w registries/for-island-canvas.ts (RYSUNKI). */
-export type CanvasDrawer = ( c: CanvasDrawContext ) => void;
 
 interface BoxProps {
 	/** Tło stołu, dowolny kolor CSS. */
@@ -59,10 +38,10 @@ interface BoxProps {
 	maxScale?: number;
 }
 
-/** Źródło w atrybucie `source` albo jako dzieci — jedno z dwóch. */
-type AtrybutAlboDzieci<F extends string, T> =
+/** Źródło w atrybucie `source` (typ T) albo jako dzieci (typ D, domyślnie T) — jedno z dwóch. */
+type AtrybutAlboDzieci<F extends string, T, D = T> =
 	| { sourceFormat: F; source: T; children?: never }
-	| { sourceFormat: F; children: T; source?: never };
+	| { sourceFormat: F; children: D; source?: never };
 
 /** Źródło tylko w atrybucie `source`. */
 type Atrybut<F extends string, T> = { sourceFormat: F; source: T; children?: never };
@@ -76,7 +55,7 @@ export type VectorViewportProps =
 			adjust?: SvgRegistryKey;
 		})
 		| (AtrybutAlboDzieci<"LOCI", ComponentChildren> & { renderer: Renderer })
-		| (Atrybut<"DOTX", PositionedGraph> & { renderer: Renderer })
+		| (AtrybutAlboDzieci<"DOTX", PositionedGraph, ComponentChildren> & { renderer: Renderer })
 		| (Atrybut<"CANVAS", CanvasDrawer> & {
 			/** Rysunek Canvas nie ma postaci SVG. */
 			renderer: "Canvas";
@@ -134,7 +113,7 @@ function przygotuj( p: VectorViewportProps ): Okno {
 		}
 		case "LOCI": {
 			const model = lociModelZJsx( zrodlo( p, "LOCI" ) );
-			if ( p.renderer === "SVG" ) okno.children = renderLociSvg( model );
+			if ( p.renderer === "SVG" ) okno.children = lociSvg( model );
 			else {
 				const [ minX, minY, maxX, maxY ] = model.zakres;
 				okno.paint = [ "LOCI", model ];
@@ -142,13 +121,19 @@ function przygotuj( p: VectorViewportProps ): Okno {
 			}
 			return okno;
 		}
-		case "DOTX":
-			if ( p.renderer === "SVG" ) okno.children = renderDotxSvg( p.source );
+		case "DOTX": {
+			if ( p.source !== undefined && p.children !== undefined ) {
+				throw new Error( "VectorViewport (DOTX): źródło albo w source, albo jako dzieci — nie oba" );
+			}
+			// graf z gotowym układem w `source` albo znaczniki <Dotx> jako dzieci
+			const graf = p.source ?? dotxModelZJsx( p.children );
+			if ( p.renderer === "SVG" ) okno.children = dotxSvg( graf );
 			else {
-				okno.paint = [ "DOTX", p.source ];
-				okno.scene = [ p.source.width, p.source.height ];
+				okno.paint = [ "DOTX", graf ];
+				okno.scene = [ graf.width, graf.height ];
 			}
 			return okno;
+		}
 		case "CANVAS": {
 			const rysunek = p.source;
 			const klucz = kluczeRysunkow.find( ( k ) => RYSUNKI[k] === rysunek );
@@ -206,10 +191,10 @@ export default island(
 					return;
 				}
 				case "DOTX":
-					drawDotxCanvas( { ...c, dane: m[1] } );
+					dotxCanvas( { ...c, dane: m[1] } );
 					return;
 				case "LOCI":
-					drawLociCanvas( { ...c, dane: m[1] } );
+					lociCanvas( { ...c, dane: m[1] } );
 					return;
 				case "RYSUNEK": {
 					const rysunek: CanvasDrawer | undefined = RYSUNKI[m[1]];

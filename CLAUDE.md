@@ -306,16 +306,6 @@ The project deliberately avoids the Node.js/npm dependency ecosystem. Dependency
 
 ## 6. TODO
 
-### Now (from the architecture review)
-
-- Move `site/common/util/kotwice.ts` to `web/heading-anchors.ts`.
-- Move `site/common/util/usePanZoom.ts` to `site/client/hooks/pan-zoom.ts`.
-- Move `site/common/lang/dotx/render-canvas.ts` to `site/screen/dotx/`.
-- Move the `CanvasDrawContext` type out of the island to the renderer side, so that `screen` and `common` do not import from `client`.
-- `Dotx.render.tsx` MUST NOT import `VectorViewport`; use `<VectorViewport sourceFormat="DOTX"><Dotx …>…</Dotx></VectorViewport>` instead. `VectorViewport` imports only the entry
-  files `Dotx.render.tsx` and `Loci.render.tsx`.
-- Rename LOCI attribute groups to `<LANG><Name>Attributes.ts` (e.g. `LOCIPointProps.ts` → `LOCIPointAttributes.ts`).
-
 ### Later
 
 - `web/guide-map.ts`: builds the map of routes and static files and passes it to the website; `GuideBar` builds its menu from it and MAY override a link name, disable or hide a

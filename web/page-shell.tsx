@@ -6,7 +6,7 @@
 
 import type { ComponentChildren } from "preact";
 import { IMPORT_MAP, KATEX_CSS } from "./importmap.ts";
-import { Kotwice } from "@/site/common/util/kotwice.ts";
+import { Kotwice } from "@/web/heading-anchors.ts";
 
 import { PRZELADUJ, SKRYPT } from "@/web/refresh.ts";
 import { LISTWY } from "@/web/listwy.ts";

@@ -4,13 +4,14 @@
 // ORCID: https://orcid.org/0009-0009-2907-3792
 // Repository: https://github.com/j-Cis/dot-gener
 
-import type { CanvasDrawContext } from "@/site/client/VectorViewport.island.tsx";
+import type { CanvasDrawContext } from "@/site/screen/canvas/draw-context.ts";
 import type { LociModel } from "@/site/common/lang/loci/model.ts";
 import type { Zakres } from "@/site/common/lang/loci/shared/types.ts";
 import { doBrzegu } from "@/site/common/lang/loci/shared/geometry.ts";
-import { KIERUNKI_POLOSI, type LOCIAxElement } from "@/site/common/lang/loci/element/frame/LOCIAxElement.ts";
-import type { WygladLinii } from "@/site/common/lang/loci/attribute/LOCIAxisProps.ts";
-import type { WygladPunktu } from "@/site/common/lang/loci/attribute/LOCIPointProps.ts";
+import { KIERUNKI_POLOSI, type LOCIAxElement } from "@/site/common/lang/loci/element/datum/LOCIAxElement.ts";
+import type { LOCIPElement } from "@/site/common/lang/loci/element/datum/LOCIPElement.ts";
+import type { WygladLinii } from "@/site/common/lang/loci/attribute/LOCIAxisAttributes.ts";
+import type { WygladPunktu } from "@/site/common/lang/loci/attribute/LOCIPointAttributes.ts";
 import { GROT, KRESKI, odcinkiSymbolu } from "./render-wspolne.ts";
 
 /**
@@ -27,6 +28,7 @@ export function drawLociCanvas( { ctx, view, dane }: CanvasDrawContext ): void {
 	ctx.translate( -minX, maxY );
 	ctx.scale( 1, -1 );
 	for ( const ax of m.ax ) axCanvas( ctx, view.s, ax, m.zakres );
+	for ( const p of m.p ) pCanvas( ctx, view.s, p, m.punkt );
 	ctx.restore();
 }
 
@@ -40,6 +42,14 @@ function axCanvas( ctx: CanvasRenderingContext2D, s: number, ax: LOCIAxElement, 
 		polosCanvas( ctx, s, kier, doBrzegu( ax.poczatek, ax.kat + kier, zakres ), wyglad );
 	} );
 	punktCanvas( ctx, s, ax.punkt );
+	ctx.restore();
+}
+
+/** p: punkt konstrukcyjny w swoim położeniu, w wyglądzie z body. */
+function pCanvas( ctx: CanvasRenderingContext2D, s: number, p: LOCIPElement, wyglad: WygladPunktu ): void {
+	ctx.save();
+	ctx.translate( p.polozenie[0], p.polozenie[1] );
+	punktCanvas( ctx, s, wyglad );
 	ctx.restore();
 }
 

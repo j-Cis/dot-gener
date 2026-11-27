@@ -7,7 +7,7 @@
 import type { ComponentChildren } from "preact";
 import { useContext } from "preact/hooks";
 import { cx } from "@/site/common/css/cx.ts";
-import { Kotwice, slug, tekstZ, unikalna } from "@/site/common/util/kotwice.ts";
+import { Kotwice, slug, tekstZ, unikalna } from "@/web/heading-anchors.ts";
 
 /** CSS length in a supported unit, e.g. "1.5rem", "24px", "2em". */
 export type TitleSize = `${number}${"rem" | "em" | "px"}`;

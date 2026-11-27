@@ -7,28 +7,36 @@
 import { type ComponentChildren, toChildArray, type VNode } from "preact";
 import { type LOCIDziecko, type LociModel, lociModel, type LOCIZnacznik } from "@/site/common/lang/loci/model.ts";
 import type { LOCIBodyProps } from "@/site/common/lang/loci/element/LOCIBodyElement.ts";
-import type { LOCIAxProps } from "@/site/common/lang/loci/element/frame/LOCIAxElement.ts";
-import type { LOCIBiProps } from "@/site/common/lang/loci/element/frame/LOCIBiElement.ts";
+import type { LOCIPProps } from "@/site/common/lang/loci/element/datum/LOCIPElement.ts";
+import type { LOCIAxProps } from "@/site/common/lang/loci/element/datum/LOCIAxElement.ts";
+import type { LOCIBiProps } from "@/site/common/lang/loci/element/datum/LOCIBiElement.ts";
 import type { LOCIFnProps } from "@/site/common/lang/loci/element/def/LOCIFnElement.ts";
 import type { LOCIVarProps } from "@/site/common/lang/loci/element/def/LOCIVarElement.ts";
+import type { CanvasDrawContext } from "@/site/screen/canvas/draw-context.ts";
+import { renderLociSvg } from "@/site/screen/loci/render-svg.tsx";
+import { drawLociCanvas } from "@/site/screen/loci/render-canvas.ts";
 
 /**
  * Klocki LOCI jako znaczniki JSX — do używania w szablonach jak <div>:
  *
  *   <VectorViewport renderer="SVG" sourceFormat="LOCI">
  *     <Loci.body axId="ax0">
+ *       <Loci.p id="p2" xy="3,4" />
  *       <Loci.var id="t0" val="1/3" />
  *     </Loci.body>
  *   </VectorViewport>
  *
  * Znaczniki same nic nie rysują: lociModelZJsx czyta ich atrybuty i buduje model (site/common/lang/loci),
- * a rysuje go site/screen/loci/render-svg.tsx albo render-canvas.ts.
+ * a rysuje go lociSvg albo lociCanvas (części w site/screen/loci/).
  */
 
 /** Atrybuty znacznika body w JSX: atrybuty klocka + dzieci. */
 type BodyJsx = LOCIBodyProps & { children?: ComponentChildren };
 
 function body( _props: BodyJsx ): null {
+	return null;
+}
+function p( _props: LOCIPProps ): null {
 	return null;
 }
 function ax( _props: LOCIAxProps ): null {
@@ -48,6 +56,8 @@ function varTag( _props: LOCIVarProps ): null {
 export const Loci = {
 	/** Klocek główny: cały rysunek; atrybuty: wygląd konstrukcji i id układu podstawowego. */
 	body,
+	/** Punkt konstrukcyjny: <Loci.p id="p2" in="ax0" xy="3,4" />, <Loci.p id="p3" r="5" deg="30" />, <Loci.p id="p4" fn="spiral" at="t0" />. */
+	p,
 	/** Układ odniesienia ax (kartezjański i biegunowy): <Loci.ax id="ax1" at="p0" thru="p1" />. */
 	ax,
 	/** Układ bipolarny: <Loci.bi id="bi0" at="p0,p1" />. */
@@ -60,6 +70,7 @@ export const Loci = {
 
 /** Znacznik JSX dziecka → nazwa znacznika w modelu. */
 const DZIECI: ReadonlyMap<unknown, LOCIZnacznik> = new Map<unknown, LOCIZnacznik>( [
+	[ Loci.p, "p" ],
 	[ Loci.ax, "ax" ],
 	[ Loci.bi, "bi" ],
 	[ Loci.fn, "fn" ],
@@ -81,6 +92,16 @@ export function lociModelZJsx( zrodlo: ComponentChildren ): LociModel {
 		return [ znacznik, d.props ] as unknown as LOCIDziecko;
 	} );
 	return lociModel( atrybuty, dzieci );
+}
+
+/** Model → SVG. */
+export function lociSvg( m: LociModel ) {
+	return renderLociSvg( m );
+}
+
+/** Model → Canvas; `dane` to model. */
+export function lociCanvas( c: CanvasDrawContext ): void {
+	drawLociCanvas( c );
 }
 
 /** Elementy JSX z dzieci; pusty tekst pomija, inny tekst to błąd. */

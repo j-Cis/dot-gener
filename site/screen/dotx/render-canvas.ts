@@ -1,12 +1,13 @@
 // @project-metadata
-// Path: site/common/lang/dotx/render-canvas.ts
+// Path: site/screen/dotx/render-canvas.ts
 // Author: Jan Roman Cisowski
 // ORCID: https://orcid.org/0009-0009-2907-3792
 // Repository: https://github.com/j-Cis/dot-gener
 
-import type { CanvasDrawContext } from "@/site/client/VectorViewport.island.tsx";
-import type { PositionedGraph } from "./model.ts";
+import type { CanvasDrawContext } from "@/site/screen/canvas/draw-context.ts";
+import type { PositionedGraph } from "@/site/common/lang/dotx/model.ts";
 
+/** Graf DOTX z wyliczonym układem → Canvas (para dla renderDotxSvg z render-svg.tsx). */
 export function drawDotxCanvas( { ctx, dane }: CanvasDrawContext ): void {
 	const g = dane as PositionedGraph | undefined;
 	if ( !g ) return;

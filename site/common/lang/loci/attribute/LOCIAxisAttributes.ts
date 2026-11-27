@@ -1,5 +1,5 @@
 // @project-metadata
-// Path: site/common/lang/loci/attribute/LOCIAxisProps.ts
+// Path: site/common/lang/loci/attribute/LOCIAxisAttributes.ts
 // Author: Jan Roman Cisowski
 // ORCID: https://orcid.org/0009-0009-2907-3792
 // Repository: https://github.com/j-Cis/dot-gener
@@ -15,7 +15,7 @@ export type LineStyle = "dashed" | "dotted" | "solid";
 /** Półoś: [kolor, grubość w px, skala grota]; pominięte elementy — domyślne. */
 export type HalfAxis = readonly [ color: KolorCss, width?: number, arrow?: number ];
 
-export interface LOCIAxisProps {
+export interface LOCIAxisAttributes {
 	/** grubość osi i półosi konstrukcyjnych w px ekranu; domyślnie 1 */
 	axisWidth?: number;
 	/** styl osi i półosi konstrukcyjnych; domyślnie "dashed" */
@@ -34,7 +34,7 @@ export const DOMYSLNE_OSI = {
 	axisColor: "#6b7280",
 	halfAxisX: [ "#e5484d", 1.5, 1 ],
 	halfAxisY: [ "#46a758", 1.5, 1 ],
-} as const satisfies Required<LOCIAxisProps>;
+} as const satisfies Required<LOCIAxisAttributes>;
 
 /** Wygląd linii konstrukcyjnej: [kolor, grubość px, styl, skala grota (0 — bez grota)]. */
 export type WygladLinii = readonly [ kolor: KolorCss, grubosc: number, styl: LineStyle, grot: number ];
@@ -43,7 +43,7 @@ export type WygladLinii = readonly [ kolor: KolorCss, grubosc: number, styl: Lin
 export type WygladPolosi = readonly [ plusX: WygladLinii, plusY: WygladLinii, minusX: WygladLinii, minusY: WygladLinii ];
 
 /** Atrybuty → wygląd półosi: +X i +Y z halfAxisX/Y (z grotem), −X i −Y konstrukcyjne (bez grota). */
-export function wygladPolosi( p: LOCIAxisProps ): WygladPolosi {
+export function wygladPolosi( p: LOCIAxisAttributes ): WygladPolosi {
 	const grubosc = dodatnia( p.axisWidth ?? DOMYSLNE_OSI.axisWidth, "axisWidth" );
 	const styl = p.axisStyle ?? DOMYSLNE_OSI.axisStyle;
 	const konstrukcyjna: WygladLinii = [ p.axisColor ?? DOMYSLNE_OSI.axisColor, grubosc, styl, 0 ];

@@ -1,5 +1,5 @@
 // @project-metadata
-// Path: site/common/lang/loci/attribute/LOCIPointProps.ts
+// Path: site/common/lang/loci/attribute/LOCIPointAttributes.ts
 // Author: Jan Roman Cisowski
 // ORCID: https://orcid.org/0009-0009-2907-3792
 // Repository: https://github.com/j-Cis/dot-gener
@@ -12,7 +12,7 @@ import { dodatnia } from "../shared/check.ts";
 /** Symbol punktu konstrukcyjnego: "rays24" — 12 przeciętych linii (24 kierunki), "cross" — krzyżyk, "circle" — okrąg, "dot" — kropka. */
 export type PointSymbol = "rays24" | "cross" | "circle" | "dot";
 
-export interface LOCIPointProps {
+export interface LOCIPointAttributes {
 	/** wielkość punktów konstrukcyjnych w px ekranu; domyślnie 12 */
 	pointSize?: number;
 	/** kolor punktów konstrukcyjnych */
@@ -25,13 +25,13 @@ export const DOMYSLNE_PUNKTU = {
 	pointSize: 12,
 	pointColor: "#cfcfd0",
 	pointSymbol: "rays24",
-} as const satisfies Required<LOCIPointProps>;
+} as const satisfies Required<LOCIPointAttributes>;
 
 /** Wygląd punktu konstrukcyjnego: [symbol, wielkość px, kolor]. */
 export type WygladPunktu = readonly [ symbol: PointSymbol, wielkosc: number, kolor: KolorCss ];
 
 /** Atrybuty → wygląd punktu (brakujące z domyślnych). */
-export function wygladPunktu( p: LOCIPointProps ): WygladPunktu {
+export function wygladPunktu( p: LOCIPointAttributes ): WygladPunktu {
 	return [
 		p.pointSymbol ?? DOMYSLNE_PUNKTU.pointSymbol,
 		dodatnia( p.pointSize ?? DOMYSLNE_PUNKTU.pointSize, "pointSize" ),

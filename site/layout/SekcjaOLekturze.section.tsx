@@ -4,33 +4,20 @@
 // ORCID: https://orcid.org/0009-0009-2907-3792
 // Repository: https://github.com/j-Cis/dot-gener
 
+import type { ComponentChildren } from "preact";
 import { Box, P, powtorz, Row, Table, Title } from "@/site/widget/_ANY.ts";
-import { OutTec, tec, tecs } from "@/site/screen/Tec.render.tsx";
+import { tec, tecs } from "@/site/screen/Tec.render.tsx";
 
 export interface SekcjaOLekturzeProps {
 	numer: string;
 	tytul: string;
 }
-export default function SekcjaOLekturze( paragraf: SekcjaOLekturzeProps ) {
-	/** Pliki ./web w kolejności wyświetlania — tylko klucze, które zna `plik`. */
-	const PLIKI_WEB = [
-		"ts:importmap",
-		"ts:staticfiles",
-		"ts:island",
-		"ts:transpile",
-		"ts:transpile-ende",
-		"ts:client",
-		"tsx:layout",
-		"tsx:main",
-		"tsx:404",
-	] as const satisfies readonly (keyof Pliki)[];
 
-	/** "ts:importmap" → "./web/importmap.ts" (typ wyniku też jest dokładny) */
-	type SciezkaWeb<K extends keyof Pliki> = K extends `${infer Roz}:${infer Nazwa}` ? `./web/${Nazwa}.${Roz}` : never;
-	const sciezkaWeb = <K extends keyof Pliki>( klucz: K ) => {
-		const [ roz, nazwa ] = klucz.split( ":" );
-		return `./web/${nazwa}.${roz}` as SciezkaWeb<K>;
-	};
+/**
+ * Opis frameworka (web/) i strony (site/): jak działa i jak z niego korzystać.
+ * Każdy rozdział to osobna funkcja wewnętrzna, w kolejności czytania.
+ */
+export default function SekcjaOLekturze( paragraf: SekcjaOLekturzeProps ) {
 	return (
 		<article class="sekcja-o-lekturze">
 			<header>
@@ -38,812 +25,458 @@ export default function SekcjaOLekturze( paragraf: SekcjaOLekturzeProps ) {
 					{paragraf.tytul}
 				</Title>
 			</header>
-			<Title level="h3" size="1.125rem">
-				<strong>WSTĘP</strong>
-			</Title>
-			<P>
-				Niestety lekka metoda działania jaką wprowadziło <u>DENO</u>, nibawem może zniknąć gdyż w paźdierniku 2026 zsotało przejęte przez <u>CLOUDFALRE</u>
-				i już wiadmo że nie bedzie wersi <u>3.0</u>, a jedynie będa zapownione przez rok łatki - to wielki cios. Deno oferował po wyjęciu z pudełka wsparcie dal <u>TypeSript</u>
-				obecna wersja to <u>7.0.2</u> nowość w tej wersji to całościowe przepisanie go na jezyk <u>go</u>. owerował też wparcie dla React i Preact np przy użyciu <u>hono</u>
-				bez zbędnego ciągłego przebudowywania wszystkiego na czysty <u>JavaScript</u>. Dodatkowo poprzez <u>jsr</u> oraz <u>esm.sh</u> można było całkowicie pozbyć się syfu{" "}
-				<u>NODE</u> i studni bez dna zakrzywiającej czasoprzestrzeń bardziej niż czarna dziura - folderu <u>node_modules</u>. Powstał fork{" "}
-				<u>ende</u>, ale zobaczymy co przyniesie. Równocześnie mam też koncepcje własną <u>https://github.com/j-Cis/tsxr</u> mającą na celu zastąpienie <u>deno</u>
-			</P>
-
-			<Title level="h3" size="1.5rem">
-				<strong>ELEMENTY</strong>
-			</Title>
-
-			<Table cols={powtorz( 12, "max" )} rows={powtorz( 3, "auto" )} gapX="0.5rem" gapY="0.5rem">
-				<Row row={1}>
-					Obecnie działa pod <u>DENO</u>, natomiast pod <u>ENDO</u> cały czas coś nie spina, gdzieś na horyzoncie jako koncepcja majaczy <u>TSXR</u>{" "}
-					ale narazie nie został napisany. istotą projektu są 3 lementy
-				</Row>
-				<Box start={[ 1, 2 ]} end={[ 4, 2 ]} headerShow="N" headerLabel="SYSTEM i KONFIGURACJA" headerDisplay="center">
-					{tec`./web/**`}
-					<br />
-					{tec`./deno.json`}
-					<br />
-					{tec`./ende.json`}
-					<hr />
-					<ul>
-						<li>importmap.ts</li>
-						<li>island.ts</li>
-						<li>staticfiles.ts</li>
-						<li>transpile.ts</li>
-						<li>transpile-ende.ts</li>
-						<li>client.ts</li>
-						<li>main.tsx</li>
-						<li>layout.tsx</li>
-						<li>404.tsx</li>
-					</ul>
-				</Box>
-				<Box start={[ 5, 2 ]} end={[ 12, 2 ]} headerShow="N" headerLabel="WSAD" headerDisplay="center">
-					{tec`./site/**`}
-					<hr />
-					<ul>
-						<li>
-							{tec`./site/features/**`} - mamy tu klocki budulcowe z których najistotniejsze to<ul>
-								<li>{tec`*.island.tsx`}</li>
-								<li>{tec`*.widget.tsx`}</li>
-							</ul>
-						</li>
-						<li>
-							{tec`./site/pages/**`} - mamy tu nasze strony, budowane z treści i klocków:{" "}
-							<ul>
-								<li>{tec`index.tsx`} - to strona główna</li>
-							</ul>
-						</li>
-						<li>{tec`./site/layout/**`} - mamy tu elementy naszych stron budowane z treści i klocków</li>
-						<li>{tec`./site/scripts/**`} - mamy tu rózne rzeczy, logike itp wszystko w czystym TypeScript</li>
-						<li>{tec`./site/static/**`} - mamy tu pliki statyczne w tym arkusze stylów css</li>
-					</ul>
-				</Box>
-				<Box start={[ 1, 3 ]} end={[ 6, 3 ]} headerShow="N" headerLabel="DENO" headerDisplay="center">{plik( "json:deno" )}</Box>
-				<Box start={[ 7, 3 ]} end={[ 12, 3 ]} headerShow="N" headerLabel="ENDE" headerDisplay="center">{plik( "json:ende" )}</Box>
-			</Table>
-
-			<Title level="h3" size="1.5rem">
-				<strong>PLIKI TEGO SYSTEMU</strong>
-			</Title>
-
-			<Table cols={[ "max" ]} rows={powtorz( PLIKI_WEB.length, "auto" )} gapX="0.5rem" gapY="0.5rem">
-				{PLIKI_WEB.map( ( klucz, i ) => (
-					<Row row={i + 1} headerShow="W" headerLabel={tec`${sciezkaWeb( klucz )}`} headerDisplay={[ "start", -90 ]}>
-						{plik( klucz )}
-					</Row>
-				) )}
-			</Table>
+			<Wstep />
+			<JakToDziala />
+			<DwaObszary />
+			<PlikiFrameworka />
+			<FolderyStrony />
+			<NazwyPlikow />
+			<StronyIAdresy />
+			<Style />
+			<KtoKogoUzywa />
+			<Wyspy />
+			<Zaleznosci />
+			<Polecenia />
+			<Dodatki />
 		</article>
 	);
 }
 
-type Pliki = Record<
-	"json:deno" | "json:ende" | "ts:importmap" | "ts:staticfiles" | "ts:island" | "ts:transpile" | "ts:transpile-ende" | "ts:client" | "tsx:layout" | "tsx:main" | "tsx:404",
-	OutTec
->;
-function plik( klucz: keyof Pliki ): OutTec {
-	const rekord: Pliki = {
-		"json:deno": tecs( "json" )`
-{
-  "lock": "deno.lock",
-  "compilerOptions": {
-    "strict": true,
-    "noUncheckedIndexedAccess": true,
-    "exactOptionalPropertyTypes": true,
-    "noImplicitOverride": true,
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "dom.asynciterable",
-      "deno.ns"
-    ],
-    "jsx": "react-jsx",
-    "jsxImportSource": "preact"
-  },
-  "imports": {
-    "@/": "./",
-    "@std/assert": "jsr:@std/assert@^1",
-    "@hono/hono": "jsr:@hono/hono@^4.13.19",
-    "@deno/loader": "jsr:@deno/loader@^0.5.0",
-    "@std/encoding": "jsr:@std/encoding@^1.0.10",
-    "preact": "https://esm.sh/preact@11.2.0",
-    "preact/": "https://esm.sh/preact@11.2.0/",
-    "preact-render-to-string": "https://esm.sh/preact-render-to-string@6.8.3",
-    "preact-render-to-string/": "https://esm.sh/preact-render-to-string@6.8.3/",
-    "@preact/signals": "https://esm.sh/@preact/signals@2.11.4",
-    "@preact/signals/": "https://esm.sh/@preact/signals@2.11.4/",
-    "@preact/signals-core": "https://esm.sh/@preact/signals-core@1.14.5",
-    "@preact/signals-core/": "https://esm.sh/@preact/signals-core@1.14.5/",
-    "katex": "https://esm.sh/katex@0.19.1",
-    "katex/": "https://esm.sh/katex@0.19.1/",
-    "highlight.js/": "https://esm.sh/highlight.js@11.12.0/",
-    "@transpilacja": "./web/transpile.ts"
-  },
-  "exclude": [
-    "_to_delete/"
-  ],
-  "tasks": {
-    "przyklad-ksiega": "deno run --allow-write=. examples/przyklad-biblioteczka.ts",
-    "przyklad-drzewo": "deno run --allow-write=. examples/przyklad-drzewo.ts",
-    "test": "deno test --allow-run=dot --allow-read=. --allow-write=. tests/testy.ts",
-    "czytaj-pisz": "deno serve -A --watch=web/client.ts,site/,web/ web/main.tsx",
-    "czytaj": "deno serve -A web/main.tsx",
-    "sprawdz-program": "deno check src/ examples/ tests/",
-    "sprawdz-program-tsgo": "deno check --unstable-tsgo src/ examples/ tests/",
-    "sprawdz-lekture": "deno check web/ site/",
-    "sprawdz-lekture-tsgo": "deno check --unstable-tsgo web/ site/",
-    "check": "deno fmt --check && deno lint && deno check"
-  },
-  "fmt": {
-    "lineWidth": 180
-  }
-}
-            `,
-		"json:ende": tecs( "json" )`
-{
-  "lock": "ende.lock",
-  "compilerOptions": {
-    "strict": true,
-    "noUncheckedIndexedAccess": true,
-    "exactOptionalPropertyTypes": true,
-    "noImplicitOverride": true,
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "dom.asynciterable",
-      "ende.ns"
-    ],
-    "jsx": "react-jsx",
-    "jsxImportSource": "preact"
-  },
-  "imports": {
-    "@/": "./",
-    "@std/assert": "jsr:@std/assert@^1",
-    "@hono/hono": "jsr:@hono/hono@^4.13.19",
-    "@deno/loader": "jsr:@deno/loader@^0.5.0",
-    "@std/encoding": "jsr:@std/encoding@^1.0.10",
-    "preact": "https://esm.sh/preact@11.2.0",
-    "preact/": "https://esm.sh/preact@11.2.0/",
-    "preact-render-to-string": "https://esm.sh/preact-render-to-string@6.8.3",
-    "preact-render-to-string/": "https://esm.sh/preact-render-to-string@6.8.3/",
-    "@preact/signals": "https://esm.sh/@preact/signals@2.11.4",
-    "@preact/signals/": "https://esm.sh/@preact/signals@2.11.4/",
-    "@preact/signals-core": "https://esm.sh/@preact/signals-core@1.14.5",
-    "@preact/signals-core/": "https://esm.sh/@preact/signals-core@1.14.5/",
-    "katex": "https://esm.sh/katex@0.19.1",
-    "katex/": "https://esm.sh/katex@0.19.1/",
-    "highlight.js/": "https://esm.sh/highlight.js@11.12.0/",
-    "@transpilacja": "./web/transpile-ende.ts"
-  },
-  "exclude": [
-    "_to_delete/"
-  ],
-  "tasks": {
-    "przyklad-ksiega": "ende run --allow-write=. examples/przyklad-biblioteczka.ts",
-    "przyklad-drzewo": "ende run --allow-write=. examples/przyklad-drzewo.ts",
-    "test": "ende test --allow-run=dot --allow-read=. --allow-write=. tests/testy.ts",
-    "czytaj-pisz": "ende serve -A --watch=web/client.ts,site/,web/ web/main.tsx",
-    "czytaj": "ende serve -A web/main.tsx",
-    "sprawdz-program": "ende check src/ examples/ tests/",
-    "sprawdz-program-tsgo": "ende check --unstable-tsgo src/ examples/ tests/",
-    "sprawdz-lekture": "ende check web/ site/",
-    "sprawdz-lekture-tsgo": "ende check --unstable-tsgo web/ site/",
-    "check": "ende fmt --check && ende lint && ende check"
-  },
-  "fmt": {
-    "lineWidth": 180
-  }
-}
-            `,
-		"ts:importmap": tecs( "typescript" )`
-/**
- * Import map dla przeglądarki — bez npm. Adresy bierzemy z deno.json („imports”),
- * więc przeglądarka i serwer używają tych samych modułów w tych samych wersjach,
- * a wersje zmienia się w jednym miejscu.
- */
-import konfiguracja from "../deno.json" with { type: "json" };
-
-/** Specyfikatory, których może używać kod w przeglądarce (client.ts, wyspy i to, co importują). */
-const DLA_PRZEGLADARKI = [
-  "preact",
-  "preact/",
-  "@preact/signals",
-  "@preact/signals/",
-  "@preact/signals-core",
-  "@preact/signals-core/",
-  "highlight.js/",
-] as const;
-
-const importy: Readonly<Record<string, string>> = konfiguracja.imports;
-
-/** Adres https:// z deno.json; przeglądarka nie rozumie jsr:/npm:, więc to błąd konfiguracji. */
-function adres(spec: string): string {
-  const url = importy[spec];
-  if (url === undefined || !url.startsWith("https://")) {
-    throw new Error(\`deno.json „imports”: „\${spec}” musi wskazywać adres https:// (jest: \${url})\`);
-  }
-  return url;
+/** Nagłówek rozdziału: ten sam wygląd w całej sekcji. */
+function Rozdzial( { children }: { children: ComponentChildren } ) {
+	return (
+		<Title level="h3" size="1.5rem">
+			<strong>{children}</strong>
+		</Title>
+	);
 }
 
-/** <script type="importmap"> content. */
-export const IMPORT_MAP = {
-  imports: {
-    "@/": "/",
-    ...Object.fromEntries(DLA_PRZEGLADARKI.map((spec) => [spec, adres(spec)])),
-  },
-};
-
-/** Arkusz KaTeX z tego samego pakietu co na serwerze; czcionki ładują się względem niego. */
-export const KATEX_CSS = new URL("dist/katex.min.css", adres("katex/")).href;
-        `,
-		"ts:staticfiles": tecs( "typescript" )`
-import type { MiddlewareHandler } from "@hono/hono";
-
-/**
- * Pliki statyczne z podanego katalogu (np. site/static/), wyłącznie na API Deno.
- * Ścieżka katalogu jest adresem URL (zwykle względem import.meta.url), więc nie zależy
- * od katalogu roboczego. Zapytanie spoza katalogu (np. /../deno.json) → dalej (404).
- * \`cache-control: no-cache\`: przeglądarka zawsze pyta o świeżą wersję — edycja na żywo.
- */
-export function plikiStatyczne(katalog: URL): MiddlewareHandler {
-  const baza = katalog.href.endsWith("/") ? katalog : new URL(katalog.href + "/");
-  return async (c, next) => {
-    const plik = new URL("." + c.req.path, baza);
-    if (!plik.href.startsWith(baza.href)) return await next();
-    try {
-      if (!(await Deno.stat(plik)).isFile) return await next();
-      const { readable } = await Deno.open(plik);
-      return c.body(readable, 200, { "content-type": typTresci(plik.pathname), "cache-control": "no-cache" });
-    } catch (blad) {
-      if (blad instanceof Deno.errors.NotFound) return await next();
-      throw blad;
-    }
-  };
+function Wstep() {
+	return (
+		<>
+			<Title level="h3" size="1.125rem">
+				<strong>WSTĘP</strong>
+			</Title>
+			<P>
+				Niestety lekka metoda działania, jaką wprowadziło <u>DENO</u>, niebawem może zniknąć, gdyż w październiku 2026 roku zostało ono przejęte przez <u>CLOUDFLARE</u>{" "}
+				i już wiadomo, że nie będzie wersji <u>3.0</u>, a jedynie zapowiedziane na rok łatki — to wielki cios. Deno oferowało po wyjęciu z pudełka wsparcie dla <u>TypeScript</u>
+				{" "}
+				(obecna wersja to <u>7.0.2</u>, a nowością w tej wersji jest całościowe przepisanie go na język <u>Go</u>). Oferowało też wsparcie dla React i Preact, np. przy użyciu{" "}
+				<u>Hono</u>, bez zbędnego, ciągłego przebudowywania wszystkiego na czysty <u>JavaScript</u>. Dodatkowo dzięki <u>JSR</u> oraz <u>esm.sh</u>{" "}
+				można było całkowicie pozbyć się syfu <u>NODE</u> i studni bez dna, zakrzywiającej czasoprzestrzeń bardziej niż czarna dziura — folderu <u>node_modules</u>. Powstał fork
+				{" "}
+				<u>Ende</u>, ale zobaczymy, co przyniesie. Równocześnie mam też własną koncepcję, <u>https://github.com/j-Cis/tsxr</u>, mającą na celu zastąpienie <u>Deno</u>.
+			</P>
+			<P>
+				Stan obecny: wszystko działa pod <u>Deno</u>. <u>Ende</u> jest odłożone — miało zastąpić Deno, ale jeszcze nie działa. Docelowo cały folder {tec`web/`} przejmie{" "}
+				<u>tsxr</u>, którego jeszcze nie ma.
+			</P>
+		</>
+	);
 }
 
-const TYPY: Readonly<Record<string, string>> = {
-  css: "text/css; charset=utf-8",
-  js: "text/javascript; charset=utf-8",
-  json: "application/json; charset=utf-8",
-  html: "text/html; charset=utf-8",
-  txt: "text/plain; charset=utf-8",
-  svg: "image/svg+xml",
-  ico: "image/x-icon",
-  png: "image/png",
-  jpg: "image/jpeg",
-  jpeg: "image/jpeg",
-  webp: "image/webp",
-  gif: "image/gif",
-  woff2: "font/woff2",
-  woff: "font/woff",
-  ttf: "font/ttf",
-  pdf: "application/pdf",
-};
-
-function typTresci(sciezka: string): string {
-  const kropka = sciezka.lastIndexOf(".");
-  return (kropka >= 0 ? TYPY[sciezka.slice(kropka + 1).toLowerCase()] : undefined) ?? "application/octet-stream";
-}
-          `,
-		"ts:island": tecs( "typescript" )`
-import { type ComponentType, type FunctionComponent, h } from "preact";
-
-const ROOT = new URL("../", import.meta.url).href;
-const IS_BROWSER = typeof document !== "undefined";
-
-/** Marks the server-rendered children of an island (see client.ts). */
-export const SLOT_ATTR = "data-island-slot";
-
-/**
- * Marks a component as an island. In a site/features/**\/*.island.tsx file:
- *
- *   export default island(import.meta.url, function Counter(props) { … });
- *
- * Server: renders the component inside
- *   <div data-island="/site/features/…/X.island.tsx" data-props="{…}">.
- * Browser: returns the component itself; client.ts imports that path and
- * hydrates it.
- *
- * Props must be JSON-serializable, except \`children\`: those are rendered on
- * the server into a slot and kept as static HTML in the browser (their DOM is
- * not re-rendered by the island, so they cannot be interactive Preact code —
- * nested islands inside them still hydrate on their own).
- */
-export function island<P extends object>(
-  moduleUrl: string,
-  Component: ComponentType<P>,
-): ComponentType<P> {
-  if (IS_BROWSER) return Component;
-  if (!moduleUrl.startsWith(ROOT)) {
-    throw new Error(\`island outside the project: \${moduleUrl}\`);
-  }
-  const src = "/" + moduleUrl.slice(ROOT.length);
-  const Wrapped: FunctionComponent<P> = ({ children, ...props }) =>
-    h(
-      "div",
-      {
-        "data-island": src,
-        "data-props": JSON.stringify(props),
-        style: "display:contents",
-      },
-      h(
-        Component,
-        {
-          ...props,
-          children: children == null ? children : h(
-            "div",
-            { [SLOT_ATTR]: "", style: "display:contents" },
-            children,
-          ),
-        } as unknown as P,
-      ),
-    );
-  return Wrapped;
-}
-      `,
-		"ts:transpile": tecs( "typescript" )`
-// TYLKO DENO (przełącznik "@transpilacja": deno.json → ten plik, ende.json → web/transpile-ende.ts).
-// @deno/loader 0.5.0 czyta pliki przez node:fs, node:process, node:os i node:tty (sys_traits, funkcja "wasm"),
-// których Ende nie ma — dlatego Ende używa web/transpile-ende.ts (tsgo). Zmiany w grafie przenoś do obu plików.
-// DO ROZWAŻENIA W PRZYSZŁOŚCI: jeden transpilator dla obu środowisk (np. deno_ast z Rust → wasm).
-import { RequestedModuleType, Workspace } from "@deno/loader";
-import { encodeBase64 } from "@std/encoding/base64";
-
-const ROOT = new URL("../", import.meta.url);
-const FEATURES = new URL("site/features/", ROOT);
-const ISLAND_FILE = /\.island\.tsx?$/;
-const CLIENT_ENTRY = new URL("web/client.ts", ROOT).href;
-
-// Static imports/re-exports (\`… from "x"\`), side-effect \`import "x"\`,
-// and dynamic \`import("x")\` with a literal path. Run on transpiled output,
-// whose syntax is normalized. Dynamic imports with computed paths are missed.
-const IMPORT = /\bfrom\s*["']([^"']+)["']|\bimport\s*\(?\s*["']([^"']+)["']/g;
-
-const workspace = new Workspace({
-  platform: "browser",
-  configPath: new URL("deno.json", ROOT).href,
-});
-const loader = await workspace.createLoader();
-
-const entries = [CLIENT_ENTRY, ...await findIslands(FEATURES)];
-for (const d of await loader.addEntrypoints(entries)) console.warn(d.message);
-
-/**
- * Everything the browser may fetch: client.ts, every *.island.tsx and the
- * local files they import, transitively (widgets, modules, lib/island.ts…).
- * Transpiled once at startup; \`deno task czytaj-pisz\` restarts on change.
- * Files outside this graph (pages, main.tsx, server code) are never served.
- */
-const served = await buildClientGraph(entries);
-console.log(\`client modules: \${served.size}\`);
-
-/** Transpiled JS for a request path, or null if it is not client code. */
-export function transpileForBrowser(path: string): string | null {
-  return served.get(new URL("." + path, ROOT).href) ?? null;
+function JakToDziala() {
+	return (
+		<>
+			<Rozdzial>JAK TO DZIAŁA</Rozdzial>
+			<P noindent>Droga od pliku do strony w przeglądarce, krok po kroku:</P>
+			<ol>
+				<li>{tec`deno task czytaj`} uruchamia serwer z pliku {tec`web/main.tsx`}. Serwer to Hono.</li>
+				<li>Przy starcie serwer przegląda folder {tec`site/routes/`}. Każdy plik {tec`index.tsx`} to jedna strona.</li>
+				<li>Dla każdej strony serwer od razu składa jej CSS. Bierze go z plików, które ta strona importuje (rozdział STYLE).</li>
+				<li>
+					Przy starcie serwer przygotowuje też kod dla przeglądarki: {tec`web/client.ts`}, każdą wyspę {tec`*.island.tsx`} z {tec`site/client/`}{" "}
+					i wszystko, co one importują. TS i TSX zamienia na JS. Tylko te pliki przeglądarka może pobrać.
+				</li>
+				<li>Strony, sekcje i kod serwera nigdy nie wychodzą z serwera. Przeglądarka dostaje z nich tylko gotowy HTML.</li>
+				<li>Gdy przychodzi zapytanie o stronę, serwer renderuje ją do HTML (Preact) wewnątrz szkieletu {tec`PageShell`} z {tec`web/page-shell.tsx`}.</li>
+				<li>W nagłówku strony są: CSS strony w {tec`<style>`}, plik {tec`/styles.css`}, mapa importów i skrypt {tec`/web/client.ts`}.</li>
+				<li>W przeglądarce {tec`client.ts`} szuka elementów {tec`data-island`} i ożywia (hydratuje) wyspy. Reszta strony zostaje zwykłym HTML.</li>
+			</ol>
+			<P noindent>
+				Kolejność obsługi adresu: najpierw strona, potem kod dla przeglądarki, potem plik statyczny z {tec`site/static/`}. Gdy nic nie pasuje, serwer pokazuje stronę 404.
+			</P>
+		</>
+	);
 }
 
-async function findIslands(dir: URL): Promise<string[]> {
-  const out: string[] = [];
-  try {
-    for await (const e of Deno.readDir(dir)) {
-      if (e.isDirectory) {
-        out.push(...await findIslands(new URL(e.name + "/", dir)));
-      } else if (ISLAND_FILE.test(e.name)) {
-        out.push(new URL(e.name, dir).href);
-      }
-    }
-  } catch (err) {
-    if (!(err instanceof Deno.errors.NotFound)) throw err;
-  }
-  return out;
+function DwaObszary() {
+	return (
+		<>
+			<Rozdzial>DWA OBSZARY</Rozdzial>
+			<Table cols={powtorz( 2, "max" )} rows={powtorz( 2, "auto" )} gapX="0.5rem" gapY="0.5rem">
+				<Box start={[ 1, 1 ]} headerShow="N" headerLabel={<>FRAMEWORK {tec`web/`}</>} headerDisplay="center">
+					<ul>
+						<li>Silnik strony: serwer, trasy, CSS, wyspy, eksport.</li>
+						<li>Nie zawiera nic, co dotyczy tej konkretnej strony.</li>
+						<li>Nie importuje plików z {tec`site/`}. Sam przegląda {tec`site/`} i z tego buduje stronę.</li>
+						<li>
+							Udostępnia stronie ogólne narzędzia, np. {tec`web/island.ts`} (oznaczanie wysp) i {tec`web/heading-anchors.ts`} (kotwice nagłówków).
+						</li>
+					</ul>
+				</Box>
+				<Box start={[ 2, 1 ]} headerShow="N" headerLabel={<>STRONA {tec`site/`}</>} headerDisplay="center">
+					<ul>
+						<li>Treść i klocki tej strony.</li>
+						<li>Każdy folder ma jedno ściśle określone zadanie (rozdział FOLDERY STRONY).</li>
+						<li>O roli pliku decyduje folder i przyrostek nazwy, np. {tec`.widget.tsx`}.</li>
+					</ul>
+				</Box>
+				<Row row={2} headerShow="N" headerLabel={<>KONFIGURACJA {tec`deno.json`} i {tec`ende.json`}</>} headerDisplay="center">
+					<ul>
+						<li>Dwa prawie identyczne pliki: {tec`deno.json`} dla Deno, {tec`ende.json`} dla Ende.</li>
+						<li>
+							Jedyna obecna różnica to import {tec`@transpilacja`}: w Deno wskazuje {tec`web/transpile.ts`}, w Ende — {tec`web/transpile-ende.ts`}.
+						</li>
+						<li>Są w nich: zależności ({tec`imports`}), polecenia ({tec`tasks`}), ustawienia TypeScript i formatowania.</li>
+						<li>Folder {tec`_to_delete/`} jest wyłączony ({tec`exclude`}).</li>
+					</ul>
+				</Row>
+			</Table>
+		</>
+	);
 }
 
-/** Mirrors the browser: relative, "/…" and "@/…" are local; bare → import map. */
-function resolveLocal(spec: string, referrer: string): string | null {
-  let url: URL;
-  if (spec.startsWith("@/")) url = new URL(spec.slice(2), ROOT);
-  else if (spec.startsWith("/")) url = new URL("." + spec, ROOT);
-  else if (spec.startsWith("./") || spec.startsWith("../")) {
-    url = new URL(spec, referrer);
-  } else return null;
-  const href = url.href;
-  return href.startsWith(ROOT.href) && !href.includes("/node_modules/")
-    ? href
-    : null;
+function PlikiFrameworka() {
+	return (
+		<>
+			<Rozdzial>PLIKI FRAMEWORKA</Rozdzial>
+			<P noindent>Każdy plik w {tec`web/`} robi jedną rzecz:</P>
+			<ul>
+				<li>{tec`main.tsx`} — serwer. Znajduje strony, składa ich CSS, podaje kod dla przeglądarki, pliki statyczne i stronę 404.</li>
+				<li>{tec`page-shell.tsx`} — szkielet każdej strony: {tec`<html>`}, {tec`<head>`}, {tec`<body>`}.</li>
+				<li>{tec`page-shell.css`} — styl bazowy każdej strony.</li>
+				<li>{tec`island.ts`} — funkcja {tec`island(…)`}, która oznacza komponent jako wyspę.</li>
+				<li>{tec`client.ts`} — jedyny skrypt startowy przeglądarki. Ożywia wyspy.</li>
+				<li>{tec`transpile.ts`} — zamienia TS i TSX na JS dla przeglądarki. Tylko dla Deno ({tec`@deno/loader`}).</li>
+				<li>{tec`transpile-ende.ts`} — to samo dla Ende, przez natywny TypeScript ({tec`tsgo`}).</li>
+				<li>{tec`style.ts`} — składa CSS strony w warstwy.</li>
+				<li>{tec`importmap.ts`} — mapa importów dla przeglądarki, zbudowana z adresów w {tec`deno.json`}.</li>
+				<li>{tec`staticfiles.ts`} — podaje pliki z {tec`site/static/`}.</li>
+				<li>{tec`refresh.ts`} — samoczynne przeładowanie strony po restarcie serwera.</li>
+				<li>{tec`listwy.ts`} — mierzy przyklejone listwy (górną i dolną).</li>
+				<li>{tec`heading-anchors.ts`} — unikalne kotwice {tec`#id`} nagłówków.</li>
+				<li>{tec`404.tsx`} — strona 404 z mapą wszystkich stron.</li>
+				<li>{tec`gh-pages.ts`} — eksport całej strony do plików statycznych w {tec`dist/`}, np. dla GitHub Pages.</li>
+			</ul>
+		</>
+	);
 }
 
-async function buildClientGraph(
-  entries: string[],
-): Promise<Map<string, string>> {
-  const out = new Map<string, string>();
-  const queue = [...entries];
-  for (let url = queue.pop(); url !== undefined; url = queue.pop()) {
-    if (out.has(url)) continue;
-    let code: string;
-    try {
-      code = await transpile(url);
-    } catch (err) {
-      console.error(\`[client] \${url}:\`, err);
-      continue;
-    }
-    out.set(url, code);
-    for (const m of code.matchAll(IMPORT)) {
-      // dopasowana jest dokładnie jedna z dwóch grup; typ (noUncheckedIndexedAccess) tego nie wie
-      const spec = m[1] ?? m[2];
-      if (spec === undefined) continue;
-      const dep = resolveLocal(spec, url);
-      if (dep && !out.has(dep)) queue.push(dep);
-    }
-  }
-  return out;
+function FolderyStrony() {
+	return (
+		<>
+			<Rozdzial>FOLDERY STRONY</Rozdzial>
+			<Table cols={powtorz( 2, "max" )} rows={powtorz( 4, "auto" )} gapX="0.5rem" gapY="0.5rem">
+				<Box start={[ 1, 1 ]} headerShow="N" headerLabel={<>STRONY {tec`site/routes/`}</>}>
+					<ul>
+						<li>Pliki: {tec`index.tsx`} i opcjonalnie {tec`index.css`} obok.</li>
+						<li>Każdy folder z {tec`index.tsx`} to jedna strona. Ścieżka folderu to adres strony.</li>
+						<li>{tec`index.css`} działa tylko na tę jedną stronę.</li>
+					</ul>
+				</Box>
+				<Box start={[ 2, 1 ]} headerShow="N" headerLabel={<>SEKCJE {tec`site/layout/`}</>}>
+					<ul>
+						<li>Pliki: {tec`<Nazwa>.section.tsx`} albo {tec`<Nazwa>.sections.tsx`}, obok opcjonalnie CSS o tej samej nazwie.</li>
+						<li>Gotowe fragmenty stron, wypełnione treścią. Można je pisać w {tec`index.tsx`}, ale osobno jest czytelniej.</li>
+						<li>Sekcja może składać się z wielu funkcji wewnętrznych.</li>
+						<li>Bez reeksportów.</li>
+					</ul>
+				</Box>
+				<Box start={[ 1, 2 ]} headerShow="N" headerLabel={<>WIDGETY {tec`site/widget/`}</>}>
+					<ul>
+						<li>Pliki: {tec`<Nazwa>.widget.tsx`} albo {tec`<Nazwa>.widgets.tsx`}, obok opcjonalnie CSS.</li>
+						<li>Klocki budulcowe: tabela, akapit, tytuł, listwy. Wszystkie oprócz wysp.</li>
+						<li>Zagnieżdżają się jak matrioszki: widget może używać innych widgetów.</li>
+						<li>Dane dostają z miejsca użycia. Wyjątkiem są stałe, podstawowe słowa.</li>
+						<li>Wszystkie są zebrane w beczce {tec`_ANY.ts`}.</li>
+					</ul>
+				</Box>
+				<Box start={[ 2, 2 ]} headerShow="N" headerLabel={<>RENDERY {tec`site/screen/`}</>}>
+					<ul>
+						<li>Pliki główne leżą na górze folderu: {tec`<Nazwa>.render.tsx`}, obok opcjonalnie CSS.</li>
+						<li>Zamieniają dane albo model języka (LOCI, DOTX) na HTML, SVG albo Canvas.</li>
+						<li>Części renderu są w podfolderze tematu, małymi literami: {tec`loci/`}, {tec`dotx/`}.</li>
+						<li>Inny kod importuje render przez plik główny, nie przez jego części.</li>
+					</ul>
+				</Box>
+				<Box start={[ 1, 3 ]} headerShow="N" headerLabel={<>WYSPY {tec`site/client/`}</>}>
+					<ul>
+						<li>Pliki: {tec`<Nazwa>.island.tsx`}, obok opcjonalnie CSS.</li>
+						<li>Kod, który działa w przeglądarce (hydracja).</li>
+						<li>{tec`hooks/`} — hooki Preact dla wysp, np. {tec`pan-zoom.ts`}.</li>
+						<li>{tec`registries/`} — rejestry elementów SVG i Canvas, które może pokazać {tec`VectorViewport`}.</li>
+						<li>Bez reeksportów.</li>
+					</ul>
+				</Box>
+				<Box start={[ 2, 3 ]} headerShow="N" headerLabel={<>SILNIK {tec`site/common/`}</>}>
+					<ul>
+						<li>Tylko czysty TypeScript: pliki {tec`.ts`}, bez {tec`.tsx`} i bez importów z {tec`preact`}.</li>
+						<li>Nie importuje z innych folderów {tec`site/`}. Może go używać każdy plik w {tec`site/`}.</li>
+						<li>
+							{tec`css/`} (np. {tec`cx.ts`}), {tec`util/`}, {tec`lang/`} (definicje języków LOCI i DOTX), {tec`drafts/`} (szkice).
+						</li>
+						<li>Język w {tec`lang/`} nic nie wie o SVG, Canvas ani HTML. Rysowanie należy do {tec`site/screen/`}.</li>
+						<li>Tu reeksporty są dozwolone.</li>
+					</ul>
+				</Box>
+				<Box start={[ 1, 4 ]} headerShow="N" headerLabel={<>PLIKI STATYCZNE {tec`site/static/`}</>}>
+					<ul>
+						<li>Tylko pliki statyczne: ikona, obrazy, {tec`styles.css`}. Bez kodu.</li>
+						<li>Adres pliku to jego ścieżka w tym folderze: {tec`site/static/logo.svg`} → {tec`/logo.svg`}.</li>
+					</ul>
+				</Box>
+				<Box start={[ 2, 4 ]} headerShow="N" headerLabel={<>SZKICE {tec`site/drafts/`}</>}>
+					<ul>
+						<li>Szkice i eksperymenty dotyczące strony.</li>
+						<li>Szkice czystego TypeScript są w {tec`site/common/drafts/`}.</li>
+					</ul>
+				</Box>
+			</Table>
+			<P>
+				Nowy folder w {tec`site/`}{" "}
+				można dodać, gdy ma własne zadanie, którego nie pokrywa żaden istniejący folder. Jego nazwa ma dokładnie 6 liter, a rozszerzenie Material Icon Theme w VS Code koloruje go
+				bez dodatkowych ustawień.
+			</P>
+		</>
+	);
 }
 
-async function transpile(url: string): Promise<string> {
-  const res = await loader.load(url, RequestedModuleType.Default);
-  if (res.kind !== "module") throw new Error("not a local module");
-  const code = new TextDecoder().decode(res.code);
-  if (!res.sourceMap?.length || code.includes("//# sourceMappingURL=")) {
-    return code;
-  }
-  return code + "\n" + await inlineSourceMap(res.sourceMap);
+function NazwyPlikow() {
+	return (
+		<>
+			<Rozdzial>NAZWY PLIKÓW</Rozdzial>
+			<ul>
+				<li>
+					<strong>Przyrostek decyduje o roli.</strong> Plik bez {tec`.widget.tsx`} nie jest widgetem. Plik bez {tec`.island.tsx`}{" "}
+					nie jest wyspą. Framework rozpoznaje pliki tylko po tych dokładnych przyrostkach.
+				</li>
+				<li>
+					<strong>Komponenty</strong> (widgety, rendery, wyspy, sekcje) mają nazwy PascalCase, np. {tec`Table.widget.tsx`}, {tec`Loci.render.tsx`}.
+				</li>
+				<li>
+					<strong>Elementy języka</strong> w {tec`site/common/lang/`}: nazwa języka wielkimi literami, potem nazwa elementu od wielkiej litery, np. {tec`LOCIBodyElement.ts`}{" "}
+					(jeden znacznik) i {tec`LOCIPointAttributes.ts`} (grupa atrybutów wspólna dla kilku znaczników).
+				</li>
+				<li>
+					<strong>Pozostałe pliki</strong> (części, pomocnicze, rejestry) mają nazwy małymi literami, z łącznikiem, np. {tec`render-svg.tsx`}, {tec`pan-zoom.ts`}.
+				</li>
+				<li>
+					<strong>Pliki w {tec`web/`}</strong> mają nazwy małymi literami, po angielsku, z łącznikiem.
+				</li>
+				<li>
+					<strong>Beczka</strong> {tec`_ANY.ts`} ma podkreślnik na początku, żeby stała na górze listy plików.
+				</li>
+				<li>
+					<strong>Nagłówek.</strong> Każdy plik zaczyna się nagłówkiem {tec`@project-metadata`}: ścieżka ({tec`Path`}), autor, repozytorium. Uzupełnia go skrypt{" "}
+					{tec`inject-metadata.ps1`}.
+				</li>
+			</ul>
+		</>
+	);
 }
 
-/**
- * Source map as an inline comment, so DevTools shows the original .ts/.tsx.
- * file:///... sources are rewritten to server paths (/site/features/…) and their
- * text is embedded, so the browser never has to fetch anything from file://.
- */
-async function inlineSourceMap(raw: Uint8Array): Promise<string> {
-  const map: { sources?: string[]; sourcesContent?: (string | null)[] } = JSON
-    .parse(new TextDecoder().decode(raw));
-  const sources = map.sources ?? [];
-  const contents = map.sourcesContent ?? [];
-  for (const [i, src] of sources.entries()) {
-    if (!src.startsWith("file:")) continue;
-    contents[i] ??= await Deno.readTextFile(new URL(src));
-    if (src.startsWith(ROOT.href)) {
-      sources[i] = "/" + src.slice(ROOT.href.length);
-    }
-  }
-  map.sourcesContent = contents;
-  const b64 = encodeBase64(new TextEncoder().encode(JSON.stringify(map)));
-  return \`//# sourceMappingURL=data:application/json;base64,\${b64}\`;
+function StronyIAdresy() {
+	return (
+		<>
+			<Rozdzial>STRONY I ADRESY</Rozdzial>
+			<P noindent>Adres strony wynika z miejsca pliku {tec`index.tsx`} w {tec`site/routes/`}:</P>
+			<ul>
+				<li>{tec`site/routes/index.tsx`} → {tec`/`}</li>
+				<li>{tec`site/routes/o-dokumentacji/index.tsx`} → {tec`/o-dokumentacji`} (oraz {tec`/o-dokumentacji/`})</li>
+				<li>{tec`site/routes/lang/loci/sandbox/index.tsx`} → {tec`/lang/loci/sandbox`}</li>
+			</ul>
+			<ul>
+				<li>Folder bez {tec`index.tsx`} jest tylko członem adresu, np. {tec`site/routes/lang/`}.</li>
+				<li>Nowa strona = nowy folder z {tec`index.tsx`}. Serwer szuka stron przy starcie; {tec`czytaj-pisz`} restartuje go po każdej zmianie.</li>
+				<li>Domyślny eksport {tec`index.tsx`} to komponent strony. Bez niego serwer nie wystartuje.</li>
+				<li>Strona może wyeksportować {tec`tytul`} — to tytuł karty przeglądarki. Domyślnie „LEKTURA”.</li>
+				<li>Strona 404 powstaje sama. Pokazuje adres, którego nie ma, i mapę wszystkich stron z ich plikami.</li>
+			</ul>
+			<P noindent>Najmniejsza strona:</P>
+			{tecs( "tsx" )`
+// site/routes/przyklad/index.tsx  →  adres /przyklad
+import { P, Title } from "@/site/widget/_ANY.ts";
+
+export const tytul = "PRZYKŁAD";
+
+export default function WebPage() {
+	return (
+		<main class="page">
+			<Title level="h1">Przykład</Title>
+			<P>Treść strony.</P>
+		</main>
+	);
 }
-`,
-		"ts:transpile-ende": tecs( "typescript" )`
-/**
- * Kod przeglądarki dla Ende — odpowiednik web/transpile.ts bez @deno/loader.
- *
- * Przełącznik: main.tsx importuje "@transpilacja";
- *   deno.json → "./web/transpile.ts"       (Deno: @deno/loader, jak dotąd)
- *   ende.json → "./web/transpile-ende.ts"  (Ende: ten plik)
- * Powód: @deno/loader (sys_traits, funkcja "wasm") czyta pliki przez node:fs, node:process,
- * node:os i node:tty, których Ende nie ma.
- *
- * TS/TSX → JS robi natywny TypeScript (tsgo) jako osobny proces: tylko usuwa typy i JSX
- * (--noCheck --noResolve), importy zostawia bez zmian, a mapę źródeł z treścią oryginału
- * wkleja do pliku (sourceRoot "/" → przeglądarka widzi /site/…, /web/…).
- * Program: zmienna środowiskowa TSGO (pełna ścieżka do tsgo / tsgo.exe) albo "tsgo" z PATH.
- *
- * Graf (wejścia, wyspy, lokalne importy) liczony jak w web/transpile.ts — zmiany tam
- * przenoś też tutaj.
- * DO ROZWAŻENIA W PRZYSZŁOŚCI: jeden transpilator dla obu środowisk (np. deno_ast z Rust → wasm),
- * wtedy przełącznik i ten plik będą zbędne.
- */
-
-const ROOT = new URL("../", import.meta.url);
-const FEATURES = new URL("site/features/", ROOT);
-const ISLAND_FILE = /\.island\.tsx?$/;
-const CLIENT_ENTRY = new URL("web/client.ts", ROOT).href;
-const TSGO = Deno.env.get("TSGO") ?? "tsgo";
-
-// Jak w web/transpile.ts: statyczne importy/re-eksporty, \`import "x"\` i \`import("x")\` z dosłowną ścieżką.
-const IMPORT = /\bfrom\s*["']([^"']+)["']|\bimport\s*\(?\s*["']([^"']+)["']/g;
-
-const entries = [CLIENT_ENTRY, ...await findIslands(FEATURES)];
-const served = await buildClientGraph(entries);
-console.log(\`client modules: \${served.size} (tsgo)\`);
-
-/** Transpiled JS for a request path, or null if it is not client code. */
-export function transpileForBrowser(path: string): string | null {
-  return served.get(new URL("." + path, ROOT).href) ?? null;
+`}
+		</>
+	);
 }
 
-async function findIslands(dir: URL): Promise<string[]> {
-  const out: string[] = [];
-  try {
-    for await (const e of Deno.readDir(dir)) {
-      if (e.isDirectory) out.push(...await findIslands(new URL(e.name + "/", dir)));
-      else if (ISLAND_FILE.test(e.name)) out.push(new URL(e.name, dir).href);
-    }
-  } catch (err) {
-    if (!(err instanceof Deno.errors.NotFound)) throw err;
-  }
-  return out;
+function Style() {
+	return (
+		<>
+			<Rozdzial>STYLE (CSS)</Rozdzial>
+			<ul>
+				<li>
+					<strong>Plik-rodzeństwo.</strong> CSS komponentu ma tę samą nazwę co jego {tec`.tsx`}, z tym samym przyrostkiem; różni się tylko rozszerzeniem: {tec`Table.widget.tsx`} →
+					{" "}
+					{tec`Table.widget.css`}. Nie trzeba go nigdzie importować.
+				</li>
+				<li>
+					<strong>Tylko to, czego strona używa.</strong> CSS komponentu trafia na stronę tylko wtedy, gdy jego {tec`.tsx`} jest w grafie importów jej {tec`index.tsx`}{" "}
+					(także pośrednio, przez sekcje). Strona bez tabeli nie dostaje CSS tabeli. {tec`import type`} się nie liczy.
+				</li>
+				<li>
+					<strong>Beczka po nazwach.</strong> Gdy strona importuje z {tec`_ANY.ts`} tylko {tec`P`} i{" "}
+					{tec`Title`}, dostaje CSS tylko akapitu i tytułu, a nie wszystkich widgetów z beczki.
+				</li>
+				<li>
+					<strong>Warstwy</strong>, od najsłabszej: {tec`shell`} ({tec`web/page-shell.css`}), {tec`widget`} (widgety, wyspy, rendery), {tec`layout`} (sekcje), {tec`route`}{" "}
+					({tec`index.css`} strony). Późniejsza warstwa wygrywa bez względu na siłę selektora. Styl strony zawsze nadpisze styl sekcji, sekcja — komponentu, a komponent — bazę.
+				</li>
+				<li>
+					<strong>{tec`site/static/styles.css`}</strong> jest poza warstwami, więc wygrywa ze wszystkimi. To miejsce na ręczne poprawki.
+				</li>
+				<li>
+					<strong>{tec`index.css`}</strong> działa tylko na swoją stronę. Podstrony go nie dziedziczą.
+				</li>
+				<li>CSS strony trafia do {tec`<style>`} w jej HTML, a nie do osobnego pliku.</li>
+				<li>Pusty plik CSS może czekać na przyszłe style.</li>
+				<li>CSS bez pliku {tec`.tsx`} o tej samej nazwie nie trafi na żadną stronę. Serwer ostrzega o nim przy starcie.</li>
+			</ul>
+		</>
+	);
 }
 
-/** Mirrors the browser: relative, "/…" and "@/…" are local; bare → import map. */
-function resolveLocal(spec: string, referrer: string): string | null {
-  let url: URL;
-  if (spec.startsWith("@/")) url = new URL(spec.slice(2), ROOT);
-  else if (spec.startsWith("/")) url = new URL("." + spec, ROOT);
-  else if (spec.startsWith("./") || spec.startsWith("../")) url = new URL(spec, referrer);
-  else return null;
-  return url.href.startsWith(ROOT.href) ? url.href : null;
+function KtoKogoUzywa() {
+	return (
+		<>
+			<Rozdzial>KTO MOŻE UŻYWAĆ KOGO</Rozdzial>
+			<ul>
+				<li>Widgety mogą być użyte w stronach, sekcjach, wyspach i w innych widgetach.</li>
+				<li>Rendery mogą być użyte w stronach, sekcjach i wyspach. Render może użyć innego renderu, ale nie jest to zalecane.</li>
+				<li>Wyspy mogą być użyte w stronach i sekcjach.</li>
+				<li>Sekcje mogą być użyte w stronach. Sekcja nie powinna używać innej sekcji (odradzane, nie zakazane).</li>
+				<li>{tec`site/common/`} i narzędzia z {tec`web/`} (np. {tec`web/island.ts`}) mogą być użyte wszędzie w {tec`site/`}.</li>
+			</ul>
+			<P noindent>Reeksporty są dozwolone tylko w trzech miejscach:</P>
+			<ul>
+				<li>{tec`site/widget/_ANY.ts`} — wszystkie widgety;</li>
+				<li>{tec`site/screen/_ANY.ts`} — rendery;</li>
+				<li>{tec`site/common/`} — moduły czystego TypeScript mogą reeksportować się nawzajem.</li>
+			</ul>
+		</>
+	);
 }
 
-/** Fale: transpiluj nowe pliki jednym wywołaniem tsgo, znajdź ich lokalne importy, powtórz. */
-async function buildClientGraph(entries: string[]): Promise<Map<string, string>> {
-  const out = new Map<string, string>();
-  let fala = [...new Set(entries)];
-  while (fala.length > 0) {
-    const istniejace = await istnieja(fala);
-    const kod = istniejace.length > 0 ? await tsgo(istniejace) : new Map<string, string>();
-    const nastepna = new Set<string>();
-    for (const [url, js] of kod) {
-      out.set(url, js);
-      for (const m of js.matchAll(IMPORT)) {
-        const spec = m[1] ?? m[2];
-        if (spec === undefined) continue;
-        const dep = resolveLocal(spec, url);
-        if (dep !== null && !out.has(dep) && !kod.has(dep)) nastepna.add(dep);
-      }
-    }
-    for (const url of fala) if (!kod.has(url)) console.error(\`[client] \${url}: brak pliku albo nie został przetranspilowany\`);
-    fala = [...nastepna].filter((url) => !out.has(url));
-  }
-  return out;
+function Wyspy() {
+	return (
+		<>
+			<Rozdzial>WYSPY</Rozdzial>
+			<P>
+				Wyspa to komponent, który działa w przeglądarce, np. przesuwanie i powiększanie rysunku. Reszta strony to statyczny HTML z serwera. Dzięki temu przeglądarka pobiera tylko
+				kod wysp.
+			</P>
+			<ul>
+				<li>
+					Plik {tec`site/client/<Nazwa>.island.tsx`}. Domyślny eksport to {tec`island( import.meta.url, Komponent )`} z {tec`web/island.ts`}.
+				</li>
+				<li>
+					Na serwerze wyspa renderuje się w {tec`<div data-island="…" data-props="…">`}. W przeglądarce {tec`client.ts`} importuje plik wyspy i ją ożywia.
+				</li>
+				<li>Atrybuty wyspy przechodzą do przeglądarki jako JSON: liczby, teksty, tablice, obiekty. Funkcje i JSX w atrybutach nie przejdą.</li>
+				<li>
+					Takie wejście zamienia na serwerze trzeci argument: {tec`island( url, Komponent, prepare )`}. Uwaga: plik z {tec`prepare`} też trafia do przeglądarki.
+				</li>
+				<li>
+					{tec`children`} wyspy serwer renderuje do HTML. W przeglądarce zostają statycznym HTML i wyspa ich nie przerysowuje. Wyspa zagnieżdżona w środku ożywa sama.
+				</li>
+				<li>
+					<strong>Wszystko, co wyspa importuje, idzie do przeglądarki.</strong> Dlatego wyspa importuje pliki wprost, nie przez{" "}
+					{tec`_ANY.ts`}. Inaczej serwer nie wystartuje i pokaże błąd.
+				</li>
+				<li>
+					Przykład: {tec`VectorViewport.island.tsx`}. Strona wybiera, co pokazuje: {tec`<VectorViewport renderer="SVG" sourceFormat="LOCI">`}.
+				</li>
+			</ul>
+			<P noindent>Najmniejsza wyspa i jej użycie:</P>
+			{tecs( "tsx" )`
+// site/client/Licznik.island.tsx
+import { useState } from "preact/hooks";
+import { island } from "@/web/island.ts";
+
+export default island( import.meta.url, function Licznik( { start }: { start: number } ) {
+	const [ n, ustaw ] = useState( start );
+	return <button onClick={() => ustaw( n + 1 )}>{n}</button>;
+} );
+
+// w stronie albo sekcji
+import Licznik from "@/site/client/Licznik.island.tsx";
+<Licznik start={0} />
+`}
+		</>
+	);
 }
 
-async function istnieja(urls: string[]): Promise<string[]> {
-  const wynik: string[] = [];
-  for (const url of urls) {
-    try {
-      if ((await Deno.stat(new URL(url))).isFile) wynik.push(url);
-    } catch (err) {
-      if (!(err instanceof Deno.errors.NotFound)) throw err;
-    }
-  }
-  return wynik;
+function Zaleznosci() {
+	return (
+		<>
+			<Rozdzial>ZALEŻNOŚCI</Rozdzial>
+			<ul>
+				<li>Bez Node.js, bez npm, bez folderu {tec`node_modules`}.</li>
+				<li>
+					Zależności są w {tec`deno.json`}, w polu {tec`imports`}: z {tec`jsr:`} albo z {tec`https://esm.sh/`}. Skrót {tec`@/`} to katalog projektu.
+				</li>
+				<li>
+					Przeglądarka dostaje mapę importów z tymi samymi adresami. Serwer i przeglądarka używają więc tych samych wersji, a wersję zmienia się w jednym miejscu.
+				</li>
+				<li>
+					Kod przeglądarki może używać tylko pakietów z listy w {tec`web/importmap.ts`} (dziś: {tec`preact`}, {tec`@preact/signals`}, {tec`highlight.js`}) i tylko z adresów{" "}
+					{tec`https://`}. Przeglądarka nie rozumie {tec`jsr:`}.
+				</li>
+			</ul>
+		</>
+	);
 }
 
-/** Jedno wywołanie tsgo dla listy plików (URL) → mapa URL → JS z wklejoną mapą źródeł. */
-async function tsgo(urls: string[]): Promise<Map<string, string>> {
-  // ścieżki względem katalogu projektu („web/client.ts”), więc bez zamiany URL ↔ ścieżka systemu
-  const wzgledne = urls.map((url) => decodeURIComponent(url.slice(ROOT.href.length)));
-  const wyjscie = await Deno.makeTempDir({ prefix: "lektura-tsgo-" });
-  try {
-    const args = [
-      ...["--noCheck", "--noResolve", "--skipLibCheck"],
-      ...["--jsx", "react-jsx", "--jsxImportSource", "preact"],
-      ...["--target", "es2022", "--module", "esnext", "--moduleResolution", "bundler"],
-      ...["--inlineSourceMap", "--inlineSources", "--sourceRoot", "/"],
-      ...["--rootDir", ".", "--outDir", wyjscie],
-      ...wzgledne,
-    ];
-    let wynik: Deno.CommandOutput;
-    try {
-      wynik = await new Deno.Command(TSGO, { args, cwd: ROOT, stdout: "piped", stderr: "piped" }).output();
-    } catch (err) {
-      if (err instanceof Deno.errors.NotFound) {
-        throw new Error(\`nie znaleziono „\${TSGO}” — ustaw zmienną TSGO na pełną ścieżkę do tsgo (np. …\\tsgo.exe)\`);
-      }
-      throw err;
-    }
-    const komunikaty = new TextDecoder().decode(wynik.stdout) + new TextDecoder().decode(wynik.stderr);
-    if (komunikaty.trim() !== "") console.warn(\`[tsgo]\n\${komunikaty.trim()}\`);
-    // 0 = bez uwag, 2 = uwagi (np. błąd składni), ale pliki wyemitowane; inne = porażka
-    if (wynik.code !== 0 && wynik.code !== 2) throw new Error(\`tsgo zakończył się kodem \${wynik.code}\`);
-
-    const kod = new Map<string, string>();
-    for (const [i, url] of urls.entries()) {
-      const plik = \`\${wyjscie}/\${wzgledne[i]?.replace(/\.tsx?$/, ".js")}\`;
-      try {
-        kod.set(url, await Deno.readTextFile(plik));
-      } catch (err) {
-        if (!(err instanceof Deno.errors.NotFound)) throw err;
-      }
-    }
-    return kod;
-  } finally {
-    await Deno.remove(wyjscie, { recursive: true });
-  }
-}
-`,
-		"ts:client": tecs( "typescript" )`
-import { type ComponentType, h, hydrate } from "preact";
-import { SLOT_ATTR } from "@/web/island.ts";
-
-// Hydrates every <div data-island="/site/features/…/X.island.tsx"> with the default
-// export of that module.
-const islands = document.querySelectorAll<HTMLElement>("[data-island]");
-
-await Promise.all([...islands].map(async (el) => {
-  const mod: { default: ComponentType } = await import(\`\${el.dataset.island}\`);
-  const props = JSON.parse(el.dataset.props ?? "{}");
-  const slot = ownSlot(el);
-  if (slot) {
-    // Server-rendered children, passed back as the same HTML: Preact does not
-    // touch innerHTML while hydrating, nor later while the string is unchanged.
-    props.children = h("div", {
-      [SLOT_ATTR]: "",
-      style: "display:contents",
-      dangerouslySetInnerHTML: { __html: slot.innerHTML },
-    });
-  }
-  hydrate(h(mod.default, props), el);
-}));
-
-/** The slot of this island (not of an island nested inside it). */
-function ownSlot(el: HTMLElement): HTMLElement | null {
-  for (const s of el.querySelectorAll<HTMLElement>(\`[\${SLOT_ATTR}]\`)) {
-    if (s.closest("[data-island]") === el) return s;
-  }
-  return null;
-}
-          `,
-		"tsx:layout": tecs( "typescript" )`
-import type { ComponentChildren } from "preact";
-import { IMPORT_MAP, KATEX_CSS } from "./importmap.ts";
-import { Kotwice } from "../site/scripts/kotwice.ts";
-
-export function Layout(
-  { title, children }: { title: string; children: ComponentChildren },
-) {
-  return (
-    <html lang="pl">
-      <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>{title}</title>
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="stylesheet" href={KATEX_CSS} />
-        <link rel="stylesheet" href="/styles.css" />
-        <script
-          type="importmap"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(IMPORT_MAP) }}
-        />
-        <script type="module" src="/web/client.ts" />
-      </head>
-      {/* świeży zbiór kotwic na każde renderowanie strony: unikalne id nagłówków */}
-      <body>
-        <Kotwice.Provider value={new Set()}>{children}</Kotwice.Provider>
-      </body>
-    </html>
-  );
-}
-        `,
-		"tsx:main": tecs( "typescript" )`
-import { type Context, Hono } from "@hono/hono";
-import { renderToString } from "preact-render-to-string";
-import type { ComponentType, VNode } from "preact";
-import { plikiStatyczne } from "./staticfiles.ts";
-// przełącznik: deno.json → ./transpile.ts (@deno/loader), ende.json → ./transpile-ende.ts (tsgo)
-import { transpileForBrowser } from "@transpilacja";
-import { Layout } from "./layout.tsx";
-import { Error404PageNotFound } from "@/web/404.tsx";
-
-const app = new Hono();
-
-const page = (title: string, body: VNode) => "<!DOCTYPE html>" + renderToString(<Layout title={title}>{body}</Layout>);
-
-// --- pages (SSR): każdy site/pages/**/index.tsx to strona, a jego katalog to adres ---
-//   site/pages/index.tsx                  → /
-//   site/pages/dokumentacja/index.tsx     → /dokumentacja   (i /dokumentacja/)
-//   site/pages/a/b/index.tsx              → /a/b
-// Nowy katalog z index.tsx = nowa strona; serwer skanuje przy starcie (--watch=site/ restartuje go po zmianie).
-const PAGES = new URL("../site/pages/", import.meta.url);
-
-/** Moduł strony: domyślny eksport to komponent; opcjonalny \`export const tytul = "…"\` to <title>. */
-interface ModulStrony {
-  readonly default: ComponentType;
-  readonly tytul?: string;
+function Polecenia() {
+	return (
+		<>
+			<Rozdzial>POLECENIA</Rozdzial>
+			<ul>
+				<li>{tec( "bash" )`deno task czytaj`} — serwer.</li>
+				<li>
+					{tec( "bash" )`deno task czytaj-pisz`} — serwer do pisania: restartuje się po zmianie w {tec`site/`} lub {tec`web/`}, a otwarta strona sama się przeładowuje.
+				</li>
+				<li>{tec( "bash" )`deno task ghpages`} — eksport do {tec`dist/`} dla strony pod adresem głównym {tec`/`}.</li>
+				<li>
+					{tec( "bash" )`BAZA=/dot-gener/ deno task ghpages`} — eksport dla{" "}
+					{tec`https://j-cis.github.io/dot-gener/`}. Adresy dostają przedrostek, a moduły przeglądarki są zapisane jako {tec`*.ts.js`}, bo GitHub Pages podaje pliki {tec`.ts`}{" "}
+					jako wideo.
+				</li>
+				<li>{tec( "bash" )`deno task sprawdz-lekture`} — sprawdzenie typów w {tec`web/`} i {tec`site/`}.</li>
+				<li>{tec( "bash" )`deno task check`} — formatowanie, lint i typy naraz.</li>
+			</ul>
+		</>
+	);
 }
 
-/** [adres, plik] każdego index.tsx w katalogu i podkatalogach. */
-async function* znajdzStrony(katalog: URL, adres: string): AsyncGenerator<readonly [adres: string, plik: URL]> {
-  for await (const wpis of Deno.readDir(katalog)) {
-    if (wpis.isFile && wpis.name === "index.tsx") yield [adres === "" ? "/" : adres, new URL("index.tsx", katalog)];
-    else if (wpis.isDirectory) yield* znajdzStrony(new URL(\`\${encodeURIComponent(wpis.name)}/\`, katalog), \`\${adres}/\${wpis.name}\`);
-  }
-}
-
-const strony = (await Array.fromAsync(znajdzStrony(PAGES, ""))).toSorted(([a], [b]) => a.localeCompare(b));
-for (const [adres, plik] of strony) {
-  const modul: ModulStrony = await import(plik.href);
-  if (typeof modul.default !== "function") throw new Error(\`\${plik.pathname}: brak domyślnego eksportu komponentu strony\`);
-  const { default: Strona, tytul = "LEKTURA" } = modul;
-  const obsluga = (c: Context) => c.html(page(tytul, <Strona />));
-  app.get(adres, obsluga);
-  if (adres !== "/") app.get(\`\${adres}/\`, obsluga);
-}
-
-const adresyStron = strony.map(([adres]) => adres);
-console.log(\`pages: \${adresyStron.join(" ")}\`);
-
-// --- 404: wszystko, czego nie obsłużyły strony, transpilacja ani pliki statyczne → mapa stron ---
-app.notFound((c) => c.html(page("404 — nie ma takiej strony", <Error404PageNotFound adres={c.req.path} strony={adresyStron} />), 404));
-
-// --- client .ts/.tsx (client.ts, islands and what they import) ---
-app.get("*", (c, next) => {
-  const js = transpileForBrowser(c.req.path);
-  if (js === null) return next();
-  return c.body(js, 200, {
-    "content-type": "text/javascript; charset=utf-8",
-    "cache-control": "no-cache",
-  });
-});
-
-// --- static files: site/static/ (względem tego pliku, nie katalogu roboczego) ---
-app.get("*", plikiStatyczne(new URL("../site/static/", import.meta.url)));
-
-export default { fetch: app.fetch } satisfies Deno.ServeDefaultExport;
-`,
-		"tsx:404": tecs( "typescript" )`
-/**
- * Strona 404 generowana automatycznie: adres, którego nie ma, i mapa wszystkich stron
- * (drzewo plików index.tsx z site/pages — ta sama lista, z której main.tsx buduje router).
- */
-
-export interface Error404PageNotFoundProps {
-  /** adres, którego szukano */
-  adres: string;
-  /** adresy wszystkich stron, np. ["/", "/dokumentacja", "/o-dokumentacji"] */
-  strony: readonly string[];
-}
-
-export function Error404PageNotFound({ adres, strony }: Error404PageNotFoundProps) {
-  const istnieje = new Set(strony);
-  return (
-    <main class="page strona-404">
-      <h1>404 — nie ma takiej strony</h1>
-      <p>
-        Pod adresem <code>{adres}</code> nic nie ma. Dostępne strony:
-      </p>
-      <ul class="mapa-stron">
-        <li>
-          <Adres adres="/" istnieje={istnieje} />
-          <Galaz prefiks="" strony={strony.filter((s) => s !== "/")} istnieje={istnieje} />
-        </li>
-      </ul>
-    </main>
-  );
-}
-
-/** Podstrony pod \`prefiks\` (np. "/a" → "/a/b", "/a/c/d"), pogrupowane po kolejnym członie adresu. */
-function Galaz({ prefiks, strony, istnieje }: { prefiks: string; strony: readonly string[]; istnieje: ReadonlySet<string> }) {
-  const nazwy = [...new Set(strony.map((s) => s.slice(prefiks.length + 1).split("/", 1)[0] ?? ""))];
-  if (nazwy.length === 0) return null;
-  return (
-    <ul>
-      {nazwy.map((nazwa) => {
-        const adres = \`\${prefiks}/\${nazwa}\`;
-        return (
-          <li>
-            <Adres adres={adres} istnieje={istnieje} />
-            <Galaz prefiks={adres} strony={strony.filter((s) => s.startsWith(\`\${adres}/\`))} istnieje={istnieje} />
-          </li>
-        );
-      })}
-    </ul>
-  );
-}
-
-/** Link do strony i jej plik; folder bez index.tsx (tylko pośredni człon adresu) — sam tekst. */
-function Adres({ adres, istnieje }: { adres: string; istnieje: ReadonlySet<string> }) {
-  const plik = \`site/pages\${adres === "/" ? "" : adres}/index.tsx\`;
-  return istnieje.has(adres)
-    ? (
-      <>
-        <a href={encodeURI(adres)}>{adres}</a> <span class="mapa-stron-plik">{plik}</span>
-      </>
-    )
-    : <span class="mapa-stron-folder">{adres}</span>;
-}
-
-`,
-	};
-
-	return rekord[klucz];
+function Dodatki() {
+	return (
+		<>
+			<Rozdzial>DODATKI</Rozdzial>
+			<ul>
+				<li>
+					<strong>Listwy.</strong> Element z {tec`data-listwa="gora"`} albo {tec`data-listwa="dol"`} (np. {tec`GuideBar`},{" "}
+					{tec`FootBar`}) jest mierzony w przeglądarce. Jego wysokość trafia do zmiennych CSS {tec`--listwa-gora`} i {tec`--listwa-dol`}. Z nich {tec`Table`} liczy wiersze{" "}
+					{tec`fill1`}, {tec`fill2`} …: wysokość ekranu między listwami.
+				</li>
+				<li>
+					<strong>Kotwice nagłówków.</strong> {tec`Title`} dostaje {tec`id`} z prefiksu i tekstu, np. {tec`#wstęp`}. Powtórzone {tec`id`} dostaje sufiks {tec`-1`}, {tec`-2`}{" "}
+					… (jak w markdown). Po najechaniu na nagłówek pojawia się link {tec`#`}. Własne {tec`id`} można podać atrybutem.
+				</li>
+			</ul>
+		</>
+	);
 }

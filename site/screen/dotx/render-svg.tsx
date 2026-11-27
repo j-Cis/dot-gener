@@ -6,7 +6,7 @@
 
 import type { PositionedGraph } from "@/site/common/lang/dotx/model.ts";
 
-/** Graf DOTX z wyliczonym układem → SVG (para dla drawDotxCanvas z site/common/lang/dotx/render-canvas.ts). */
+/** Graf DOTX z wyliczonym układem → SVG (para dla drawDotxCanvas z render-canvas.ts). */
 export function renderDotxSvg( g: PositionedGraph ) {
 	return (
 		<svg

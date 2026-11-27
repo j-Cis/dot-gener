@@ -5,10 +5,26 @@
 // Repository: https://github.com/j-Cis/dot-gener
 
 import { type ComponentChildren, Fragment, toChildArray, type VNode } from "preact";
-import VectorViewport, { type BoxLength } from "@/site/client/VectorViewport.island.tsx";
 import { type AnchorDir, isAnchorDir } from "@/site/common/drafts/compass.ts";
-import type { ClusterModel, DotxMode, EdgeAttrs, FlowDir, FlowMode, GraphAttrs, GraphModel, NodeAttrs, ScopeAttrs } from "@/site/common/lang/dotx/model.ts";
+import type { ClusterModel, DotxMode, EdgeAttrs, FlowDir, FlowMode, GraphAttrs, GraphModel, NodeAttrs, PositionedGraph, ScopeAttrs } from "@/site/common/lang/dotx/model.ts";
 import { layoutGraph } from "@/site/common/lang/dotx/layout.ts";
+import type { CanvasDrawContext } from "@/site/screen/canvas/draw-context.ts";
+import { renderDotxSvg } from "@/site/screen/dotx/render-svg.tsx";
+import { drawDotxCanvas } from "@/site/screen/dotx/render-canvas.ts";
+
+/**
+ * Znaczniki DOTX do szablonów. Okno daje VectorViewport, a graf jest jego dzieckiem:
+ *
+ *   <VectorViewport renderer="SVG" sourceFormat="DOTX" height="360px">
+ *     <Dotx mode="digraph">
+ *       <N id="A" />
+ *       <E from="A" to="B" />
+ *     </Dotx>
+ *   </VectorViewport>
+ *
+ * Znaczniki same nic nie rysują: dotxModelZJsx czyta je i liczy układ (site/common/lang/dotx),
+ * a rysuje dotxSvg albo dotxCanvas (części w site/screen/dotx/).
+ */
 
 export interface TNProps extends NodeAttrs {
 	id: string;
@@ -48,12 +64,9 @@ export interface FProps {
 	range?: [ number, number ];
 	reverse?: boolean;
 }
+/** Korzeń grafu: rodzaj grafu, atrybuty domyślne i dzieci (N, E, G, B, F, TN, TE, TG). */
 export interface DotxProps extends ScopeAttrs {
 	mode?: DotxMode;
-	out?: "islandSvg" | "islandCanvas";
-	width?: BoxLength;
-	height?: BoxLength;
-	background?: string;
 	children?: ComponentChildren;
 }
 
@@ -205,17 +218,23 @@ function collect(
 	}
 }
 
-export function Dotx( {
-	mode = "digraph",
-	out = "islandSvg",
-	node = {},
-	edge = {},
-	graph = {},
-	width,
-	height,
-	background,
-	children,
-}: DotxProps ) {
+/** Korzeń grafu. Sam nic nie rysuje: czyta go dotxModelZJsx. */
+export function Dotx( _props: DotxProps ) {
+	return null;
+}
+
+/** Źródło JSX (dzieci VectorViewport) → graf z wyliczonym układem. Oczekuje dokładnie jednego <Dotx>. */
+export function dotxModelZJsx( zrodlo: ComponentChildren ): PositionedGraph {
+	const korzenie = toChildArray( zrodlo ).filter( ( d ): d is VNode => {
+		if ( typeof d === "object" ) return true;
+		if ( String( d ).trim() === "" ) return false;
+		throw new Error( `DOTX: tekst „${String( d ).trim()}” w źródle — tu jest tylko znacznik <Dotx>` );
+	} );
+	const [ korzen ] = korzenie;
+	if ( korzenie.length !== 1 || korzen === undefined || korzen.type !== Dotx ) {
+		throw new Error( `DOTX: źródło to jeden znacznik <Dotx>, jest: ${korzenie.length} element(y), pierwszy: ${nazwa( korzen )}` );
+	}
+	const { mode = "digraph", node = {}, edge = {}, graph = {}, children } = korzen.props as DotxProps;
 	const model: GraphModel = {
 		mode,
 		attrs: graph,
@@ -224,7 +243,6 @@ export function Dotx( {
 		clusters: [],
 		flows: [],
 	};
-
 	collect(
 		children,
 		{ node, edge, graph },
@@ -234,23 +252,22 @@ export function Dotx( {
 			seq: 0,
 		},
 	);
-	const positioned = layoutGraph( model );
+	return layoutGraph( model );
+}
 
-	const boxProps: {
-		width?: BoxLength;
-		height?: BoxLength;
-		background?: string;
-	} = {};
-	if ( width !== undefined ) boxProps.width = width;
-	if ( height !== undefined ) boxProps.height = height;
-	if ( background !== undefined ) boxProps.background = background;
+/** Graf z wyliczonym układem → SVG. */
+export function dotxSvg( g: PositionedGraph ) {
+	return renderDotxSvg( g );
+}
 
-	return (
-		<VectorViewport
-			renderer={out === "islandCanvas" ? "Canvas" : "SVG"}
-			sourceFormat="DOTX"
-			source={positioned}
-			{...boxProps}
-		/>
-	);
+/** Graf z wyliczonym układem → Canvas; `dane` to graf. */
+export function dotxCanvas( c: CanvasDrawContext ): void {
+	drawDotxCanvas( c );
+}
+
+/** Nazwa znacznika do komunikatów. */
+function nazwa( v: VNode | undefined ): string {
+	if ( v === undefined ) return "brak";
+	if ( typeof v.type === "string" ) return `<${v.type}>`;
+	return `<${( v.type as { name?: string } ).name || "?"}>`;
 }

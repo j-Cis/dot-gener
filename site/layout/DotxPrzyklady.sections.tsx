@@ -6,6 +6,7 @@
 
 import { Title } from "@/site/widget/_ANY.ts";
 
+import VectorViewport from "@/site/client/VectorViewport.island.tsx";
 import { B, Dotx, E, F, G, N, TE, TN } from "@/site/screen/Dotx.render.tsx";
 import type { PortDef } from "@/site/common/lang/dotx/model.ts";
 
@@ -145,9 +146,9 @@ export function DotxPrzykladSvg( { punkt }: DotxPrzykladSvgProps ) {
 					<strong>PRZYKŁAD 1 (islandSvg)</strong>
 				</Title>
 			</header>
-			<Dotx mode="digraph" out="islandSvg" height="360px" background="#fff">
-				{testGraph}
-			</Dotx>
+			<VectorViewport renderer="SVG" sourceFormat="DOTX" height="360px" background="#fff">
+				<Dotx mode="digraph">{testGraph}</Dotx>
+			</VectorViewport>
 		</>
 	);
 }
@@ -163,9 +164,9 @@ export function DotxPrzykladCanvas( { punkt }: DotxPrzykladCanvasProps ) {
 					<strong>PRZYKŁAD 2 (islandCanvas)</strong>
 				</Title>
 			</header>
-			<Dotx mode="digraph" out="islandCanvas" height="360px" background="#101116" edge={{ stroke: "#2563eb" }} node={{ fill: "#5466c1", stroke: "#2563eb" }}>
-				{testGraph2}
-			</Dotx>
+			<VectorViewport renderer="Canvas" sourceFormat="DOTX" height="360px" background="#101116">
+				<Dotx mode="digraph" edge={{ stroke: "#2563eb" }} node={{ fill: "#5466c1", stroke: "#2563eb" }}>{testGraph2}</Dotx>
+			</VectorViewport>
 		</>
 	);
 }
@@ -181,9 +182,9 @@ export function DotxPrzykladSosaSvg( { punkt }: DotxPrzykladSosaSvgProps ) {
 					<strong>PRZYKŁAD Sosa (islandSvg)</strong>
 				</Title>
 			</header>
-			<Dotx mode="digraph" out="islandSvg" height="520px" background="#fff">
-				{testGraphSosa}
-			</Dotx>
+			<VectorViewport renderer="SVG" sourceFormat="DOTX" height="520px" background="#fff">
+				<Dotx mode="digraph">{testGraphSosa}</Dotx>
+			</VectorViewport>
 		</>
 	);
 }
@@ -199,9 +200,9 @@ export function DotxPrzykladSosaCanvas( { punkt }: DotxPrzykladSosaCanvasProps )
 					<strong>PRZYKŁAD Sosa (islandCanvas)</strong>
 				</Title>
 			</header>
-			<Dotx mode="digraph" out="islandCanvas" height="520px" background="#fff">
-				{testGraphSosa}
-			</Dotx>
+			<VectorViewport renderer="Canvas" sourceFormat="DOTX" height="520px" background="#fff">
+				<Dotx mode="digraph">{testGraphSosa}</Dotx>
+			</VectorViewport>
 		</>
 	);
 }

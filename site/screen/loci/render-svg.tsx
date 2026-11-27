@@ -7,9 +7,10 @@
 import type { LociModel } from "@/site/common/lang/loci/model.ts";
 import type { Zakres } from "@/site/common/lang/loci/shared/types.ts";
 import { doBrzegu } from "@/site/common/lang/loci/shared/geometry.ts";
-import { KIERUNKI_POLOSI, type LOCIAxElement } from "@/site/common/lang/loci/element/frame/LOCIAxElement.ts";
-import type { WygladLinii } from "@/site/common/lang/loci/attribute/LOCIAxisProps.ts";
-import type { WygladPunktu } from "@/site/common/lang/loci/attribute/LOCIPointProps.ts";
+import { KIERUNKI_POLOSI, type LOCIAxElement } from "@/site/common/lang/loci/element/datum/LOCIAxElement.ts";
+import type { LOCIPElement } from "@/site/common/lang/loci/element/datum/LOCIPElement.ts";
+import type { WygladLinii } from "@/site/common/lang/loci/attribute/LOCIAxisAttributes.ts";
+import type { WygladPunktu } from "@/site/common/lang/loci/attribute/LOCIPointAttributes.ts";
 import { GROT, KRESKI, odcinkiSymbolu } from "./render-wspolne.ts";
 
 /**
@@ -31,6 +32,7 @@ export function renderLociSvg( m: LociModel ) {
 		>
 			<g transform="scale(1,-1)">
 				{m.ax.map( ( ax ) => <AxSvg key={ax.id} ax={ax} zakres={m.zakres} /> )}
+				{m.p.map( ( p ) => <PSvg key={p.id} p={p} wyglad={m.punkt} /> )}
 			</g>
 		</svg>
 	);
@@ -51,6 +53,16 @@ function AxSvg( { ax, zakres }: { ax: LOCIAxElement; zakres: Zakres } ) {
 				return <PolosSvg key={kier} kier={kier} dlugosc={doBrzegu( ax.poczatek, ax.kat + kier, zakres )} wyglad={wyglad} />;
 			} )}
 			<PunktSvg wyglad={ax.punkt} />
+		</g>
+	);
+}
+
+/** p: punkt konstrukcyjny w swoim położeniu, w wyglądzie z body. */
+function PSvg( { p, wyglad }: { p: LOCIPElement; wyglad: WygladPunktu } ) {
+	const [ x, y ] = p.polozenie;
+	return (
+		<g id={p.id} class="loci-p" transform={`translate(${x} ${y})`}>
+			<PunktSvg wyglad={wyglad} />
 		</g>
 	);
 }

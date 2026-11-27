@@ -4,7 +4,7 @@
 // ORCID: https://orcid.org/0009-0009-2907-3792
 // Repository: https://github.com/j-Cis/dot-gener
 
-import type { Punkt2, Zakres } from "./types.ts";
+import type { JednostkaKata, Punkt2, Zakres } from "./types.ts";
 
 /**
  * Geometria wspólna. Układ rysunku: X w prawo, Y w górę, kąty w stopniach
@@ -25,4 +25,16 @@ export function doBrzegu( [ x, y ]: Punkt2, kat: number, [ minX, minY, maxX, max
 	const tx = dx > E ? ( maxX - x ) / dx : dx < -E ? ( minX - x ) / dx : Infinity;
 	const ty = dy > E ? ( maxY - y ) / dy : dy < -E ? ( minY - y ) / dy : Infinity;
 	return Math.max( 0, Math.min( tx, ty ) );
+}
+
+/** Kąt w podanej jednostce → stopnie. */
+export function naStopnie( wartosc: number, jednostka: JednostkaKata ): number {
+	return jednostka === "deg" ? wartosc : jednostka === "rad" ? ( wartosc * 180 ) / Math.PI : wartosc * 360;
+}
+
+/** Punkt [x, y] z układu lokalnego (początek `poczatek`, oś X obrócona o `kat` stopni) → układ rysunku. */
+export function wRysunku( poczatek: Punkt2, kat: number, [ x, y ]: Punkt2 ): Punkt2 {
+	const r = ( kat * Math.PI ) / 180;
+	const c = Math.cos( r ), s = Math.sin( r );
+	return [ poczatek[0] + x * c - y * s, poczatek[1] + x * s + y * c ];
 }

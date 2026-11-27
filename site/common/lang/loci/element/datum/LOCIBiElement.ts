@@ -1,11 +1,11 @@
 // @project-metadata
-// Path: site/common/lang/loci/element/frame/LOCIBiElement.ts
+// Path: site/common/lang/loci/element/datum/LOCIBiElement.ts
 // Author: Jan Roman Cisowski
 // ORCID: https://orcid.org/0009-0009-2907-3792
 // Repository: https://github.com/j-Cis/dot-gener
 
 /**
- * bi — układ bipolarny z dwoma biegunami w punktach: bi id="bi0" at="p0,p1".
+ * bi — układ bipolarny (DATUM 2D) z dwoma biegunami w punktach: bi id="bi0" at="p0,p1".
  */
 export interface LOCIBiProps {
 	id: string;

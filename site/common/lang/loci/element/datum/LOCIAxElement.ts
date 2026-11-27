@@ -1,19 +1,19 @@
 // @project-metadata
-// Path: site/common/lang/loci/element/frame/LOCIAxElement.ts
+// Path: site/common/lang/loci/element/datum/LOCIAxElement.ts
 // Author: Jan Roman Cisowski
 // ORCID: https://orcid.org/0009-0009-2907-3792
 // Repository: https://github.com/j-Cis/dot-gener
 
 import type { Punkt2 } from "../../shared/types.ts";
-import type { LOCIPointProps, WygladPunktu } from "../../attribute/LOCIPointProps.ts";
-import type { LOCIAxisProps, WygladPolosi } from "../../attribute/LOCIAxisProps.ts";
+import type { LOCIPointAttributes, WygladPunktu } from "../../attribute/LOCIPointAttributes.ts";
+import type { LOCIAxisAttributes, WygladPolosi } from "../../attribute/LOCIAxisAttributes.ts";
 
 /**
- * ax — układ odniesienia, kartezjański (x, y) i biegunowy (r, t) zarazem.
+ * ax — układ odniesienia (DATUM 2D), kartezjański (x, y) i biegunowy (r, t) zarazem.
  *   ax id="ax1" at="p0" thru="p1"  — początek w p0, oś X przez p1
- * Podstawowy ax (domyślnie ax0) tworzy body. Znacznik ax wymaga punktów, więc model jeszcze go nie przetwarza.
+ * Podstawowy ax (domyślnie ax0) tworzy body. Znacznika ax model jeszcze nie przetwarza.
  */
-export interface LOCIAxProps extends LOCIPointProps, LOCIAxisProps {
+export interface LOCIAxProps extends LOCIPointAttributes, LOCIAxisAttributes {
 	id: string;
 	/** punkt początku układu */
 	at: string;
