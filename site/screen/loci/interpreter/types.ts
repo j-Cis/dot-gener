@@ -1,0 +1,13 @@
+// @project-metadata
+// Path: site/screen/loci/interpreter/types.ts
+// Author: Jan Roman Cisowski
+// ORCID: https://orcid.org/0009-0009-2907-3792
+// Repository: https://github.com/j-Cis/dot-gener
+
+/** Typy modelu rysunku (interpreter LOCI dla wysp). */
+
+/** Punkt na płaszczyźnie: [x, y] w jednostkach rysunku. */
+export type Punkt2 = readonly [ x: number, y: number ];
+
+/** Obszar rysunku: [minX, minY, maxX, maxY] w jednostkach rysunku. */
+export type Zakres = readonly [ minX: number, minY: number, maxX: number, maxY: number ];

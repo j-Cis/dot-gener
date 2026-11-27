@@ -4,8 +4,7 @@
 // ORCID: https://orcid.org/0009-0009-2907-3792
 // Repository: https://github.com/j-Cis/dot-gener
 
-import type { LineStyle } from "@/site/common/lang/loci/attribute/LOCIAxisAttributes.ts";
-import type { PointSymbol } from "@/site/common/lang/loci/attribute/LOCIPointAttributes.ts";
+import type { LineStyle, PointSymbol } from "@/site/common/lang/loci/element/LOCIBodyElement.ts";
 
 /** Wspólne dla rysowania LOCI w SVG i na Canvas: wymiary w pikselach ekranu. */
 

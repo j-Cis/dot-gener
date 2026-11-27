@@ -95,7 +95,7 @@ The directories listed below are the ones currently defined. A new top-level dir
 - **Components** (widgets, renderers, islands, sections, pipes, macros — e.g. `Tec`, `Tex`) use PascalCase. These are the entry files of their directory.
 - **Language element definitions** (in `./site/common/lang/`) use the language name in capitals, then the element name starting with a capital letter:
   - `<LANG><Name>Element.ts` — one element (tag) of the language, e.g. `LOCIBodyElement.ts`, `LOCIAxElement.ts`;
-  - `<LANG><Name>Attributes.ts` — a group of attributes shared by several elements, e.g. `LOCIPointAttributes.ts`.
+  - `<LANG><Name>Attributes.ts` — a group of attributes shared by several elements, e.g. `LOCIDatumAttributes.ts`.
 - **All other files** (parts, helpers, registries) SHOULD use lowercase letters; hyphens are permitted, e.g. `render-svg.tsx`, `pan-zoom.ts`.
 
 ##### Stylesheets
@@ -154,8 +154,9 @@ The `_ANY.ts` name is intentional: its leading underscore ensures that it appear
 
 ##### `./site/screen/`
 
-- Contains renderers: they turn data or a language model (e.g. LOCI, DOTX) into a form presentable to the end user (HTML, SVG, Canvas).
-- Rendering of a custom language belongs here, never in `./site/common/lang/`.
+- Contains interpreters and renderers. An interpreter reads a language (e.g. LOCI), builds a model and reports errors (e.g. a duplicate id); a renderer turns data or a model
+  (e.g. LOCI, DOTX) into a form presentable to the end user (HTML, SVG, Canvas).
+- Interpretation and rendering of a custom language belong here, never in `./site/common/lang/`.
 
 **Naming conventions:**
 
@@ -210,8 +211,8 @@ The `_ANY.ts` name is intentional: its leading underscore ensures that it appear
 
 - `./site/common/css/` — styling-related functionality, including utilities and functions for working with CSS classes.
 - `./site/common/util/` — general-purpose utilities and helper functions.
-- `./site/common/lang/` — definitions of custom languages: their elements, attributes, types and logic (mathematics, geometry). A language here knows nothing about SVG, Canvas or
-  HTML; rendering belongs to `./site/screen/`.
+- `./site/common/lang/` — definitions of custom languages: their tags (elements), attributes, attribute value types and helper functions for filling attributes — what can be
+  used and how. How a language is understood belongs to each target, e.g. the interpreter and renderer in `./site/screen/` for the islands.
 - `./site/common/drafts/` — temporary, experimental, or unfinished code.
 
 Additional categories such as `logic/`, `math/`, and others MAY be introduced when needed.

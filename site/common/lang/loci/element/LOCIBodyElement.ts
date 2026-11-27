@@ -4,54 +4,48 @@
 // ORCID: https://orcid.org/0009-0009-2907-3792
 // Repository: https://github.com/j-Cis/dot-gener
 
-import type { Zakres } from "../shared/types.ts";
-import { ZAKRES_PUSTY } from "../shared/geometry.ts";
-import { type LOCIPointAttributes, type WygladPunktu, wygladPunktu } from "../attribute/LOCIPointAttributes.ts";
-import { type LOCIAxisAttributes, wygladPolosi } from "../attribute/LOCIAxisAttributes.ts";
-import type { LOCIAxElement } from "./datum/LOCIAxElement.ts";
-import type { LOCIBiElement } from "./datum/LOCIBiElement.ts";
-import type { LOCIPElement } from "./datum/LOCIPElement.ts";
-import type { LOCIFnElement } from "./def/LOCIFnElement.ts";
-import type { LOCIVarElement } from "./def/LOCIVarElement.ts";
+import type { IdZnacznika, KolorCss } from "../shared/types.ts";
 
 /**
- * body — klocek główny: cały rysunek. Atrybuty: id podstawowego ax oraz wygląd konstrukcji
- * (grupy z attribute/) — jeden dla wszystkich elementów konstrukcyjnych (DATUM) rysunku.
+ * body — klocek główny: cały rysunek. Tylko body decyduje o wyglądzie elementów konstrukcyjnych
+ * (DATUM): jeden wygląd dla wszystkich. Same elementy konstrukcyjne mają tylko geometrię.
+ * Body tworzy podstawowy układ csax; jego id podaje csaxId.
  */
-export interface LOCIBodyProps extends LOCIPointAttributes, LOCIAxisAttributes {
-	/** id podstawowego układu odniesienia ax; domyślnie "ax0" */
-	axId?: string;
+
+/** Symbol punktu konstrukcyjnego: "rays24" — 12 przeciętych linii (24 kierunki), "cross" — krzyżyk, "circle" — okrąg, "dot" — kropka. */
+export type PointSymbol = "rays24" | "cross" | "circle" | "dot";
+
+/** Styl linii konstrukcyjnej. */
+export type LineStyle = "dashed" | "dotted" | "solid";
+
+/** Półoś: [kolor, grubość w px, skala grota]; pominięte elementy — domyślne. */
+export type HalfAxis = readonly [ color: KolorCss, width?: number, arrow?: number ];
+
+export interface LOCIBodyProps {
+	/** id podstawowego układu odniesienia csax; domyślnie "csax0" */
+	csaxId?: IdZnacznika<"csax">;
+	/** wielkość punktów konstrukcyjnych w px ekranu */
+	pointSize?: number;
+	/** kolor punktów konstrukcyjnych */
+	pointColor?: KolorCss;
+	/** symbol punktów konstrukcyjnych */
+	pointSymbol?: PointSymbol;
+	/** grubość osi i półosi konstrukcyjnych w px ekranu */
+	axisWidth?: number;
+	/** styl osi i półosi konstrukcyjnych */
+	axisStyle?: LineStyle;
+	/** kolor osi i półosi konstrukcyjnych */
+	axisColor?: KolorCss;
+	/** dodatnia półoś X układów csax: [kolor, grubość, skala grota] */
+	halfAxisX?: HalfAxis;
+	/** dodatnia półoś Y układów csax: [kolor, grubość, skala grota] */
+	halfAxisY?: HalfAxis;
 }
 
-/** Cały rysunek po wczytaniu: obszar, wygląd punktów, układy (ax: pierwszy to podstawowy), punkty i definicje. */
-export interface LOCIBodyElement {
-	zakres: Zakres;
-	/** wygląd wszystkich punktów konstrukcyjnych p */
-	punkt: WygladPunktu;
-	ax: readonly LOCIAxElement[];
-	p: readonly LOCIPElement[];
-	bi: readonly LOCIBiElement[];
-	fn: readonly LOCIFnElement[];
-	var: readonly LOCIVarElement[];
-}
+/** id podstawowego układu, gdy body nie podaje csaxId — reguła języka. */
+export const CSAX_PODSTAWOWY: IdZnacznika<"csax"> = "csax0";
 
-/** Elementy wczytane z dzieci body (ax: z podstawowym na początku). */
-export type DzieciBody = Pick<LOCIBodyElement, "ax" | "p" | "bi" | "fn" | "var">;
-
-export const DOMYSLNE_BODY = { axId: "ax0" } as const;
-
-/** Podstawowy ax z atrybutów body: w (0,0), bez obrotu. */
-export function axPodstawowy( p: LOCIBodyProps ): LOCIAxElement {
-	return {
-		id: p.axId ?? DOMYSLNE_BODY.axId,
-		poczatek: [ 0, 0 ],
-		kat: 0,
-		punkt: wygladPunktu( p ),
-		polosie: wygladPolosi( p ),
-	};
-}
-
-/** Atrybuty body i wczytane dzieci → element. */
-export function bodyElement( p: LOCIBodyProps, dzieci: DzieciBody ): LOCIBodyElement {
-	return { zakres: ZAKRES_PUSTY, punkt: wygladPunktu( p ), ...dzieci };
+/** Znacznik body: atrybuty i dzieci (znaczniki LOCI). Sam nic nie robi. */
+export function body( _props: LOCIBodyProps & { children?: unknown } ): null {
+	return null;
 }

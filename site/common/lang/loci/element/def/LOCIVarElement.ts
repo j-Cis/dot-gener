@@ -4,24 +4,18 @@
 // ORCID: https://orcid.org/0009-0009-2907-3792
 // Repository: https://github.com/j-Cis/dot-gener
 
+import type { LOCIIdAttributes } from "../../attribute/LOCIIdAttributes.ts";
+
 /**
- * var — zmienna: var id="t0" val="1/3".
- * Używana przez nazwę w innych znacznikach, np. p … fn="spiral" at="t0".
+ * var — zmienna: var id="var0" as="t0" val="1/3".
+ * Używana przez id albo alias w innych znacznikach, np. p … fn="spiral" at="t0".
  */
-export interface LOCIVarProps {
-	/** nazwa zmiennej */
-	id: string;
+export interface LOCIVarProps extends LOCIIdAttributes<"var"> {
 	/** wartość: liczba albo wyrażenie, np. "1/3" */
 	val: string;
 }
 
-/** Zmienna po wczytaniu. Wyrażenie `val` nie jest jeszcze liczone — zostaje tekstem. */
-export interface LOCIVarElement {
-	id: string;
-	val: string;
-}
-
-/** Atrybuty var → element. */
-export function varElement( p: LOCIVarProps ): LOCIVarElement {
-	return { id: p.id, val: p.val };
+/** Znacznik var (w obiekcie Loci pod kluczem `var`, bo `var` to słowo zarezerwowane). Sam nic nie robi. */
+export function varTag( _props: LOCIVarProps ): null {
+	return null;
 }

@@ -4,13 +4,12 @@
 // ORCID: https://orcid.org/0009-0009-2907-3792
 // Repository: https://github.com/j-Cis/dot-gener
 
-import type { LociModel } from "@/site/common/lang/loci/model.ts";
-import type { Zakres } from "@/site/common/lang/loci/shared/types.ts";
-import { doBrzegu } from "@/site/common/lang/loci/shared/geometry.ts";
-import { KIERUNKI_POLOSI, type LOCIAxElement } from "@/site/common/lang/loci/element/datum/LOCIAxElement.ts";
-import type { LOCIPElement } from "@/site/common/lang/loci/element/datum/LOCIPElement.ts";
-import type { WygladLinii } from "@/site/common/lang/loci/attribute/LOCIAxisAttributes.ts";
-import type { WygladPunktu } from "@/site/common/lang/loci/attribute/LOCIPointAttributes.ts";
+import type { LociModel } from "./interpreter/model.ts";
+import type { Zakres } from "./interpreter/types.ts";
+import { doBrzegu } from "./interpreter/geometry.ts";
+import { KIERUNKI_POLOSI, type ModelCsax } from "./interpreter/csax.ts";
+import type { ModelP } from "./interpreter/p.ts";
+import type { WygladLinii, WygladPolosi, WygladPunktu } from "./interpreter/body.ts";
 import { GROT, KRESKI, odcinkiSymbolu } from "./render-wspolne.ts";
 
 /**
@@ -31,7 +30,7 @@ export function renderLociSvg( m: LociModel ) {
 			style={{ overflow: "visible" }}
 		>
 			<g transform="scale(1,-1)">
-				{m.ax.map( ( ax ) => <AxSvg key={ax.id} ax={ax} zakres={m.zakres} /> )}
+				{m.csax.map( ( cs ) => <CsaxSvg key={cs.id} cs={cs} zakres={m.zakres} polosie={m.polosie} punkt={m.punkt} /> )}
 				{m.p.map( ( p ) => <PSvg key={p.id} p={p} wyglad={m.punkt} /> )}
 			</g>
 		</svg>
@@ -43,22 +42,22 @@ const px = ( n: number ) => `calc(${n}px / var(--vv-s, 1))`;
 /** Skala elementu rysowanego w px ekranu (do `transform`). */
 const skala = ( k: number ) => `scale(calc(${k} / var(--vv-s, 1)))`;
 
-/** ax: półosie do brzegu zakresu i punkt w początku. */
-function AxSvg( { ax, zakres }: { ax: LOCIAxElement; zakres: Zakres } ) {
-	const [ x, y ] = ax.poczatek;
+/** csax: półosie do brzegu zakresu i punkt w początku, w wyglądzie z body. */
+function CsaxSvg( { cs, zakres, polosie, punkt }: { cs: ModelCsax; zakres: Zakres; polosie: WygladPolosi; punkt: WygladPunktu } ) {
+	const [ x, y ] = cs.poczatek;
 	return (
-		<g id={ax.id} class="loci-ax" transform={`translate(${x} ${y}) rotate(${ax.kat})`}>
-			{ax.polosie.map( ( wyglad, i ) => {
+		<g id={cs.id} class="loci-csax" transform={`translate(${x} ${y}) rotate(${cs.kat})`}>
+			{polosie.map( ( wyglad, i ) => {
 				const kier = KIERUNKI_POLOSI[i] ?? 0;
-				return <PolosSvg key={kier} kier={kier} dlugosc={doBrzegu( ax.poczatek, ax.kat + kier, zakres )} wyglad={wyglad} />;
+				return <PolosSvg key={kier} kier={kier} dlugosc={doBrzegu( cs.poczatek, cs.kat + kier, zakres )} wyglad={wyglad} />;
 			} )}
-			<PunktSvg wyglad={ax.punkt} />
+			<PunktSvg wyglad={punkt} />
 		</g>
 	);
 }
 
 /** p: punkt konstrukcyjny w swoim położeniu, w wyglądzie z body. */
-function PSvg( { p, wyglad }: { p: LOCIPElement; wyglad: WygladPunktu } ) {
+function PSvg( { p, wyglad }: { p: ModelP; wyglad: WygladPunktu } ) {
 	const [ x, y ] = p.polozenie;
 	return (
 		<g id={p.id} class="loci-p" transform={`translate(${x} ${y})`}>

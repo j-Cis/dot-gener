@@ -18,13 +18,19 @@
 
 #### LOCIVarElement`<Loci.var/>` (Logic Definition Varible)
 
-#### LOCIAxElement`<Loci.ax/>` (Datum Frame)
+#### LOCICsaxElement`<Loci.csax/>` (Datum Frame)
 
-#### LOCIBiElement`<Loci.bi/>` (Datum Frame)
+#### LOCICsbiElement`<Loci.csbi/>` (Datum Frame)
 
 #### LOCIPElement`<Loci.p/>` (Datum Point)
 
+### FUNKCJE
+
+#### lociId`const id = lociId(); <Loci.p id={id.p()} />` (Logic Id)
+
 ### ATRYBUTY
+
+#### LOCIIdAttributes`id="fn0" as="spiral"` (wszystkie znaczniki poza body)
 
 #### LOCIDatumFramesAttributes
 

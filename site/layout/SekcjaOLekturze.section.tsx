@@ -195,7 +195,7 @@ function FolderyStrony() {
 				<Box start={[ 2, 2 ]} headerShow="N" headerLabel={<>RENDERY {tec`site/screen/`}</>}>
 					<ul>
 						<li>Pliki główne leżą na górze folderu: {tec`<Nazwa>.render.tsx`}, obok opcjonalnie CSS.</li>
-						<li>Zamieniają dane albo model języka (LOCI, DOTX) na HTML, SVG albo Canvas.</li>
+						<li>Interpreter czyta język (np. LOCI), buduje model i zgłasza błędy. Render zamienia dane albo model (LOCI, DOTX) na HTML, SVG albo Canvas.</li>
 						<li>Części renderu są w podfolderze tematu, małymi literami: {tec`loci/`}, {tec`dotx/`}.</li>
 						<li>Inny kod importuje render przez plik główny, nie przez jego części.</li>
 					</ul>
@@ -216,7 +216,9 @@ function FolderyStrony() {
 						<li>
 							{tec`css/`} (np. {tec`cx.ts`}), {tec`util/`}, {tec`lang/`} (definicje języków LOCI i DOTX), {tec`drafts/`} (szkice).
 						</li>
-						<li>Język w {tec`lang/`} nic nie wie o SVG, Canvas ani HTML. Rysowanie należy do {tec`site/screen/`}.</li>
+						<li>
+							Język w {tec`lang/`} to tylko znaczniki, atrybuty i funkcje do wypełniania atrybutów. Interpretacja i rysowanie należą do odbiorcy, np. {tec`site/screen/`}.
+						</li>
 						<li>Tu reeksporty są dozwolone.</li>
 					</ul>
 				</Box>
@@ -256,7 +258,7 @@ function NazwyPlikow() {
 				</li>
 				<li>
 					<strong>Elementy języka</strong> w {tec`site/common/lang/`}: nazwa języka wielkimi literami, potem nazwa elementu od wielkiej litery, np. {tec`LOCIBodyElement.ts`}{" "}
-					(jeden znacznik) i {tec`LOCIPointAttributes.ts`} (grupa atrybutów wspólna dla kilku znaczników).
+					(jeden znacznik) i {tec`LOCIDatumAttributes.ts`} (grupa atrybutów wspólna dla kilku znaczników).
 				</li>
 				<li>
 					<strong>Pozostałe pliki</strong> (części, pomocnicze, rejestry) mają nazwy małymi literami, z łącznikiem, np. {tec`render-svg.tsx`}, {tec`pan-zoom.ts`}.

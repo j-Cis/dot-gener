@@ -5,13 +5,12 @@
 // Repository: https://github.com/j-Cis/dot-gener
 
 import type { CanvasDrawContext } from "@/site/screen/canvas/draw-context.ts";
-import type { LociModel } from "@/site/common/lang/loci/model.ts";
-import type { Zakres } from "@/site/common/lang/loci/shared/types.ts";
-import { doBrzegu } from "@/site/common/lang/loci/shared/geometry.ts";
-import { KIERUNKI_POLOSI, type LOCIAxElement } from "@/site/common/lang/loci/element/datum/LOCIAxElement.ts";
-import type { LOCIPElement } from "@/site/common/lang/loci/element/datum/LOCIPElement.ts";
-import type { WygladLinii } from "@/site/common/lang/loci/attribute/LOCIAxisAttributes.ts";
-import type { WygladPunktu } from "@/site/common/lang/loci/attribute/LOCIPointAttributes.ts";
+import type { LociModel } from "./interpreter/model.ts";
+import type { Zakres } from "./interpreter/types.ts";
+import { doBrzegu } from "./interpreter/geometry.ts";
+import { KIERUNKI_POLOSI, type ModelCsax } from "./interpreter/csax.ts";
+import type { ModelP } from "./interpreter/p.ts";
+import type { WygladLinii, WygladPolosi, WygladPunktu } from "./interpreter/body.ts";
 import { GROT, KRESKI, odcinkiSymbolu } from "./render-wspolne.ts";
 
 /**
@@ -27,26 +26,26 @@ export function drawLociCanvas( { ctx, view, dane }: CanvasDrawContext ): void {
 	ctx.save();
 	ctx.translate( -minX, maxY );
 	ctx.scale( 1, -1 );
-	for ( const ax of m.ax ) axCanvas( ctx, view.s, ax, m.zakres );
+	for ( const cs of m.csax ) csaxCanvas( ctx, view.s, cs, m.zakres, m.polosie, m.punkt );
 	for ( const p of m.p ) pCanvas( ctx, view.s, p, m.punkt );
 	ctx.restore();
 }
 
-/** ax: półosie do brzegu zakresu i punkt w początku. */
-function axCanvas( ctx: CanvasRenderingContext2D, s: number, ax: LOCIAxElement, zakres: Zakres ): void {
+/** csax: półosie do brzegu zakresu i punkt w początku, w wyglądzie z body. */
+function csaxCanvas( ctx: CanvasRenderingContext2D, s: number, cs: ModelCsax, zakres: Zakres, polosie: WygladPolosi, punkt: WygladPunktu ): void {
 	ctx.save();
-	ctx.translate( ax.poczatek[0], ax.poczatek[1] );
-	ctx.rotate( ( ax.kat * Math.PI ) / 180 );
-	ax.polosie.forEach( ( wyglad, i ) => {
+	ctx.translate( cs.poczatek[0], cs.poczatek[1] );
+	ctx.rotate( ( cs.kat * Math.PI ) / 180 );
+	polosie.forEach( ( wyglad, i ) => {
 		const kier = KIERUNKI_POLOSI[i] ?? 0;
-		polosCanvas( ctx, s, kier, doBrzegu( ax.poczatek, ax.kat + kier, zakres ), wyglad );
+		polosCanvas( ctx, s, kier, doBrzegu( cs.poczatek, cs.kat + kier, zakres ), wyglad );
 	} );
-	punktCanvas( ctx, s, ax.punkt );
+	punktCanvas( ctx, s, punkt );
 	ctx.restore();
 }
 
 /** p: punkt konstrukcyjny w swoim położeniu, w wyglądzie z body. */
-function pCanvas( ctx: CanvasRenderingContext2D, s: number, p: LOCIPElement, wyglad: WygladPunktu ): void {
+function pCanvas( ctx: CanvasRenderingContext2D, s: number, p: ModelP, wyglad: WygladPunktu ): void {
 	ctx.save();
 	ctx.translate( p.polozenie[0], p.polozenie[1] );
 	punktCanvas( ctx, s, wyglad );

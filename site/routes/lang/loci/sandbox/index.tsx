@@ -6,7 +6,7 @@
 
 import { Box, Col, P, powtorz, Row, RozmiarWiersza, Table, TitleSection } from "@/site/widget/_ANY.ts";
 import VectorViewport from "@/site/client/VectorViewport.island.tsx";
-import { Loci } from "@/site/screen/Loci.render.tsx";
+import { Loci } from "@/site/common/lang/loci/tags.ts";
 export default function WebPage() {
 	return (
 		<main class="page">

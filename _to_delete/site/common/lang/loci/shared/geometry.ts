@@ -11,7 +11,7 @@ import type { JednostkaKata, Punkt2, Zakres } from "./types.ts";
  * przeciwnie do ruchu wskazówek zegara.
  */
 
-/** Obszar, gdy rysunek nie ma jeszcze elementów (sam podstawowy ax). */
+/** Obszar, gdy rysunek nie ma jeszcze elementów (sam podstawowy csax). */
 export const ZAKRES_PUSTY: Zakres = [ -100, -100, 100, 100 ];
 
 /**

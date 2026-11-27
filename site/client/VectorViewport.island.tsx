@@ -12,7 +12,6 @@ import { DOPASOWANIA, type SvgRegistryKey } from "@/site/client/registries/for-i
 import { RYSUNKI } from "@/site/client/registries/for-island-canvas.ts";
 import { usePanZoom } from "@/site/client/hooks/pan-zoom.ts";
 import type { PositionedGraph } from "@/site/common/lang/dotx/model.ts";
-import type { LociModel } from "@/site/common/lang/loci/model.ts";
 import type { CanvasDrawContext, CanvasDrawer } from "@/site/screen/canvas/draw-context.ts";
 import { dotxCanvas, dotxModelZJsx, dotxSvg } from "@/site/screen/Dotx.render.tsx";
 import { lociCanvas, lociModelZJsx, lociSvg } from "@/site/screen/Loci.render.tsx";
@@ -64,6 +63,9 @@ export type VectorViewportProps =
 			scene: SceneSize;
 		})
 	);
+
+/** Model LOCI — typ wyniku interpretera z pliku głównego Loci.render.tsx. */
+type LociModel = ReturnType<typeof lociModelZJsx>;
 
 type KluczRysunku = keyof typeof RYSUNKI;
 const kluczeRysunkow = Object.keys( RYSUNKI ) as KluczRysunku[];
