@@ -154,8 +154,8 @@ The `_ANY.ts` name is intentional: its leading underscore ensures that it appear
 
 ##### `./site/screen/`
 
-- Contains interpreters and renderers. An interpreter reads a language (e.g. LOCI), builds a model and reports errors (e.g. a duplicate id); a renderer turns data or a model
-  (e.g. LOCI, DOTX) into a form presentable to the end user (HTML, SVG, Canvas).
+- Contains interpreters and renderers. An interpreter reads a language (e.g. LOCI), builds a model and reports errors (e.g. a duplicate id); a renderer turns data or a model (e.g.
+  LOCI, DOTX) into a form presentable to the end user (HTML, SVG, Canvas).
 - Interpretation and rendering of a custom language belong here, never in `./site/common/lang/`.
 
 **Naming conventions:**
@@ -211,8 +211,8 @@ The `_ANY.ts` name is intentional: its leading underscore ensures that it appear
 
 - `./site/common/css/` — styling-related functionality, including utilities and functions for working with CSS classes.
 - `./site/common/util/` — general-purpose utilities and helper functions.
-- `./site/common/lang/` — definitions of custom languages: their tags (elements), attributes, attribute value types and helper functions for filling attributes — what can be
-  used and how. How a language is understood belongs to each target, e.g. the interpreter and renderer in `./site/screen/` for the islands.
+- `./site/common/lang/` — definitions of custom languages: their tags (elements), attributes, attribute value types and helper functions for filling attributes — what can be used
+  and how. How a language is understood belongs to each target, e.g. the interpreter and renderer in `./site/screen/` for the islands.
 - `./site/common/drafts/` — temporary, experimental, or unfinished code.
 
 Additional categories such as `logic/`, `math/`, and others MAY be introduced when needed.
