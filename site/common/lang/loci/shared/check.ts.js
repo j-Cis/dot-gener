@@ -1,0 +1,10 @@
+// @project-metadata
+// Path: site/common/lang/loci/shared/check.ts
+// Author: Jan Roman Cisowski
+// ORCID: https://orcid.org/0009-0009-2907-3792
+// Repository: https://github.com/j-Cis/dot-gener
+/** Sprawdzanie wartości atrybutów. */ /** Liczba ≥ 0 albo błąd z nazwą atrybutu. */ export function dodatnia(wartosc, atrybut) {
+  if (!(wartosc >= 0) || !Number.isFinite(wartosc)) throw new RangeError(`LOCI: ${atrybut} musi być liczbą ≥ 0, jest ${wartosc}`);
+  return wartosc;
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNpdGUvY29tbW9uL2xhbmcvbG9jaS9zaGFyZWQvY2hlY2sudHMiXSwic291cmNlc0NvbnRlbnQiOlsiLy8gQHByb2plY3QtbWV0YWRhdGFcbi8vIFBhdGg6IHNpdGUvY29tbW9uL2xhbmcvbG9jaS9zaGFyZWQvY2hlY2sudHNcbi8vIEF1dGhvcjogSmFuIFJvbWFuIENpc293c2tpXG4vLyBPUkNJRDogaHR0cHM6Ly9vcmNpZC5vcmcvMDAwOS0wMDA5LTI5MDctMzc5MlxuLy8gUmVwb3NpdG9yeTogaHR0cHM6Ly9naXRodWIuY29tL2otQ2lzL2RvdC1nZW5lclxuXG4vKiogU3ByYXdkemFuaWUgd2FydG/Fm2NpIGF0cnlidXTDs3cuICovXG5cbi8qKiBMaWN6YmEg4omlIDAgYWxibyBixYLEhWQgeiBuYXp3xIUgYXRyeWJ1dHUuICovXG5leHBvcnQgZnVuY3Rpb24gZG9kYXRuaWEoIHdhcnRvc2M6IG51bWJlciwgYXRyeWJ1dDogc3RyaW5nICk6IG51bWJlciB7XG5cdGlmICggISggd2FydG9zYyA+PSAwICkgfHwgIU51bWJlci5pc0Zpbml0ZSggd2FydG9zYyApICkgdGhyb3cgbmV3IFJhbmdlRXJyb3IoIGBMT0NJOiAke2F0cnlidXR9IG11c2kgYnnEhyBsaWN6YsSFIOKJpSAwLCBqZXN0ICR7d2FydG9zY31gICk7XG5cdHJldHVybiB3YXJ0b3NjO1xufVxuIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLG9CQUFvQjtBQUNwQiw4Q0FBOEM7QUFDOUMsNkJBQTZCO0FBQzdCLCtDQUErQztBQUMvQyxpREFBaUQ7QUFFakQsb0NBQW9DLEdBRXBDLDJDQUEyQyxHQUMzQyxPQUFPLFNBQVMsU0FBVSxPQUFlLEVBQUUsT0FBZTtFQUN6RCxJQUFLLENBQUMsQ0FBRSxXQUFXLENBQUUsS0FBSyxDQUFDLE9BQU8sUUFBUSxDQUFFLFVBQVksTUFBTSxJQUFJLFdBQVksQ0FBQyxNQUFNLEVBQUUsUUFBUSwyQkFBMkIsRUFBRSxTQUFTO0VBQ3JJLE9BQU87QUFDUiJ9
